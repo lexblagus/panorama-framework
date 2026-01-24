@@ -78,10 +78,19 @@ These apply to every image generated.
 - Scene remains bright; no night lighting.
 - No dark foregrounds.
 - Long shadows consistent with sun position.
+
 - Consistent sun direction across all tiles:
   - Tiles 1–4: light coming from the right
+    - **Shadow-fall enforcement:** primary cast shadows fall to the **left**
+    - **Highlight-side enforcement:** right-facing planes are consistently brighter
   - Tile 5: centered / frontal diffusion
+    - Shadows are minimal / symmetric and must not imply a strong left/right key
   - Tiles 6–9: light coming from the left
+    - **Shadow-fall enforcement:** primary cast shadows fall to the **right**
+    - **Highlight-side enforcement:** left-facing planes are consistently brighter
+
+- If an image’s shadow-fall contradicts the specified direction, the image is invalid and must be regenerated.
+- Do **not** rely on horizontal mirroring to “fix” light direction; mirroring breaks shadow logic.
 
 #### Lateral ambiance gradient
 
@@ -157,12 +166,19 @@ Along the lateral axis (Tile 1 → Tile 9), atmospheric density is strictly cumu
 * Consistent horizon physics across all tiles
 * Slightly off-axis framing (imperfect, human vantage)
 * Human-scale streets and believable building proportions
-* The virtual camera height, pitch, and horizon line are fixed and shared across all tiles.
+
+* The virtual camera height, pitch, horizon line, and vertical framing are fixed and shared across all tiles.
 * No tile may independently reframe or vertically recenter the composition.
 * Cropping of dominant elements is permitted; camera rebalancing is not.
 * Vertical reframing or recentering to emphasize the sun, skyline, or focal elements is **forbidden**.
-* Cropping of dominant elements (sun, towers, clouds) is acceptable and preferred over vertical reframing.*
+* Cropping of dominant elements (sun, towers, clouds) is acceptable and preferred over vertical reframing.
 
+* **Sky-band lock (framing invariant):**
+  * Do not introduce “extra sky” as a way to fit the sun, skyline, or mood.
+  * The amount of visible sky should remain broadly consistent across tiles (Tile 1 may vary due to terrain).
+* **Foreground-distance lock (scale invariant):**
+  * Avoid near-foreground dominance that implies a push-in (giant close roads / giant close roofs).
+  * Prefer midground stacking, occlusion, and compressed layering over “getting closer.”
 
 ### Composition and camera flow
 

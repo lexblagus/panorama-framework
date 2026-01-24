@@ -1,0 +1,5 @@
+[
+  { "filename": "generated/001-01-sample.png", "size": "1536x1024", "prompt": "blue square" },
+  { "filename": "generated/001-02-sample.png", "size": "1024x1536", "prompt": "red diamond" },
+  { "filename": "generated/001-03-sample.png", "size": "1024x1536", "prompt": "yellow circle" }
+]

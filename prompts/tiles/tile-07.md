@@ -1,39 +1,19 @@
-# Tile 7: Generator Prompt
+# Tile 7: Generator prompt
 
-> Photorealistic portrait-oriented aerial image of a **late-stage urban district transitioning toward logistics and commerce**, captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system.
-> 
-> The scene depicts a **heavy, aging city fabric** shaped by circulation, service, and logistics, while supporting a **large resident population**. This is **not suburbia** and not a residential neighborhood; residential density exists at **block scale**, not at human scale.
-> 
-> **Large residential blocks** form a significant portion of the urban mass. These are **extensive, repetitive housing structures** with large footprints, clustered and repeated across the scene. They are utilitarian, working-class in character, and non-iconic, functioning as **demographic containers** rather than architectural statements.
-> 
-> Residential blocks are **interwoven with infrastructure**. Roads, ramps, and service corridors cut through and around housing clusters. Buildings wrap around circulation and utilities, reinforcing coexistence and spatial pressure rather than comfort or dominance.
-> 
-> Urban scale is driven by **logistics and service activity**, expressed through **vehicle diversity rather than uniform volume**. A heterogeneous mix of vehicles appears irregularly:
-> - rigid multi-axle trucks,
-> - urban cargo vehicles,
-> - articulated trucks and semi-trailers (present but not dominant),
-> - fuel and gas tanker trucks of varied shapes and colors,
-> - both cab-over and non-cab-over configurations.
-> Truck bodies include **canvas tarps in muted orange and brown tones**, some new and some weathered.
-> 
-> Commercial architecture expands laterally. **Low-rise commercial slabs, warehouses, and service buildings** with large footprints occupy major zones of the frame, visually competing with residential mass rather than replacing it.
-> 
-> **Circulation is multi-layered and spatially continuous across depth.**  
+> Photorealistic portrait-oriented aerial image depicting a **late-stage urban district transitioning toward logistics and service dominance**, captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system. Broad coverage, compressed distance, no wide-angle distortion.
 >
-> Dominant spatial energy is **diagonal (post-core release)**: the largest circulation corridors and massing should subtly lean **bottom-left → top-right** as a release from Tile 5’s vertical spine, without forming a single heroic axis.
+> This is **not suburbia** and not a residential neighborhood. The city supports a large resident population, but residential life is increasingly compressed and subordinated to circulation, commerce, and utility systems. The urban fabric feels older, heavier, and throughput-driven rather than comfortable or master-planned.
 >
-> Surface roads coexist with **elevated roadways, flyovers, ramps, and partial interchanges**, with occasional tunnel entrances and underpasses. Circulation elements repeat from foreground to background, overlapping residential and commercial structures and extending the spatial read into the distance.
-> 
-> Major roads show **clear visual cues of directionality**, such as lane markings, medians, or physical separation between traffic directions, while remaining stitch-safe at the image edges.
-> 
-> City utilities are visibly integrated. **Gas and water backbone infrastructure** runs alongside roads and through residential and commercial areas via pipelines, service corridors, and utility installations.
-> 
-> Pedestrian presence is minimal and secondary. Human life is implied through population mass, habitation scale, logistics flow, and utility systems.
-> 
-> The far background resolves into extended urban mass under atmospheric haze. No skyline forms. No industrial megastructures appear. **Full industrial systems remain absent**, but the city’s scale and population density are unmistakable.
-> 
-> Light is warm but muted, coming from the **left side, off-frame**, filtered through haze. Late golden hour tones remain present but progressively desaturate toward the industrial periphery.
-> 
-> The image must read as a **population-heavy, logistics-pressured urban threshold**, positioned between the urban core and the industrial periphery.
-> 
+> Density is expressed through **large footprints, repeated masses, and infrastructure layering**. Predominantly low-rise to mid-rise construction. Large repetitive **working-class residential blocks** interwoven with infrastructure corridors. Low-rise commercial slabs, warehouses, depots, service yards, and utility installations appear throughout.
+>
+> Circulation is multi-level and complex: broad load-bearing roads, layered intersections, ramps, partial interchanges, underpasses, and occasional tunnel entrances. Early logistics and service traffic is visible: rigid multi-axle trucks, urban cargo vehicles, articulated trucks and semi-trailers (present but not dominant), fuel/gas tanker trucks, cab-over and non-cab-over configurations, and canvas-tarp truck bodies in muted orange and brown tones (new and weathered).
+>
+> **Framing + scale discipline (prevent “too zoomed in” reads):** avoid a single near-foreground interchange filling the bottom of frame. Roads may dominate, but must remain telephoto-compressed and not close-up. Prefer midground stacking and overlap of residential slabs + warehouses + service yards to create density.
+>
+> Dominant spatial energy reads as a **diagonal post-core release (bottom-left → top-right)** without cinematic tilt. No single heroic diagonal spine; express the diagonal through layered massing and circulation tendency.
+>
+> The **dominant light pressure originates from the far left edge of the frame**, fully off-image. The sun is not visible. Primary cast shadows fall to the **right**. Brightest haze/sky pressure sits on the **left** side, cooling and desaturating toward the right.
+>
+> Atmosphere is hazier and more desaturated than Tile 5, but not as fully suffocating as Tile 9. The tile must read as the threshold where logistics begins to overtake residential order.
+>
 > Output: 1024 × 1536, portrait orientation.

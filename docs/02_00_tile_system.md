@@ -1,6 +1,8 @@
 # Tile System
 
-Tiles may be horizontally mirrored on generation of editorial assembly while lighting direction, shadows, and narrative flow remain consistent.
+Tiles must be treated as **non-mirrored** outputs for all canonical runs.
+
+Horizontal mirroring may be used only for **temporary diagnostic composites**, and must not be used to “fix” lighting direction or shadow logic. Any tile that would require mirroring to align must be regenerated instead.
 
 ## Summary
 

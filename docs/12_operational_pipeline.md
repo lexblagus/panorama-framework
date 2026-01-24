@@ -216,10 +216,19 @@ Downstream variants:
       - camera pitch
       - vanishing height
       - atmospheric cutoff behavior
+      - **vertical framing discipline (sky-band lock)**
     - Building heights may vary freely.
     - No tile may introduce independent skyline logic.
   - Tile 5 is the reference ruler.
-- ***Step 5*** — Re-evaluate Only in Composite Context
+  - **Sky-band lock (practical check):**
+    - If a tile shows noticeably more sky than the others, treat it as a vertical recentering failure.
+    - If the sun (Tile 5 only) forces extra sky, crop the sun instead of lifting the framing.
+  - **Foreground-distance lock (practical check):**
+    - If a tile feels “zoomed in,” assume foreground dominance is breaking scale continuity.
+    - Correct by:
+      - reducing single-feature foreground takeover (no giant cloverleaf filling the bottom)
+      - increasing midground stacking / occlusion / repetition
+      - keeping roads and roofs readable but not oversized- ***Step 5*** — Re-evaluate Only in Composite Context
   - No tile may be judged or corrected in isolation after anchoring.
   - Validation workflow:
     - Assemble rough composite of tiles 1–3–5–7–9 (no blending).
@@ -277,6 +286,82 @@ These rules govern document evolution only and do not affect visual, narrative, 
 ---
 
 
+
+
+## Patch Protocol: How to Propose Spec and Prompt Changes
+
+This framework treats image generation as a systems-design problem. As such, modifications must be expressed in a **repeatable, auditable patch format** that can be applied without interpretation.
+
+### Principles
+
+- **Specs are authoritative.** Prompts are execution artifacts generated from specs.
+- Prefer **replacing entire sections or paragraphs** over micro-edits.
+- Every patch must be **anchored** to a concrete target (file + section header).
+- Patch text must be **copy/paste ready** and safe to apply verbatim.
+- When conflicts exist between documents, resolve by **authority order**:
+  1. `docs/01_core_canonical.md` (global invariants)
+  2. `docs/02_00_tile_system.md` (tile system rules)
+  3. `docs/02_XX_tile_YY.md` (tile specs)
+  4. `docs/12_operational_pipeline.md` (process)
+  5. `docs/13_runtime_notes_and_variants.md` (runtime notes, non-canonical)
+  6. `prompts/*` (execution artifacts)
+
+### Required Output Format
+
+A patch set must be written in this structure:
+
+1. **Patch Set Header**
+   - Goal (one sentence)
+   - Scope (which tiles, which files)
+
+2. **Change Entries** (repeat for each change)
+   - **File:** `<path>`
+   - **Target Section:** `<exact markdown heading path>`
+   - **Action:** `REPLACE SECTION` or `REPLACE PARAGRAPH` (preferred) or `INSERT AFTER <anchor line>`
+   - **Replace this:** (verbatim excerpt of the current block being replaced)
+   - **With this:** (the full replacement block)
+   - **Rationale:** 1–3 lines describing why this is required (optional but recommended)
+   - **Downstream impact:** which prompts must be regenerated (optional)
+
+### Replacement Rules
+
+- When possible, the **“Replace this”** block must be the *entire* section under a heading.
+- If replacing a paragraph within a section, include enough surrounding text to uniquely identify it.
+- Avoid ambiguous anchors such as “the paragraph about haze.” Use explicit headings or exact quoted lines.
+
+### Prompt Handling Rules
+
+- Do not “fix prompts” in isolation.
+- If a prompt needs modification, first patch the **spec source**.
+- After spec edits are applied, regenerate the prompt outputs.
+- When sharing prompt changes for review, provide the **full prompt file contents** to avoid drift and partial merges.
+
+### Drift Audit Checklist (Spec ↔ Prompt)
+
+When reviewing a tile:
+
+- If a prompt includes a constraint that is not present in its spec sources, that content is **drift** and must be:
+  - added to specs (if intended), or
+  - removed from the prompt (if accidental).
+- If a spec includes a constraint that is missing from the prompt, the prompt is **incomplete** and must be regenerated.
+- Validate especially:
+  - light direction and shadow-fall
+  - camera invariants (no vertical recentering)
+  - haze ladder position
+  - skyline / sky-band framing discipline
+  - “forbidden motifs” clauses
+
+### Example Patch Entry (Template)
+
+- **File:** `docs/02_09_tile_09.md`  
+- **Target Section:** `## Key Elements`  
+- **Action:** INSERT AFTER `- Distant smog`  
+- **With this:**
+  ```md
+  - **Maximum haze mandate:** Tile 9 must exhibit the strongest atmospheric density in the panorama
+  - Visibility collapse: far background should be **nearly erased** into milky smog; skyline edges must not be crisp
+  
+  
 
 
 ## Review
