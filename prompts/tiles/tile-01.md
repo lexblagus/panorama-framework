@@ -1,4 +1,4 @@
-# Anchored prompt
+# Tile 1: Anchored prompt
 
 > Photorealistic portrait-oriented image depicting the **terrain-dominant, chaotic natural edge** of a vast megacity, captured from a fixed elevated aerial viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system.
 > 
@@ -29,7 +29,7 @@
 > 
 > The **primary urban axis is absent**. No megacity skyline is visible. The horizon shows **layered hills and mountains**, compressed by distance but restrained in vertical height. The camera is elevated above the highest ridgeline, preserving a clear sky margin at the top of the frame.
 > 
-> Light originates from the **far left, off-frame**, raking across rock faces, cliffs, and vegetation. Atmosphere is clear and crisp with minimal haze.
+> Light originates from the **far right, off-frame**, raking across rock faces, cliffs, and vegetation. Atmosphere is clear and crisp with minimal haze.
 > 
 > Color palette remains vivid and natural: deep greens, stone grays, earth tones, dark water blues, and warm sunlit highlights. Warmth functions as illumination, not sentiment.
 > 

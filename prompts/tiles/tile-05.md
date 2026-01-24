@@ -1,4 +1,4 @@
-# Locked prompt
+# Tile 5: Locked prompt
 
 > Photorealistic portrait-oriented image of the **iconic urban core** of a vast megacity at **golden hour**, captured from a fixed elevated aerial viewpoint with **rectilinear optics and strong telephoto-like depth compression**. The city appears monumentally dense, vertically stacked, and compressed toward the horizon.
 > 
@@ -10,7 +10,9 @@
 > 
 > The skyline reaches its **maximum vertical intensity** here, with dense clusters of tall towers. Architectural variety is intentionally heterogeneous: modern glass slabs, stepped art-deco silhouettes, neo-gothic verticals, brutalist concrete masses, and dense mid-rise blocks coexist. Buildings differ in age, material, façade rhythm, and roofline geometry. Architectural relatives, not twins.
 > 
-> **The sun itself is not a clearly defined disk.** Its presence is inferred through extreme sky brightness, atmospheric compression, and warm diffusion near the horizon. The solar source may be fully obscured by haze or partially occluded by skyline or clouds. Scale is conveyed through **light pressure**, not a visible solar edge.
+> **A partially visible solar disk is allowed only here.** If visible, it must be **fully diffused through haze with no hard edge**, and may be partially occluded by skyline or clouds or cropped by the frame. It may also be fully obscured. Scale is conveyed through **light pressure and atmospheric brightness**, never a crisp solar boundary.
+>
+> Lighting behavior is **centered / frontal diffusion**, producing maximum atmospheric bloom without harsh side-cast contrast.
 > 
 > **Contrast follows depth.** Foreground elements retain higher local contrast, sharper edges, and clearer material definition. Contrast and clarity decrease progressively with distance: midground softens under warm haze, and background dissolves into amber atmospheric diffusion near the horizon.
 > 
