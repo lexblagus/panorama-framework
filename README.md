@@ -16,7 +16,16 @@ If you are an AI assistant (e.g. Codex in Cursor):
 1. **Read before acting**
    - Always read the following files before proposing edits or generating prompts:
      - `docs/01_core_canonical.md`
-     - `docs/02_tile_definitions.md`
+     - `docs/02_00_tile_system.md`
+     - `docs/02_01_tile_01.md`
+     - `docs/02_02_tile_02.md`
+     - `docs/02_03_tile_03.md`
+     - `docs/02_04_tile_04.md`
+     - `docs/02_05_tile_05.md`
+     - `docs/02_06_tile_06.md`
+     - `docs/02_07_tile_07.md`
+     - `docs/02_08_tile_08.md`
+     - `docs/02_09_tile_09.md`
    - These define global constraints, camera physics, semantic roles, and tile boundaries.
 
 2. **Respect authority layers**

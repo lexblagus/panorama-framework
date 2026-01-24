@@ -209,26 +209,27 @@ Downstream variants:
     - Atmosphere should feel brighter, more suffocated, and volumetrically saturated.
     - Target mood: industrial afterlife, not darkness.
     - Fog, haze, and particulate density may glow softly.
-- ***Step 4*** — Normalize Horizon and Skyline Physics
-  - Apply normalization to perceptual alignment, not geometry.
-  - Rules:
-    - All tiles must share the same:
-      - camera pitch
-      - vanishing height
-      - atmospheric cutoff behavior
-      - **vertical framing discipline (sky-band lock)**
-    - Building heights may vary freely.
-    - No tile may introduce independent skyline logic.
-  - Tile 5 is the reference ruler.
-  - **Sky-band lock (practical check):**
-    - If a tile shows noticeably more sky than the others, treat it as a vertical recentering failure.
-    - If the sun (Tile 5 only) forces extra sky, crop the sun instead of lifting the framing.
-  - **Foreground-distance lock (practical check):**
-    - If a tile feels “zoomed in,” assume foreground dominance is breaking scale continuity.
-    - Correct by:
-      - reducing single-feature foreground takeover (no giant cloverleaf filling the bottom)
-      - increasing midground stacking / occlusion / repetition
-      - keeping roads and roofs readable but not oversized- ***Step 5*** — Re-evaluate Only in Composite Context
+- ***Step 4*** — Normalize Horizon and Skyline Physics (Three-Band Lock)
+  - Goal:
+    - Stabilize perceived “zoom”, sky share, and skyline height drift across the strip **without changing camera parameters**.
+    - Treat Tile 5 as the vertical framing authority.
+  - Procedure (Tile 5 as ruler):
+    1. Lock Tile 5 first (it is the calibration authority).
+    2. From Tile 5, record three guide heights (mentally or with quick overlay lines in your viewer):
+       - **Band A:** Horizon/vanishing height (where far detail collapses).
+       - **Band B:** Dominant skyline crest height (top silhouette of the main mass).
+       - **Band C:** Foreground cap (bottom zone beyond which near-field must not dominate).
+    3. Evaluate Tiles 1/3/7/9 against those guides:
+       - If a tile shows **too much sky** (crest and/or horizon sits too low): do NOT “pull back”; instead **increase city/terrain mass within the same framing** and allow top clipping if needed.
+       - If a tile reads **too zoomed in** (foreground fills bottom): do NOT “push out”; instead reduce near-field dominance and add **midground stacking/occlusion**.
+       - If haze causes the horizon to disappear (Tiles 7–9): use **vanishing height** of corridors/roof-fields as the proxy for Band A.
+  - Practical checks:
+    - **Band A drift check:** horizon/vanishing height should feel consistent tile-to-tile (no tile independently “reframes” upward or downward).
+    - **Band B drift check:** Tile 5 must not read “lower” than Tile 3/7 due to extra sky.
+    - **Band C push-in check:** no single interchange/roof/foreground object fills the bottom; density must be achieved via repetition + overlap.
+  - Enforcement rule:
+    - If the sun (Tile 5) or peaks (Tile 1) pressure the top of frame, allow **partial cropping** rather than lifting the framing to accommodate them.
+- ***Step 5*** — Re-evaluate Only in Composite Context
   - No tile may be judged or corrected in isolation after anchoring.
   - Validation workflow:
     - Assemble rough composite of tiles 1–3–5–7–9 (no blending).

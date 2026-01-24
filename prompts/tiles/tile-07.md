@@ -8,7 +8,7 @@
 >
 > Circulation is multi-level and complex: broad load-bearing roads, layered intersections, ramps, partial interchanges, underpasses, and occasional tunnel entrances. Early logistics and service traffic is visible: rigid multi-axle trucks, urban cargo vehicles, articulated trucks and semi-trailers (present but not dominant), fuel/gas tanker trucks, cab-over and non-cab-over configurations, and canvas-tarp truck bodies in muted orange and brown tones (new and weathered).
 >
-> **Framing + scale discipline (prevent “too zoomed in” reads):** avoid a single near-foreground interchange filling the bottom of frame. Roads may dominate, but must remain telephoto-compressed and not close-up. Prefer midground stacking and overlap of residential slabs + warehouses + service yards to create density.
+> **Three-band framing lock (Tile 5 referenced):** keep the vanishing height aligned and keep sky share stable (do not add sky for haze mood). Prevent push-in reads: avoid a single near-foreground interchange filling the bottom; roads may dominate, but must remain telephoto-compressed and not close-up. Prefer midground stacking and overlap of residential slabs + warehouses + service yards to create density.
 >
 > Dominant spatial energy reads as a **diagonal post-core release (bottom-left → top-right)** without cinematic tilt. No single heroic diagonal spine; express the diagonal through layered massing and circulation tendency.
 >

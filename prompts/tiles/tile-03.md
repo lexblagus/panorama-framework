@@ -8,7 +8,7 @@
 >
 > Circulation is layered and human-scale: pedestrian stairways, footbridges, small overpasses, embedded transit entrances, short elevated rail segments, and neighborhood commerce (market strips, kiosks, corner shops). Rooftops show habitation: water tanks, laundry lines, satellite dishes, and small rooftop structures.
 >
-> **Framing discipline:** keep sky presence modest; do not expand sky to create mood. Avoid near-foreground dominance that implies a push-in; prefer midground stacking and occlusion.
+> **Three-band framing lock (Tile 5 referenced):** keep the horizon/vanishing height aligned; keep sky presence modest (do not add sky for mood). Prevent “zoomed-in” reads: no single near-foreground block/road fills the bottom; prefer midground stacking, overlap, and occlusion. Do not introduce a distant high-rise skyline silhouette.
 >
 > Light is warm and diffuse, coming from the **right side, off-frame**. The sun is off-frame. Primary cast shadows fall to the **left**. The district’s massing and circulation show a **subtle diagonal tendency (bottom-right → top-left)** without forming a single dominant axial spine.
 >

@@ -10,6 +10,8 @@
 >
 > An **engineered industrial shoreline is required**. The land–water boundary must read as predominantly straight, angular, and artificial, formed by docks, harbors, seawalls, containment structures, and port geometry. Organic or eroded coastlines are not allowed. The boundary should introduce a strong diagonal or faceted geometry that cuts across the frame and contrasts with the panorama’s lateral flow.
 >
+> **Three-band framing lock (Tile 5 referenced):** keep the vanishing height aligned even if the true horizon is erased by smog. Do not add extra sky for atmosphere; increase haze inside the city volume and over distance instead. Prevent push-in reads: no single foreground yard/track fan fills the bottom—emphasize layered repetition into depth.
+>
 > The **dominant light pressure originates from the far left edge of the frame**, fully off-image. The sun itself is not visible. Primary cast shadows fall to the **right**. Residual warmth remains on the sunward side, while the rest of the image cools into desaturated browns, grays, steel tones, and polluted blues.
 >
 > **Maximum haze mandate:** atmosphere is extremely thick and oppressive, filled with smoke, steam, dust, and particulate matter. Visibility collapses: the far background should be nearly erased into milky smog; skyline edges must not be crisp. Diffuse industrial glow interacts with fog and smog, producing soft volumetric radiance **without increasing contrast or warmth**.
