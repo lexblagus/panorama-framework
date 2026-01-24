@@ -1,25 +1,25 @@
-# Generator Prompt (Provisional — Pass-3b applied)
+# Generator prompt
 
-> Photorealistic portrait-oriented image depicting the **urban transition zone** of a vast megacity during **golden hour**, captured from a fixed elevated aerial viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system.
+> Photorealistic portrait-oriented aerial image depicting a **dense urban transition zone with interwoven green urbanism** during **golden hour**, captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system.
 > 
-> This tile represents the **shift from dense residential fabric toward mixed-use urban complexity**. Building height and typology diversify: taller residential blocks and early office buildings appear, but no skyline silhouette dominates. Verticality is emerging, not iconic.
+> This scene represents a **human-scaled yet dense city fabric** positioned between natural dominance and cosmopolitan intensity. Buildings are predominantly **low- to mid-rise**, tightly packed, heterogeneous, and utilitarian. No skyline or iconic vertical forms are present.
 > 
-> Midground density is increased through **layered overlap and occlusion**. Buildings partially block one another across depth, with frequent foreground-to-midground interference. Streets, overpasses, and building volumes introduce a **diagonal reading from bottom-right to top-left**, reducing perceived openness without increasing building height. Sky exposure is limited by overlapping structures rather than taller towers.
+> Urban form is **mixed and lived-in**. Mid-rise apartment blocks coexist with smaller residential houses and older buildings of varied eras. Density is achieved through **accumulation, overlap, and repetition**, not height.
 > 
-> Circulation becomes layered and negotiated. Roads curve and overlap, with ramps, overpasses, and partial interchanges introducing multi-level movement without forming a central axis.
+> Green elements are **woven directly into the city**. A **canalized stream or river remnant** passes through the district in a concrete channel with softened, vegetated edges. Trees and weedy vegetation follow rail lines, roads, and embankments. **Pocket parks and courtyards** appear irregularly between blocks.
 > 
-> Transit infrastructure begins to surface: subway entrances, cut-and-cover tunnels, and short elevated segments appear as coordinated systems rather than isolated insertions. Rail elements remain partially obscured and scale-respectful.
+> Circulation is layered and human-scale. **Pedestrian stairways, footbridges, and small overpasses** connect uneven streets and infrastructure layers. At street level, **small market strips, corner shops, kiosks, and neighborhood commerce** cluster along busy routes.
 > 
-> Far-background depth is increased through **compressed urban layers beyond the midground**. Distant building silhouettes and infrastructural mass repeat and soften progressively, dissolving into atmospheric haze rather than terminating at a clear skyline edge. The visual horizon aligns perceptually with the core tile, remaining continuous but lower and less defined.
+> Transit infrastructure is embedded and non-monumental. **Small subway station entrances** and short elevated rail segments appear intermittently, integrated into daily life.
 > 
-> **Vertical density decreases progressively toward the upper third of the frame.** Urban mass thins as elevation rises: upper portions of buildings soften, fragment, and dissolve into haze rather than forming a continuous vertical wall. The highest visible structures release earlier than in the core tile, creating perceptual breathing room above the midground without increasing visible sky or lowering building height.
+> Rooftops show signs of habitation: **water tanks, laundry lines, satellite dishes, and small rooftop structures**, reinforcing human scale.
 > 
-> Atmosphere shows the **first clear warm-up** in the lateral gradient. Early amber tones tint façades and streets. A light haze softens midground distance while intensifying upward dissolution. The sun itself is not visible.
+> The far background resolves into continuous low- to mid-rise urban spread, gradually dissolving into warm atmospheric haze. The horizon is distant, indistinct, and non-iconic.
 > 
-> Architecture is mixed-era and heterogeneous: concrete residential blocks, aging mid-rises, early glass office slabs, and scattered commercial structures. No repeated façade rhythm, no landmark forms.
+> Light is warm and diffuse. The sun is off-frame. Golden haze compresses distance without dramatizing scale.
 > 
-> Traffic density increases, with cars, buses, and occasional trams reinforcing scale and movement. Vehicles remain human-scale and partially occluded.
+> Traffic density is moderate to high. Cars, buses, and trams are numerous and clearly readable, acting as primary scale references.
 > 
-> The image must clearly read as **between** the residential density of Tile 2 and the vertical pressure of Tile 4 — a zone of transition, complexity, and anticipation.
+> The image must read as a **crowded, green-interwoven, human-scaled urban continuum**, clearly positioned between the natural chaos of Tile 1 and the cosmopolitan vertical pressure of Tile 5.
 > 
 > Output: 1024 × 1536, portrait orientation.
