@@ -1,19 +1,36 @@
-# Anchored prompt
+# Tile 7: Generator Prompt
 
-> Photorealistic portrait-oriented image depicting the post-core urban sprawl of a vast megacity during golden hour, captured from a fixed elevated aerial viewpoint with rectilinear optics and strong telephoto-like depth compression, consistent with the panorama’s unified camera system.
-> 
-> This tile represents the release of vertical pressure after the central core. Building heights reduce noticeably, but density remains high. The city spreads laterally through crowded mid-rise fabric rather than stacking upward.
-> 
-> Architecture is mixed-era and visually cluttered: aging residential blocks, commercial slabs, older office buildings, and opportunistic infill coexist without iconic identity. No skyline silhouette dominates; the horizon fragments and dissolves into haze.
-> 
-> Circulation becomes broad and directional. Roads widen, intersections grow complex, and overpasses overlap. Movement feels logistical and continuous rather than axial. Early service trucks and delivery vehicles appear among dense civilian traffic.
-> 
-> Infrastructure shows age and adaptation: patched concrete, exposed utilities, rooftop equipment, signage clutter, and retrofitted structures. Systems feel stressed but functional.
-> 
-> Atmosphere continues the lateral gradient away from the core. Warmth fades, colors desaturate, and haze thickens, softening distance and dissolving the skyline. Foreground remains readable; background blends into atmospheric mass.
-> 
-> Light comes from the left, filtered through haze. The sun is not visible.
-> 
-> Tile 7 must clearly read as less vertical than Tile 6, denser than Tile 8, and part of the same continuous megacity system.
-> 
-> Output: 1024 × 1536, portrait orientation.
+Photorealistic portrait-oriented aerial image of a **late-stage urban district transitioning toward logistics and commerce**, captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system.
+
+The scene depicts a **heavy, aging city fabric** shaped by circulation, service, and logistics, while supporting a **large resident population**. This is **not suburbia** and not a residential neighborhood; residential density exists at **block scale**, not at human scale.
+
+**Large residential blocks** form a significant portion of the urban mass. These are **extensive, repetitive housing structures** with large footprints, clustered and repeated across the scene. They are utilitarian, working-class in character, and non-iconic, functioning as **demographic containers** rather than architectural statements.
+
+Residential blocks are **interwoven with infrastructure**. Roads, ramps, and service corridors cut through and around housing clusters. Buildings wrap around circulation and utilities, reinforcing coexistence and spatial pressure rather than comfort or dominance.
+
+Urban scale is driven by **logistics and service activity**, expressed through **vehicle diversity rather than uniform volume**. A heterogeneous mix of vehicles appears irregularly:
+- rigid multi-axle trucks,
+- urban cargo vehicles,
+- articulated trucks and semi-trailers (present but not dominant),
+- fuel and gas tanker trucks of varied shapes and colors,
+- both cab-over and non-cab-over configurations.
+Truck bodies include **canvas tarps in muted orange and brown tones**, some new and some weathered.
+
+Commercial architecture expands laterally. **Low-rise commercial slabs, warehouses, and service buildings** with large footprints occupy major zones of the frame, visually competing with residential mass rather than replacing it.
+
+**Circulation is multi-layered and spatially continuous across depth.**  
+Surface roads coexist with **elevated roadways, flyovers, ramps, and partial interchanges**, with occasional tunnel entrances and underpasses. Circulation elements repeat from foreground to background, overlapping residential and commercial structures and extending the spatial read into the distance.
+
+Major roads show **clear visual cues of directionality**, such as lane markings, medians, or physical separation between traffic directions, while remaining stitch-safe at the image edges.
+
+City utilities are visibly integrated. **Gas and water backbone infrastructure** runs alongside roads and through residential and commercial areas via pipelines, service corridors, and utility installations.
+
+Pedestrian presence is minimal and secondary. Human life is implied through population mass, habitation scale, logistics flow, and utility systems.
+
+The far background resolves into extended urban mass under atmospheric haze. No skyline forms. No industrial megastructures appear. **Full industrial systems remain absent**, but the city’s scale and population density are unmistakable.
+
+Light is warm but muted. Late golden hour tones are filtered through haze, reinforcing continuity and scale.
+
+The image must read as a **population-heavy, logistics-pressured urban threshold**, positioned between the urban core and the industrial periphery.
+
+Output: 1024 × 1536, portrait orientation.

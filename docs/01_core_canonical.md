@@ -239,6 +239,20 @@ Infrastructure elements to spread across tiles — following tile theme — such
 - Modern trams and subways on left and center; old cargo trains and large trucks on right (industrial mood)
 - Rail vehicles in non-industrial tiles (Tiles 1–3) must remain proto-infrastructural: low-profile, scale-respectful, and access-oriented. Trains define scale through length, repetition, and partial visibility, never through bulk or height.
 
+### Roadway Circulation Consistency
+
+Across all tiles, road networks should maintain **visually coherent traffic flow** at the scale of each individual roadway.
+
+- Major roads and arterials feature **clear visual cues** indicating directionality, such as:
+  - lane markings,
+  - central dividers,
+  - medians,
+  - guardrails,
+  - or physical separation between opposing directions of travel.
+- Vehicles are generally **aligned consistently within each roadway**, following the implied direction of that road.
+- Minor streets, service roads, and access lanes may appear more organic and irregular, but should not visually contradict the primary flow of adjacent major roads.
+
+This constraint prioritizes **perceptual coherence** over strict traffic-law accuracy and should not reduce urban complexity or circulation layering.
 
 ### Anti-Repetition Rules
 
