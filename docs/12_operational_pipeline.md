@@ -2,6 +2,11 @@
 
 This file defines how humans and models interact over time.
 
+## Image dimensions
+
+- ChatGPT: `1024✕1536` (either portrait or landscape)
+- Google Gemini NanoBanana: `1408✕768`
+
 ## Workflow
 
 This section defines the procedural steps used to generate, assemble, and refine the panorama.  
@@ -137,127 +142,22 @@ Downstream variants:
   `7680×1280 pixels`, cropping to `7680×1080 pixels`
 
 
-
-
 ## Activities
 
 - TODO: Add the magic trick, stating that a chat gets wasted after too many iteractions; after a prompt lock try in a new chat.
 
+- Remove the Vertical Framing Normalization (Three-Band Lock)
 
-### Global Composition Calibration & Tile Realignment Plan
+- Consider change tile 9 ambience and update previous tiles specs?
+- Generate tile 5
+- Generate tile 1 with tile 5 ruler
+- Generate tile 9 with tile 5 ruler and reference
+- Generate tiles 3 and 7 with tile 5 ruler and tile (references or bridges?)
+- Develop specs for tiles 2, 4, 6 and 8
+- Generate bridge images for tiles 2, 4, 6 and 8
+- Generate images for tiles 2, 4, 6 and 8
 
-- Purpose:
-  - Define system-level calibration steps to ensure scale coherence, compositional continuity, and perceptual balance.
-  - Focus on relational corrections between tiles, not isolated tile perfection.
-  - Execute before any fine stitching or color grading.
-- Assumption:
-  - Individual tile prompts are already anchored.
-  - Tile 5 is the global calibration authority.
-- ***Step 1*** — Establish Dominant Spatial Force Rotation
-  - Enforce a progressive rotation of dominant spatial energy across the panorama.
-  - This is a compositional principle, not a camera change.
-  - Target dominant reads:
-    - Tile 1: Vertical (terrain, cliffs, elevation drops)
-    - Tile 3: Diagonal (negotiated urban rise)
-    - Tile 5: Vertical (urban axis, core compression)
-    - Tile 7: Diagonal (post-core release)
-    - Tile 9: Horizontal (logistics, industry, sprawl)
-  - Rules:
-    - Camera height, pitch, and optics remain unchanged.
-    - Rotation is expressed through mass orientation, circulation flow, and element dominance.
-    - Intermediate tiles (2–4 and 6–8) must interpolate this rotation progressively.
-- ***Step 2*** — Lock Telephoto Compression as a Global Constant
-  - Treat perceived scale issues as compression errors, not size errors.
-  - Invariant:
-    - Telephoto-like depth compression is constant across all tiles.
-  - Allowed to vary:
-    - Building height
-    - Vertical density
-    - Semantic density (residential vs logistical)
-    - Atmospheric masking
-  - Forbidden corrections:
-    - Camera pullback or push-in
-    - Vertical recentering
-    - Manual skyline leveling
-    - Tile rescaling
-- ***Step 3*** — Tile-Specific Structural Adjustment Goals
-  - Tile 3 — Transition Zone:
-    - Increase midground stacking and occlusion.
-    - Add residential repetition (houses, apartments, balconies, windows).
-    - Reduce perceived openness.
-    - Do not increase overall building height.
-    - Goal: same camera, stronger compression, still pre-core.
-  - Tile 5 — Iconic Core:
-    - No structural changes.
-    - Acts as calibration authority for:
-      - Maximum vertical pressure
-      - Maximum atmospheric diffusion
-      - Horizon physics
-  - Tile 7 — Urban Sprawl:
-    - Maintain reduced building height.
-    - Increase layering, overlap, and visual clutter.
-    - Shift semantic density toward logistical elements:
-      - warehouses
-      - depots
-      - service yards
-      - large commercial slabs
-    - Roads and infrastructure may dominate but must remain compressed.
-    - Goal: release height, not compression.
-  - Tile 9 — Industrial Terminus:
-    - Increase luminance and atmospheric radiance.
-    - Do not increase contrast.
-    - Atmosphere should feel brighter, more suffocated, and volumetrically saturated.
-    - Target mood: industrial afterlife, not darkness.
-    - Fog, haze, and particulate density may glow softly.
-- ***Step 4*** — Normalize Horizon and Skyline Physics (Three-Band Lock)
-  - Goal:
-    - Stabilize perceived “zoom”, sky share, and skyline height drift across the strip **without changing camera parameters**.
-    - Treat Tile 5 as the vertical framing authority.
-  - Procedure (Tile 5 as ruler):
-    1. Lock Tile 5 first (it is the calibration authority).
-    2. From Tile 5, record three guide heights (mentally or with quick overlay lines in your viewer):
-       - **Band A:** Horizon/vanishing height (where far detail collapses).
-       - **Band B:** Dominant skyline crest height (top silhouette of the main mass).
-       - **Band C:** Foreground cap (bottom zone beyond which near-field must not dominate).
-    3. Evaluate Tiles 1/3/7/9 against those guides:
-       - If a tile shows **too much sky** (crest and/or horizon sits too low): do NOT “pull back”; instead **increase city/terrain mass within the same framing** and allow top clipping if needed.
-       - If a tile reads **too zoomed in** (foreground fills bottom): do NOT “push out”; instead reduce near-field dominance and add **midground stacking/occlusion**.
-       - If haze causes the horizon to disappear (Tiles 7–9): use **vanishing height** of corridors/roof-fields as the proxy for Band A.
-  - Practical checks:
-    - **Band A drift check:** horizon/vanishing height should feel consistent tile-to-tile (no tile independently “reframes” upward or downward).
-    - **Band B drift check:** Tile 5 must not read “lower” than Tile 3/7 due to extra sky.
-    - **Band C push-in check:** no single interchange/roof/foreground object fills the bottom; density must be achieved via repetition + overlap.
-  - Enforcement rule:
-    - If the sun (Tile 5) or peaks (Tile 1) pressure the top of frame, allow **partial cropping** rather than lifting the framing to accommodate them.
-- ***Step 5*** — Re-evaluate Only in Composite Context
-  - No tile may be judged or corrected in isolation after anchoring.
-  - Validation workflow:
-    - Assemble rough composite of tiles 1–3–5–7–9 (no blending).
-    - Evaluate:
-      - compression continuity
-      - skyline alignment
-      - spatial force rotation
-      - semantic differentiation
-    - Decide on regeneration or prompt tuning only after composite review.
-- ***Step 6*** — Principle of Minimal Intervention
-  - Apply corrections in this order:
-    - Structural relationships
-    - Element distribution
-    - Semantic density
-    - Atmospheric behavior
-    - Color and texture (last)
-  - Avoid:
-    - wholesale prompt rewrites
-    - averaging tiles toward sameness
-    - fixing symptoms instead of causes
-
-***Summary Rule:***
-  - If a tile feels wrong, assume the relationship is wrong, not the tile.
-  - Correct the system first.
-
----
-
-
+- Generate NanoBanana specs and prompts?
 
 
 ## Editing & Formatting
@@ -283,10 +183,6 @@ This subsection defines mandatory rules governing how this document may be edite
   - Exactly two blank lines must follow each subsection (N.N).
 
 These rules govern document evolution only and do not affect visual, narrative, or generation constraints.
-
----
-
-
 
 
 ## Patch Protocol: How to Propose Spec and Prompt Changes

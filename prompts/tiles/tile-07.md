@@ -1,4 +1,18 @@
-# Tile 7: Generator prompt
+# Tile 7 prompts
+
+## Header
+
+Prepend this if you have a reference image (a previous estabilized tile 5)
+
+> REFERENCE IMAGES PROVIDED:
+> - Reference A: Tile 5 (ruler): `tile5ruler.png`
+> 
+> USE POLICY (strict):
+> - Use Reference A ONLY to match: camera/framing physics (horizon/vanishing height feel), sky-budget discipline (no extra sky), telephoto compression feel, and midground scale.
+> - Do NOT import any urban-core content from Reference A: no skyscrapers, no central axis, no dense grid logic.
+> - This tile must remain nature-dominant; Reference A is a ruler, not content.
+
+## Generator prompt
 
 > Photorealistic portrait-oriented aerial image depicting a **late-stage urban district transitioning toward logistics and service dominance**, captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system. Broad coverage, compressed distance, no wide-angle distortion.
 >

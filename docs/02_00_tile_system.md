@@ -6,24 +6,23 @@ Horizontal mirroring may be used only for **temporary diagnostic composites**, a
 
 ## Summary
 
-| # | Level | Title | Theme | Atmosphere |
-|---:|---|---|---|---|
-| 1 | primary | Nature as Dominant Chaos | Terrain-dominant natural systems | Clean daylight |
-| 2 | tertiary | Dense Residential | Housing / Parks / Lakes | Slight warmth |
-| 3 | secondary | Transition Zone | Mixed typologies | Warmth + early haze |
-| 4 | tertiary | Pre-Core Vertical | Urban Vertical | Amber build-up |
-| 5 | primary master | Iconic Core (Anchor) | Landmark Skyline | Amber peak + diffused sun |
-| 6 | tertiary | Post-Core Vertical | Urban Vertical | Fading warmth |
-| 7 | secondary | Urban Sprawl | Roads / Mid-rise | Desaturated haze |
-| 8 | tertiary | Industrial | Infrastructure | Heavy smog |
-| 9 | primary | Heavy Industrial Expanse | Factories / Cargo | Bluish-gray fog |
+| # | Level | References | Title | Theme | Atmosphere |
+|---:|---|---|---|---|---|
+| 1 | primary | ruler | Nature as Dominant Chaos | Terrain-dominant natural systems | Clean daylight |
+| 2 | tertiary | bridge | Dense Residential | Housing / Parks / Lakes | Slight warmth |
+| 3 | secondary | ruler | Transition Zone | Mixed typologies | Warmth + early haze |
+| 4 | tertiary | bridge | Pre-Core Vertical | Urban Vertical | Amber build-up |
+| 5 | primary master | none | Iconic Core (Anchor) | Landmark Skyline | Amber peak + diffused sun |
+| 6 | tertiary | bridge | Post-Core Vertical | Urban Vertical | Fading warmth |
+| 7 | secondary | ruler | Urban Sprawl | Roads / Mid-rise | Desaturated haze |
+| 8 | tertiary | bridge | Industrial | Infrastructure | Heavy smog |
+| 9 | primary | ruler and mood | Heavy Industrial Expanse | Factories / Cargo | Bluish-gray fog |
 
 ***Levels:***
 - **Master**: main tile based on Central Master Reference Image
 - **Primary**: pivotal tile with the main themes: wild nature ↔ urban density ↔ industrial pressure
 - **Secondary**: in-between zones of the main themes
 - **Tertiary**: extension of neightbour tiles with stitching anchors
-
 
 ## Detailed definitions
 

@@ -1,4 +1,23 @@
-# Tile 9: Provisional/anchored prompt
+# Tile 9 prompts
+
+## Header
+
+Prepend this if you have reference images:
+- A ruler image: a previous estabilized tile 5
+- A mood image: a artistic reference
+
+> REFERENCE IMAGES PROVIDED:
+> - Reference A: Tile 5 (ruler): `tile5ruler.png`
+> - Reference B: Tile 9 mood image (palette/atmosphere only): `tile9mood.png`
+> 
+> USE POLICY (priority order):
+> - Reference A controls framing physics: horizon/vanishing height feel, sky-budget discipline, telephoto compression, and scale normalization.
+> - Reference B controls ONLY mood: haze character, industrial density feeling, and filmic tonal response.
+> - Do NOT copy composition from Reference B (no skyline/shoreline layout copying, no distinctive silhouettes, no repeating patterns).
+> - Time-of-day lock: still bright golden-hour daylight (no dusk/night). Artificial lights, if present, must be sparse, utilitarian, and subdued—not city-at-night sparkle.
+> - If any conflict exists between references, follow Reference A and the written spec.
+
+## Provisional/anchored prompt
 
 > Photorealistic portrait-oriented image of the **outer industrial extreme** of the megacity at **late golden hour daylight (still bright; no dusk)**, captured from a fixed elevated aerial viewpoint with **rectilinear optics and strong telephoto-like depth compression**. The city feels heavy, flattened, and utilitarian, with vast distances compressed into dense layers of industrial infrastructure.
 >
