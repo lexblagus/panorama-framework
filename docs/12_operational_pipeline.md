@@ -147,8 +147,6 @@ Downstream variants:
 - TODO: Add the magic trick, stating that a chat gets wasted after too many iteractions; after a prompt lock try in a new chat.
 - Add new jargons to Core Canonical / Concepts?
 
-- Remove the Vertical Framing Normalization (Three-Band Lock)
-
 - Generate NanoBanana specs and prompts?
 
 - Consider change tile 9 ambience and update previous tiles specs?

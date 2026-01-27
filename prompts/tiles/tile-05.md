@@ -1,4 +1,6 @@
-# Tile 5: Locked prompt
+# Tile 5 prompts
+
+## ChatGPT Locked prompt
 
 > Photorealistic portrait-oriented image of the **iconic urban core** of a vast megacity at **golden hour**, captured from a fixed elevated aerial viewpoint with **rectilinear optics and strong telephoto-like depth compression**. Use a **narrow field of view** (no wide-angle drift); the city appears monumentally dense, vertically stacked, and compressed toward the horizon.
 >
@@ -19,3 +21,28 @@
 > The image must read as the **equilibrium point of the entire panorama** — the peak of density, warmth, and atmospheric pressure — defining the visual and physical ceiling for all other tiles. Reject any framing that widens FOV or lowers apparent tower height versus Tiles 3 and 7.
 >
 > Output: 1024 × 1536, portrait orientation.
+
+## NanoBanana compiled prompt
+
+> You are generating a photorealistic image as part of a large, multi-tile panoramic cityscape.
+> This image must behave as one tile in a continuous photographic system.
+> 
+> Do not reinterpret the scene creatively.
+> Do not add landmarks, symbols, or narrative elements that are not explicitly implied.
+> Preserve scale realism, camera consistency, and atmospheric logic.
+> 
+> If multiple interpretations are possible, choose the one that best supports continuity,
+> not novelty.
+> 
+> Generate Tile 5 (Iconic Core / Anchor). Portrait orientation (2:3 aspect), photorealistic.
+> Fixed elevated aerial viewpoint with rectilinear optics and strong telephoto-like depth compression (no wide-angle drift). Narrow field of view. The city must feel monumentally dense, vertically stacked, and compressed toward the distance.
+> 
+> Composition: a single, perfectly vertical primary urban axis dominates the image, running from the bottom of frame into the distant skyline. This vertical axis is the gravitational spine. Layered infrastructure aligns with it: grand avenue and/or rail/subway corridors, occasional elevated segments, with repetition and stacking defining scale (not one giant foreground object).
+> 
+> Skyline: maximum vertical intensity of the entire panorama. Tallest towers and a recognizable skyline silhouette. Heterogeneous but plausible architecture (glass slabs, stepped art-deco massing, neo-gothic verticals, brutalist concrete masses, dense mid-rise blocks), “relatives not twins.”
+> 
+> Lighting: golden hour with centered / frontal diffusion. Warm amber atmospheric pressure. The solar disk may be partially visible only here: fully diffused through haze, no hard edge, may be unnaturally large and may be partially cropped by the top edge. Emphasis through scale/brightness, not by lifting or recentering the camera.
+> 
+> Depth: contrast and detail decrease with distance (foreground clearer, midground softened, background dissolving into amber haze). Surfaces show subtle wear and imperfection; no hyper-clean polish. No heavy industry, no nature dominance, no industrial decay.
+> 
+> This image defines peak density, warmth, and atmospheric diffusion for the entire panorama.
