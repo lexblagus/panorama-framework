@@ -8,7 +8,7 @@
 >
 > The skyline reaches its **maximum vertical intensity** here, with dense clusters of tall towers. Architectural variety is intentionally heterogeneous: modern glass slabs, stepped art-deco silhouettes, neo-gothic verticals, brutalist concrete masses, and dense mid-rise blocks coexist. Architectural relatives, not twins.
 >
-> **Three-band framing lock authority:** Tile 5 defines the panorama’s vertical rulers. **Horizon band (Band A):** keep horizon/vanishing height and diffused solar glare in the top ~20–22% of the frame; do not lift framing to fit the sun. **Crest band (Band B):** skyline/tower peaks dissolve in haze just below Band A; no crest touches the top edge; skyline mass occupies the upper third with minimal sky. **Foreground cap (Band C):** bottom ~12% reserved for the axial avenue/rail read; no clipping at the bottom edge; side edges stay stitch-safe.
+> **Framing stability authority (Tile 5 as ruler, no bands):** Tile 5 sets the shared vanishing-height feel and vertical pressure. Do not vertically recenter to fit the sun or towers—crop/clip if they press the frame. Keep sky disciplined by adding skyline mass or haze inside the same framing; prevent push-in reads by avoiding a single near-field avenue/interchange and using midground stacking for depth.
 >
 > Lighting is **centered / frontal diffusion**, producing maximum atmospheric diffusion without harsh contrast. The solar disk may be **partially visible only here**, fully diffused through haze with no hard edge; it may read unnaturally large and may be partially cropped. Shadows are minimal / symmetric and must not imply a strong left/right key.
 >

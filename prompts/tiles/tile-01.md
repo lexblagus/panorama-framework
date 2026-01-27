@@ -20,7 +20,7 @@ Prepend this if you have a reference image (a previous estabilized tile 5)
 >
 > Human presence exists only as **negotiated proto-infrastructure**: carved mountain roads, switchbacks, tunnels, viaducts, cliffside cuts, retaining walls, and small access structures. Settlements are sparse but legible in **layered pockets**: hillside dwellings, terraces, and scattered slope villages embedded into the terrain (vernacular houses, stone dwellings, occasional brutalist or modern hillside villas). Optional subtle passenger rail may appear as a constrained corridor or tunnel segment, strictly subordinate.
 >
-> **Three-band framing lock (Tile 5 referenced):** keep vertical framing consistent with the panorama. Lower Band A slightly to allow **~24–30% sky** while keeping the shared vanishing logic. Peaks sit below the expanded sky band and dissolve in haze; no crest touches the top edge. Avoid a single near-foreground cliff/road mass filling the bottom; prefer midground stacking and layered settlement pockets.
+> **Framing stability (Tile 5 as ruler, no bands):** keep Tile 5’s telephoto framing pressure; do not vertically recenter to fit peaks or sun—crop/clip instead. If sky feels too open, add terrain bulk, roof-field density, or haze inside the same framing. Prevent push-in reads by reducing any single foreground mass and adding midground stacking/overlap of settlements and infrastructure.
 >
 > The **dominant light pressure originates from the far right edge of the frame**, fully off-image. The sun is not visible. Primary cast shadows fall to the **left**. Air is clear and crisp relative to later tiles, with strong material definition and minimal haze.
 >

@@ -171,19 +171,7 @@ Along the lateral axis (Tile 1 → Tile 9), atmospheric density is strictly cumu
 * Cropping of dominant elements is permitted; camera rebalancing is not.
 * Vertical reframing or recentering to emphasize the sun, skyline, or focal elements is **forbidden**.
 * Cropping of dominant elements (sun, towers, clouds) is acceptable and preferred over vertical reframing.
-- **Vertical framing lock (three-band system):** enforce stable *vertical framing physics* across all tiles. Treat vertical drift as camera pitch drift (even if the “camera” is nominally fixed).
-  - **Band A — Horizon / Vanishing band (the “read horizon”):**
-    - Definition: the height at which distant detail collapses (true horizon if visible; otherwise the *vanishing height* of roads/rails/roof-fields + the atmospheric cutoff line).
-    - Rule: this band must be consistent across tiles (no independent up/down horizon decisions per tile).
-    - Calibration authority: **Tile 5 defines the baseline**. Once Tile 5 is locked, treat its horizon/vanishing height as the reference and keep other tiles within a tight tolerance.
-  - **Band B — Skyline crest band (the “top silhouette of dominant mass”):**
-    - Definition: the highest continuous silhouette of the tile’s dominant mass (terrain ridge for Tile 1, roof-field for Tiles 3/7/9, tower envelope for Tile 5).
-    - Rule: the dominant crest height must remain in a consistent band relative to Tile 5’s crest; do not let Tile 5 read “lower” than Tile 3/7 due to excess sky.
-    - Exception: Tile 1 mountain peaks may intrude slightly higher *without increasing total sky share*.
-  - **Band C — Foreground cap (near-field dominance control):**
-    - Definition: the bottom zone where near-field objects can appear largest (roads, ramps, foreground blocks, cliff edges).
-    - Rule: **no single near-foreground object may “fill” the bottom** or cause a push-in read. Prefer midground stacking, overlap, and occlusion over near-field enlargement.
-  - **Enforcement rule (critical):** if any element pressures the frame upward (sun, peak, tower tip), allow it to **clip/crop at the top edge** rather than lifting framing to “fit it.” Never add extra sky for mood.
+* **Framing stability protocol (no numeric bands):** treat vertical drift as camera pitch drift. Enforce stability via **reference conditioning** (Tile 5 as ruler), cropping/clipping over lifting framing, and fixing “too much sky” by adding mass inside the same framing. See: _docs/02_00_tile_system.md → Framing Stability Protocol (Reference-Conditioned, No Bands)_.
 
 ### Composition and camera flow
 
@@ -293,7 +281,6 @@ Road networks, major axes, and circulation patterns must evolve progressively to
 Architectural relatives, not twins.
 
 ---
-
 
 
 

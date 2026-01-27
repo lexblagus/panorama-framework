@@ -22,7 +22,7 @@ Prepend this if you have a reference image (a previous estabilized tile 5)
 >
 > Circulation is layered and human-scale: pedestrian stairways, footbridges, small overpasses, embedded transit entrances, short elevated rail segments, and neighborhood commerce (market strips, kiosks, corner shops). Rooftops show habitation: water tanks, laundry lines, satellite dishes, and small rooftop structures.
 >
-> **Three-band framing lock (Tile 5 referenced):** lower Band A slightly to allow **~24–30% sky** while keeping the shared vanishing logic. Prevent “zoomed-in” reads: no single near-foreground block/road fills the bottom; prefer midground stacking, overlap, and occlusion. Roof-field/crest sits below the expanded sky band; do not introduce a distant high-rise skyline silhouette.
+> **Framing stability (Tile 5 as ruler, no bands):** treat vertical drift as camera pitch drift; never recenter to fit crest or subject—crop/clip instead. If sky feels too open, add roof-field mass, stacked midground slabs, or haze inside the same framing. Prevent push-in reads by avoiding a single near-foreground block/road and by adding midground stacking, overlap, and occlusion; keep the roof-field crest subordinate (no skyline silhouette).
 >
 > Light is warm and diffuse, coming from the **right side, off-frame**. The sun is off-frame. Primary cast shadows fall to the **left**. The district’s massing and circulation show a **subtle diagonal tendency (bottom-right → top-left)** without forming a single dominant axial spine.
 >

@@ -29,7 +29,7 @@ Prepend this if you have reference images:
 >
 > An **engineered industrial shoreline is required**. The land–water boundary must read as predominantly straight, angular, and artificial, formed by docks, harbors, seawalls, containment structures, and port geometry. Organic or eroded coastlines are not allowed. The boundary should introduce a strong diagonal or faceted geometry that cuts across the frame and contrasts with the panorama’s lateral flow.
 >
-> **Three-band framing lock (Tile 5 referenced):** keep the vanishing height aligned even if the true horizon is erased by smog, and allow a **larger sky band (~24–30%)**. Crest/smokestacks dissolve below that band; no crest touches the top edge. Prevent push-in reads: no single foreground yard/track fan fills the bottom—emphasize layered repetition into depth.
+> **Framing stability (Tile 5 as ruler, no bands):** align with Tile 5’s vanishing-height feel; when the true horizon is erased by smog, use rail/road/roof-field vanishing height as the proxy. Never vertically recenter—crop/clip if smokestacks press the frame. If sky feels too open, add industrial mass or haze inside the same framing. Prevent push-in reads by avoiding a single foreground yard/track fan and reinforcing layered repetition into depth.
 >
 > The **dominant light pressure originates from the far left edge of the frame**, fully off-image. The sun itself is not visible. Primary cast shadows fall to the **right**. Residual warmth remains on the sunward side, while the rest of the image cools into desaturated browns, grays, steel tones, and polluted blues.
 >

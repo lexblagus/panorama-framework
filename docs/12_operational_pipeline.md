@@ -5,7 +5,7 @@ This file defines how humans and models interact over time.
 ## Image dimensions
 
 - ChatGPT: `1024✕1536` (either portrait or landscape)
-- Google Gemini NanoBanana: `1408✕768`
+- Google Gemini NanoBanana: `1408✕768` (either portrait or landscape)
 
 ## Workflow
 
@@ -145,8 +145,11 @@ Downstream variants:
 ## Activities
 
 - TODO: Add the magic trick, stating that a chat gets wasted after too many iteractions; after a prompt lock try in a new chat.
+- Add new jargons to Core Canonical / Concepts?
 
 - Remove the Vertical Framing Normalization (Three-Band Lock)
+
+- Generate NanoBanana specs and prompts?
 
 - Consider change tile 9 ambience and update previous tiles specs?
 - Generate tile 5
@@ -156,8 +159,6 @@ Downstream variants:
 - Develop specs for tiles 2, 4, 6 and 8
 - Generate bridge images for tiles 2, 4, 6 and 8
 - Generate images for tiles 2, 4, 6 and 8
-
-- Generate NanoBanana specs and prompts?
 
 
 ## Editing & Formatting

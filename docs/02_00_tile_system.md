@@ -38,23 +38,35 @@ Each tile section is structured as follows:
 - Active Calibration Layer: mutable
 - Generator Prompt: compiled execution artifact from specs above
 
-## Vertical Framing Normalization (Three-Band Lock)
+## Framing Stability Protocol (Reference-Conditioned, No Bands)
 
-This framework treats “zoom / skyline height / sky share drift” as a **framing physics problem**, not a content problem.
+This framework treats “zoom / skyline height / sky share drift” as a **framing physics problem**, but **does not use numeric band targets**.
 
-All tiles must obey a shared vertical framing structure defined by three bands:
+Instead, framing stability is enforced by **reference conditioning**:
 
-### Band A — Horizon / Vanishing Band
-- The **read horizon** is the height where distance collapses (true horizon if visible; otherwise the vanishing height of roads/rails/roof-fields + atmospheric cutoff).
-- **Tile 5 is the ruler.** Once Tile 5 is locked, its vanishing height becomes the reference.
+### Authority
+- **Tile 5 is the ruler** for perceived framing physics:
+  - telephoto compression feel
+  - vertical “pressure” (how much the scene fills the portrait frame)
+  - sky budget discipline (avoid wide open sky)
+  - vanishing-height read (where distance collapses)
 
-### Band B — Skyline Crest Band
-- The **crest** is the top silhouette of the dominant mass (terrain ridge / roof-field / tower envelope).
-- Goal: prevent Tile 5 from reading “lower” than Tile 3/7 due to excess sky, and prevent Tile 3/7 from reading “zoomed in” due to oversized near-field.
+### Rules (must)
+- **No tile may vertically recenter** to “fit” the subject (sun, peaks, towers, smoke).
+- **Cropping/clipping is allowed and preferred** over lifting framing.
+- Fix “too much sky” **by adding mass inside the same framing**:
+  - more roof-field / stacked midground slabs / layered infrastructure / terrain bulk
+  - haze inside distance volume (not by opening sky)
+- Fix “too zoomed-in / push-in read” **by reducing near-field dominance**:
+  - avoid a single foreground object filling the bottom
+  - add depth via **midground stacking + overlap**, not close foreground enlargement
 
-### Band C — Foreground Cap
-- Prevent “push-in reads” by forbidding a single near-foreground interchange/roof/road mass from filling the lower frame.
-- Fix scale using **midground stacking and occlusion**, not near-field enlargement.
+### Horizon-loss handling (Tiles 7–9)
+If the true horizon disappears into haze:
+- use **corridor / roof-field vanishing height** as the proxy for the shared horizon physics
+- keep the overall “pitch read” consistent with Tile 5 (no independent up/down framing decisions)
 
-### Enforcement Rule (must)
-If an element pressures the top of frame (sun, peak, tower tip), allow it to **clip/crop** instead of lifting framing to fit it. Never add sky for mood.
+### Quick composite checks (recommended)
+- Does any tile look like it has a different camera pitch? → regenerate.
+- Does any tile “breathe” by adding sky instead of adding density? → correct content, not framing.
+- Does Tile 5 ever read “lower/shorter” than Tile 3/7 because others opened sky? → regenerate those tiles.
