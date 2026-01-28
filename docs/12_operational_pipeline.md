@@ -150,6 +150,9 @@ Downstream variants:
 - Generate NanoBanana specs and prompts?
 
 - Consider change tile 9 ambience and update previous tiles specs?
+  - No spec needed to change
+  - Process: new chat, upload harbor ref image, pass 1 prompt. Same chat, NanoBanana ref harbor, pass 2 prompt.
+  - Consider: Tile 5 heavelly modified for haze and color, tile 9 harbor scene
 - Generate tile 5
 - Generate tile 1 with tile 5 ruler
 - Generate tile 9 with tile 5 ruler and reference

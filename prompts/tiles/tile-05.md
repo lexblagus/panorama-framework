@@ -22,6 +22,48 @@
 >
 > Output: 1024 × 1536, portrait orientation.
 
+## Tile 9 deviation prompt (hard haze)
+
+> REFERENCE IMAGES PROVIDED:
+> - Base image (LOCKED GEOMETRY): Tile 5 canonical output (the result of the Tile 5 locked prompt)
+> 
+> USE POLICY (GEOMETRY LOCK):
+> - The Base image is authoritative for ALL geometry: framing, camera altitude feel, camera pitch, corridor directions, skyline placement, and telephoto compression read.
+> - Do NOT move objects. Do NOT change composition. Do NOT add/remove structures. No new landmarks.
+> - Do NOT “open sky.” Keep the same sky-budget and crop.
+> 
+> EDIT GOAL
+> Create a Tile 9 deviation reference by changing ONLY: atmosphere + light/color behavior.
+> 1) Add EXTREME white–bluish gray industrial haze/smog canopy (much heavier than typical).
+> 2) Push distance collapse hard: far skyline nearly erased into a milky veil.
+> 3) Prevent flatness by adding sparse, realistic color accents from light sources (subtle; diffused by haze).
+> 
+> ATMOSPHERE (HARD HAZE — PUSH IT)
+> - Increase haze massively: thick milky diffusion across the whole frame, strongest in upper half and deep distance.
+> - Far skyline should be almost completely erased (ghost silhouettes only, if any).
+> - Mid-to-far background buildings dissolve into a pale blue-gray veil.
+> - Reduce saturation and contrast globally to reinforce smog density (but do NOT fully wash out the near foreground).
+> - Constraint: do NOT become a pure white/blank fog card — near foreground must remain readable with soft edges.
+> - If unsure: ADD MORE HAZE.
+> 
+> LIGHTING (ALLOW SLIGHT DUSK IF IT HAPPENS)
+> - Keep existing light direction consistent with the base image (do not flip shadows).
+> - Overall feel: cool / polluted daylight. Slightly dusky is acceptable if it helps the accents read, but do not go into night.
+> - No visible sun disk.
+> 
+> LIGHT ACCENTS (REQUIRED, SUBTLE — TO AVOID FLATNESS)
+> Add sparse, realistic light emissions consistent with the existing scene (do not create new fixtures dominating the frame):
+> - Windows: a few warm interior glows (dim amber/yellow), scattered (not every window).
+> - Street/utility lights: a few warm sodium-vapor style points (soft amber), very diffused by haze.
+> - Vehicle lights (if roads are visible): faint red brake lights; headlights vary from warm (older) to cool/blue-white (modern), but all subdued and haze-bloomed.
+> Rules:
+> - Lights must remain low-intensity, fog-bloomed, and sparse.
+> - No glitter fields. No nightlife look. No neon.
+> - The image should remain primarily cold blue-gray; accents are small “punctuation.”
+> 
+> OUTPUT
+> Return the edited image only (same orientation and framing as the base).
+
 ## NanoBanana compiled prompt
 
 > You are generating a photorealistic image as part of a large, multi-tile panoramic cityscape.
