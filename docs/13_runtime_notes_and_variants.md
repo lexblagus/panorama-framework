@@ -22,15 +22,15 @@ https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/d
 https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/12_operational_pipeline.md
 https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/13_runtime_notes_and_variants.md
 https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/master.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tiles/tile-01.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tiles/tile-02.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tiles/tile-03.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tiles/tile-04.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tiles/tile-05.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tiles/tile-06.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tiles/tile-07.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tiles/tile-08.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tiles/tile-09.md
+https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-01.md
+https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-02.md
+https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-03.md
+https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-04.md
+https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-05.md
+https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-06.md
+https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-07.md
+https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-08.md
+https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-09.md
 
 If any RAW URL fails to load, list the missing ones and continue with the rest.
 ```
@@ -198,7 +198,6 @@ If NanoBanana produces a compelling but out-of-scope result, the correct respons
 Never retrofit the framework silently to justify an image.
 
 ---
-
 
 
 

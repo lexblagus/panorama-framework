@@ -9,7 +9,64 @@ Any model or human interacting with this repository must treat the Markdown file
 
 ---
 
-## How to Work With This Repository (Important)
+## Goal of the Project
+
+To produce a **coherent, large-scale megacity panorama** composed of multiple tiles, each with a clear semantic role, unified camera system, and controlled perceptual transitions — suitable for both artistic exploration and rigorous prompt engineering research.
+
+This project treats image generation as a **systems design problem**, not a guessing game.
+
+---
+
+## Repository Structure
+
+- `docs/`  
+  Canonical specifications, tile definitions, workflow, and runtime notes.
+
+- `prompts/`  
+  Executable generator prompts derived from the specs.
+  These should be treated as *outputs*, not authorities.
+
+- `outputs/`  
+  Generated images, composites, and Affinity files.
+  These are artifacts for evaluation and versioning.
+
+- `sources/`  
+  Reference imagery, moodboards, and external inspiration.
+
+---
+
+## Index
+
+- [Readme](README.md)
+- **Docs**
+  - [Core Canonical](docs/01_core_canonical.md)
+  - [Tile System](docs/02_00_tile_system.md)
+  - [Tile 1: Nature as Dominant Chaos](docs/02_01_tile_01.md)
+  - [Tile 2: Dense Residential](docs/02_02_tile_02.md)
+  - [Tile 3: Transition Zone](docs/02_03_tile_03.md)
+  - [Tile 4: Pre-Core Vertical](docs/02_04_tile_04.md)
+  - [Tile 5: Iconic Core (Anchor)](docs/02_05_tile_05.md)
+  - [Tile 6: Post-Core Vertical](docs/02_06_tile_06.md)
+  - [Tile 7: Logistics Transition Zone](docs/02_07_tile_07.md)
+  - [Tile 8: Industrial](docs/02_08_tile_08.md)
+  - [Tile 9: Heavy Industrial Expanse](docs/02_09_tile_09.md)
+  - [Operational Pipeline](docs/12_operational_pipeline.md)
+  - [Runtime notes and variations](docs/13_runtime_notes_and_variants.md)
+- **Prompts**
+  - [Global Base Prompt](prompts/master.md)
+  - [Tile 1](prompts/tile-01.md)
+  - [Tile 2](prompts/tile-02.md)
+  - [Tile 3](prompts/tile-03.md)
+  - [Tile 4](prompts/tile-04.md)
+  - [Tile 5](prompts/tile-05.md)
+  - [Tile 6](prompts/tile-06.md)
+  - [Tile 7](prompts/tile-07.md)
+  - [Tile 8](prompts/tile-08.md)
+  - [Tile 9](prompts/tile-09.md)
+
+---
+
+## How to Work With This Repository
 
 If you are an AI assistant (e.g. Codex in Cursor):
 
@@ -48,25 +105,7 @@ If you are an AI assistant (e.g. Codex in Cursor):
 
 ---
 
-## Repository Structure (Conceptual)
-
-- `docs/`  
-  Canonical specifications, tile definitions, workflow, and runtime notes.
-
-- `prompts/`  
-  Executable generator prompts derived from the specs.
-  These should be treated as *outputs*, not authorities.
-
-- `outputs/`  
-  Generated images, composites, and Affinity files.
-  These are artifacts for evaluation and versioning.
-
-- `sources/`  
-  Reference imagery, moodboards, and external inspiration.
-
----
-
-## Working Rules (Non-Negotiable)
+## Working Rules
 
 - Do not rewrite large sections without explicit instruction.
 - Do not collapse multiple conceptual layers into one.
@@ -78,11 +117,3 @@ This framework prioritizes:
 - reproducibility
 - perceptual consistency across tiles
 - long-term evolvability
-
----
-
-## Goal of the Project
-
-To produce a **coherent, large-scale megacity panorama** composed of multiple tiles, each with a clear semantic role, unified camera system, and controlled perceptual transitions — suitable for both artistic exploration and rigorous prompt engineering research.
-
-This project treats image generation as a **systems design problem**, not a guessing game.

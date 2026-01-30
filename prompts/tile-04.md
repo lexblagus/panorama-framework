@@ -1,4 +1,4 @@
-# Tile  4: Experimental references
+# Tile 4: Experimental references
 
 You are given a reference image that contains:
 - the LEFT edge of the previous tile (Tile 3) and

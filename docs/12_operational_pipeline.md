@@ -7,6 +7,32 @@ This file defines how humans and models interact over time.
 - ChatGPT: `1024✕1536` (either portrait or landscape)
 - Google Gemini NanoBanana: `1408✕768` (either portrait or landscape)
 
+## Prompt Compilation Contract
+
+All generated prompts must be **copy/paste ready** with **no user thinking**.
+
+### Compiled Prompt Rule
+The **compiled prompt** is the exact concatenation of:
+1) The tile’s **Uploads / Inputs** lines (imperative, user-facing)
+2) The tile’s **Reference Use Policy** lines (imperative, user-facing)
+3) The tile’s **Lock / Preserve** lines (if any, imperative)
+4) The tile’s **Generator Prompt** block (the scene spec)
+5) The tile’s **Output** line(s)
+
+No other sections are assumed. If a behavior must happen, it must appear in (1–5).
+
+### Delimiters
+Each compiled prompt must be emitted as a **single continuous Markdown blockquote**.
+
+- Every line of the compiled prompt must begin with `> ` (greater-than + space).
+- Blank lines inside the prompt must be represented by a standalone `>` line.
+- The compiled prompt begins at the **first** `> ` line and ends at the **last** `> ` line of that block.
+- No prompt-relevant instructions may exist outside the blockquote.
+
+### Multi-pass Requirement
+If `## Generation Passes` exists, then **each pass must include its own full compiled prompt** (items 1–5 above), and must be labeled:
+- `### Pass N — READY PROMPT`
+
 ## Workflow
 
 This section defines the procedural steps used to generate, assemble, and refine the panorama.  
@@ -149,12 +175,9 @@ Downstream variants:
 
 - Generate NanoBanana specs and prompts?
 
-- Consider change tile 9 ambience and update previous tiles specs?
-  - No spec needed to change
-  - Process: new chat, upload harbor ref image, pass 1 prompt. Same chat, NanoBanana ref harbor, pass 2 prompt.
-  - Consider: Tile 5 heavelly modified for haze and color, tile 9 harbor scene
-- Generate tile 5
+- Maybe remove tile 9 second pass
 - Generate tile 1 with tile 5 ruler
+  - New tile 1 composition? Fiords and sea. Cliff houses. Only riches can reach the edges.
 - Generate tile 9 with tile 5 ruler and reference
 - Generate tiles 3 and 7 with tile 5 ruler and tile (references or bridges?)
 - Develop specs for tiles 2, 4, 6 and 8
@@ -288,10 +311,3 @@ After editing this document, perform the following validation checks before any 
 | 17 | Scale coherence               | Vehicles, buildings, terrain, and infrastructure maintain consistent human-scale relationships across tiles |
 
 > **Rule:** If any check fails, the document must be corrected **before** prompt generation or image regeneration.
-
----
-
-
-
-
-▣
