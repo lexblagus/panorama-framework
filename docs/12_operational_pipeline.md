@@ -12,7 +12,9 @@ This file defines how humans and models interact over time.
 All generated prompts must be **copy/paste ready** with **no user thinking**.
 
 ### Compiled Prompt Rule
+
 The **compiled prompt** is the exact concatenation of:
+
 1) The tile’s **Uploads / Inputs** lines (imperative, user-facing)
 2) The tile’s **Reference Use Policy** lines (imperative, user-facing)
 3) The tile’s **Lock / Preserve** lines (if any, imperative)
@@ -22,6 +24,7 @@ The **compiled prompt** is the exact concatenation of:
 No other sections are assumed. If a behavior must happen, it must appear in (1–5).
 
 ### Delimiters
+
 Each compiled prompt must be emitted as a **single continuous Markdown blockquote**.
 
 - Every line of the compiled prompt must begin with `> ` (greater-than + space).
@@ -30,8 +33,9 @@ Each compiled prompt must be emitted as a **single continuous Markdown blockquot
 - No prompt-relevant instructions may exist outside the blockquote.
 
 ### Multi-pass Requirement
+
 If `## Generation Passes` exists, then **each pass must include its own full compiled prompt** (items 1–5 above), and must be labeled:
-- `### Pass N — READY PROMPT`
+- `### Pass N prompt: (pass description, if exists)`
 
 ## Workflow
 
