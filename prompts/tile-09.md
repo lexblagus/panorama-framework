@@ -1,8 +1,8 @@
 # Tile 9 prompts
 
-## ChatGPT READY PROMPTS (multi-pass)
+## ChatGPT READY PROMPT (single-pass)
 
-### Pass 1 — READY PROMPT (Framing + Geometry Lock)
+### READY PROMPT (Single Pass)
 
 > Uploads / Inputs:
 > - Upload **Reference A (Ruler): Tile 5 ruler image**.
@@ -40,14 +40,14 @@
 > - Include at least one utilitarian cargo ship or tanker (correct scale). Prefer ship presence near the **lower-right** without making it a heroic centerpiece.
 >
 > ATMOSPHERE (MAXIMUM HAZE — BUT NO BLUE DRIFT)
-> - Tile 9 is the maximum haze tile: extreme industrial smog canopy with severe distance collapse (far background nearly erased; only ghost silhouettes).
-> - Keep midground barely readable: soft edges, reduced contrast; no blank white fog card.
+> - Tile 9 is the maximum haze tile: extreme industrial smog canopy with severe distance collapse (far background strongly collapsed into milky smog; ghost silhouettes only; no crisp skyline edges).
+> - Avoid full whiteout; keep midground readable with soft edges and reduced contrast (no blank white fog card).
 > - Palette must be desaturated **polluted steel + dirty beige/soot-gray particulate** (cool-neutral overall). Avoid cyan/blue cast.
 > - Volumetric radiance is allowed only as soft smog glow; do not increase global contrast or re-warm the image.
 >
 > LIGHTING + WIND (DAYTIME)
 > - No visible sun disk.
-> - Key light from the left; shadows fall to the right. Wind to the right; any smoke/steam is subtle/low-contrast and drifts right immediately (no dramatic plumes).
+> - Key light from the left; shadows fall to the right. Wind to the right; any smoke/steam is subtle, low-contrast, short, and drifts right immediately (no dramatic plumes).
 >
 > LIGHT ACCENTS (SUBTLE, FUNCTIONAL)
 > - Sparse utilitarian industrial lighting visible THROUGH haze:
@@ -58,35 +58,6 @@
 >
 > FORBIDDEN
 > - Natural shoreline, pastoral greenery dominance, residential neighborhood identity, landmark towers/buildings, crisp skyline edges, sci-fi/fantasy motifs.
->
-> Output:
-> - Output: 1024 × 1536, portrait orientation.
-
----
-
-### Pass 2 — READY PROMPT (OPTIONAL: Haze/Bloom Lock, NO Regrade)
-
-> Uploads / Inputs:
-> - Upload the Pass 1 image output (`tile-09_pass-1`) as the **base image**.
-> - Upload **Reference B (Mood): a successful prior Tile 9 render** as the **mood reference**.
->
-> Reference Use Policy (strict):
-> - You must preserve the base image geometry. Reference B is for atmosphere behavior only.
-> - Transfer from Reference B ONLY: haze thickness/physics, distance-collapse behavior, edge softness/contrast rolloff, and sparse utilitarian light bloom behavior.
-> - Transfer forbidden: any composition/layout copying, repeating ship placement, time-of-day shift, light-direction change, and any global color regrade (especially cyan/blue drift).
->
-> Lock / Preserve (from base image):
-> - Preserve framing and camera pitch (do not recenter; do not add sky).
-> - Preserve the **bottom-left → top-right diagonal** read.
-> - Preserve shoreline + channel geometry: channel remains in the **bottom-right**, hugging the right edge, receding into the horizon.
-> - Preserve major massing placement and ship scale/placement class.
->
-> Generator Prompt:
-> Create the final Tile 9 by enforcing maximum haze + correct haze-bloom behavior while keeping the base image geometry unchanged.
-> Increase/normalize industrial smog thickness and distance-collapse to match the mood reference, but keep the base image’s overall color temperature: **no blue/cyan shift**.
-> Maintain a desaturated polluted steel + dirty beige/soot-gray particulate palette (cool-neutral overall). Keep midground barely readable; far background nearly erased.
-> Keep daylight lighting rules: no sun disk; key light from left, shadows right; wind right; smoke/steam subtle.
-> Keep utilitarian lights sparse and haze-bloomed; do not introduce decorative sparkle.
 >
 > Output:
 > - Output: 1024 × 1536, portrait orientation.
@@ -107,7 +78,7 @@
 > Engineered shoreline REQUIRED: straight/angular docks, seawalls, containment geometry (no organic coast).
 > Include realistic port infrastructure and at least one utilitarian cargo ship/tanker (correct scale).
 >
-> Atmosphere: maximum industrial smog of the panorama with severe distance collapse (far background nearly erased). Midground barely readable with soft edges.
+> Atmosphere: strongest industrial smog of the panorama with severe distance collapse (far background strongly collapsed into milky smog, ghost silhouettes only, no crisp edges). Avoid full whiteout; midground remains barely readable with soft edges.
 > Palette: desaturated polluted steel + dirty beige/soot-gray particulate (cool-neutral overall). Avoid cyan/blue cast.
 >
 > Lighting + wind: cool-neutral daytime illumination. No visible sun disk. Key light from the left; shadows fall to the right. Wind to the right; any smoke/steam is subtle and drifts right immediately.
