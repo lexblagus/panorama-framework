@@ -2,6 +2,27 @@
 
 This file defines physics of the universe.
 
+- [Overview](#overview)
+- [Subject](#subject)
+- [Concepts](#concepts)
+- [Global Constraints](#global-constraints)
+  - [Lighting](#lighting)
+    - [Constraints](#constraints)
+    - [Lateral ambiance gradient](#lateral-ambiance-gradient)
+    - [Industrial lighting](#industrial-lighting)
+  - [Color & Texture](#color--texture)
+  - [Atmosphere](#atmosphere)
+  - [Photographic Realism](#photographic-realism)
+  - [Camera & Optics](#camera--optics)
+  - [Composition and camera flow](#composition-and-camera-flow)
+  - [Stitching](#stitching)
+  - [Architectural Language](#architectural-language)
+    - [Avoid](#avoid)
+    - [Buildings and constructions](#buildings-and-constructions)
+  - [Vehicles](#vehicles)
+  - [Roadway Circulation Consistency](#roadway-circulation-consistency)
+  - [Anti-Repetition Rules](#anti-repetition-rules)
+
 ## Overview
 
 Create a large-scale, ultra-wide cityscape wallpaper composed of **9 portrait-oriented tiles**, manually stitched in Affinity Photo. The result must feel like a **single continuous megacity**, photographed in one coherent late-afternoon moment, with strong realism, atmospheric depth, and architectural diversity.
@@ -32,6 +53,10 @@ Despite cinematic references used as emotional calibration, the cityscape must r
 
 ---
 
+![Tiling compilation preview](../outputs/generated/005-47-composition.png)
+_↳ preview as single 4:3 image_
+
+---
 
 
 
@@ -61,7 +86,10 @@ It introduces no new constraints and does not override any section above.
 ---
 
 
+![Central Master Reference](../outputs/generated/006-31-master.png)
+_↳ Central Master Reference_
 
+---
 
 ## Global Constraints
 
@@ -281,6 +309,4 @@ Road networks, major axes, and circulation patterns must evolve progressively to
 Architectural relatives, not twins.
 
 ---
-
-
 

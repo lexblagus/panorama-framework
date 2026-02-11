@@ -7,13 +7,14 @@ It is a **specification-driven visual system**.
 
 Any model or human interacting with this repository must treat the Markdown files as the **single source of truth**.
 
----
-
-## Goal of the Project
-
-To produce a **coherent, large-scale megacity panorama** composed of multiple tiles, each with a clear semantic role, unified camera system, and controlled perceptual transitions — suitable for both artistic exploration and rigorous prompt engineering research.
+The goal of this project it to produce a **coherent, large-scale megacity panorama** composed of multiple tiles, each with a clear semantic role, unified camera system, and controlled perceptual transitions — suitable for both artistic exploration and rigorous prompt engineering research.
 
 This project treats image generation as a **systems design problem**, not a guessing game.
+
+---
+
+![Global Megacity Panorama Composite](outputs/composites/Composition_03-00.png)
+_↳ Compilation preview (with missing tiles)_
 
 ---
 

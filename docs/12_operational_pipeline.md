@@ -2,6 +2,30 @@
 
 This file defines how humans and models interact over time.
 
+- [Image dimensions](#image-dimensions)
+- [Prompt Compilation Contract](#prompt-compilation-contract)
+  - [Compiled Prompt Rule](#compiled-prompt-rule)
+  - [Delimiters](#delimiters)
+  - [Multi-pass Requirement](#multi-pass-requirement)
+- [Workflow](#workflow)
+  - [Generate the Central Master Reference Image](#generate-the-central-master-reference-image)
+  - [Generate Pivot Tile Images](#generate-pivot-tile-images)
+  - [Generate Secondary Tile Images](#generate-secondary-tile-images)
+  - [Manual Assembly in Affinity](#manual-assembly-in-affinity)
+  - [Generate Inter-Tile Reference Images](#generate-inter-tile-reference-images)
+  - [Generate Tertiary Tile Images](#generate-tertiary-tile-images)
+  - [Final Composition & Output](#final-composition--output)
+- [Activities](#activities)
+- [Editing & Formatting](#editing--formatting)
+- [Patch Protocol: How to Propose Spec and Prompt Changes](#patch-protocol-how-to-propose-spec-and-prompt-changes)
+  - [Principles](#principles)
+  - [Required Output Format](#required-output-format)
+  - [Replacement Rules](#replacement-rules)
+  - [Prompt Handling Rules](#prompt-handling-rules)
+  - [Drift Audit Checklist (Spec ↔ Prompt)](#drift-audit-checklist-spec--prompt)
+  - [Example Patch Entry (Template)](#example-patch-entry-template)
+- [Review](#review)
+
 ## Image dimensions
 
 - ChatGPT: `1024✕1536` (either portrait or landscape)
@@ -179,15 +203,112 @@ Downstream variants:
 
 - Generate NanoBanana specs and prompts?
 
-- Maybe remove tile 9 second pass
-- Generate tile 1 with tile 5 ruler
-  - New tile 1 composition? Fiords and sea. Cliff houses. Only riches can reach the edges.
-- Generate tile 9 with tile 5 ruler and reference
-- Generate tiles 3 and 7 with tile 5 ruler and tile (references or bridges?)
-- Develop specs for tiles 2, 4, 6 and 8
-- Generate bridge images for tiles 2, 4, 6 and 8
-- Generate images for tiles 2, 4, 6 and 8
+---
 
+### 1) Lock the camera rig and kill the zoom drift
+
+This is the highest-leverage fix. If zoom/pitch drifts, every seam becomes “manual luck.”
+
+**Changes**
+
+* Add a **Camera Lock block** to every tile prompt (like you did for Tile 8):
+  “diagonal-oblique aerial (not top-down), do not zoom in, do not change apparent altitude/scale, keep skyline band consistent, no extra sky, cropping allowed.”
+* Operational rule: when generating a tile, attach **only**:
+
+  * Ref A = Tile 5 ruler
+  * Ref B (optional) = seam crop from neighbor tile
+    (No extra candidate images in the same run.)
+
+**Why first:** it makes every subsequent iteration cheaper and more predictable.
+
+### 2) Rework Tile 5 (because it’s the ruler + it’s too iconic + bezel issue)
+
+If Tile 5 stays iconic, the entire panorama will look like “Tile 5 and then another project.” Also: since it’s the ruler, any mismatch propagates.
+
+**Changes**
+
+* **Remove/avoid visible sun disk** (keep golden-hour light feel but no sun).
+* Reduce landmark recognizability:
+
+  * More generic skyline, less “one tall hero spire.”
+  * Slightly more haze/atmospheric diffusion (still the clearest tile, but not “poster shot”).
+* **Break the centered vertical avenue**:
+
+  * Replace with **braided corridors**: 2–3 main avenues offset from center, merging/splitting, slight S-curves.
+  * Add cross-cuts and overpasses to make it “maze-like” (your bezel constraint).
+* Add a hard rule: **no strongest line exactly at x=50%** of the frame.
+
+**Why second:** it stabilizes the “source of truth” for the entire rig.
+
+### 3) Recalibrate Tile 7 so it’s not “too close to Tile 9”
+
+You already have Tile 8–9 perfect. The weak link is the *bridge* tile.
+
+**Target for Tile 7**
+
+* Increase **residential massing** (big repetitive blocks) so it reads like “population support zone” rather than “pure logistics”.
+* Keep logistics, but shift it to **embedded service-tech nodes** (charging yards, rail maintenance depots, substations, conveyor galleries) instead of container-yard/port-adjacent vibes.
+* Atmosphere: **less collapsed than Tile 8/9**, but clearly trending that way.
+
+**Why third:** it creates “space” for Tile 8 to feel like escalation instead of repetition.
+
+### 4) Define Tile 6 as the *real* bridge between Tile 5 and Tile 7
+
+Your question “how to describe Tile 6 to fit Tile 7” is spot-on. Tile 6 should be the **dampener**: it pulls Tile 5 out of “icon shot” and prepares the logistics/utility language of Tile 7.
+
+**Tile 6 direction (practical)**
+
+* Mixed urban density + heavy circulation + early service infrastructure
+* Fewer “hero” compositions; more “systems city”
+* Add mid-scale utility complexity (substations, maintenance yards, stacked flyovers), but **no heavy industry**
+* Atmosphere: slightly more haze than Tile 5, less than Tile 7
+
+**Why now:** once Tile 5 is normalized, Tile 6 becomes much easier to tune and will improve the whole mid-strip continuity.
+
+### 5) Carrara in Tile 8: solve stitchability with seam discipline + slice reference
+
+Carrara is a win. Stitch issues are solvable.
+
+**Changes**
+
+* Keep Carrara ridge **center-left**, not near the right seam.
+* Always use **Tile 9 left-edge crop** (industry-only, no water) as Ref B.
+* Add composition lock: **rightmost 20–25% stays generic refinery texture** (no hero ridge face, no dominant diagonal conveyor).
+* If needed: use “edit pass” technique on a stitchable base image to push Carrara detail without changing camera.
+
+**Why later:** because once camera + Tile 7 are stable, Carrara becomes a controlled variant instead of destabilizing the bridge.
+
+### 6) Refine Tile 9 channel into a more squared engineered shoreline
+
+This is a polish task, but easy and worthwhile.
+
+**Changes**
+
+* Explicitly demand: **rectilinear embankments**, dock walls, squared-off basins, straight quay edges, gridded piers.
+* Forbid organic river meanders.
+* Keep ships if you like them (Tile 9 identity), but avoid “storybook harbor” composition.
+
+**Why later:** it doesn’t unblock anything; it’s refinement.
+
+### 7) Optional: revisit Tile 1 composition
+
+Only do this after the camera rig is fully unified and Tiles 5–9 are stable.
+
+Ideas: Fiords and sea. Cliff houses. Only riches can reach the edges.
+
+**Why last:** it’s upstream but doesn’t currently break your strongest seam chain.
+
+### Recommended start order (minimum regret)
+
+1. **Camera rig + zoom discipline** (global prompt pattern + ops rule)
+2. **Tile 5 normalization + bezel-safe avenue redesign** (new ruler)
+3. **Tile 7 recalibration** (more residential + embedded tech nodes)
+4. **Tile 6 definition** (bridge 5→7)
+5. **Tile 8 Carrara stitch polish** (using slice reference)
+6. **Tile 9 squared shoreline polish**
+7. **Tile 1 revisit**
+
+---
 
 ## Editing & Formatting
 

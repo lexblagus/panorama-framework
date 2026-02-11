@@ -4,6 +4,13 @@ Tiles must be treated as **non-mirrored** outputs for all canonical runs.
 
 Horizontal mirroring may be used only for **temporary diagnostic composites**, and must not be used to “fix” lighting direction or shadow logic. Any tile that would require mirroring to align must be regenerated instead.
 
+---
+
+![Tiling compilation preview (6 tiles)](../outputs/generated/006-30-compiled.png)
+_↳ Tiling compilation preview (6 tiles)_
+
+---
+
 ## Summary
 
 | # | Level | References | Title | Theme | Atmosphere |

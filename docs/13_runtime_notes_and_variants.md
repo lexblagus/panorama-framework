@@ -1,5 +1,21 @@
 # Runtime notes and variations
 
+- [Chat GPT library update](#chat-gpt-library-update)
+- [Running in Google Gemini (NanoBanana)](#running-in-google-gemini-nanobanana)
+  - [Conceptual Differences Between ChatGPT Image Model and NanoBanana](#conceptual-differences-between-chatgpt-image-model-and-nanobanana)
+  - [Source of Truth When Using NanoBanana](#source-of-truth-when-using-nanobanana)
+  - [Prompt Adaptation Strategy (ChatGPT → NanoBanana)](#prompt-adaptation-strategy-chatgpt--nanobanana)
+    - [Keep (must remain explicit)](#keep-must-remain-explicit)
+    - [Reduce or Remove](#reduce-or-remove)
+    - [Rephrase](#rephrase)
+  - [Canonical Adaptation Prompt (Meta-Instruction to Gemini)](#canonical-adaptation-prompt-meta-instruction-to-gemini)
+  - [Example: Adapting a Tile Prompt for NanoBanana](#example-adapting-a-tile-prompt-for-nanobanana)
+    - [Original (ChatGPT-style)](#original-chatgpt-style)
+    - [Adapted (NanoBanana-style)](#adapted-nanobanana-style)
+  - [Validation Loop When Using NanoBanana](#validation-loop-when-using-nanobanana)
+  - [When to Prefer NanoBanana Over ChatGPT Image Model](#when-to-prefer-nanobanana-over-chatgpt-image-model)
+  - [Rule of Non-Divergence](#rule-of-non-divergence)
+
 ## Chat GPT library update
 
 When changes are made to the specification, you can ask the model to read the raw repository files:
@@ -198,6 +214,5 @@ If NanoBanana produces a compelling but out-of-scope result, the correct respons
 Never retrofit the framework silently to justify an image.
 
 ---
-
 
 
