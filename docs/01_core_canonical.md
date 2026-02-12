@@ -54,6 +54,7 @@ Despite cinematic references used as emotional calibration, the cityscape must r
 ---
 
 ![Tiling compilation preview](../outputs/generated/005-47-composition.png)
+
 _↳ preview as single 4:3 image_
 
 ---
@@ -61,12 +62,10 @@ _↳ preview as single 4:3 image_
 
 
 ## Concepts
-
-This section defines project-specific terminology for clarity.
-It introduces no new constraints and does not override any section above.
+This section defines project-specific terminology for clarity. It introduces no new constraints and does not override any section above.
 
 | Term | Meaning in This Project |
-|-----|-------------------------|
+|---|---|
 | Central Master Reference Image | A single landscape-format image defining the architectural DNA, lighting peak, and atmospheric ceiling for the entire panorama. |
 | Tile | One portrait-oriented segment of the panorama, generated independently but constrained to behave as part of a continuous photographic system. |
 | Pivot Tile | A tile (1, 5, 9) generated early to establish narrative extremes and compositional anchors. |
@@ -82,11 +81,22 @@ It introduces no new constraints and does not override any section above.
 | Equilibrium Tile | Tile 5; the point of maximum density, warmth, and atmospheric pressure in the panorama. |
 | Safe Stitch Zone | A visually quieter edge region designed to allow continuity with adjacent tiles. |
 | Industrial Terminus | Tile 9’s role as the farthest functional extreme, where the city dissolves into haze and logistics. |
+| Seam | The boundary region where two adjacent tiles meet (e.g., 1↔2). Seams must remain stitchable via generic edge texture, safe stitch zones, and continuity references when needed. |
+| Framing Stability Protocol | The spec doctrine for preventing “zoom / skyline height / sky share drift.” It treats drift as framing physics and enforces stability via Tile 5 as ruler + reference conditioning (not numeric band targets). |
+| Ruler | The reference authority used to stabilize perceived framing physics across tiles. In this framework, Tile 5 is the ruler (telephoto feel, vertical pressure, sky budget, vanishing-height read). |
+| Pressure (Vertical Pressure) | How much the scene “fills” the portrait frame: apparent altitude/scale + telephoto compression + how close dominant mass sits to the top edge. Higher pressure reads as denser/taller with less open sky. |
+| Sky Budget | The disciplined allowance of visible sky. If sky feels “too open,” the fix is adding mass/haze inside the same framing, not lifting/recentering the camera. |
+| Vanishing-height read | The perceived band where distance collapses and parallel structure fields converge (roof-fields/corridors), used as a proxy for horizon physics when the true horizon dissolves into haze. |
+| Seam Anchor | A one-sided edge crop reference from a neighbor tile used to condition a single seam (continuity of silhouette height profile, haze rolloff language, edge texture density). |
+| Bridge Reference Image (Bridge Composite) | A 3-panel inter-tile reference used to lock both adjacent edges at once: (right crop of left tile) + (transparent center) + (left crop of right tile). |
+| Band targets (Numeric band targets) | A rejected method of enforcing framing via numeric vertical bands (e.g., “horizon must sit between X–Y%”). This framework explicitly does not use numeric band targets; it uses reference conditioning instead. |
+| Camera Lock | A promptable “must-not drift” block that encodes the Framing Stability Protocol into generator instructions (no zoom, no pitch drift, no extra sky; cropping allowed). |
 
 ---
 
 
 ![Central Master Reference](../outputs/generated/006-31-master.png)
+
 _↳ Central Master Reference_
 
 ---
@@ -185,21 +195,37 @@ Along the lateral axis (Tile 1 → Tile 9), atmospheric density is strictly cumu
 
 ### Camera & Optics
 
-* Elevated aerial viewpoint, realistic drone or rooftop height
-* Broad city coverage without exaggerated wide-angle distortion
-* Rectilinear optics only
-* Perspective should feel compressed, as if shot from a longer focal length
-* Telephoto-like depth compression (objects stack densely, distance feels shortened)
-* No fisheye, no barrel distortion, no extreme perspective stretching
-* Consistent horizon physics across all tiles
-* Slightly off-axis framing (imperfect, human vantage)
-* Human-scale streets and believable building proportions
-* The virtual camera height, pitch, horizon line, and vertical framing are fixed and shared across all tiles.
-* No tile may independently reframe or vertically recenter the composition.
-* Cropping of dominant elements is permitted; camera rebalancing is not.
-* Vertical reframing or recentering to emphasize the sun, skyline, or focal elements is **forbidden**.
-* Cropping of dominant elements (sun, towers, clouds) is acceptable and preferred over vertical reframing.
-* **Framing stability protocol (no numeric bands):** treat vertical drift as camera pitch drift. Enforce stability via **reference conditioning** (Tile 5 as ruler), cropping/clipping over lifting framing, and fixing “too much sky” by adding mass inside the same framing. See: _docs/02_00_tile_system.md → Framing Stability Protocol (Reference-Conditioned, No Bands)_.
+- Elevated aerial viewpoint, realistic drone or rooftop height
+- Broad city coverage without exaggerated wide-angle distortion
+- Rectilinear optics only
+- Perspective should feel compressed, as if shot from a longer focal length
+- Telephoto-like depth compression (objects stack densely, distance feels shortened)
+- No fisheye, no barrel distortion, no extreme perspective stretching
+- Consistent horizon physics across all tiles
+- Slightly off-axis framing (imperfect, human vantage)
+- Human-scale streets and believable building proportions
+
+**Shared rig invariants**
+- The virtual camera height, pitch, horizon line, and vertical framing are fixed and shared across all tiles.
+- No tile may independently reframe or vertically recenter the composition.
+- Cropping of dominant elements is permitted; camera rebalancing is not.
+- Vertical reframing or recentering to emphasize the sun, skyline, or focal elements is **forbidden**.
+- Cropping of dominant elements (sun, towers, clouds) is acceptable and preferred over vertical reframing.
+
+**Framing stability protocol (no numeric bands)**
+- Treat vertical drift as camera pitch drift.
+- Enforce stability via **reference conditioning** (Tile 5 as ruler), cropping/clipping over lifting framing, and fixing “too much sky” by adding mass inside the same framing.
+- See: _docs/02_00_tile_system.md → Framing Stability Protocol (Reference-Conditioned, No Bands)_.
+
+#### Camera Lock (Promptable Block, v1)
+This block is the generator-facing encoding of the framing stability protocol and is intended to be compiled into prompts when needed.
+
+- Match the established rig: elevated diagonal-oblique aerial view (NOT top-down / not near-nadir).
+- Do NOT zoom. Do NOT change apparent altitude/scale. Keep the same narrow-FOV / telephoto-compressed feel.
+- Keep the skyline/horizon/vanishing-height band consistent with the shared rig; do not tilt or pitch-shift the camera.
+- No vertical recentering to “fit” towers, peaks, smoke, or mood. Cropping/clipping is allowed; lifting framing is not.
+- Do NOT add extra sky. If sky feels open, add midground mass + haze within the same framing (no reframing).
+- Avoid near-field dominance (no single foreground slab/interchange filling the bottom). Build depth via midground stacking/overlap.
 
 ### Composition and camera flow
 
@@ -309,4 +335,3 @@ Road networks, major axes, and circulation patterns must evolve progressively to
 Architectural relatives, not twins.
 
 ---
-

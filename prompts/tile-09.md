@@ -1,85 +1,33 @@
-# Tile 9 prompts
+# Tile 9 Prompts
 
-## ChatGPT READY PROMPT (single-pass)
+## Header
+> REFERENCE IMAGES PROVIDED (ONLY these; no extras):
+> - Reference A (Ruler): Tile 5 ruler image — `tile5ruler.png`
+> - Reference B (Optional seam anchor): Tile 8 RIGHT EDGE crop (when available) — `tile8-right-edge.png`
+> - Reference C (Optional mood reference, if you use one): industrial terminus mood board — `tile9-mood.png`
+>
+> REFERENCE USE POLICY (STRICT):
+> - Transfer ONLY from Reference A: camera/framing physics (horizon/vanishing-height read), rectilinear telephoto compression feel, vertical “pressure”, sky-budget discipline (do not open sky), and midground scale.
+> - Transfer FORBIDDEN from Reference A: any Tile 5 landmark identity (no warm iconic core motifs, no hero skyline).
+> - Transfer ONLY from Reference B (if provided): left-edge seam continuity (silhouette height profile, haze rolloff language, edge texture density).
+> - Transfer ONLY from Reference C (if provided): atmosphere palette and industrial “feel” (smog density, color temperature), NOT geometry.
+> - Transfer FORBIDDEN from References B/C: copying full composition/layout or inventing a new camera rig.
 
-### READY PROMPT (Single Pass)
-
-> Uploads / Inputs:
-> - Upload **Reference A (Ruler): Tile 5 ruler image**.
+## Generator prompt
+> Photorealistic portrait-oriented aerial image depicting the **industrial terminus** of the panorama (Tile 9): heavy logistics, factories, container fields, refineries, shipyards, power infrastructure, and dense transport corridors dissolving into thick fog. Captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system. Broad coverage, compressed distance, no wide-angle distortion.
 >
-> Reference Use Policy (strict):
-> - Use Reference A ONLY to match: camera/framing physics (horizon/vanishing-height read), rectilinear telephoto compression feel, vertical “pressure”, sky-budget discipline (do not open sky), and midground scale.
-> - Do NOT import any Tile 5 content identity: no skyline motifs, no landmark silhouettes, no central-axis logic, no sun disk.
+> CAMERA LOCK (CRITICAL — PREVENT ZOOM/TILT DRIFT):
+> - Match the established rig: elevated diagonal-oblique aerial view (NOT top-down / not near-nadir).
+> - Do NOT zoom. Do NOT change apparent altitude/scale. Keep the same narrow-FOV / telephoto-compressed feel.
+> - Keep the skyline/horizon/vanishing-height band consistent; do not tilt or pitch-shift the camera.
+> - No vertical recentering to “fit” smoke stacks or mood. Cropping/clipping is allowed; lifting framing is not.
+> - Do NOT add extra sky. If sky feels open, add midground mass + smog within the same framing (no reframing).
+> - Avoid near-field dominance; build depth via midground stacking/overlap.
 >
-> Lock / Preserve:
-> - Lock the dominant Tile 9 read as a **bottom-left → top-right diagonal** (do not drift).
-> - Lock water geometry: a **navigable industrial river/channel** occupies the **bottom-right quadrant**, hugs the **right edge**, and **recedes into the horizon** (distance-collapse into haze). Avoid a hard “L” turn that re-orients the scene.
+> Atmosphere: **bluish-gray fog / heavy smog**, low visibility, desaturated palette. Warmth does not re-emerge. Light still originates from the **right side, off-frame**, but is heavily diffused; primary shadows are weak and soft. Distance collapses into haze; far structures are partially erased.
 >
-> Generator Prompt:
-> Generate Tile 9 (Heavy Industrial Expanse / Terminus). Photorealistic. Portrait orientation.
-> Fixed elevated aerial viewpoint with rectilinear optics and strong telephoto-like depth compression (no wide-angle). Narrow field of view; do not open the sky.
+> Industrial content is dense and systemic: repeated infrastructure patterns, container grids, rail yards, loading zones, pipelines, cooling towers, chimneys, cranes, and port-adjacent geometry. The scene reads as the functional endpoint of the gradient, not a new iconic center.
 >
-> CAMERA (MUST MATCH REFERENCE A)
-> - High elevated aerial viewpoint (same altitude feel as Reference A).
-> - Slight downward pitch like Reference A (not near-ground, not drone-close).
-> - Rectilinear optics with strong telephoto-like compression (no wide-angle drift).
-> - No vertical recentering to “fit” subjects; do not add extra sky. Cropping/clipping is allowed.
-> - Avoid near-field dominance: no single bottom-foreground slab/roof taking over the frame.
+> Seam behavior: the **left edge** must remain stitchable to Tile 8 (continuous industrial texture, consistent haze rolloff, no abrupt void or single isolated hero structure at the border).
 >
-> COMPOSITION + WATER (DO NOT DRIFT)
-> - Dominant spatial energy runs **bottom-left → top-right**.
-> - The right side is an **industrial navigation channel/river**: starts in the **lower-right**, hugs the **right edge**, and fades into the smog toward the horizon.
-> - The left bank is a continuous industrial frontage: straight docks, quays, seawalls, containment edges; hard angular shoreline geometry (no organic coast).
->
-> SUBJECT (TILE 9)
-> Ultra-dense heavy industry dissolving into smog: petrochemical complexes, refineries, stacks, pipe forests, cranes, container yards, railyards/track fans, conveyors, warehouses, power/utility infrastructure.
-> Density via layered repetition into depth (multiple corridors and stacked slabs), not a single hero object.
->
-> PORT + SHIPPING (SCALE ANCHORS)
-> - Realistic port infrastructure: piers, cranes, mooring zones, container stacks, service roads.
-> - Include at least one utilitarian cargo ship or tanker (correct scale). Prefer ship presence near the **lower-right** without making it a heroic centerpiece.
->
-> ATMOSPHERE (MAXIMUM HAZE — BUT NO BLUE DRIFT)
-> - Tile 9 is the maximum haze tile: extreme industrial smog canopy with severe distance collapse (far background strongly collapsed into milky smog; ghost silhouettes only; no crisp skyline edges).
-> - Avoid full whiteout; keep midground readable with soft edges and reduced contrast (no blank white fog card).
-> - Palette must be desaturated **polluted steel + dirty beige/soot-gray particulate** (cool-neutral overall). Avoid cyan/blue cast.
-> - Volumetric radiance is allowed only as soft smog glow; do not increase global contrast or re-warm the image.
->
-> LIGHTING + WIND (DAYTIME)
-> - No visible sun disk.
-> - Key light from the left; shadows fall to the right. Wind to the right; any smoke/steam is subtle, low-contrast, short, and drifts right immediately (no dramatic plumes).
->
-> LIGHT ACCENTS (SUBTLE, FUNCTIONAL)
-> - Sparse utilitarian industrial lighting visible THROUGH haze:
->   - dock/yard work lights, gantry/port lights, small perimeter lights
->   - occasional dim obstruction beacons on tall stacks (very subtle)
->   - optional tiny ship work/navigation lights (realistic, not decorative)
-> - Lights must be low-intensity and haze-bloomed; not a glitter field; not nightlife.
->
-> FORBIDDEN
-> - Natural shoreline, pastoral greenery dominance, residential neighborhood identity, landmark towers/buildings, crisp skyline edges, sci-fi/fantasy motifs.
->
-> Output:
-> - Output: 1024 × 1536, portrait orientation.
-
-## NanoBanana compiled prompt (no references)
-
-> You are generating a photorealistic image as part of a large, multi-tile panoramic cityscape.
-> This image must behave as one tile in a continuous photographic system.
-> Do not reinterpret the scene creatively.
-> Do not add landmarks, symbols, or narrative elements that are not explicitly implied.
-> Preserve scale realism, camera consistency, and atmospheric logic.
-> If multiple interpretations are possible, choose continuity, not novelty.
->
-> Generate Tile 9 (Heavy Industrial Expanse / Terminus). Photorealistic. Portrait orientation.
-> Fixed elevated aerial viewpoint, slight downward pitch, rectilinear optics with strong telephoto-like depth compression (no wide-angle). Narrow field of view; do not open the sky.
->
-> Composition lock: dominant diagonal bottom-left → top-right. A navigable industrial river/channel occupies the bottom-right, hugs the right edge, and recedes into the horizon.
-> Engineered shoreline REQUIRED: straight/angular docks, seawalls, containment geometry (no organic coast).
-> Include realistic port infrastructure and at least one utilitarian cargo ship/tanker (correct scale).
->
-> Atmosphere: strongest industrial smog of the panorama with severe distance collapse (far background strongly collapsed into milky smog, ghost silhouettes only, no crisp edges). Avoid full whiteout; midground remains barely readable with soft edges.
-> Palette: desaturated polluted steel + dirty beige/soot-gray particulate (cool-neutral overall). Avoid cyan/blue cast.
->
-> Lighting + wind: cool-neutral daytime illumination. No visible sun disk. Key light from the left; shadows fall to the right. Wind to the right; any smoke/steam is subtle and drifts right immediately.
-> Light accents: sparse functional industrial lights under haze (diffused bloom, not a glitter field).
+> Output: 1024 × 1536, portrait orientation.

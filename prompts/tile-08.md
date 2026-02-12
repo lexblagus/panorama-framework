@@ -15,7 +15,8 @@
 > - Transfer FORBIDDEN from Reference B: ANY water/channel/ship shapes, and any full composition/layout copying.
 >
 > GENERATOR PROMPT:
-> Generate Tile 8: Petrochemical Wall + Carrara Industrial Ridge (NO CHANNEL). Photorealistic aerial megacity slice that extends Tile 9’s hard industry leftward without inheriting the channel/ships.
+> 
+> Generate Tile 8: Industrial. Photorealistic aerial megacity slice that extends Tile 9’s hard industry leftward without inheriting the channel/ships.
 >
 > CAMERA LOCK (CRITICAL — PREVENT ZOOM/TILT DRIFT):
 > - Match the ruler + seam anchor: diagonal-oblique aerial look (NOT top-down / not near-nadir).

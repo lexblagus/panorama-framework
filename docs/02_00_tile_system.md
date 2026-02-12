@@ -4,9 +4,18 @@ Tiles must be treated as **non-mirrored** outputs for all canonical runs.
 
 Horizontal mirroring may be used only for **temporary diagnostic composites**, and must not be used to “fix” lighting direction or shadow logic. Any tile that would require mirroring to align must be regenerated instead.
 
+- [Summary](#summary)
+- [Detailed definitions](#detailed-definitions)
+- [Framing Stability Protocol (Reference-Conditioned, No Bands)](#framing-stability-protocol-reference-conditioned-no-bands)
+  - [Authority](#authority)
+  - [Rules (must)](#rules-must)
+  - [Horizon-loss handling (Tiles 7–9)](#horizon-loss-handling-tiles-79)
+  - [Quick composite checks (recommended)](#quick-composite-checks-recommended)
+
 ---
 
 ![Tiling compilation preview (6 tiles)](../outputs/generated/006-30-compiled.png)
+
 _↳ Tiling compilation preview (6 tiles)_
 
 ---
@@ -15,15 +24,15 @@ _↳ Tiling compilation preview (6 tiles)_
 
 | # | Level | References | Title | Theme | Atmosphere |
 |---:|---|---|---|---|---|
-| 1 | primary | ruler | Nature as Dominant Chaos | Terrain-dominant natural systems | Clean daylight |
-| 2 | tertiary | bridge | Dense Residential | Housing / Parks / Lakes | Slight warmth |
-| 3 | secondary | ruler | Transition Zone | Mixed typologies | Warmth + early haze |
-| 4 | tertiary | bridge | Pre-Core Vertical | Urban Vertical | Amber build-up |
-| 5 | primary master | none | Iconic Core (Anchor) | Landmark Skyline | Amber peak + diffused sun |
-| 6 | tertiary | bridge | Post-Core Vertical | Urban Vertical | Fading warmth |
-| 7 | secondary | ruler | Urban Sprawl | Roads / Mid-rise | Desaturated haze |
-| 8 | tertiary | bridge | Industrial | Infrastructure | Heavy smog |
-| 9 | primary | ruler and mood | Heavy Industrial Expanse | Factories / Cargo | Bluish-gray fog |
+| 1 | primary | (ruler) + (optional one-sided using Tile 2 left edge crop) | Nature as Dominant Chaos | Terrain-dominant natural systems | Clean daylight |
+| 2 | tertiary | bridge (required: Tile 1 right crop + transparency + Tile 3 left crop) | Dense Residential | Housing / Parks / Lakes | Slight warmth |
+| 3 | secondary | (ruler) + (optional Tile 2 right crop + transparency + Tile 4 left crop) | Transition Zone | Mixed typologies | Warmth + early haze |
+| 4 | tertiary | bridge (required: Tile 3 right crop + transparency + Tile 5 left crop) | Pre-Core Vertical | Urban Vertical | Amber build-up |
+| 5 | primary master | none (ruler authority) + (optional Tile 4 right crop + transparency + Tile 6 left crop) | Iconic Core (Anchor) | Landmark Skyline | Amber peak + diffused sun |
+| 6 | tertiary | bridge (required: Tile 5 right crop + transparency + Tile 7 left crop) | Post-Core Vertical | Urban Vertical | Fading warmth |
+| 7 | secondary | (ruler) + (optional Tile 6 right crop + transparency + Tile 8 left crop) | Urban Sprawl | Roads / Mid-rise | Desaturated haze |
+| 8 | tertiary | bridge (required: Tile 7 right crop + transparency + Tile 9 left crop) | Industrial | Infrastructure | Heavy smog |
+| 9 | primary | (ruler and mood) + (optional one-sided using Tile 8 right edge crop) | Heavy Industrial Expanse | Factories / Cargo | Bluish-gray fog |
 
 ***Levels:***
 - **Master**: main tile based on Central Master Reference Image

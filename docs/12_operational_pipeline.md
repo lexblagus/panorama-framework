@@ -199,13 +199,36 @@ Downstream variants:
 ## Activities
 
 - TODO: Add the magic trick, stating that a chat gets wasted after too many iteractions; after a prompt lock try in a new chat.
-- Add new jargons to Core Canonical / Concepts?
-
 - Generate NanoBanana specs and prompts?
+- Run a general rview: long time that is not done.
 
 ---
 
-### 1) Lock the camera rig and kill the zoom drift
+### Current directions:
+
+After activity 1 (done) on next section were done, the new generate preview gave some new directions:
+
+1. Decide “Crisp Variant” (haze policy) + Color Ladder (explicit grade per tile)
+1. Activity #2: Rework Tile 5 to reduce iconicity + bezel behavior (this is your biggest stabilizer)
+1. Re-derive Tile 7 under the new ladder (likely cooler/neutral and less iconic)
+1. Then build tertiaries with bridges (2/4/6/8) and run optional seam-refine passes where needed
+1. Reintroduce Carrara as centered feature in 8 (or 7), not on a seam
+
+---
+
+### Past ideas:
+
+Summary of recommendedations:
+
+1. ~~**Camera rig + zoom discipline** (global prompt pattern + ops rule)~~ (done)
+1. **Tile 5 normalization + bezel-safe avenue redesign** (new ruler)
+1. **Tile 7 recalibration** (more residential + embedded tech nodes)
+1. **Tile 6 definition** (bridge 5→7)
+1. **Tile 8 Carrara stitch polish** (using slice reference)
+1. **Tile 9 squared shoreline polish**
+1. **Tile 1 revisit**
+
+#### ~~1) Lock the camera rig and kill the zoom drift~~ (done)
 
 This is the highest-leverage fix. If zoom/pitch drifts, every seam becomes “manual luck.”
 
@@ -221,7 +244,7 @@ This is the highest-leverage fix. If zoom/pitch drifts, every seam becomes “ma
 
 **Why first:** it makes every subsequent iteration cheaper and more predictable.
 
-### 2) Rework Tile 5 (because it’s the ruler + it’s too iconic + bezel issue)
+#### 2) Rework Tile 5 (because it’s the ruler + it’s too iconic + bezel issue)
 
 If Tile 5 stays iconic, the entire panorama will look like “Tile 5 and then another project.” Also: since it’s the ruler, any mismatch propagates.
 
@@ -240,7 +263,7 @@ If Tile 5 stays iconic, the entire panorama will look like “Tile 5 and then an
 
 **Why second:** it stabilizes the “source of truth” for the entire rig.
 
-### 3) Recalibrate Tile 7 so it’s not “too close to Tile 9”
+#### 3) Recalibrate Tile 7 so it’s not “too close to Tile 9”
 
 You already have Tile 8–9 perfect. The weak link is the *bridge* tile.
 
@@ -252,7 +275,7 @@ You already have Tile 8–9 perfect. The weak link is the *bridge* tile.
 
 **Why third:** it creates “space” for Tile 8 to feel like escalation instead of repetition.
 
-### 4) Define Tile 6 as the *real* bridge between Tile 5 and Tile 7
+#### 4) Define Tile 6 as the *real* bridge between Tile 5 and Tile 7
 
 Your question “how to describe Tile 6 to fit Tile 7” is spot-on. Tile 6 should be the **dampener**: it pulls Tile 5 out of “icon shot” and prepares the logistics/utility language of Tile 7.
 
@@ -265,7 +288,7 @@ Your question “how to describe Tile 6 to fit Tile 7” is spot-on. Tile 6 shou
 
 **Why now:** once Tile 5 is normalized, Tile 6 becomes much easier to tune and will improve the whole mid-strip continuity.
 
-### 5) Carrara in Tile 8: solve stitchability with seam discipline + slice reference
+#### 5) Carrara in Tile 8: solve stitchability with seam discipline + slice reference
 
 Carrara is a win. Stitch issues are solvable.
 
@@ -278,7 +301,7 @@ Carrara is a win. Stitch issues are solvable.
 
 **Why later:** because once camera + Tile 7 are stable, Carrara becomes a controlled variant instead of destabilizing the bridge.
 
-### 6) Refine Tile 9 channel into a more squared engineered shoreline
+#### 6) Refine Tile 9 channel into a more squared engineered shoreline
 
 This is a polish task, but easy and worthwhile.
 
@@ -290,23 +313,13 @@ This is a polish task, but easy and worthwhile.
 
 **Why later:** it doesn’t unblock anything; it’s refinement.
 
-### 7) Optional: revisit Tile 1 composition
+#### 7) Optional: revisit Tile 1 composition
 
 Only do this after the camera rig is fully unified and Tiles 5–9 are stable.
 
 Ideas: Fiords and sea. Cliff houses. Only riches can reach the edges.
 
 **Why last:** it’s upstream but doesn’t currently break your strongest seam chain.
-
-### Recommended start order (minimum regret)
-
-1. **Camera rig + zoom discipline** (global prompt pattern + ops rule)
-2. **Tile 5 normalization + bezel-safe avenue redesign** (new ruler)
-3. **Tile 7 recalibration** (more residential + embedded tech nodes)
-4. **Tile 6 definition** (bridge 5→7)
-5. **Tile 8 Carrara stitch polish** (using slice reference)
-6. **Tile 9 squared shoreline polish**
-7. **Tile 1 revisit**
 
 ---
 
@@ -415,24 +428,25 @@ When reviewing a tile:
 
 After editing this document, perform the following validation checks before any image generation or regeneration step.
 
-|  # | Check Category                | What Is Being Verified                                                                 |
-| -: | ----------------------------- | -------------------------------------------------------------------------------------- |
-|  1 | Section numbering integrity   | No missing numbers, no duplicated numbers, no logical jumps                             |
-|  2 | Hierarchy consistency         | Sections, subsections, and sub-subsections follow a stable and predictable depth        |
-|  3 | Terminology consistency       | Identical concepts use identical names across all sections                              |
-|  4 | Constraint precedence         | Global Constraints always override Tile-level rules without exception                   |
-|  5 | Lighting rules coherence      | Sun visibility, direction, diffusion, and exceptions are non-contradictory              |
-|  6 | Image dimension math          | All pixel dimensions, orientations, and aspect ratios are internally consistent        |
-|  7 | Workflow linearity            | No circular dependencies between workflow steps                                         |
-|  8 | Role separation clarity       | ChatGPT and User responsibilities are clearly separated and never overlap               |
-|  9 | Tile narrative gradient       | Density, mood, function, and activity evolve strictly from Tile 1 → Tile 9              |
-| 10 | Forbidden motif enforcement   | Tile-level forbidden motifs do not contradict global allowances                          |
-| 11 | Duplication and redundancy    | No rule is repeated with only minor wording variations                                   |
-| 12 | Ambiguity hotspots            | No phrasing allows multiple plausible interpretations by an image model                 |
-| 13 | Future extensibility          | Lighting, ambiance, or tile expansion can be added without breaking structure            |
-| 14 | Lateral ambiance monotonicity | Warmth, clarity, and contrast never re-emerge after Tile 5                               |
-| 15 | Atmospheric identity stability| Cinematic references support the project identity without overriding it                 |
-| 16 | Index regeneration validity   | Section index is regenerated if any section title or numbering changes                  |
-| 17 | Scale coherence               | Vehicles, buildings, terrain, and infrastructure maintain consistent human-scale relationships across tiles |
+|  # | Check Category                 | What Is Being Verified                                                                 |
+| -: | ------------------------------ | -------------------------------------------------------------------------------------- |
+|  1 | Section numbering integrity    | No missing numbers, no duplicated numbers, no logical jumps                             |
+|  2 | Hierarchy consistency          | Sections, subsections, and sub-subsections follow a stable and predictable depth        |
+|  3 | Terminology consistency        | Identical concepts use identical names across all sections                              |
+|  4 | Constraint precedence          | Global Constraints always override Tile-level rules without exception                   |
+|  5 | Lighting rules coherence       | Sun visibility, direction, diffusion, and exceptions are non-contradictory              |
+|  6 | Image dimension math           | All pixel dimensions, orientations, and aspect ratios are internally consistent        |
+|  7 | Workflow linearity             | No circular dependencies between workflow steps                                         |
+|  8 | Role separation clarity        | ChatGPT and User responsibilities are clearly separated and never overlap               |
+|  9 | Tile narrative gradient        | Density, mood, function, and activity evolve strictly from Tile 1 → Tile 9              |
+| 10 | Forbidden motif enforcement    | Tile-level forbidden motifs do not contradict global allowances                         |
+| 11 | Duplication and redundancy     | No rule is repeated with only minor wording variations                                  |
+| 12 | Ambiguity hotspots             | No phrasing allows multiple plausible interpretations by an image model                 |
+| 13 | Future extensibility           | Lighting, ambiance, or tile expansion can be added without breaking structure           |
+| 14 | Lateral ambiance monotonicity  | Warmth, clarity, and contrast never re-emerge after Tile 5                               |
+| 15 | Atmospheric identity stability | Cinematic references support the project identity without overriding it                 |
+| 16 | Index regeneration validity    | Section index is regenerated if any section title or numbering changes                  |
+| 17 | Index link integrity           | All index/TOC entries correctly link to the current section headers/anchors (no stale internal links) |
+| 18 | Scale coherence                | Vehicles, buildings, terrain, and infrastructure maintain consistent human-scale relationships across tiles |
 
 > **Rule:** If any check fails, the document must be corrected **before** prompt generation or image regeneration.
