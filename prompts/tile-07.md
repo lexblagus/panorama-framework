@@ -12,22 +12,30 @@
 > - Transfer FORBIDDEN from Reference B: copying full composition/layout; it is seam conditioning, not a scene blueprint.
 
 ## Generator prompt
-> Photorealistic portrait-oriented aerial image depicting **urban sprawl / post-core expansion** (Tile 7): a broad, infrastructure-led city field transitioning toward industrial adjacency. Captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system. Broad city coverage, compressed distance, no wide-angle distortion.
+> Photorealistic aerial panorama tile (Tile 7 of a 9-tile megacity panorama). Portrait 1024×1536.
 >
-> CAMERA LOCK (CRITICAL — PREVENT ZOOM/TILT DRIFT):
-> - Match the established rig: elevated diagonal-oblique aerial view (NOT top-down / not near-nadir).
-> - Do NOT zoom. Do NOT change apparent altitude/scale. Keep the same narrow-FOV / telephoto-compressed feel.
-> - Keep the skyline/horizon/vanishing-height band consistent; do not tilt or pitch-shift the camera.
-> - No vertical recentering to “fit” subjects or mood. Cropping/clipping is allowed; lifting framing is not.
-> - Do NOT add extra sky. If sky feels open, add midground mass + haze within the same framing (no reframing).
-> - Avoid near-field dominance; build depth via midground stacking/overlap.
+> CAMERA LOCK (do not drift): fixed elevated camera; diagonal-oblique aerial view (not top-down); rectilinear optics; strong telephoto-like depth compression; unified camera system consistent across all tiles; no wide-angle distortion; no tilt-shift; no stylized filters or illustration aesthetics.  :contentReference[oaicite:0]{index=0}
 >
-> Composition: predominantly **mid-rise and low-rise** massing with occasional taller elements that do not form a skyline. Infrastructure becomes more explicit: widened arterials, layered interchanges, rail corridors, service roads, and logistics-adjacent strips. The scene should read as an urban fabric that is **less iconic** than Tile 5, more distributed, and more system-oriented.
+> NON-MIRRORED OUTPUT: do not horizontally flip/mirror the image.  :contentReference[oaicite:1]{index=1}
 >
-> Atmosphere: warmth is fading; haze is increasing. Light originates from the **right side, off-frame**; primary cast shadows fall to the **left**. Colors trend toward muted ambers and grays, with reduced contrast and softened far distance.
+> LIGHTING / ATMOSPHERE (tile-position accurate): golden-hour family lighting but with warmth fading into desaturated haze. Sun disk / visible solar source is NOT allowed. Key light originates from the LEFT (off-frame); primary cast shadows fall to the RIGHT; brightest haze/sky pressure sits on the LEFT side.  :contentReference[oaicite:2]{index=2}
 >
-> Forbidden: a pristine “new city” grid, a single dominating monument, or a clean cinematic skyline silhouette. This is sprawl, not a second core.
+> SCENE INTENT: a late-stage urban district transitioning toward logistics and service dominance between the dense core and the industrial periphery. The city supports a large resident population, but residential life is compressed and subordinated to circulation, commerce, and utilities. This is NOT suburbia and not a residential neighborhood; it feels older, heavier, negotiated—shaped by throughput rather than comfort.  :contentReference[oaicite:3]{index=3}
 >
-> Seam behavior: keep both edges stitchable (continuous roof-field texture, consistent haze rolloff, no abrupt voids at the borders).
+> DIRECTIONAL CONTINUITY (post-core release): dominant spatial energy reads as a diagonal bottom-left → top-right, expressed through mass orientation and circulation layering (not cinematic tilt).  :contentReference[oaicite:4]{index=4}
 >
-> Output: 1024 × 1536, portrait orientation.
+> REQUIRED ELEMENTS (logistics-driven urban form; dense, layered, telephoto-compressed):
+> - Large residential blocks: extensive, repetitive working-class slabs; non-iconic; population support (not neighborhood identity).
+> - Residential mass interwoven with infrastructure: roads/ramps cutting through housing clusters; buildings wrapped around circulation and utilities.
+> - Broad load-bearing roads with layered intersections.
+> - Multi-level circulation: surface streets + elevated roads/flyovers + ramps/partial interchanges; occasional tunnel entrances/underpasses.
+> - Early logistics + service traffic (present but not dominant): rigid multi-axle trucks, urban cargo vehicles, articulated/semi-trailers, fuel/gas tankers; cab-over and non-cab-over; muted orange/brown tarp truck bodies (new + weathered). Prefer vehicle diversity over vehicle volume.
+> - Low-rise commercial slabs, warehouses, service buildings; embedded utilities (gas pipelines, water backbone, service corridors, utility installations).
+> - Increase midground stacking: residential slabs + warehouses + service yards overlapping in layers to stabilize scale (avoid a single near-foreground interchange).  
+>
+> FRAMING + SCALE DISCIPLINE (Tile 5 as ruler): treat vertical drift as camera pitch drift; do NOT vertically recenter to fit towers/smoke/interchanges; cropping/clipping is preferred. If the true horizon is hazed out, use corridor/roof-field vanishing height as the horizon proxy and keep pitch consistent with Tile 5. If sky feels too open, add roof-field/infrastructure bulk or haze inside the distance volume—do NOT open more sky. Prevent push-in reads by reducing near-field dominance and adding depth via midground stacking/overlap.  
+>
+> FORBIDDEN MOTIFS (must not appear):
+> - Suburban residential patterns; scenic/landscaped housing; pedestrian-centric design; isolated/self-contained neighborhoods.
+> - Iconic skylines or landmark architecture.
+> - Full industrial systems (ports/refineries/container yards); industrial dominance must remain absent.  

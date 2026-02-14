@@ -89,7 +89,7 @@ When running in NanoBanana, the hierarchy of authority is:
 3. **Lateral Ambiance Gradient**
 4. **Prompt text (adapted)**
 
-The adapted prompt is **an execution artifact**, not the conceptual source of truth.
+The adapted prompt is **an execution artifact**, not the conceptual source of truth. This ordering applies only to **prompt adaptation/retention** for NanoBanana and does **not** replace the framework-wide **document authority ladder** defined in `docs/12_operational_pipeline.md`.
 
 ---
 
@@ -214,5 +214,4 @@ If NanoBanana produces a compelling but out-of-scope result, the correct respons
 Never retrofit the framework silently to justify an image.
 
 ---
-
 

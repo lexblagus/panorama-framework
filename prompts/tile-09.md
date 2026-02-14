@@ -14,20 +14,31 @@
 > - Transfer FORBIDDEN from References B/C: copying full composition/layout or inventing a new camera rig.
 
 ## Generator prompt
-> Photorealistic portrait-oriented aerial image depicting the **industrial terminus** of the panorama (Tile 9): heavy logistics, factories, container fields, refineries, shipyards, power infrastructure, and dense transport corridors dissolving into thick fog. Captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system. Broad coverage, compressed distance, no wide-angle distortion.
+> Photorealistic aerial panorama tile (Tile 9 of a 9-tile megacity panorama). Portrait 1024×1536.
 >
-> CAMERA LOCK (CRITICAL — PREVENT ZOOM/TILT DRIFT):
-> - Match the established rig: elevated diagonal-oblique aerial view (NOT top-down / not near-nadir).
-> - Do NOT zoom. Do NOT change apparent altitude/scale. Keep the same narrow-FOV / telephoto-compressed feel.
-> - Keep the skyline/horizon/vanishing-height band consistent; do not tilt or pitch-shift the camera.
-> - No vertical recentering to “fit” smoke stacks or mood. Cropping/clipping is allowed; lifting framing is not.
-> - Do NOT add extra sky. If sky feels open, add midground mass + smog within the same framing (no reframing).
-> - Avoid near-field dominance; build depth via midground stacking/overlap.
+> CAMERA LOCK (do not drift): fixed elevated diagonal-oblique aerial view; rectilinear optics; strong telephoto-like depth compression; unified camera system consistent across all tiles; no wide-angle distortion; no tilt-shift; no stylized filters or illustration aesthetics.
 >
-> Atmosphere: **bluish-gray fog / heavy smog**, low visibility, desaturated palette. Warmth does not re-emerge. Light still originates from the **right side, off-frame**, but is heavily diffused; primary shadows are weak and soft. Distance collapses into haze; far structures are partially erased.
+> NON-MIRRORED OUTPUT: do not horizontally flip/mirror the image.
 >
-> Industrial content is dense and systemic: repeated infrastructure patterns, container grids, rail yards, loading zones, pipelines, cooling towers, chimneys, cranes, and port-adjacent geometry. The scene reads as the functional endpoint of the gradient, not a new iconic center.
+> REFERENCE CONDITIONING (ruler): use the Tile 5 ruler image as Reference A to control framing/scale physics only (telephoto compression feel, vertical “pressure”, sky-budget discipline, midground scale). DO NOT borrow Tile 5 content identity (no skyline motifs, no landmark silhouettes, no central-axis logic, no sun disk).
 >
-> Seam behavior: the **left edge** must remain stitchable to Tile 8 (continuous industrial texture, consistent haze rolloff, no abrupt void or single isolated hero structure at the border).
+> LIGHTING / ATMOSPHERE (endpoint): maximum haze mandate — strongest atmospheric density in the panorama. Sun is PROHIBITED. Key light originates from the LEFT (off-frame); primary cast shadows fall to the RIGHT. Wind pushes chimney smoke to the RIGHT. Far background collapses into milky smog: ghost silhouettes only (no crisp edges); avoid full whiteout; keep the midground faintly readable with soft edges. Haze may glow softly but must not increase contrast or re-warm the scene globally.
 >
-> Output: 1024 × 1536, portrait orientation.
+> COLOR / GRADE (anti-drift): after Tile 5, warmth must not “return” as a global grade, but Tile 9 must also avoid cyan/blue cast drift. Target palette: desaturated polluted steel + dirty beige / soot-gray particulate (cool-neutral overall, NOT “blue-hour”). Any warmth allowed only as tiny utilitarian sodium/work-light blooms under haze — never a global regrade. No city-sparkle/nightlife.
+>
+> COMPOSITION LOCK (DO NOT DRIFT):
+> - Dominant read is a strong diagonal running bottom-left → top-right.
+> - Primary water body is a navigable industrial river/channel occupying the bottom-right quadrant, hugging the RIGHT edge, and receding into the horizon (distance-collapse into haze). Avoid a hard “L” turn that re-orients the scene.
+> - Left bank (land side) is a continuous industrial frontage: docks, quays, straight seawalls, containment edges, hard angular shoreline geometry.
+>
+> ENGINEERED SHORELINE REQUIRED: land–water boundary must read as engineered, industrial, predominantly straight/angular/artificial (docks/harbors/containment structures). Organic/eroded/natural coastline is NOT allowed.
+>
+> PORT + SHIPPING (scale anchors):
+> - Realistic port infrastructure: piers, cranes, mooring zones, container stacks, service roads, cargo trucks, empty container handlers (ECH).
+> - Include at least ONE utilitarian cargo ship or tanker at correct scale; prefer presence near the lower-right without making it a hero centerpiece.
+>
+> HEAVY INDUSTRIAL MASS (ultra-dense, layered): refineries/petrochemical plants, stacks, pipe forests, conveyors, warehouses, power/utility infrastructure, railyards and track fans. Skyline edges must dissolve into haze (no crisp skyline band).
+>
+> FRAMING STABILITY (Tile 5 as ruler): treat vertical drift as camera pitch drift; do not vertically recenter to fit smokestacks/smoke. If the true horizon is erased by smog, use rail/road/roof-field vanishing height as the shared horizon proxy; keep pitch consistent with Tile 5. Crop/clip when elements pressure the top. If sky feels too open, add industrial mass, stacked midground infrastructure, or haze inside the distance volume—do NOT open more sky. Prevent push-in reads by avoiding a single foreground yard/track fan; reduce near-field dominance and emphasize layered repetition into depth.
+>
+> FORBIDDEN MOTIFS (must not appear): nature; landmark buildings; residential streets; visible sun/solar source; crisp skyline edges; nightlife sparkle.

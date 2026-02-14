@@ -4,6 +4,7 @@ Tiles must be treated as **non-mirrored** outputs for all canonical runs.
 
 Horizontal mirroring may be used only for **temporary diagnostic composites**, and must not be used to “fix” lighting direction or shadow logic. Any tile that would require mirroring to align must be regenerated instead.
 
+- [Previews](#previews)
 - [Summary](#summary)
 - [Detailed definitions](#detailed-definitions)
 - [Framing Stability Protocol (Reference-Conditioned, No Bands)](#framing-stability-protocol-reference-conditioned-no-bands)
@@ -14,25 +15,43 @@ Horizontal mirroring may be used only for **temporary diagnostic composites**, a
 
 ---
 
-![Tiling compilation preview (6 tiles)](../outputs/generated/006-30-compiled.png)
+# Previews
 
-_↳ Tiling compilation preview (6 tiles)_
+|1|2|3|4|5|6|7|8|9|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|**primary**|tertiary|*secondary*|tertiary|***primary master***|tertiary|*secondary*|tertiary|**primary**|
+|![Tile 1 preview](../outputs/generated/007-43-tile1e.png)|![Tile 2 preview](../outputs/generated/004-05-tile2.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 4 preview](../outputs/generated/004-06-tile4.png)|![Tile 5 preview](../outputs/generated/007-36-tile5c.png)|![Tile 6 preview](../outputs/generated/004-07-tile6.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 8 preview](../outputs/generated/007-29-tile8c-new-prompt.png)|![Tile 9 preview](../outputs/generated/007-17-tile9b-new-prompt.png)|
+|007-43-tile1e.png|004-05-tile2.png|007-51-tile3c.png|004-06-tile4.png|007-12-tile5c-new-prompt.png|004-07-tile6.png|007-46-tile7b.png|007-29-tile8c-new-prompt.png|007-17-tile9b-new-prompt.png|
+
+_↳ All tiles. Note tertiary tiles are very outdated compared to primary and secondary tiles_
+
+|1|3|5|7|9|
+|:---:|:---:|:---:|:---:|:---:|
+|**primary**|*secondary*|***primary master***|*secondary*|**primary**|
+|![Tile 1 preview](../outputs/generated/007-43-tile1e.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/007-36-tile5c.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/007-17-tile9b-new-prompt.png)|
+|007-43-tile1e.png|007-51-tile3c.png|007-36-tile5c.png|007-46-tile7b.png|007-17-tile9b-new-prompt.png|
+
+_↳ Latest working tiles._
+
+![Tiling composition preview (6 tiles)](../outputs/generated/006-30-compiled.png)
+
+_↳ Tiling composition preview (6 tiles)_
 
 ---
 
 ## Summary
 
-| # | Level | References | Title | Theme | Atmosphere |
-|---:|---|---|---|---|---|
-| 1 | primary | (ruler) + (optional one-sided using Tile 2 left edge crop) | Nature as Dominant Chaos | Terrain-dominant natural systems | Clean daylight |
-| 2 | tertiary | bridge (required: Tile 1 right crop + transparency + Tile 3 left crop) | Dense Residential | Housing / Parks / Lakes | Slight warmth |
-| 3 | secondary | (ruler) + (optional Tile 2 right crop + transparency + Tile 4 left crop) | Transition Zone | Mixed typologies | Warmth + early haze |
-| 4 | tertiary | bridge (required: Tile 3 right crop + transparency + Tile 5 left crop) | Pre-Core Vertical | Urban Vertical | Amber build-up |
-| 5 | primary master | none (ruler authority) + (optional Tile 4 right crop + transparency + Tile 6 left crop) | Iconic Core (Anchor) | Landmark Skyline | Amber peak + diffused sun |
-| 6 | tertiary | bridge (required: Tile 5 right crop + transparency + Tile 7 left crop) | Post-Core Vertical | Urban Vertical | Fading warmth |
-| 7 | secondary | (ruler) + (optional Tile 6 right crop + transparency + Tile 8 left crop) | Urban Sprawl | Roads / Mid-rise | Desaturated haze |
-| 8 | tertiary | bridge (required: Tile 7 right crop + transparency + Tile 9 left crop) | Industrial | Infrastructure | Heavy smog |
-| 9 | primary | (ruler and mood) + (optional one-sided using Tile 8 right edge crop) | Heavy Industrial Expanse | Factories / Cargo | Bluish-gray fog |
+| # | Level | References | Title | Theme | Atmosphere | X axys pixels
+|---:|---|---|---|---|---|--:|
+| 1 | primary | (ruler) + (optional one-sided using Tile 2 left edge crop) | Nature as Dominant Chaos | Terrain-dominant natural systems | Clean daylight | `0`<br />⅔ `683`<br />`1024` |
+| 2 | tertiary | bridge (required: Tile 1 right crop + transparency + Tile 3 left crop) | Dense Residential | Housing / Parks / Lakes | Slight warmth | `1025`<br />`1366` |
+| 3 | secondary | (ruler) + (optional Tile 2 right crop + transparency + Tile 4 left crop) | Transition Zone | Mixed typologies | Warmth + early haze | `1367`<br />⅓ `1707`<br />⅔ `2049`<br />`2390` |
+| 4 | tertiary | bridge (required: Tile 3 right crop + transparency + Tile 5 left crop) | Pre-Core Vertical | Urban Vertical | Amber build-up | `2391`<br />`2732` |
+| 5 | primary master | none (ruler authority) + (optional Tile 4 right crop + transparency + Tile 6 left crop) | Iconic Core (Anchor) | Landmark Skyline | Amber peak + diffused sun | `2733`<br />⅓ `3073`<br />½ `3244`<br />⅔ `3415`<br />`3756` |
+| 6 | tertiary | bridge (required: Tile 5 right crop + transparency + Tile 7 left crop) | Post-Core Vertical | Urban Vertical | Fading warmth | `3757`<br />`4098` |
+| 7 | secondary | (ruler) + (optional Tile 6 right crop + transparency + Tile 8 left crop) | Logistics Transition Zone | Roads / Mid-rise | Desaturated haze | `4099`<br />⅓ `4439`<br />⅔ `4781`<br />`5122` |
+| 8 | tertiary | bridge (required: Tile 7 right crop + transparency + Tile 9 left crop) | Industrial | Infrastructure | Heavy smog | `5123`<br />`5464` |
+| 9 | primary | (ruler and mood) + (optional one-sided using Tile 8 right edge crop) | Heavy Industrial Expanse | Factories / Cargo | Bluish-gray fog | `5465`<br />⅓ `5805`<br />`6488` |
 
 ***Levels:***
 - **Master**: main tile based on Central Master Reference Image

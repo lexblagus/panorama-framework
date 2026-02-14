@@ -12,24 +12,35 @@
 > - Transfer FORBIDDEN from Reference B: copying full composition/layout; it is seam conditioning, not a scene blueprint.
 
 ## Generator prompt
-> Photorealistic portrait-oriented aerial image depicting a **dense urban transition zone with interwoven green urbanism** during **golden hour**, captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system. Broad city coverage, compressed distance, no wide-angle distortion.
+> Photorealistic aerial panorama tile (Tile 3 of a 9-tile megacity panorama). Portrait 1024×1536.
 >
-> CAMERA LOCK (CRITICAL — PREVENT ZOOM/TILT DRIFT):
-> - Match the established rig: elevated diagonal-oblique aerial view (NOT top-down / not near-nadir).
-> - Do NOT zoom. Do NOT change apparent altitude/scale. Keep the same narrow-FOV / telephoto-compressed feel.
-> - Keep the skyline/horizon/vanishing-height band consistent; do not tilt or pitch-shift the camera.
-> - No vertical recentering to fit crests or mood. Cropping/clipping is allowed; lifting framing is not.
-> - Do NOT add extra sky. If sky feels open, add roof-field mass + haze within the same framing (no reframing).
-> - Avoid near-field dominance; build depth via midground stacking/overlap.
+> CAMERA LOCK (do not drift): fixed elevated camera; diagonal-oblique aerial view (not top-down); rectilinear optics; strong telephoto-like depth compression; unified camera system consistent across all tiles; no wide-angle distortion; no tilt-shift; no stylized filters or illustration aesthetics.
 >
-> This scene represents a **human-scaled yet dense city fabric** positioned between natural dominance and cosmopolitan intensity. Buildings are predominantly **low- to mid-rise**, tightly packed, heterogeneous, and utilitarian. No skyline or iconic vertical forms are present; density is achieved through **accumulation, overlap, and repetition**, not height.
+> NON-MIRRORED OUTPUT: do not horizontally flip/mirror the image.
 >
-> Green elements are **woven directly into the city**. A **canalized stream or river remnant** passes through the district in a concrete channel with softened, vegetated edges. Trees and weedy vegetation follow infrastructure lines; pocket parks and courtyards appear irregularly and remain secondary.
+> LIGHTING / ATMOSPHERE (tile-position accurate): golden-hour warm-up with early haze. Sun disk / visible solar source is NOT allowed. Key light comes from the RIGHT (off-frame); primary cast shadows fall to the LEFT.
 >
-> Circulation is layered and human-scale: pedestrian stairways, footbridges, small overpasses, embedded transit entrances, short elevated rail segments, and neighborhood commerce (market strips, kiosks, corner shops). Rooftops show habitation: water tanks, laundry lines, satellite dishes, and small rooftop structures.
+> SCENE INTENT: a transitional urban system bridging Tile 1’s nature dominance and Tile 5’s vertical cosmopolitan core. Dense, irregular, lived-in city fabric that integrates nature and human-scale life — urban complexity without monumentality. Nature survives INSIDE the city rather than outside it.
 >
-> Light is warm and diffuse, coming from the **right side, off-frame**. The sun is off-frame. Primary cast shadows fall to the **left**. The district’s massing and circulation show a **subtle diagonal tendency (bottom-right → top-left)** without forming a single dominant axial spine.
+> COMPOSITION TENDENCY (subtle): maintain a weak diagonal bias bottom-right → top-left without forming a dominant axis.
 >
-> Traffic density is moderate to high. Cars, buses, and trams are numerous and clearly readable as primary scale references.
+> REQUIRED ELEMENTS (compose as one coherent, layered city):
+> - Dense continuous urban fabric, predominantly low- to mid-rise; density through accumulation, heterogeneity, overlap (not height).
+> - Canalized stream / river remnant: concrete channel with softened vegetated edges (non-heroic).
+> - Interwoven green urbanism inside the fabric: trees within blocks, planted medians, weedy vegetation along infrastructure.
+> - Mixed residential fabric: mid-rise apartment blocks + smaller houses; heterogeneous ages and styles.
+> - Human-scale circulation: pedestrian stairways, footbridges, small overpasses.
+> - Neighborhood commerce: market strips, corner shops, small ground-floor retail.
+> - Rooftop life: water tanks, laundry lines, small rooftop structures (roof clutter as scale anchors).
+> - Pocket parks / courtyards (subtle, secondary).
+> - Embedded transit: small subway entrances, short elevated rail segments, non-monumental stations.
 >
-> Output: 1024 × 1536, portrait orientation.
+> FRAMING STABILITY (Tile 5 as ruler): treat vertical drift as camera pitch drift; NEVER vertically recenter to fit a crest/subject. Crop/clip if needed; maintain telephoto “vertical pressure”. If sky feels too open, add roof-field mass, stacked midground slabs, and haze inside the distance volume—do NOT open more sky. Prevent push-in reads by reducing single near-foreground dominance and adding depth via midground stacking, overlap, and occlusion; keep any roof-field crest subordinate (no skyline silhouette).
+>
+> FORBIDDEN MOTIFS (must not appear):
+> - Iconic skyline silhouettes; landmark towers; heroic vertical forms; distant high-rise skyline band.
+> - Large scenic parks or landscaped masterplans; stadiums or civic megastructures.
+> - Purely residential suburbia.
+> - Purely infrastructural dominance (belongs to Tile 7).
+> - Pristine/untouched nature (belongs to Tile 1).
+> - Sun disk or visible solar source.

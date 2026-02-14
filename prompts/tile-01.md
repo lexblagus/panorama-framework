@@ -12,23 +12,32 @@
 > - Transfer FORBIDDEN from Reference B: copying full composition/layout; it is a seam conditioner, not a scene blueprint.
 
 # Generator prompt
-> Photorealistic portrait-oriented aerial image depicting the **natural extreme** of the panorama: steep mountains, cliffs, rugged terrain, and a deep valley carved by a river or reservoir. Captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system. Broad coverage, compressed distance, no wide-angle distortion.
-> 
-> CAMERA LOCK (CRITICAL — PREVENT ZOOM/TILT DRIFT):
-> - Match the established rig: elevated diagonal-oblique aerial view (NOT top-down / not near-nadir).
-> - Do NOT zoom. Do NOT change apparent altitude/scale. Keep the same narrow-FOV / telephoto-compressed feel.
-> - Keep the skyline/horizon/vanishing-height band consistent; do not tilt or pitch-shift the camera.
-> - No vertical recentering to fit peaks or mood. Cropping/clipping is allowed; lifting framing is not.
-> - Do NOT add extra sky. If sky feels open, add terrain mass + haze within the same framing (no reframing).
-> - Avoid near-field dominance; build depth via midground stacking/overlap.
+> Photorealistic aerial panorama tile (Tile 1 of a 9-tile megacity panorama). Portrait 1024×1536.
 >
-> Nature is **dominant, energetic, and resistant**, not pastoral. Exposed rock faces, sharp elevation drops, dense irregular vegetation, and turbulent water behavior (cascades, stepped flow, waterfalls, spillways, or a dam integrated into terrain) define the scene.
+> CAMERA LOCK (do not drift): fixed elevated diagonal-oblique aerial view; rectilinear optics; strong telephoto-like depth compression; unified camera system; no wide-angle distortion; no tilt-shift; no illustration/stylized filters.
 >
-> Human presence exists only as **negotiated proto-infrastructure**: carved mountain roads, switchbacks, tunnels, viaducts, cliffside cuts, retaining walls, and small access structures. Settlements are sparse but legible in **layered pockets**: hillside dwellings, terraces, and scattered slope villages embedded into the terrain (vernacular houses, stone dwellings, occasional brutalist or modern hillside villas).
-> Optional subtle passenger rail may appear as a constrained corridor or tunnel segment, strictly subordinate.
+> NON-MIRRORED OUTPUT: do not horizontally flip/mirror the image.
 >
-> Light originates from the **far right**, off-frame. The sun is not visible. Primary cast shadows fall to the **left**. Air is clear and crisp relative to later tiles, with strong material definition and minimal haze.
+> LIGHTING / ATMOSPHERE: clear, crisp daylight with strong material definition. Key light originates from the FAR RIGHT (off-frame); primary cast shadows fall to the LEFT. Sun disk / visible solar source is NOT allowed.
 >
-> No skyline, no metropolitan order, no urban grids or major avenues. The scene must read as **nature overwhelming human systems**, forming the leftmost anchor of the panorama.
+> SCENE INTENT: the natural extreme. Terrain, geology, and water remain dominant and only partially negotiable by human presence. Nature is energetic, vertical, and resistant (not pastoral). Urban logic is absent: no skyline, no axial planning, no metropolitan order.
+>
+> REQUIRED ELEMENTS (compose as one coherent system):
+> - Mountains / steep hills / cliffs / rugged elevation changes; exposed rock shaping movement and construction.
+> - A river or reservoir as the primary natural spine.
+> - Aggressive water–terrain interaction: cascades, stepped flow, waterfalls, spillways, or a dam integrated into terrain.
+> - Dense, irregular vegetation with high variety.
+> - Infrastructure as cuts/scars/insertions (NOT a grid): roads carved into rock, tunnels, viaducts, switchbacks.
+> - Sparse, elevated settlements embedded into slopes (multiple pockets in layered midground for scale continuity).
+> - Strong architectural heterogeneity: vernacular houses, stone dwellings, brutalist/modern hillside villas.
+> - Optional subtle passenger rail elements (tunnels or constrained corridors), strictly subordinate.
+> - Optional vertical access systems where terrain is extreme (funiculars/cable systems/cliff elevators), strictly subordinate.
+>
+> FRAMING STABILITY (Tile 5 as ruler): treat framing drift as camera pitch drift; do NOT vertically recenter to fit peaks. Crop/clip peaks if they pressure the top; maintain telephoto vertical “pressure”. If sky feels too open, add terrain bulk, stacked midground settlements, infrastructure cuts, or haze inside the distance volume—do NOT open more sky. If the read feels push-in/zoomed, reduce near-field dominance and add depth via midground stacking and overlap (do not enlarge one foreground cliff/road).
+>
+> FORBIDDEN MOTIFS (must not appear):
+> - Skylines or distant megacity silhouettes; high-rises/skyscrapers; urban grids/major avenues.
+> - Pastoral/idyllic countryside imagery; flat or gently rolling suburban landscapes.
+> - Sun disk or visible solar source.
 >
 > Output: 1024 × 1536, portrait orientation.

@@ -10,20 +10,27 @@
 > - Transfer FORBIDDEN from Reference B: copying full composition/layout, landmark duplication, or importing neighbor content into the center. Reference B is seam conditioning, not a scene blueprint.
 
 ## Generator prompt
-> Photorealistic portrait-oriented aerial image depicting the **iconic core anchor** of the panorama (Tile 5): maximum urban density, maximum vertical “pressure,” and peak warm amber atmosphere. Captured from a fixed elevated viewpoint with **rectilinear optics and strong telephoto-like depth compression**, consistent with the panorama’s unified camera system. Broad city coverage, compressed distance, no wide-angle distortion.
+> Photorealistic aerial panorama tile (Tile 5 of a 9-tile megacity panorama — ICONIC CORE / ANCHOR). Portrait 1024×1536.
 >
-> CAMERA LOCK (CRITICAL — PREVENT ZOOM/TILT DRIFT):
-> - Match the established rig: elevated diagonal-oblique aerial view (NOT top-down / not near-nadir).
-> - Do NOT zoom. Do NOT change apparent altitude/scale. Keep the same narrow-FOV / telephoto-compressed feel.
-> - Keep the skyline/horizon/vanishing-height band consistent; do not tilt or pitch-shift the camera.
-> - No vertical recentering to “fit” towers, sun, smoke, or mood. Cropping/clipping is allowed; lifting framing is not.
-> - Do NOT add extra sky. If sky feels open, add midground mass + haze within the same framing (no reframing).
-> - Avoid near-field dominance (no single foreground slab/interchange filling the bottom). Build depth via midground stacking/overlap.
+> CAMERA + FOV CLAMP (do not drift): fixed elevated diagonal-oblique aerial view; rectilinear optics; strong telephoto-like depth compression; NARROW field of view; unified camera system across all tiles; no wide-angle distortion; no tilt-shift; no stylized filters/illustration aesthetics.
 >
-> The city reads as a **landmark skyline without a single literal “hero object.”** Tall towers, dense roof-fields, layered corridors, and stacked infrastructure create a continuous metropolitan mass. Streets and avenues exist but do not form a single dominant axial “spine.” The core is cohesive, complex, and legible from above, with multi-layer transportation (arterials, ramps, elevated segments) embedded into the urban fabric.
+> NON-MIRRORED OUTPUT: do not horizontally flip/mirror the image.
 >
-> Atmosphere: **amber peak + diffused sun-pressure** (sun may be implied through glow and diffusion rather than a clean disk). Warm haze compresses distance. Light originates from the **right side, off-frame**; primary cast shadows fall to the **left**. Contrast is controlled by haze; highlights bloom subtly without flattening detail.
+> LIGHTING / ATMOSPHERE (anchor): AMBER PEAK with diffused sun-pressure and warm haze compression. Lighting is CENTERED / FRONTAL DIFFUSION (no strong left/right key read). A solar disk MAY be present but must be diffused and partially obscured by haze with NO hard edge; it may be unnaturally large and may be PARTIALLY CROPPED by the frame—do NOT lift framing to fit it.
 >
-> Seam behavior: both left and right edges remain stitch-friendly (continuous roof-field language, consistent haze rolloff, no abrupt emptiness or isolated singular object at the border).
+> SCENE INTENT: the heart of the city. Tallest towers, recognizable skyline silhouette, maximum vertical pressure for the entire panorama. Tile 5 defines peak contrast, warmth, and atmospheric glow.
 >
-> Output: 1024 × 1536, portrait orientation.
+> REQUIRED ELEMENTS (compose as one coherent core system):
+> - Recognizable skyline silhouette with the TALLEST towers reaching near the upper frame boundary.
+> - One PRIMARY vertical urban axis must visually dominate the composition. Any secondary diagonals/crossings must remain clearly subordinate and partially obscured.
+> - Major avenue or urban valley supporting the dominant axis; traffic reads as strong axial flow.
+> - Emphasis is achieved through scale + brightness + density, NOT by vertical recentering.
+>
+> FRAMING STABILITY AUTHORITY (Tile 5 is the ruler): establish the shared vanishing-height feel and vertical “pressure” for all tiles; maintain telephoto compression and disciplined sky budget. Do NOT vertically recenter to fit the sun or towers; cropping/clipping is preferred. If framing reads too open, add skyline mass, stacked midground slabs, or haze INSIDE the same framing—do NOT open more sky. Prevent push-in reads by avoiding a single near-field avenue/interchange filling the bottom; rely on midground layering.
+>
+> ENFORCEMENT (Tile 5 specific): Tile 5 must not read “lower” than Tiles 3 or 7. Correct by adding mass/density, not by opening sky. Reject any framing that widens FOV or reduces apparent tower height relative to Tiles 3 and 7.
+>
+> FORBIDDEN MOTIFS (must not appear):
+> - Industrial decay.
+> - Nature dominance / rural elements.
+> - Heavy industry.
