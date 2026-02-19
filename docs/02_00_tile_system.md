@@ -17,25 +17,46 @@ Horizontal mirroring may be used only for **temporary diagnostic composites**, a
 
 # Previews
 
-|1|2|3|4|5|6|7|8|9|
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|**primary**|tertiary|*secondary*|tertiary|***primary master***|tertiary|*secondary*|tertiary|**primary**|
-|![Tile 1 preview](../outputs/generated/007-43-tile1e.png)|![Tile 2 preview](../outputs/generated/004-05-tile2.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 4 preview](../outputs/generated/004-06-tile4.png)|![Tile 5 preview](../outputs/generated/007-36-tile5c.png)|![Tile 6 preview](../outputs/generated/004-07-tile6.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 8 preview](../outputs/generated/007-29-tile8c-new-prompt.png)|![Tile 9 preview](../outputs/generated/007-17-tile9b-new-prompt.png)|
-|007-43-tile1e.png|004-05-tile2.png|007-51-tile3c.png|004-06-tile4.png|007-12-tile5c-new-prompt.png|004-07-tile6.png|007-46-tile7b.png|007-29-tile8c-new-prompt.png|007-17-tile9b-new-prompt.png|
+## R1 Composition map sketch references
 
-_↳ All tiles. Note tertiary tiles are very outdated compared to primary and secondary tiles_
+|version|1|3|5|7|9|
+|---:|:---:|:---:|:---:|:---:|:---:|
+|1|![Tile 1 reference](../refs/R1/16-Tile-1-03.png)|![Tile 3 reference](../refs/R1/19-Tile-3-01.png)|![Tile 5 reference](../refs/R1/17-Tile-5-03.png)|![Tile 7 reference](../refs/R1/20-Tile-7-01.png)|![Tile 9 reference](../refs/R1/09-Tile-9-04.png)|
+||16-Tile-1-03.png|19-Tile-3-01.png|17-Tile-5-03.png|20-Tile-7-01.png|09-Tile-9-04.png|
+|2|![Tile 1 reference](../refs/R1/23-Tile-1-04.png)|![Tile 3 reference](../refs/R1/25-Tile-3-02.png)|![Tile 5 reference](../refs/R1/21-Tile-5-04.png)|![Tile 7 reference](../refs/R1/24-Tile-7-02.png)|![Tile 9 reference](../refs/R1/22-Tile-9-06.png)|
+||23-Tile-1-04.png|25-Tile-3-02.png|21-Tile-5-04.png|24-Tile-7-02.png|22-Tile-9-06.png|
+
+## Latest
+
+Aeon 007 of generated images. Current work-in-progress
 
 |1|3|5|7|9|
 |:---:|:---:|:---:|:---:|:---:|
 |**primary**|*secondary*|***primary master***|*secondary*|**primary**|
-|![Tile 1 preview](../outputs/generated/007-43-tile1e.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/007-36-tile5c.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/007-17-tile9b-new-prompt.png)|
-|007-43-tile1e.png|007-51-tile3c.png|007-36-tile5c.png|007-46-tile7b.png|007-17-tile9b-new-prompt.png|
+|![Tile 1 preview](../outputs/generated/007-43-tile1e.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/008-02-tile5-r1-02.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/007-17-tile9b-new-prompt.png)|
+|007-43-tile1e.png|007-51-tile3c.png|008-02-tile5-r1-02.png|007-46-tile7b.png|007-17-tile9b-new-prompt.png|
 
 _↳ Latest working tiles._
+
+## Tiling composition preview
+
+Just another preview, compiled in a singe image
 
 ![Tiling composition preview (6 tiles)](../outputs/generated/006-30-compiled.png)
 
 _↳ Tiling composition preview (6 tiles)_
+
+## All tiles preview
+
+Genreal progress: tiles of different aeons
+
+|1|2|3|4|5|6|7|8|9|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|**primary**|tertiary|*secondary*|tertiary|***primary master***|tertiary|*secondary*|tertiary|**primary**|
+|![Tile 1 preview](../outputs/generated/007-43-tile1e.png)|![Tile 2 preview](../outputs/generated/004-05-tile2.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 4 preview](../outputs/generated/004-06-tile4.png)|![Tile 5 preview](../outputs/generated/008-02-tile5-r1-02.png)|![Tile 6 preview](../outputs/generated/004-07-tile6.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 8 preview](../outputs/generated/007-29-tile8c-new-prompt.png)|![Tile 9 preview](../outputs/generated/007-17-tile9b-new-prompt.png)|
+|007-43-tile1e.png|004-05-tile2.png|007-51-tile3c.png|004-06-tile4.png|008-02-tile5-r1-02.png|004-07-tile6.png|007-46-tile7b.png|007-29-tile8c-new-prompt.png|007-17-tile9b-new-prompt.png|
+
+_↳ Note tertiary tiles are very outdated compared to primary and secondary tiles_
 
 ---
 

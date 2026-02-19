@@ -34,3 +34,63 @@
 > - Industrial decay.
 > - Nature dominance / rural elements.
 > - Heavy industry.
+
+# Experimental prompt
+
+With layout sketch R1 tile 5 #02
+
+> Tile 5 of a 9-tile stitched megacity panorama, portrait 9:16, ultra-detailed photorealism. Use the Tile-5 R1 v2 sketch as the primary composition reference: preserve sky budget, skyline envelope, horizon placement, edge-safe zones, and the centerline-avoid band.
+> 
+> Camera / rig (do not change): elevated oblique rooftop/aerial viewpoint (not top-down), rectilinear, telephoto-compressed perspective, stable horizon, same skyline scale and angle as the successful Tile 5 test.
+> 
+> Composition: maze lattice without “arterial hero”
+> 
+> The circulation reads as a distributed maze lattice, not freeway-led poster art.
+> 
+> No single dominant highway ribbon and no single dominant junction (no clean Y/X).
+> 
+> Roads + rail are interwoven with buildings, frequently occluded by blocks so no corridor stays visible as one continuous ribbon for long.
+> 
+> Prefer urban block texture (dense streets, intersections, service alleys) with intermittent elevated segments (short viaduct pieces, overpasses), not giant smooth ramps dominating the scene.
+> 
+> Centerline-avoid: the strongest leading line must not sit on the center; anything near center is broken/offset/hidden.
+> 
+> Add “element diversity” (make it feel alive + layered)
+> 
+> Ensure many distinct midground features are visible at once (distributed, not focal):
+> 
+> Rail layer: at least one visible rail corridor (surface or trench) + at least one elevated metro/tram segment; rails should braid through the fabric, not run cleanly edge-to-edge.
+> 
+> Station presence: one embedded station/stop (canopy, platforms, ventilation structures) integrated into blocks, not a landmark.
+> 
+> Plazas/pocket spaces: 1–2 small plazas/courtyards/terraces, tree clusters, tiny parks, rooftop gardens.
+> 
+> Street-level texture: mixed-use ground floors with awnings, loading bays, small storefront rhythms; no readable text/logos.
+> 
+> Infrastructure detail: ventilation stacks, utility bridges, pedestrian overpasses, service stair towers, rooftop mechanicals, water tanks, antennas; cranes far distance ok.
+> 
+> Traffic variety: not just highway streams—include smaller street traffic patterns and occasional bus lanes or tram right-of-way hints.
+> 
+> Architecture diversity (force it, avoid repetition)
+> 
+> Show at least four architectural families simultaneously, well mixed:
+> 
+> modern glass/steel towers (varied crowns/setbacks),
+> 
+> dense mid-rise residential with balconies,
+> 
+> brutalist/infrastructure volumes (concrete slabs, service structures),
+> 
+> older brick/stone commercial blocks (subtle art-deco / neo-gothic hints).
+> Avoid repetition: vary rooflines and facade rhythms; no single tallest spire / no iconic silhouette.
+> 
+> Stitch discipline
+> 
+> Left/right edges stay stitchable: no big clipped towers, no huge bridge/highway spans cut by edges. Major corridors fade/fragment/occlude before seam zones.
+> 
+> Lighting / color
+> 
+> Golden hour feel, no visible sun disk, crisp and realistic colors, neutral whites preserved, restrained saturation. No neon, no billboards, no heavy amber wash, minimal haze (only far distance falloff).
+> 
+> NEGATIVE / AVOID
+> sun disk • iconic skyline landmarks • one giant freeway interchange dominating frame • single centered corridor • clean uninterrupted highway ribbon • perfect symmetry • edge-to-edge bridge span • edge-clipped megastructure • neon/billboards • heavy orange grade • HDR bloom • fisheye • readable text/logos.

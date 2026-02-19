@@ -200,11 +200,227 @@ Downstream variants:
 
 - TODO: Add the magic trick, stating that a chat gets wasted after too many iteractions; after a prompt lock try in a new chat.
 - Generate NanoBanana specs and prompts?
-- Run a general rview: long time that is not done.
 
 ---
 
 ### Current directions:
+
+Conversation about the multi-pass references (sketches and images:
+
+---
+---
+---
+
+The draft sketches you posted are a *very* good idea — they’re basically a “composition control layer” that keeps Tile 5 from snapping back into postcard symmetry while still letting the generator invent details.
+
+What you’re doing is separating **global invariants** (camera, horizon, skyline envelope, seam safety) from **local intent** (Tile 5 circulation logic + density), and that’s exactly how you get repeatable panorama behavior.
+
+## 1) What “dominant” should mean (so rule (d) is enforceable)
+
+If we want (d) to be something a generator reliably “gets,” “dominant” can be defined as the **single most salient leading structure** by a mix of:
+
+1. **Continuity / length**: longest uninterrupted linear feature (street canyon, rail viaduct, river, bridge) running through the image.
+2. **Contrast**: strongest light–dark edge or luminance contrast line (headlights ribbon, bright pavement strip, specular rail line).
+3. **Convergence power**: the line that most strongly defines the vanishing-point pull (the “I can’t not look there” perspective corridor).
+4. **Uniqueness**: if it’s the only line with that behavior, it becomes dominant even if it’s not the brightest.
+
+So (d) becomes:
+
+> **No single continuous high-contrast corridor may occupy the central 10% of the frame (x ≈ 45–55%) for more than ~25–30% of the image height.**
+> The center must be “busy texture,” not a privileged flow spine.
+
+This is better than “no line at x=50%” because it’s robust to small drift and it discourages the generator from creating a centered “super ribbon” even if it’s slightly off-center.
+
+### How to express (d) in your sketch language
+
+In your Tile template (second image), you can literally draw a **vertical “centerline avoid band”** (like you did) and annotate it as:
+
+* “no longest corridor here”
+* “no brightest traffic ribbon here”
+* “no uninterrupted rail/road canyon here”
+
+That matches how models interpret line-art control.
+
+## 2) Your layered reference idea is solid — here’s the clean way to structure it
+
+Think in **roles**, not “more references.” Each reference should have exactly one job.
+
+### Reference stack (recommended)
+
+**R0 — Panorama master layout (global)**
+
+* Like your wide sketch: tile divisions, skyline envelope, horizon, diagonal read, haze/color gradient direction, seam-safe zones.
+* Purpose: keeps the whole project physically coherent.
+
+**R1 — Tile 5 composition map (local)**
+
+* The portrait template with sky budget + skyline envelope + edge-safe + centerline-avoid.
+* Add the *Tile 5-specific* circulation logic:
+
+  * draw **multiple geometric braided corridors** (several avenues + rail lines)
+  * ensure they form the **V read**
+  * add **cross-cuts / overpasses**
+  * ensure major corridors **fade/fragment before seam zones**
+* Purpose: prevents “centered hero avenue” and enforces your maze/V intent.
+
+**R2 — Tile 5 architectural palette board (style, not layout)**
+
+* 4–9 small crops/photos showing the *canonical diversity* you want (glass towers + midrise residential + brutalist slabs + older art-deco/neo-gothic blocks), plus realistic material color.
+* Purpose: pushes *non-iconic diversity* without dictating geometry.
+
+**R3 — Tertiary motif (bridge / station canopy / rail viaduct)**
+
+* One image max, used as a “detail suggestion,” not a composition anchor.
+* Purpose: ensures the generator includes the *kind* of infrastructure you want, but doesn’t build the whole scene around it.
+
+That’s it. Four layers is already plenty.
+
+## 3) How to actually “compose” multiple references without them fighting
+
+This depends on your toolchain, but the principle is universal:
+
+### Keep geometry refs “clean” and style refs “messy”
+
+* **R0/R1** should be simple line art / grayscale, high signal, low ambiguity.
+* **R2/R3** can be photographic, but should be treated as *soft influence*.
+
+### Prevent the tertiary bridge from becoming a hero
+
+* Don’t place it centrally in any ref.
+* If you’re using any system with weights: **low weight** for R3.
+* In the Tile 5 sketch (R1), represent bridges as **short segments** crossing corridors, not one huge span.
+
+### One reference = one constraint
+
+If a reference contains *both* layout *and* style, models often overfit and you get “poster composition.” Your drafts are good because they’re almost purely layout rules.
+
+## 4) How I’d evolve your Tile 5 sketch (without prompting yet)
+
+Based on your agreement + desire for crisp:
+
+* Keep **centerline avoid band** as-is.
+* Draw the “V” using **two offset corridor bundles**, but build each bundle from **several parallel/adjacent lines** so it’s not “two hero avenues.”
+* Add **perpendicular cross-cuts** every few “blocks” so nothing becomes a clean uninterrupted ribbon.
+* In the left/right edge-safe zones, deliberately draw **texture-only** (short street fragments, rooftops, small alleys) and label:
+
+  * “no uninterrupted major corridor exits here”
+  * “no landmark tower clipped here”
+
+## 5) Quick sanity test for “dominance” (later, when we generate)
+
+When you squint at a result:
+
+* If your eye locks onto **one bright continuous vertical ribbon** → fail (it’s dominant).
+* If you see **multiple competing paths** and the center feels “busy but not directional” → pass.
+* If the skyline has **one obvious tallest spire** → fail (hero).
+* If there are **3–6 comparable peaks** → pass (distributed hierarchy).
+
+---
+
+If you want the next step *before* writing prompts, we can turn your Tile 5 sketch into a more explicit “control map” by adding only three extra annotations: **(1) V corridor bundles, (2) seam fade zones, (3) center dominance ban** — still minimalist, but unambiguous.
+
+
+Sanity check: you’ve got the **right overall structure**, but I’d tweak one piece so Tile 5 doesn’t “infect” the others with the very thing we’re trying to remove (centered hero/axis).
+
+## 1) Your stack, validated (with one recommended adjustment)
+
+### ✅ R1 (per-tile sketch drafts)
+
+* **Tile 5**: used to be “freehand”; now it gets an **R1 composition sketch** (centerline-avoid band, V circulation, seam-safe edges, skyline envelope, etc.).
+* **All tiles 1–9**: each gets its own **R1**.
+  This is the big win: geometry intent is explicit per tile.
+
+### ⚠️ R2 (Tile 5 as reference for all other tiles)
+
+Your idea is coherent in spirit (shared “anchor”), but using **the full Tile 5 image** as R2 for every other tile is risky because it can accidentally transfer:
+
+* the “poster energy” (even after we fix it),
+* a specific skyline rhythm,
+* any residual central corridor bias,
+* lighting/exposure quirks that don’t belong everywhere.
+
+**Recommended adjustment:** instead of “Tile 5 image = R2”, make **R2 = a style/palette anchor derived from Tile 5**, e.g.:
+
+* a **mosaic/board** of 6–12 crops from Tile 5 (materials, windows, rooftops, street texture, sky tone), **excluding** the main corridor region and excluding any hero silhouettes; or
+* a small **color/material palette board** + 1–2 neutral city texture refs.
+
+That keeps coherence (color + material realism + micro-detail) without importing Tile 5’s layout.
+
+If you still want “Tile 5 as R2,” do it **low-weight** and ideally as **cropped** references (rooftops/facades), not the full frame.
+
+### ✅ R3 (bridges for tertiary tiles 2/4/6/8)
+
+Yes — that’s a clean way to sprinkle recurring motifs without turning bridges into a pan-wide theme.
+Rule of thumb: R3 should be **detail-only**, not a composition anchor.
+
+---
+
+## 2) “How is that going to work?” Two viable workflows
+
+This depends on whether your generator supports **multiple references with weights** (and how controllable it is). Conceptually you have two options:
+
+### Option A — Feed them all at once (single prompt + multi-ref)
+
+Best when you can control weights.
+
+**Per tile input stack (recommended weighting order):**
+
+1. **R1 sketch (strongest)** = composition + seam logic + centerline avoid
+2. *(Optional but powerful)* **Adjacent-tile edge crops** (medium) = seam continuity
+3. **R2 style/palette** (low–medium) = materials + color realism + micro-detail
+4. **R3 bridge** (low) = “include a bridge-like element,” not “build around bridge”
+
+Why this works: it mirrors the constraint hierarchy we care about:
+**geometry > seam safety > style > motifs.**
+
+Risk: too many refs can “fight.” The fix is weighting + keeping R2/R3 non-compositional.
+
+### Option B — Staged / iterative (2–3 generations)
+
+Best when your tool can’t reliably juggle multiple refs, or when it keeps snapping back to hero compositions.
+
+A good staged approach for your case:
+
+**Stage 1 (layout lock):**
+
+* Use **R1 only** (and optionally adjacent edge crops).
+  Goal: nail V-circulation, centerline-avoid, seam quietness, skyline envelope.
+
+**Stage 2 (style lock):**
+
+* Take Stage-1 result as base (img2img / refine) and add **R2 style/palette**.
+  Goal: unify color/material realism across tiles without changing geometry.
+
+**Stage 3 (tertiary motif, only if needed):**
+
+* Add **R3 bridge** with very low influence so it appears as a minor element.
+
+Why I like this: it prevents style references from re-writing your composition.
+
+Downside: each extra stage can introduce drift/artifacts if “denoise” (or equivalent) is too high. So if you stage, keep it **2 stages by default**, use Stage 3 only when the motif refuses to appear.
+
+---
+
+## 3) What I’d recommend for *your* plan (given Tile 5 is being de-iconified)
+
+* **Generate Tile 5 first** with **R1 strongest**, no sun disk, V-braided corridors, crisp realism, seam-safe edges.
+* From the successful Tile 5, build **R2 as a “style/palette board”** (crops/mosaic).
+* Then for Tiles 1–9:
+
+  * Always use **their own R1** (strong)
+  * Use **R2 palette** (low–medium)
+  * For tiles 2/4/6/8 add **R3 bridge** (low)
+  * If you can: add **adjacent-tile edge strips** (medium) for seam continuity (this is the missing piece that usually makes stitching “click”).
+
+---
+
+If you tell me what generator/workflow you’re using (MJ, SDXL+ControlNet, DALL·E editing, etc.), I can translate this into a concrete “inputs + weights + stages” recipe — but conceptually, yes: your layered reference approach is sound, and the main refinement is to make **R2 a style board derived from Tile 5** rather than the whole Tile 5 frame.
+
+---
+---
+---
+
+### Past ideas (1):
 
 After activity 1 (done) on next section were done, the new generate preview gave some new directions:
 
@@ -216,7 +432,7 @@ After activity 1 (done) on next section were done, the new generate preview gave
 
 ---
 
-### Past ideas:
+### Past ideas (2):
 
 Summary of recommendedations:
 
