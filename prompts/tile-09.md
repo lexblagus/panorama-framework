@@ -42,3 +42,70 @@
 > FRAMING STABILITY (Tile 5 as ruler): treat vertical drift as camera pitch drift; do not vertically recenter to fit smokestacks/smoke. If the true horizon is erased by smog, use rail/road/roof-field vanishing height as the shared horizon proxy; keep pitch consistent with Tile 5. Crop/clip when elements pressure the top. If sky feels too open, add industrial mass, stacked midground infrastructure, or haze inside the distance volume—do NOT open more sky. Prevent push-in reads by avoiding a single foreground yard/track fan; reduce near-field dominance and emphasize layered repetition into depth.
 >
 > FORBIDDEN MOTIFS (must not appear): nature; landmark buildings; residential streets; visible sun/solar source; crisp skyline edges; nightlife sparkle.
+
+
+# Experimental prompt
+
+> Generate: photorealistic aerial panorama tile (Tile 9 of 9), portrait 1024×1536, ultra-detailed realism.
+> NON-MIRRORED OUTPUT: do NOT horizontally flip/mirror the image.
+> 
+> REFERENCE / LAYOUT (STRICT):
+> Use the provided “R1 — Tile 9 composition map” sketch as the PRIMARY layout authority.
+> Match its: sky budget line, skyline envelope slope, horizon line height, reading orientation arrow (bottom-left → top-right), edge-safe zones, seam blending zones, and primary anchor zone placement.
+> 
+> REFERENCE CONDITIONING (RULER POLICY):
+> - Reference A (Ruler): Tile 5 ruler image — use ONLY for camera/framing physics + scale feel:
+>   telephoto-like compression, rectilinear perspective, horizon/vanishing-height read, vertical “pressure”, sky-budget discipline, midground scale.
+> - Forbidden transfer from Reference A: any Tile 5 identity (no iconic core, no hero skyline motifs, no central-axis logic, no sun disk).
+> - Optional seam anchor: Tile 8 RIGHT EDGE crop — use ONLY for right-edge seam continuity language (silhouette height profile + haze rolloff + texture density), not full composition.
+> - Optional mood board: Tile 9 mood — use ONLY for palette/atmosphere “industrial feel”, not geometry/camera.
+> 
+> CAMERA LOCK (do not drift):
+> Fixed elevated diagonal-oblique aerial view; rectilinear optics; strong telephoto-like depth compression;
+> unified camera system consistent across all tiles. No wide-angle distortion, no fisheye/barrel, no tilt-shift.
+> 
+> LIGHTING / ATMOSPHERE (ENDPOINT — maximum haze):
+> SUN IS PROHIBITED (no visible sun disk, no solar source).
+> Key light originates from the LEFT (off-frame). Primary cast shadows fall to the RIGHT (slightly down-right on ground plane).
+> Wind pushes chimney smoke to the RIGHT.
+> This tile must be the strongest atmospheric density in the panorama:
+> - Far background collapses into milky smog (ghost silhouettes only; no crisp skyline edges).
+> - Avoid full whiteout: keep the midground faintly readable with soft edges.
+> - If sky feels too open, add haze volume + industrial mass; do NOT open more sky.
+> 
+> COLOR / GRADE (anti-drift):
+> After Tile 5, warmth must not “return” globally. Also avoid cyan/blue cast drift.
+> Target palette: desaturated polluted steel + dirty beige / soot-gray particulate (cool-neutral overall, NOT blue-hour).
+> Warmth allowed only as tiny utilitarian sodium/work-light blooms under haze (sparse dock/work lights), never a global regrade.
+> No nightlife sparkle.
+> 
+> COMPOSITION LOCK (match the sketch exactly):
+> - Dominant read is a strong diagonal running bottom-left → top-right (follow the sketch’s reading orientation).
+> - SKY BUDGET: keep the sky band constrained to the sketch’s line; do not increase sky.
+> - SKYLINE ENVELOPE: a sloped envelope that is higher on the LEFT and gradually descends toward the RIGHT (per sketch), dissolving into haze (no crisp silhouette band).
+> - HORIZON LINE: fixed at the sketch height; do not raise/lower or recenter to fit smokestacks/smoke—prefer cropping/occlusion.
+> - SEAM BLENDING STRIPS (left & right): low-uniqueness, repeatable texture only (haze, rooffields, industrial repetition). No hero objects touching seams.
+> 
+> ENGINEERED SHORELINE + WATER BODY (required, stitch-friendly):
+> Primary water body is a navigable industrial river/channel occupying the bottom-right quadrant,
+> hugging the RIGHT edge, and receding into the horizon (distance collapses into haze).
+> Land–water boundary must read as engineered/industrial: straight seawalls, quays, containment edges, docks/harbors.
+> Organic/natural coastline is forbidden. Avoid a hard “L” turn that re-orients the scene.
+> 
+> HEAVY INDUSTRIAL MASS (ultra-dense, layered; no residential):
+> Continuous industrial frontage dominates the LEFT bank and midground:
+> refineries/petrochemical plants, smokestacks, pipe forests, conveyors, warehouses, power/utility infrastructure,
+> cranes, piers, container stacks, service roads, cargo trucks, ECH handlers, railyards/track fans (but not one giant foreground fan).
+> 
+> PORT + SHIPPING (scale anchors):
+> Include at least ONE utilitarian cargo ship/tanker at correct scale, preferably near lower-right,
+> but do not make it a hero centerpiece.
+> 
+> FRAMING STABILITY / ANTI “PUSH-IN”:
+> Treat vertical drift as camera pitch drift; keep the shared horizon physics consistent with the ruler.
+> If the true horizon is erased by smog, use rail/road/roof-field vanishing height as the horizon proxy.
+> Prevent push-in reads: avoid a single dominant near-foreground yard; emphasize layered repetition and occlusion into depth.
+> 
+> FORBIDDEN MOTIFS (must not appear):
+> Nature/green parks • residential streets • landmark buildings • crisp skyline edges • visible sun/solar source • nightlife sparkle • neon billboards
+> • wide-angle/fisheye • tilt-shift • painterly/illustration • readable text/logos.

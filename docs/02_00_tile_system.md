@@ -17,19 +17,15 @@ Horizontal mirroring may be used only for **temporary diagnostic composites**, a
 
 # Previews
 
-## R1 Dummies
+## R1 Composition map references
 
-|1|2-4|5|6-8|9|
-|:---:|:---:|:---:|:---:|:---:|
-|![Tile 1 dummy](../refs/R1/107-tile1-02.png)|![Tiles 2-4 dummy](../refs/R1/108-tiles2to4-02.png)|![Tile 5 dummy](../refs/R1/109-tile5-02.png)|![Tiles 6-8 dummy](../refs/R1/110-tiles6to8-02.png)|![Tile 9 dummy](../refs/R1/111-tile9-02.png)|
-|107-tile1-02.png|108-tiles2to4-02.png|109-tile5-02.png|110-tiles6to8-02.png|111-tile9-02.png|
-
-## R1 Composition map sketch references
-
-|1|3|5|7|9|
+|Tile 1|Tile 3|Tile 5|Tile 7|Tile 9|
 |:---:|:---:|:---:|:---:|:---:|
 |![Tile 1 reference](../refs/R1/029-Tile-1-08.png)|![Tile 3 reference](../refs/R1/042-Tile-3-15.png)|![Tile 5 reference](../refs/R1/021-Tile-5-04.png)|![Tile 7 reference](../refs/R1/024-Tile-7-02.png)|![Tile 9 reference](../refs/R1/022-Tile-9-06.png)|
 |029-Tile-1-08.png|042-Tile-3-15.png|021-Tile-5-04.png|024-Tile-7-02.png|022-Tile-9-06.png|
+|Tile 1|Tiles 2-4|Tile 5|Tiles 6-8|Tile 9|
+|![Tile 1 dummy](../refs/R1/107-tile1-02.png)|![Tiles 2-4 dummy](../refs/R1/108-tiles2to4-02.png)|![Tile 5 dummy](../refs/R1/109-tile5-02.png)|![Tiles 6-8 dummy](../refs/R1/110-tiles6to8-02.png)|![Tile 9 dummy](../refs/R1/111-tile9-02.png)|
+|107-tile1-02.png|108-tiles2to4-02.png|109-tile5-02.png|110-tiles6to8-02.png|111-tile9-02.png|
 
 ## Latest
 
@@ -38,8 +34,10 @@ Aeon 007 of generated images. Current work-in-progress
 |1|3|5|7|9|
 |:---:|:---:|:---:|:---:|:---:|
 |**primary**|*secondary*|***primary master***|*secondary*|**primary**|
-|![Tile 1 preview](../outputs/generated/007-43-tile1e.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/008-02-tile5-r1-02.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/007-17-tile9b-new-prompt.png)|
-|007-43-tile1e.png|007-51-tile3c.png|008-02-tile5-r1-02.png|007-46-tile7b.png|007-17-tile9b-new-prompt.png|
+|![Tile 1 preview](../outputs/generated/008-17-tile1-R1.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/008-11-tile5-R1.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/008-13-tile9-R1.png)|
+|008-17-tile1-R1.png|007-51-tile3c.png|008-11-tile5-R1.png|007-46-tile7b.png|008-13-tile9-R1.png|
+|![Tile 1 preview](../outputs/generated/008-18-tile1-R1.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/008-12-tile5-R1.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/008-14-tile9-R1.png)|
+|008-18-tile1-R1.png|007-51-tile3c.png|008-12-tile5-R1.png|007-46-tile7b.png|008-14-tile9-R1.png|
 
 _↳ Latest working tiles._
 

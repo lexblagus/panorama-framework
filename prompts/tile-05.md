@@ -37,60 +37,72 @@
 
 # Experimental prompt
 
-With layout sketch R1 tile 5 #02
+With composition map reference R1 (`../refs/R1/109-tile5-02.png`)
 
-> Tile 5 of a 9-tile stitched megacity panorama, portrait 9:16, ultra-detailed photorealism. Use the Tile-5 R1 v2 sketch as the primary composition reference: preserve sky budget, skyline envelope, horizon placement, edge-safe zones, and the centerline-avoid band.
+> Generate: photorealistic aerial panorama tile (Tile 5 of 9), portrait 1024×1536, ultra-detailed realism.
+> NON-MIRRORED OUTPUT: do NOT flip horizontally.
 > 
-> Camera / rig (do not change): elevated oblique rooftop/aerial viewpoint (not top-down), rectilinear, telephoto-compressed perspective, stable horizon, same skyline scale and angle as the successful Tile 5 test.
+> REFERENCE / LAYOUT (STRICT):
+> Use the provided “R1 — Tile 5 composition map” sketch as the PRIMARY layout authority.
+> Match its: sky budget line, skyline envelope hump, horizon line height, reading orientation (centered vertical up), edge-safe zones, seam blending zones, and primary anchor zone placement.
 > 
-> Composition: maze lattice without “arterial hero”
+> CAMERA + FOV CLAMP (do not drift):
+> Fixed elevated oblique rooftop/drone viewpoint (not top-down), rectilinear optics, strong telephoto-like depth compression, NARROW field of view.
+> No wide-angle distortion, no barrel/fisheye, no tilt-shift, no “miniature” look.
+> Stable horizon / pitch / vertical framing.
 > 
-> The circulation reads as a distributed maze lattice, not freeway-led poster art.
+> PERSPECTIVE SETUP (coherent rig):
+> Two-point perspective with VP1 (left) and VP2 (right) implied along the horizon; keep vanishing behavior consistent.
+> Verticals remain straight (no keystone exaggeration).
 > 
-> No single dominant highway ribbon and no single dominant junction (no clean Y/X).
+> COMPOSITION (must match the sketch):
+> - SKY BUDGET: keep “pure sky” as a disciplined top band (≈ the sketch; ~20% feel). Do NOT open extra sky.
+> - SKYLINE ENVELOPE: a centered hump/crest of the skyline that peaks near the middle and gently falls toward both sides (per the sketch).
+> - HORIZON LINE: fixed at the sketch height; do not raise/lower it.
+> - READING ORIENTATION: dominant visual read is bottom → top (centered vertical). The main “pull” goes toward the skyline crest.
 > 
-> Roads + rail are interwoven with buildings, frequently occluded by blocks so no corridor stays visible as one continuous ribbon for long.
+> PRIMARY ANCHOR ZONE (use the sketch box):
+> Place the highest-density “core” features inside the primary anchor zone:
+> - tallest tower cluster and densest vertical mass live here
+> - avoid placing unique hero shapes inside seam blending strips
+> - do not clip major towers at left/right edges
 > 
-> Prefer urban block texture (dense streets, intersections, service alleys) with intermittent elevated segments (short viaduct pieces, overpasses), not giant smooth ramps dominating the scene.
+> CIRCULATION (maze-lattice, but aligned to the vertical read):
+> The city circulation reads as a distributed maze lattice (dense streets, intersections, service alleys) with intermittent elevated segments.
+> NO single giant freeway ribbon and NO single dominant interchange.
+> However, align the overall fabric so it supports the centered vertical reading:
+> - an implied axial “urban valley” / stacked street canyons / layered corridors can guide the eye upward
+> - avoid one clean uninterrupted highway running straight up the center; keep corridors frequently occluded/broken by blocks
 > 
-> Centerline-avoid: the strongest leading line must not sit on the center; anything near center is broken/offset/hidden.
+> DEPTH / LAYERING (keep push-in out):
+> Foreground: textured rooftops, street hints, small vehicles (no huge near-field roadway filling the bottom).
+> Midground: dense stacked blocks, mixed corridors, partial viaduct pieces, bridges, overpasses (short segments, not poster-ramps).
+> Background: compressed skyline mass dissolving slightly with distance (light haze only in far distance).
 > 
-> Add “element diversity” (make it feel alive + layered)
+> ELEMENT DIVERSITY (distributed, not focal):
+> Include many midground features at once (spread out):
+> - at least one rail element (surface/trench) AND one short elevated metro/tram segment (not edge-to-edge clean)
+> - one embedded station/stop presence (platform canopies / vents / stair cores), integrated into blocks, not a landmark
+> - infrastructure texture: rooftop mechanicals, antennas, water tanks, vents, pedestrian overpasses, utility bridges
+> - small pocket plazas/terraces/roof gardens are allowed (subtle, not nature-dominant)
 > 
-> Ensure many distinct midground features are visible at once (distributed, not focal):
+> ARCHITECTURE DIVERSITY (force variety, avoid repetition):
+> Show at least four mixed families simultaneously:
+> 1) modern glass/steel towers with varied crowns/setbacks
+> 2) dense mid-rise residential with balconies
+> 3) brutalist/infrastructure volumes (concrete slabs/service structures)
+> 4) older brick/stone commercial blocks (subtle art-deco / neo-gothic hints)
+> Avoid a single iconic spire or landmark silhouette; vary rooflines/facade rhythms.
 > 
-> Rail layer: at least one visible rail corridor (surface or trench) + at least one elevated metro/tram segment; rails should braid through the fabric, not run cleanly edge-to-edge.
+> STITCH DISCIPLINE (hard rule):
+> - Left/right seam blending strips: keep low-uniqueness, repeatable texture only (haze, rooffields, mid-rise repetition).
+> - No big clipped towers, no edge-cut megastructures, no edge-to-edge bridge/highway spans.
+> - Any major corridor must fade/fragment/occlude before reaching seam zones.
 > 
-> Station presence: one embedded station/stop (canopy, platforms, ventilation structures) integrated into blocks, not a landmark.
+> LIGHTING / COLOR (centered like the sketch’s light source):
+> Centered / frontal warm golden-hour illumination (no strong left/right key).
+> No visible hard-edged sun disk (light source can be implied above frame).
+> Natural photographic contrast; restrained saturation; preserve neutral whites; no heavy orange grade; no HDR bloom.
 > 
-> Plazas/pocket spaces: 1–2 small plazas/courtyards/terraces, tree clusters, tiny parks, rooftop gardens.
-> 
-> Street-level texture: mixed-use ground floors with awnings, loading bays, small storefront rhythms; no readable text/logos.
-> 
-> Infrastructure detail: ventilation stacks, utility bridges, pedestrian overpasses, service stair towers, rooftop mechanicals, water tanks, antennas; cranes far distance ok.
-> 
-> Traffic variety: not just highway streams—include smaller street traffic patterns and occasional bus lanes or tram right-of-way hints.
-> 
-> Architecture diversity (force it, avoid repetition)
-> 
-> Show at least four architectural families simultaneously, well mixed:
-> 
-> modern glass/steel towers (varied crowns/setbacks),
-> 
-> dense mid-rise residential with balconies,
-> 
-> brutalist/infrastructure volumes (concrete slabs, service structures),
-> 
-> older brick/stone commercial blocks (subtle art-deco / neo-gothic hints).
-> Avoid repetition: vary rooflines and facade rhythms; no single tallest spire / no iconic silhouette.
-> 
-> Stitch discipline
-> 
-> Left/right edges stay stitchable: no big clipped towers, no huge bridge/highway spans cut by edges. Major corridors fade/fragment/occlude before seam zones.
-> 
-> Lighting / color
-> 
-> Golden hour feel, no visible sun disk, crisp and realistic colors, neutral whites preserved, restrained saturation. No neon, no billboards, no heavy amber wash, minimal haze (only far distance falloff).
-> 
-> NEGATIVE / AVOID
-> sun disk • iconic skyline landmarks • one giant freeway interchange dominating frame • single centered corridor • clean uninterrupted highway ribbon • perfect symmetry • edge-to-edge bridge span • edge-clipped megastructure • neon/billboards • heavy orange grade • HDR bloom • fisheye • readable text/logos.
+> NEGATIVE / AVOID:
+> sun disk with hard edge • iconic landmark skyline • one giant freeway interchange • clean uninterrupted highway ribbon • perfect symmetry • edge-to-edge bridge span • edge-clipped megastructure • heavy industry • industrial decay • rural/nature dominance • neon/billboards • fisheye/wide-angle • tilt-shift • painterly/illustration look • readable text/logos
