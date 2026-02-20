@@ -17,14 +17,19 @@ Horizontal mirroring may be used only for **temporary diagnostic composites**, a
 
 # Previews
 
+## R1 Dummies
+
+|1|2-4|5|6-8|9|
+|:---:|:---:|:---:|:---:|:---:|
+|![Tile 1 dummy](../refs/R1/107-tile1-02.png)|![Tiles 2-4 dummy](../refs/R1/108-tiles2to4-02.png)|![Tile 5 dummy](../refs/R1/109-tile5-02.png)|![Tiles 6-8 dummy](../refs/R1/110-tiles6to8-02.png)|![Tile 9 dummy](../refs/R1/111-tile9-02.png)|
+|107-tile1-02.png|108-tiles2to4-02.png|109-tile5-02.png|110-tiles6to8-02.png|111-tile9-02.png|
+
 ## R1 Composition map sketch references
 
-|version|1|3|5|7|9|
-|---:|:---:|:---:|:---:|:---:|:---:|
-|1|![Tile 1 reference](../refs/R1/16-Tile-1-03.png)|![Tile 3 reference](../refs/R1/19-Tile-3-01.png)|![Tile 5 reference](../refs/R1/17-Tile-5-03.png)|![Tile 7 reference](../refs/R1/20-Tile-7-01.png)|![Tile 9 reference](../refs/R1/09-Tile-9-04.png)|
-||16-Tile-1-03.png|19-Tile-3-01.png|17-Tile-5-03.png|20-Tile-7-01.png|09-Tile-9-04.png|
-|2|![Tile 1 reference](../refs/R1/23-Tile-1-04.png)|![Tile 3 reference](../refs/R1/25-Tile-3-02.png)|![Tile 5 reference](../refs/R1/21-Tile-5-04.png)|![Tile 7 reference](../refs/R1/24-Tile-7-02.png)|![Tile 9 reference](../refs/R1/22-Tile-9-06.png)|
-||23-Tile-1-04.png|25-Tile-3-02.png|21-Tile-5-04.png|24-Tile-7-02.png|22-Tile-9-06.png|
+|1|3|5|7|9|
+|:---:|:---:|:---:|:---:|:---:|
+|![Tile 1 reference](../refs/R1/029-Tile-1-08.png)|![Tile 3 reference](../refs/R1/042-Tile-3-15.png)|![Tile 5 reference](../refs/R1/021-Tile-5-04.png)|![Tile 7 reference](../refs/R1/024-Tile-7-02.png)|![Tile 9 reference](../refs/R1/022-Tile-9-06.png)|
+|029-Tile-1-08.png|042-Tile-3-15.png|021-Tile-5-04.png|024-Tile-7-02.png|022-Tile-9-06.png|
 
 ## Latest
 
