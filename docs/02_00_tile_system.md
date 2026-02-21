@@ -19,12 +19,10 @@ Horizontal mirroring may be used only for **temporary diagnostic composites**, a
 
 ## R1 Composition map references
 
-### Dummy maps
-
 |Tile 1|Tiles 2-4|Tile 5|Tiles 6-8|Tile 9|
 |:---:|:---:|:---:|:---:|:---:|
-|![Tile 1 dummy](../refs/R1/122-tile1.png)|![Tiles 2-4 dummy](../refs/R1/123-tiles2to4.png)|![Tile 5 dummy](../refs/R1/124-tile5.png)|![Tiles 6-8 dummy](../refs/R1/125-tiles6to8.png)|![Tile 9 dummy](../refs/R1/126-tile9.png)|
-|122-tile1.png|123-tiles2to4.png|124-tile5.png|125-tiles6to8.png|126-tile9.png|
+|![Tile 1 dummy](../refs/R1/128-tile1.png)|![Tiles 2-4 dummy](../refs/R1/129-tiles2to4.png)|![Tile 5 dummy](../refs/R1/130-tile5.png)|![Tiles 6-8 dummy](../refs/R1/131-tiles6to8.png)|![Tile 9 dummy](../refs/R1/132-tile9.png)|
+|128-tile1.png|129-tiles2to4.png|130-tile5.png|131-tiles6to8.png|132-tile9.png|
 
 ## Latest
 
@@ -33,8 +31,8 @@ Aeon 007 of generated images. Current work-in-progress
 |1|3|5|7|9|
 |:---:|:---:|:---:|:---:|:---:|
 |**primary**|*secondary*|***primary master***|*secondary*|**primary**|
-|![Tile 1 preview](../outputs/generated/008-17-tile1-R1.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/008-19-tile5-R1.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/008-13-tile9-R1.png)|
-|008-17-tile1-R1.png|007-51-tile3c.png|008-19-tile5-R1.png|007-46-tile7b.png|008-13-tile9-R1.png|
+|![Tile 1 preview](../outputs/generated/008-17-tile1-R1.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/008-19-tile5-R1.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/008-31-tile9-R1.png)|
+|008-17-tile1-R1.png|007-51-tile3c.png|008-19-tile5-R1.png|007-46-tile7b.png|008-31-tile9-R1.png|
 
 _↳ Latest working tiles._
 
