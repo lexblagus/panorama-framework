@@ -136,6 +136,7 @@ These apply to every image generated.
 - **Tiles 3–4:** Gradual warm-up toward amber tones, early haze appears.
 - **Tile 5:** Peak amber saturation, maximum atmospheric diffusion.
   The solar disk may appear **only here** (and in the Central Master Reference Image), partially visible and fully diffused through haze, with no hard edge. The solar disk may appear unnaturally large relative to real-world scale, reading as an atmospheric phenomenon rather than a literal sun. Its edge must remain fully diffused, dissolved into haze, with no hard boundary.
+  **Default production behavior:** do **not** show a visible sun disk. Treat the disk as a **controlled variant** that must be explicitly enabled for Tile 5 / Central Master only.
 - **Tiles 6–7:** Warmth decreases progressively, haze thickens, contrast softens.
 - **Tiles 8–9:** Cool-biased, bluish-gray light filtered through heavy fog and smog.
 
@@ -221,6 +222,8 @@ Along the lateral axis (Tile 1 → Tile 9), atmospheric density is strictly cumu
 This block is the generator-facing encoding of the framing stability protocol and is intended to be compiled into prompts when needed.
 
 - Match the established rig: elevated diagonal-oblique aerial view (NOT top-down / not near-nadir).
+- Maintain a coherent rectilinear rig: **two-point perspective** implied along the horizon; keep vanishing behavior consistent.
+- **Verticals remain straight** (no keystone exaggeration).
 - Do NOT zoom. Do NOT change apparent altitude/scale. Keep the same narrow-FOV / telephoto-compressed feel.
 - Keep the skyline/horizon/vanishing-height band consistent with the shared rig; do not tilt or pitch-shift the camera.
 - No vertical recentering to “fit” towers, peaks, smoke, or mood. Cropping/clipping is allowed; lifting framing is not.

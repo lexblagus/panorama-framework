@@ -19,13 +19,12 @@ Horizontal mirroring may be used only for **temporary diagnostic composites**, a
 
 ## R1 Composition map references
 
-|Tile 1|Tile 3|Tile 5|Tile 7|Tile 9|
-|:---:|:---:|:---:|:---:|:---:|
-|![Tile 1 reference](../refs/R1/029-Tile-1-08.png)|![Tile 3 reference](../refs/R1/042-Tile-3-15.png)|![Tile 5 reference](../refs/R1/021-Tile-5-04.png)|![Tile 7 reference](../refs/R1/024-Tile-7-02.png)|![Tile 9 reference](../refs/R1/022-Tile-9-06.png)|
-|029-Tile-1-08.png|042-Tile-3-15.png|021-Tile-5-04.png|024-Tile-7-02.png|022-Tile-9-06.png|
+### Dummy maps
+
 |Tile 1|Tiles 2-4|Tile 5|Tiles 6-8|Tile 9|
-|![Tile 1 dummy](../refs/R1/107-tile1-02.png)|![Tiles 2-4 dummy](../refs/R1/108-tiles2to4-02.png)|![Tile 5 dummy](../refs/R1/109-tile5-02.png)|![Tiles 6-8 dummy](../refs/R1/110-tiles6to8-02.png)|![Tile 9 dummy](../refs/R1/111-tile9-02.png)|
-|107-tile1-02.png|108-tiles2to4-02.png|109-tile5-02.png|110-tiles6to8-02.png|111-tile9-02.png|
+|:---:|:---:|:---:|:---:|:---:|
+|![Tile 1 dummy](../refs/R1/122-tile1.png)|![Tiles 2-4 dummy](../refs/R1/123-tiles2to4.png)|![Tile 5 dummy](../refs/R1/124-tile5.png)|![Tiles 6-8 dummy](../refs/R1/125-tiles6to8.png)|![Tile 9 dummy](../refs/R1/126-tile9.png)|
+|122-tile1.png|123-tiles2to4.png|124-tile5.png|125-tiles6to8.png|126-tile9.png|
 
 ## Latest
 
@@ -34,20 +33,10 @@ Aeon 007 of generated images. Current work-in-progress
 |1|3|5|7|9|
 |:---:|:---:|:---:|:---:|:---:|
 |**primary**|*secondary*|***primary master***|*secondary*|**primary**|
-|![Tile 1 preview](../outputs/generated/008-17-tile1-R1.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/008-11-tile5-R1.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/008-13-tile9-R1.png)|
-|008-17-tile1-R1.png|007-51-tile3c.png|008-11-tile5-R1.png|007-46-tile7b.png|008-13-tile9-R1.png|
-|![Tile 1 preview](../outputs/generated/008-18-tile1-R1.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/008-12-tile5-R1.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/008-14-tile9-R1.png)|
-|008-18-tile1-R1.png|007-51-tile3c.png|008-12-tile5-R1.png|007-46-tile7b.png|008-14-tile9-R1.png|
+|![Tile 1 preview](../outputs/generated/008-17-tile1-R1.png)|![Tile 3 preview](../outputs/generated/007-51-tile3c.png)|![Tile 5 preview](../outputs/generated/008-19-tile5-R1.png)|![Tile 7 preview](../outputs/generated/007-46-tile7b.png)|![Tile 9 preview](../outputs/generated/008-13-tile9-R1.png)|
+|008-17-tile1-R1.png|007-51-tile3c.png|008-19-tile5-R1.png|007-46-tile7b.png|008-13-tile9-R1.png|
 
 _↳ Latest working tiles._
-
-## Tiling composition preview
-
-Just another preview, compiled in a singe image
-
-![Tiling composition preview (6 tiles)](../outputs/generated/006-30-compiled.png)
-
-_↳ Tiling composition preview (6 tiles)_
 
 ## All tiles preview
 
@@ -71,7 +60,7 @@ _↳ Note tertiary tiles are very outdated compared to primary and secondary til
 | 2 | tertiary | bridge (required: Tile 1 right crop + transparency + Tile 3 left crop) | Dense Residential | Housing / Parks / Lakes | Slight warmth | `1025`<br />`1366` |
 | 3 | secondary | (ruler) + (optional Tile 2 right crop + transparency + Tile 4 left crop) | Transition Zone | Mixed typologies | Warmth + early haze | `1367`<br />⅓ `1707`<br />⅔ `2049`<br />`2390` |
 | 4 | tertiary | bridge (required: Tile 3 right crop + transparency + Tile 5 left crop) | Pre-Core Vertical | Urban Vertical | Amber build-up | `2391`<br />`2732` |
-| 5 | primary master | none (ruler authority) + (optional Tile 4 right crop + transparency + Tile 6 left crop) | Iconic Core (Anchor) | Landmark Skyline | Amber peak + diffused sun | `2733`<br />⅓ `3073`<br />½ `3244`<br />⅔ `3415`<br />`3756` |
+| 5 | primary master | none (ruler authority) + (optional Tile 4 right crop + transparency + Tile 6 left crop) | Iconic Core (Anchor) | Landmark Skyline | Amber peak + maximum diffusion (sun disk optional variant) | `2733`<br />⅓ `3073`<br />½ `3244`<br />⅔ `3415`<br />`3756` |
 | 6 | tertiary | bridge (required: Tile 5 right crop + transparency + Tile 7 left crop) | Post-Core Vertical | Urban Vertical | Fading warmth | `3757`<br />`4098` |
 | 7 | secondary | (ruler) + (optional Tile 6 right crop + transparency + Tile 8 left crop) | Logistics Transition Zone | Roads / Mid-rise | Desaturated haze | `4099`<br />⅓ `4439`<br />⅔ `4781`<br />`5122` |
 | 8 | tertiary | bridge (required: Tile 7 right crop + transparency + Tile 9 left crop) | Industrial | Infrastructure | Heavy smog | `5123`<br />`5464` |
@@ -101,7 +90,7 @@ Each tile section is structured as follows:
 
 This framework treats “zoom / skyline height / sky share drift” as a **framing physics problem**, but **does not use numeric band targets**.
 
-Instead, framing stability is enforced by **reference conditioning**:
+Instead, framing stability is enforced by **reference conditioning**. When an **R1 composition map** exists for a tile, treat it as the primary encoding of framing/sky-budget rules; per-tile specs should reference this section rather than duplicating drift rules.
 
 ### Authority
 - **Tile 5 is the ruler** for perceived framing physics:

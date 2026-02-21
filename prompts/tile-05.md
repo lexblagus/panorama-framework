@@ -2,107 +2,91 @@
 
 ## Header
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):
-> - Reference B (Optional seam bridge composite, used ONLY in a seam-lock pass after neighbors exist): Tile 4 right crop + transparency + Tile 6 left crop — `tile4-6-bridge.png`
+> - Reference A (REQUIRED): R1 Tile 5 composition map — `tile5-r1.png`
+> - Reference M (RECOMMENDED): Central Master reference — `master.png`
+> - Reference B (OPTIONAL seam bridge composite, used ONLY in a seam-lock pass after Tile 4 + Tile 6 exist):
+>   Tile 4 right crop + transparency + Tile 6 left crop — `tile4-6-bridge.png`
 >
 > REFERENCE USE POLICY (STRICT):
-> - Tile 5 is the ruler authority and is normally generated with **no references** (ruler-first).
-> - If Reference B is provided: transfer ONLY seam conditioning (left/right edge continuity: silhouette height profile, haze rolloff language, edge texture density).
-> - Transfer FORBIDDEN from Reference B: copying full composition/layout, landmark duplication, or importing neighbor content into the center. Reference B is seam conditioning, not a scene blueprint.
+> - Reference A (R1) is the PRIMARY layout authority: horizon/sky budget/skyline envelope/anchor zone/seam zones/reading orientation.
+> - Reference M (Central Master) is SECONDARY and controls ONLY palette + diffusion + “rig feel” (DO NOT import its exact layout).
+> - Reference B (Bridge) is seam conditioning ONLY: left/right edge continuity (silhouette height profile, haze rolloff language, edge texture density).
+> - Transfer FORBIDDEN from Reference B: copying neighbor composition into the center, landmark duplication, importing Tile 4/6 content into the anchor zone. Bridge is NOT a scene blueprint.
 
-## Generator prompt
-> Photorealistic aerial panorama tile (Tile 5 of a 9-tile megacity panorama — ICONIC CORE / ANCHOR). Portrait 1024×1536.
->
-> CAMERA + FOV CLAMP (do not drift): fixed elevated diagonal-oblique aerial view; rectilinear optics; strong telephoto-like depth compression; NARROW field of view; unified camera system across all tiles; no wide-angle distortion; no tilt-shift; no stylized filters/illustration aesthetics.
->
-> NON-MIRRORED OUTPUT: do not horizontally flip/mirror the image.
->
-> LIGHTING / ATMOSPHERE (anchor): AMBER PEAK with diffused sun-pressure and warm haze compression. Lighting is CENTERED / FRONTAL DIFFUSION (no strong left/right key read). A solar disk MAY be present but must be diffused and partially obscured by haze with NO hard edge; it may be unnaturally large and may be PARTIALLY CROPPED by the frame—do NOT lift framing to fit it.
->
-> SCENE INTENT: the heart of the city. Tallest towers, recognizable skyline silhouette, maximum vertical pressure for the entire panorama. Tile 5 defines peak contrast, warmth, and atmospheric glow.
->
-> REQUIRED ELEMENTS (compose as one coherent core system):
-> - Recognizable skyline silhouette with the TALLEST towers reaching near the upper frame boundary.
-> - One PRIMARY vertical urban axis must visually dominate the composition. Any secondary diagonals/crossings must remain clearly subordinate and partially obscured.
-> - Major avenue or urban valley supporting the dominant axis; traffic reads as strong axial flow.
-> - Emphasis is achieved through scale + brightness + density, NOT by vertical recentering.
->
-> FRAMING STABILITY AUTHORITY (Tile 5 is the ruler): establish the shared vanishing-height feel and vertical “pressure” for all tiles; maintain telephoto compression and disciplined sky budget. Do NOT vertically recenter to fit the sun or towers; cropping/clipping is preferred. If framing reads too open, add skyline mass, stacked midground slabs, or haze INSIDE the same framing—do NOT open more sky. Prevent push-in reads by avoiding a single near-field avenue/interchange filling the bottom; rely on midground layering.
->
-> ENFORCEMENT (Tile 5 specific): Tile 5 must not read “lower” than Tiles 3 or 7. Correct by adding mass/density, not by opening sky. Reject any framing that widens FOV or reduces apparent tower height relative to Tiles 3 and 7.
->
-> FORBIDDEN MOTIFS (must not appear):
-> - Industrial decay.
-> - Nature dominance / rural elements.
-> - Heavy industry.
+## Generator prompt (LOCKED — current best)
 
-# Experimental prompt
-
-With composition map reference R1 (`../refs/R1/109-tile5-02.png`)
-
-> Generate: photorealistic aerial panorama tile (Tile 5 of 9), portrait 1024×1536, ultra-detailed realism.
+> REFERENCES (ORDERED):
+> - R1 Tile 5 composition map (PRIMARY layout authority): match horizon line height, sky budget line, skyline envelope hump, anchor zone box, edge-safe seam zones, seam blending strips, reading orientation.
+> - Central Master (SECONDARY): palette + diffusion + global rig feel only; do not import its layout.
+> - Optional bridge composite (ONLY seam-lock pass): edge continuity only; never import neighbor content into center.
+>
+> Generate: photorealistic aerial panorama tile (Tile 5 of a 9-tile megacity panorama — ICONIC CORE / RULER). Portrait 1024×1536. Ultra-detailed realism.
 > NON-MIRRORED OUTPUT: do NOT flip horizontally.
-> 
-> REFERENCE / LAYOUT (STRICT):
-> Use the provided “R1 — Tile 5 composition map” sketch as the PRIMARY layout authority.
-> Match its: sky budget line, skyline envelope hump, horizon line height, reading orientation (centered vertical up), edge-safe zones, seam blending zones, and primary anchor zone placement.
-> 
+>
 > CAMERA + FOV CLAMP (do not drift):
-> Fixed elevated oblique rooftop/drone viewpoint (not top-down), rectilinear optics, strong telephoto-like depth compression, NARROW field of view.
-> No wide-angle distortion, no barrel/fisheye, no tilt-shift, no “miniature” look.
-> Stable horizon / pitch / vertical framing.
-> 
-> PERSPECTIVE SETUP (coherent rig):
-> Two-point perspective with VP1 (left) and VP2 (right) implied along the horizon; keep vanishing behavior consistent.
-> Verticals remain straight (no keystone exaggeration).
-> 
-> COMPOSITION (must match the sketch):
-> - SKY BUDGET: keep “pure sky” as a disciplined top band (≈ the sketch; ~20% feel). Do NOT open extra sky.
-> - SKYLINE ENVELOPE: a centered hump/crest of the skyline that peaks near the middle and gently falls toward both sides (per the sketch).
-> - HORIZON LINE: fixed at the sketch height; do not raise/lower it.
-> - READING ORIENTATION: dominant visual read is bottom → top (centered vertical). The main “pull” goes toward the skyline crest.
-> 
-> PRIMARY ANCHOR ZONE (use the sketch box):
-> Place the highest-density “core” features inside the primary anchor zone:
-> - tallest tower cluster and densest vertical mass live here
-> - avoid placing unique hero shapes inside seam blending strips
-> - do not clip major towers at left/right edges
-> 
-> CIRCULATION (maze-lattice, but aligned to the vertical read):
-> The city circulation reads as a distributed maze lattice (dense streets, intersections, service alleys) with intermittent elevated segments.
-> NO single giant freeway ribbon and NO single dominant interchange.
-> However, align the overall fabric so it supports the centered vertical reading:
-> - an implied axial “urban valley” / stacked street canyons / layered corridors can guide the eye upward
-> - avoid one clean uninterrupted highway running straight up the center; keep corridors frequently occluded/broken by blocks
-> 
+> Fixed elevated diagonal-oblique rooftop/drone viewpoint (not top-down), rectilinear optics, strong telephoto-like depth compression, NARROW field of view.
+> Coherent two-point perspective implied along the horizon; verticals remain straight (no keystone).
+> Do NOT zoom. Do NOT change altitude. Do NOT change pitch. No vertical recentering; cropping/clipping is allowed.
+>
+> COMPOSITION (bind to the R1 map):
+> - SKY BUDGET: keep “pure sky” as a disciplined top band (match the map; do NOT open extra sky).
+> - SKYLINE ENVELOPE: centered hump/crest peaking near the middle and gently falling toward both sides (match the map).
+> - HORIZON LINE: fixed at the map height; do not raise/lower.
+> - READING ORIENTATION: dominant read is bottom → top (central pull toward skyline crest).
+> - PRIMARY ANCHOR ZONE: highest-density “core” features live inside the anchor zone box; avoid unique hero shapes inside seam blending strips; do not clip major towers at left/right edges.
+>
+> TILE 5 IDENTITY (PEAK PRESSURE / RULER):
+> Maximum vertical pressure for the whole panorama: dense skyline crest near the upper frame boundary, telephoto-compressed stack, amber peak + maximum atmospheric diffusion.
+> Avoid postcard symmetry: prefer several comparable peaks (no single hero spire).
+>
+> CIRCULATION (INTRICATE + EMBEDDED, NON-HERO):
+> Multiple intertwined avenues + service spines with frequent merges/splits, partially occluded by blocks.
+> Avenues must feel embedded/interlaced into buildings (like a woven fabric), not cleanly carved.
+> NO single uninterrupted straight boulevard to the horizon. NO single dominant interchange. NO giant freeway ribbon.
+> Break any long corridor with occlusions, cross-cuts, short overpasses, block interruptions, and lateral feeders.
+> Center band must read as busy texture, not a privileged high-contrast spine.
+>
 > DEPTH / LAYERING (keep push-in out):
-> Foreground: textured rooftops, street hints, small vehicles (no huge near-field roadway filling the bottom).
-> Midground: dense stacked blocks, mixed corridors, partial viaduct pieces, bridges, overpasses (short segments, not poster-ramps).
-> Background: compressed skyline mass dissolving slightly with distance (light haze only in far distance).
-> 
-> ELEMENT DIVERSITY (distributed, not focal):
-> Include many midground features at once (spread out):
-> - at least one rail element (surface/trench) AND one short elevated metro/tram segment (not edge-to-edge clean)
-> - one embedded station/stop presence (platform canopies / vents / stair cores), integrated into blocks, not a landmark
-> - infrastructure texture: rooftop mechanicals, antennas, water tanks, vents, pedestrian overpasses, utility bridges
-> - small pocket plazas/terraces/roof gardens are allowed (subtle, not nature-dominant)
-> 
-> ARCHITECTURE DIVERSITY (force variety, avoid repetition):
-> Show at least four mixed families simultaneously:
-> 1) modern glass/steel towers with varied crowns/setbacks
-> 2) dense mid-rise residential with balconies
-> 3) brutalist/infrastructure volumes (concrete slabs/service structures)
-> 4) older brick/stone commercial blocks (subtle art-deco / neo-gothic hints)
-> Avoid a single iconic spire or landmark silhouette; vary rooflines/facade rhythms.
-> 
-> STITCH DISCIPLINE (hard rule):
-> - Left/right seam blending strips: keep low-uniqueness, repeatable texture only (haze, rooffields, mid-rise repetition).
-> - No big clipped towers, no edge-cut megastructures, no edge-to-edge bridge/highway spans.
-> - Any major corridor must fade/fragment/occlude before reaching seam zones.
-> 
-> LIGHTING / COLOR (centered like the sketch’s light source):
-> Centered / frontal warm golden-hour illumination (no strong left/right key).
-> No visible hard-edged sun disk (light source can be implied above frame).
-> Natural photographic contrast; restrained saturation; preserve neutral whites; no heavy orange grade; no HDR bloom.
-> 
+> Foreground: present but minor — rooftops, street hints, small vehicles; no huge near-field roadway filling the bottom.
+> Midground: the texture engine — stacked blocks, mixed corridors, partial viaduct pieces, short bridges/overpasses (not edge-to-edge).
+> Background: compressed skyline mass dissolving slightly with distance; haze increases with distance only (preserve the telephoto stack).
+>
+> ARCHITECTURE DIVERSITY (FORCED HETEROGENEITY — avoid repetition):
+> Strong mix of districts/eras in one tile. Do NOT allow large contiguous areas of the same facade grid.
+> Ensure at least 6–8 distinct typology/facade languages visible at once, spread across the frame (not all in one spot):
+> 1) modern glass/steel towers with varied crowns/setbacks (not uniform curtain walls)
+> 2) dense mid-rise residential with balconies (multiple balcony rhythms)
+> 3) brutalist/service slabs (vents, buttresses, catwalks)
+> 4) older brick/stone commercial blocks (cornices, subtle art-deco / neo-gothic hints)
+> 5) postwar concrete offices (horizontal bands)
+> 6) mixed-use podiums + stepped terraces (irregular rooflines)
+> 7) small embedded utility/service inserts (substations/utility yards), subtle and non-landmark
+> 8) scattered vernacular/patchwork infill (stucco/painted concrete/metal roofs)
+> Quadrant rule: each quadrant of the frame should show at least 2 different typologies (architectural relatives, not twins).
+>
+> ELEMENT DIVERSITY (DISTRIBUTED, NOT LANDMARKED):
+> Increase rooftop clutter variety: tanks, HVAC farms, solar, antennas, billboards, water towers, vents, catwalks, laundry, skylights.
+> Add layered transport cues without making them hero objects:
+> - rail presence (surface/trench) AND one short elevated metro/tram segment (not clean edge-to-edge)
+> - embedded station/stop hint (canopies/vents/stair cores), integrated into blocks (not centered)
+>
+> LIGHTING / COLOR:
+> Tile 5 amber peak + maximum diffusion. Centered / frontal warm golden-hour illumination (no strong left/right key).
+> Default: NO visible sun disk.
+>
+> STITCH / SEAM SAFETY:
+> Left/right seam blending strips: low-uniqueness repeatable texture only (roof-fields, mid-rise repetition, haze).
+> No major corridor exiting cleanly at side edges; no clipped landmark towers at edges; no edge-to-edge bridge/highway spans.
+>
 > NEGATIVE / AVOID:
-> sun disk with hard edge • iconic landmark skyline • one giant freeway interchange • clean uninterrupted highway ribbon • perfect symmetry • edge-to-edge bridge span • edge-clipped megastructure • heavy industry • industrial decay • rural/nature dominance • neon/billboards • fisheye/wide-angle • tilt-shift • painterly/illustration look • readable text/logos
+> wide-angle • fisheye • barrel distortion • tilt-shift • miniature look • CGI • illustration • sterile uniform tower field • single hero boulevard • single dominant interchange • perfect symmetry • edge-clipped megastructure • heavy industry • industrial decay • rural/nature dominance • readable text/logos
+>
+> CALIBRATION KNOBS (edit these first if needed):
+> - If too open: add skyline mass + midground stacking + distance haze (not more sky).
+> - If too zoomed/push-in: reduce near-field dominance; increase midground overlap and background compression.
+> - If corridors become too clean: increase occlusions and cross-cuts; break ribbons into segments; add lateral feeders.
+
+## Sun Disk Variant (OPTIONAL — only when explicitly enabled)
+> SUN DISK VARIANT (Tile 5 + Central Master only):
+> Allow a visible solar disk fully diffused through haze, no hard edge.
+> Disk may be partially cropped; never reframe to fit it.
