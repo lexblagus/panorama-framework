@@ -5,6 +5,7 @@ This file defines physics of the universe.
 - [Overview](#overview)
 - [Subject](#subject)
 - [Concepts](#concepts)
+- [Central Master Reference](#central-master-reference)
 - [Global Constraints](#global-constraints)
   - [Lighting](#lighting)
     - [Constraints](#constraints)
@@ -27,7 +28,7 @@ This file defines physics of the universe.
 
 Create a large-scale, ultra-wide cityscape wallpaper composed of **9 portrait-oriented tiles**, manually stitched in Affinity Photo. The result must feel like a **single continuous megacity**, photographed in one coherent late-afternoon moment, with strong realism, atmospheric depth, and architectural diversity.
 
-The panorama is governed by a **lateral ambiance gradient**: lighting color temperature, atmospheric density, and air clarity evolve progressively from left to right across the tiles. The scene transitions from clean, neutral daylight on the far left, through a warm amber core at the center, and into dense, bluish-gray industrial haze on the far right. This lateral progression is intentional, monotonic, and must never reverse.
+The panorama is governed by a **lateral ambiance gradient**: lighting color temperature, color filtering, and contrast/clarity evolve progressively from left to right across the tiles (no fog veil). The scene transitions from clean, neutral daylight on the far left, through a warm amber core at the center, and into cool bluish-gray industrial filtering on the far right (high visibility; no milky smog blur). This lateral progression is intentional, monotonic, and must never reverse.
 
 This project does not present a moral progression from nature to city. Instead, nature, human systems, and industry are treated as distinct but equally complex forms of chaos, each governed by different rules, scales, and pressures.
 
@@ -47,15 +48,13 @@ The panoramic narrative logic:
 - Goes from left to right, where **density rises toward the center** which acts as the visual and narrative anchor (Tile 5).
 - **Functional shift:** dominant natural systems (chaotic, terrain-led) ↔ selective human systems (proto-infrastructure, access-driven) ↔ dense urban order ↔ industrial systems (mechanical chaos).
 - **Emotional arc**: calm → anticipation → awe → intensity → mechanical dominance.
-- **Atmospheric arc (lateral)**: clarity → warmth → saturation → suffocation / toxicity.
+- **Atmospheric arc (lateral)**: clarity → warmth → saturation → mechanical dominance (high visibility retained; no fog veil).
 
 Despite cinematic references used as emotional calibration, the cityscape must retain its own architectural and atmospheric identity. The goal is not stylistic imitation, but believable urban evolution captured in a single photographic moment.
 
----
+![Tiling compilation preview](../outputs/generated/008-51h-composition-preview.png)
 
-![Tiling compilation preview](../outputs/generated/005-47-composition.png)
-
-_↳ preview as single 4:3 image_
+_↳ preview as single 4:3 image (to be heavilly wided in the final composition)_
 
 ---
 
@@ -80,24 +79,32 @@ This section defines project-specific terminology for clarity. It introduces no 
 | Architectural Relatives | Buildings that share typological lineage without being visually identical. |
 | Equilibrium Tile | Tile 5; the point of maximum density, warmth, and atmospheric pressure in the panorama. |
 | Safe Stitch Zone | A visually quieter edge region designed to allow continuity with adjacent tiles. |
-| Industrial Terminus | Tile 9’s role as the farthest functional extreme, where the city dissolves into haze and logistics. |
+| Industrial Terminus | Tile 9’s role as the farthest functional extreme, where logistics/industry dominate with cool desaturation (high visibility; no fog veil). |
 | Seam | The boundary region where two adjacent tiles meet (e.g., 1↔2). Seams must remain stitchable via generic edge texture, safe stitch zones, and continuity references when needed. |
 | Framing Stability Protocol | The spec doctrine for preventing “zoom / skyline height / sky share drift.” It treats drift as framing physics and enforces stability via Tile 5 as ruler + reference conditioning (not numeric band targets). |
 | Ruler | The reference authority used to stabilize perceived framing physics across tiles. In this framework, Tile 5 is the ruler (telephoto feel, vertical pressure, sky budget, vanishing-height read). |
 | Pressure (Vertical Pressure) | How much the scene “fills” the portrait frame: apparent altitude/scale + telephoto compression + how close dominant mass sits to the top edge. Higher pressure reads as denser/taller with less open sky. |
 | Sky Budget | The disciplined allowance of visible sky. If sky feels “too open,” the fix is adding mass/haze inside the same framing, not lifting/recentering the camera. |
-| Vanishing-height read | The perceived band where distance collapses and parallel structure fields converge (roof-fields/corridors), used as a proxy for horizon physics when the true horizon dissolves into haze. |
-| Seam Anchor | A one-sided edge crop reference from a neighbor tile used to condition a single seam (continuity of silhouette height profile, haze rolloff language, edge texture density). |
+| Vanishing-height read | The perceived band where distance collapses and parallel structure fields converge (roof-fields/corridors), used as a proxy for horizon physics when the true horizon is low-contrast. |
+| Seam Anchor | A one-sided edge crop reference from a neighbor tile used to condition a single seam (continuity of silhouette height profile, distance-contrast rolloff language, edge texture density). |
 | Bridge Reference Image (Bridge Composite) | A 3-panel inter-tile reference used to lock both adjacent edges at once: (right crop of left tile) + (transparent center) + (left crop of right tile). |
 | Band targets (Numeric band targets) | A rejected method of enforcing framing via numeric vertical bands (e.g., “horizon must sit between X–Y%”). This framework explicitly does not use numeric band targets; it uses reference conditioning instead. |
 | Camera Lock | A promptable “must-not drift” block that encodes the Framing Stability Protocol into generator instructions (no zoom, no pitch drift, no extra sky; cropping allowed). |
 
 ---
 
+## Central Master Reference
 
-![Central Master Reference](../outputs/generated/006-31-master.png)
+![Central Master Reference](../outputs/generated/008-53c-master.png)
 
-_↳ Central Master Reference_
+Why have a Central Master Reference at all? World identity consistency (the “DNA”):
+
+- architectural family language (window density, roof clutter, material palette)
+- how haze/air/contrast behaves (even if crisp, the distance rolloff style)
+- what “photorealistic” means in this world (micro-contrast, noise, tonemapping vibe)
+- how dense the “city fabric” looks when it’s not industrial or coastal
+
+This is what the Central Master is for: a single “world bible” image.
 
 ---
 
@@ -133,16 +140,16 @@ These apply to every image generated.
 #### Lateral ambiance gradient
 
 - **Tiles 1–2:** Neutral daylight, minimal warmth, clean air, high clarity.
-- **Tiles 3–4:** Gradual warm-up toward amber tones, early haze appears.
-- **Tile 5:** Peak amber saturation, maximum atmospheric diffusion.
-  The solar disk may appear **only here** (and in the Central Master Reference Image), partially visible and fully diffused through haze, with no hard edge. The solar disk may appear unnaturally large relative to real-world scale, reading as an atmospheric phenomenon rather than a literal sun. Its edge must remain fully diffused, dissolved into haze, with no hard boundary.
+- **Tiles 3–4:** Gradual warm-up toward amber tones; keep visibility high (no fog veil).
+- **Tile 5:** Peak amber saturation, maximum warm diffusion (not a blur veil).
+  The solar disk may appear **only here** (and in the Central Master Reference Image), partially visible and fully diffused with no hard edge. The solar disk may appear unnaturally large relative to real-world scale, reading as an atmospheric phenomenon rather than a literal sun. Its edge must remain fully diffused, dissolved into haze, with no hard boundary.
   **Default production behavior:** do **not** show a visible sun disk. Treat the disk as a **controlled variant** that must be explicitly enabled for Tile 5 / Central Master only.
-- **Tiles 6–7:** Warmth decreases progressively, haze thickens, contrast softens.
-- **Tiles 8–9:** Cool-biased, bluish-gray light filtered through heavy fog and smog.
+- **Tiles 6–7:** Warmth decreases progressively, contrast softens; visibility remains high (no fog veil).
+- **Tiles 8–9:** Cool-biased, bluish-gray industrial filtering with high visibility (no milky smog blur; edges remain crisp).
 
 #### Industrial lighting
 
-**As an exception for Tiles 8–9 only**, in the industrial zones (Tiles 8 and 9), extremely subtle artificial lighting may be faintly perceptible under daylight conditions. These lights must be strictly functional and industrial in nature (plant/chimney safety lights, infrastructure beacons, interior factory glow), heavily diffused by smog and haze, subordinate to natural light, and must not create new focal points, alter the perceived time of day, or read as “the city turning on.” They must read as “industry never sleeps.”
+**As an exception for Tiles 8–9 only**, extremely subtle artificial lighting may be faintly perceptible under daylight conditions. These lights must be strictly functional and industrial in nature (plant/chimney safety lights, infrastructure beacons, interior factory glow), subordinate to natural light, and must not create new focal points, alter time of day, or read as “the city turning on.”
 
 
 ### Color & Texture
@@ -154,7 +161,7 @@ These apply to every image generated.
 Color characteristics:
 - Tiles 1–2: vivid but neutral daylight colors.
 - Tiles 3–5: warm ambers, soft oranges, solarized contrast.
-- Tiles 6–9: progressive desaturation under haze, shifting toward bluish-gray tones.
+- Tiles 6–9: progressive desaturation / cooler filtering toward bluish-gray tones (no fog veil; no milky smog blur).
 
 Texture rules:
 - Realistic but subtle dirt, wear, stains, and imperfect material variation.
@@ -172,17 +179,17 @@ Color and texture behavior is laterally encoded and bound to tile position. Warm
 Atmosphere evolves along **two independent axes**:
 
 - **Depth axis (foreground → background):**  
-  Atmospheric haze increases with distance, skyline fades into smog.
+  Atmospheric perspective increases subtly with distance via desaturation/contrast rolloff; far distance can soften slightly but remains readable (no fog veil).
 - **Lateral axis (Tile 1 → Tile 9):**  
-  Fog, smog, and particulate density increase cumulatively toward the right.
+  Color filtering cools/desaturates toward the right; visibility remains high (no milky smog blur).
 
 Additional rules:
-- Horizon skyline progressively dissolves into haze toward the rightmost tiles.
+- Far skyline can soften slightly with distance but must not dissolve into an obscuring fog veil.
 - Wind direction is laterally consistent across all tiles and must not reverse.
 - Wind affects smoke, haze, steam, and cloud deformation.
 - On industrial/right-side tiles, smoke drifts laterally as specified.
 
-Along the lateral axis (Tile 1 → Tile 9), atmospheric density is strictly cumulative and monotonic. Fog, smog, and particulate matter must increase continuously toward the right and must not thin, clear, reset, or locally diminish after Tile 5. Variations may occur only along the depth axis (foreground → background), never as lateral reversals.
+Along the lateral axis (Tile 1 → Tile 9), atmospheric density is strictly cumulative and monotonic. Do not use fog/smog blankets as a lateral “endpoint.” Keep visibility high; achieve the rightward mood via cooler/desaturated filtering, grime/texture, and distance-contrast rolloff. Variations may occur only along the depth axis (foreground → background), never as lateral reversals.
 
 
 ### Photographic Realism
@@ -259,6 +266,8 @@ Edges must feel naturally incomplete, obscured by terrain, haze, streets, buildi
 
 ### Architectural Language
 
+![Architectural language reference](../outputs/generated/008-54b-architectural-language.png)
+
 General constrains:
 
 * Architecture must appear in **quantity and variety**, not as isolated landmarks.
@@ -298,6 +307,8 @@ Infrastructure elements to spread across tiles — following tile theme — such
 
 ### Vehicles
 
+![Vehicles reference](../outputs/generated/008-54b-vehicles.png)
+
 - Realistic scale (no stretched limousines)
 - Mixed eras: modern, boxy older cars, rounded vintage cars
 - Buses and small trucks allowed
@@ -306,6 +317,8 @@ Infrastructure elements to spread across tiles — following tile theme — such
 - Rail vehicles in non-industrial tiles (Tiles 1–3) must remain proto-infrastructural: low-profile, scale-respectful, and access-oriented. Trains define scale through length, repetition, and partial visibility, never through bulk or height.
 
 ### Roadway Circulation Consistency
+
+![Roadway Circulation reference](../outputs/generated/008-54c-roadway-circulation.png)
 
 Across all tiles, road networks should maintain **visually coherent traffic flow** at the scale of each individual roadway.
 

@@ -13,9 +13,9 @@ This project treats image generation as a **systems design problem**, not a gues
 
 ---
 
-![Global Megacity Panorama Composite](outputs/composites/Composition_03-00.png)
+![Composition preview](./outputs/composites/Composition_03-02.png)
 
-_↳ Compilation preview (with missing tiles)_
+_↳ Composition preview (before stitching; work in progress)_
 
 ---
 
