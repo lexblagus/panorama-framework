@@ -1,41 +1,95 @@
-# Tile 7 Prompts
+# Tile 7 Prompts (R1-first, airport canonical)
 
 ## Header
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):
-> - Reference A (Ruler): Tile 5 ruler image — `tile5ruler.png`
-> - Reference B (Optional seam bridge composite): Tile 6 right crop + transparency + Tile 8 left crop — `tile6-8-bridge.png`
+> - Reference R1 (REQUIRED): Tile 7 composition map — `tile7-r1.png`
+> - Reference A (REQUIRED): Tile 5 ruler image — `tile5ruler.png`
+> - Reference B (OPTIONAL seam anchor): Tile 6 RIGHT EDGE crop — `tile6-right-edge.png`
+> - Reference C (OPTIONAL seam anchor): Tile 8 LEFT EDGE crop — `tile8-left-edge.png`
 >
 > REFERENCE USE POLICY (STRICT):
-> - Transfer ONLY from Reference A: camera/framing physics (horizon/vanishing-height read), rectilinear telephoto compression feel, vertical “pressure”, sky-budget discipline (do not open sky), and midground scale.
-> - Transfer FORBIDDEN from Reference A: any Tile 5 content identity (no landmark silhouettes, no iconic core axis, no sun disk).
-> - Transfer ONLY from Reference B (if provided): left/right seam conditioning (silhouette continuity, haze rolloff language, edge texture density).
-> - Transfer FORBIDDEN from Reference B: copying full composition/layout; it is seam conditioning, not a scene blueprint.
+> - R1 is PRIMARY layout authority (horizon height, sky budget, envelope, reading orientation, seam/anchor zones).
+> - Tile 5 ruler controls framing/scale physics ONLY (telephoto compression, vertical pressure, vanishing-height read). Do NOT import Tile 5 content identity.
+> - Seam anchors (B/C) are edge continuity ONLY (edge texture density / silhouette continuity language). Not layout blueprints.
 
-## Generator prompt
-> Photorealistic aerial panorama tile (Tile 7 of a 9-tile megacity panorama). Portrait 1024×1536.
+## Generator prompt (LOCKED)
+> REFERENCES (ORDERED):
+> - R1 Tile 7 composition map (PRIMARY layout authority).
+> - Tile 5 ruler image (SECONDARY; framing/scale physics only).
+> - Optional: Tile 6 right-edge crop (left seam continuity language only).
+> - Optional: Tile 8 left-edge crop (right seam continuity language only).
 >
-> CAMERA LOCK (do not drift): fixed elevated camera; diagonal-oblique aerial view (not top-down); rectilinear optics; strong telephoto-like depth compression; unified camera system consistent across all tiles; no wide-angle distortion; no tilt-shift; no stylized filters or illustration aesthetics.  :contentReference[oaicite:0]{index=0}
+> Generate: photorealistic aerial panorama tile (Tile 7 of 9 — LOGISTICS TRANSITION + EMBEDDED URBAN AIRPORT). Portrait 1024×1536. Ultra-detailed realism.
+> NON-MIRRORED OUTPUT: do NOT flip horizontally.
 >
-> NON-MIRRORED OUTPUT: do not horizontally flip/mirror the image.  :contentReference[oaicite:1]{index=1}
+> CAMERA LOCK:
+> Fixed elevated diagonal-oblique aerial view (not top-down), rectilinear optics, telephoto-like compression, narrow FOV.
+> Two-point perspective; verticals straight (no keystone).
+> Do NOT change pitch. Do NOT vertically recenter; cropping/clipping allowed.
 >
-> LIGHTING / ATMOSPHERE (tile-position accurate): golden-hour family lighting but with warmth fading into desaturated haze. Sun disk / visible solar source is NOT allowed. Key light originates from the LEFT (off-frame); primary cast shadows fall to the RIGHT; brightest haze/sky pressure sits on the LEFT side.  :contentReference[oaicite:2]{index=2}
+> REFRAME WIDER (ANTI-ZOOM, HARD):
+> Pull the camera back and slightly higher so the scene reads more distant and wide.
+> Keep the SAME horizon line height and SAME global vanishing point/perspective (match R1 + ruler).
+> Show MORE surrounding city context; all elements appear smaller in the frame.
+> The airport deck must occupy a smaller fraction of the image (far-midground), not dominate the midground.
+> Include more foreground roof-fields/roads and more adjacent districts around the airport (no tight crop).
 >
-> SCENE INTENT: a late-stage urban district transitioning toward logistics and service dominance between the dense core and the industrial periphery. The city supports a large resident population, but residential life is compressed and subordinated to circulation, commerce, and utilities. This is NOT suburbia and not a residential neighborhood; it feels older, heavier, negotiated—shaped by throughput rather than comfort.  :contentReference[oaicite:3]{index=3}
+> VISIBILITY (anti-fog):
+> High visibility: NO fog veil, NO milky smog blur, NO volumetric whiteout.
+> Distance perspective allowed only as subtle desaturation/contrast rolloff; edges remain crisp.
 >
-> DIRECTIONAL CONTINUITY (post-core release): dominant spatial energy reads as a diagonal bottom-left → top-right, expressed through mass orientation and circulation layering (not cinematic tilt).  :contentReference[oaicite:4]{index=4}
+> LIGHTING (Tiles 6–9):
+> Key light from LEFT (off-frame); shadows fall to RIGHT. No visible sun disk.
 >
-> REQUIRED ELEMENTS (logistics-driven urban form; dense, layered, telephoto-compressed):
-> - Large residential blocks: extensive, repetitive working-class slabs; non-iconic; population support (not neighborhood identity).
-> - Residential mass interwoven with infrastructure: roads/ramps cutting through housing clusters; buildings wrapped around circulation and utilities.
-> - Broad load-bearing roads with layered intersections.
-> - Multi-level circulation: surface streets + elevated roads/flyovers + ramps/partial interchanges; occasional tunnel entrances/underpasses.
-> - Early logistics + service traffic (present but not dominant): rigid multi-axle trucks, urban cargo vehicles, articulated/semi-trailers, fuel/gas tankers; cab-over and non-cab-over; muted orange/brown tarp truck bodies (new + weathered). Prefer vehicle diversity over vehicle volume.
-> - Low-rise commercial slabs, warehouses, service buildings; embedded utilities (gas pipelines, water backbone, service corridors, utility installations).
-> - Increase midground stacking: residential slabs + warehouses + service yards overlapping in layers to stabilize scale (avoid a single near-foreground interchange).  
+> LAYOUT LOCK (match R1 exactly):
+> Match R1 horizon height, sky budget, envelope, reading orientation, anchor zone, seam blending strips.
+> Keep seam blending strips low-uniqueness texture only; no airport edges/runway ends touching side edges.
 >
-> FRAMING + SCALE DISCIPLINE (Tile 5 as ruler): treat vertical drift as camera pitch drift; do NOT vertically recenter to fit towers/smoke/interchanges; cropping/clipping is preferred. If the true horizon is hazed out, use corridor/roof-field vanishing height as the horizon proxy and keep pitch consistent with Tile 5. If sky feels too open, add roof-field/infrastructure bulk or haze inside the distance volume—do NOT open more sky. Prevent push-in reads by reducing near-field dominance and adding depth via midground stacking/overlap.  
+> TILE 7 IDENTITY:
+> Late-stage urban fabric transitioning toward logistics/service dominance.
+> High density via large footprints + layered infrastructure; low- to mid-rise mass; older/heavier service city.
+> Not suburbia. Not full port/refinery dominance.
 >
-> FORBIDDEN MOTIFS (must not appear):
-> - Suburban residential patterns; scenic/landscaped housing; pedestrian-centric design; isolated/self-contained neighborhoods.
-> - Iconic skylines or landmark architecture.
-> - Full industrial systems (ports/refineries/container yards); industrial dominance must remain absent.  
+> DIRECTIONAL ENERGY:
+> Dominant energy bottom-left → top-right via mass orientation + layered circulation (not cinematic tilt).
+>
+> INFRASTRUCTURE LAYERING (stacked, not push-in):
+> Layer roads/ramps/partial interchanges, surface streets + flyovers, short overpasses; occasional tunnel mouths/underpasses.
+> Warehouses + service slabs + embedded utilities (pipelines, water backbone, service corridors).
+> Avoid a single near-foreground interchange filling the bottom third.
+>
+> VEHICLES (Tile 7 signature; diversity > volume):
+> Follow Core Canonical Vehicles (Tiles 7–9 heavy logistics mix). Emphasize variety over volume.
+> Include some muted orange/brown tarp-covered cargo trucks as diversity accents, plus tankers, semis, rigid multi-axle trucks, occasional road-train multi-trailer trucks. Cars/buses remain minor scale cues.
+>
+> AIRPORT (canonical; embedded, non-hero; stitch-safe; DECK required):
+> Create a FAR-MIDGROUND urban airport tarmac DECK embedded into dense city fabric (Congonhas/LAX-under-runway vibe).
+> HARD REQUIREMENTS:
+> 1) LAYERED DECK (must be elevated):
+>    - runway/tarmac is a deck/viaduct on columns/structure (NOT ground-level).
+>    - underside beams/columns visible; deck shadow falls onto roads/city beneath.
+> 2) VANISHING-POINT BLEND:
+>    - tarmac is a trapezoid whose long edges converge to the SAME global vanishing point as roads/roof-fields.
+>    - no horizon-parallel “flat bar” runway.
+> 3) UNDER-TARMAC ROAD NETWORK:
+>    - ≥2–3 visible underpasses/tunnel mouths where avenues pass UNDER the deck and re-emerge.
+> 4) SEAM SAFETY:
+>    - deck/runway does NOT touch side edges; stays well inside anchor zone; never enters seam blending strips.
+> 5) ANTI-ZOOM:
+>    - do NOT zoom in to make airport readable. If runway tries to dominate, make it smaller/farther.
+>
+> AIRPORT LIFE + AIRCRAFT RANDOMIZATION (no repetition):
+> Add realistic airport activity at correct scale:
+> - 3–7 aircraft total, mixed positions (some parked at gates, one taxiing/holding).
+> - jet bridges visible for at least 1–3 parked aircraft.
+> - small control/observation tower (non-hero).
+> - small ground support vehicles: baggage carts, belt loaders, fuel truck, pushback tug, service vans.
+> Aircraft variety rules (HARD):
+> - do NOT repeat the same aircraft model; mix different silhouettes/sizes (narrow-body, regional jet, turboprop; optional one wide-body at most).
+> - vary liveries using FAKE/ARTISTIC branding (abstract stripes/blocks/gradients/symbols); NO readable airline names/logos/text.
+>
+> FORBIDDEN:
+> close-up framing • runway filling the frame • airport as giant empty field • hero terminal showcase
+> triptych/borders/seams • readable airline names/logos/text
+> wide-angle/fisheye/tilt-shift • CGI/illustration • suburbia/parks
+> full ports/refineries/container megayards as the main subject

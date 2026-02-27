@@ -315,6 +315,15 @@ Infrastructure elements to spread across tiles — following tile theme — such
 - Traffic density varies by tile
 - Modern trams and subways on left and center; old cargo trains and large trucks on right (industrial mood)
 - Rail vehicles in non-industrial tiles (Tiles 1–3) must remain proto-infrastructural: low-profile, scale-respectful, and access-oriented. Trains define scale through length, repetition, and partial visibility, never through bulk or height.
+- **Heavy logistics vehicle diversity (Tiles 7–9 only):** Tiles **7–9** should show a varied, realistic logistics fleet (diversity > volume), distributed across roads/yards (not a traffic jam). Include a mix of:
+  - tarp-covered cargo trucks in muted orange/brown tones (new + weathered; mixed cab-over and conventional where plausible)
+  - fuel/gas tanker trucks and tanker trailers
+  - **tandem-axle rigid trucks** (3-axle rigid / “trucado” style) + other rigid box trucks
+  - semi-trucks / articulated lorries with box trailers, flatbeds, and **container chassis**
+  - **road trains / multi-trailer trucks** (“treminhão” style), occasional (not dominant)
+  - optional additional variety: dump trucks, concrete mixers, car carriers, lowboy/heavy-haul trailers (sparingly)
+  - keep cars/buses present as minor scale cues; avoid repetition of identical vehicles
+- **Non-logistics tiles (Tiles 2–6):** avoid heavy logistics fleets; keep vehicles mostly small urban (cars, buses, taxis, delivery vans, occasional light box truck). No container yards, no road-train convoys, no tanker clusters. (Tile 6 may show limited service trucks, but not a logistics-dominant fleet.)
 
 ### Roadway Circulation Consistency
 
