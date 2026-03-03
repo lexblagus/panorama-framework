@@ -11,7 +11,7 @@
 > REFERENCE USE POLICY (STRICT):
 > - Transfer ONLY from Reference A: camera/framing physics (horizon/vanishing-height read), rectilinear telephoto compression feel, vertical “pressure”, sky-budget discipline, and midground scale.
 > - Transfer FORBIDDEN from Reference A: any Tile 5 content identity.
-> - Transfer ONLY from Reference B: right-edge seam continuity (industrial silhouette height profile, haze rolloff language, industrial texture density).
+> - Transfer ONLY from Reference B: right-edge seam continuity (industrial silhouette height profile, distance rolloff language, industrial texture density).
 > - Transfer FORBIDDEN from Reference B: ANY water/channel/ship shapes, and any full composition/layout copying.
 >
 > GENERATOR PROMPT:
@@ -23,7 +23,7 @@
 > - Do NOT zoom in. Maintain the same apparent altitude/scale as the seam anchor: rail cars / containers must not appear larger than in Tile 9.
 > - Keep the skyline/horizon band consistent; do NOT compress the sky band “too low.”
 > - No vertical recentering to fit tall elements. Cropping/clipping is allowed; lifting the frame is not.
-> - Do NOT add extra sky; if sky feels open, add midground industrial mass + haze without changing framing.
+> - Do NOT add extra sky; if sky feels open, add midground industrial mass + stronger internal distance rolloff without changing framing.
 >
 > COMPOSITION LOCK (STITCH CONTROL):
 > - Reserve the RIGHTMOST 20–25% as generic dense refinery/pipe-rack texture to stitch into Tile 9.
@@ -35,9 +35,9 @@
 > - It must read as engineered quarry/cut ridge (NOT natural mountains). NO greenery.
 > - Ridge may anchor a subtle ambience gradient WITHOUT becoming a hard seam:
 >   - Left of ridge: slightly clearer air + slightly warmer tint (Tile 7-adjacent), but still polluted/industrial (NOT Tile 5 amber).
->   - Right of ridge: denser dust/smog and stronger distance collapse (Tile 8/9-adjacent).
+>   - Right of ridge: heavier industrial dust/aerosol tint + stronger distance rolloff / distance collapse (Tile 8/9-adjacent).
 >   - Transition must be a GRADIENT anchored on the ridge, not a binary split.
-> - Wind blows RIGHT: ridge emits a broad low-contrast dust veil drifting RIGHT, thickening the right-half haze.
+> - Wind blows RIGHT: ridge emits localized low-contrast dust/aerosol drift to the RIGHT (no uniform blanket). This reinforces the right-half distance rolloff.
 >
 > QUARRY MUST BE INDUSTRIALIZED (NO EMPTY BUFFER) — HARD:
 > - The ridge is NOT isolated. It is colonized by industry on multiple terraces.
@@ -61,7 +61,7 @@
 > - Ultra-dense petrochemical mass: pipe-rack megagrids, catwalks, heat exchangers, pump yards, gantries, maintenance scaffolds.
 > - Chimneys/stacks only in 2–3 clustered refinery nodes (not uniform coverage).
 > - Tank farms: large cylinders + some spherical LPG tanks; containment berms and spill channels.
-> - Power block: turbine hall + cooling towers + dense substation/switchyard + pylons fading into haze.
+> - Power block: turbine hall + cooling towers + dense substation/switchyard + pylons fading via distance rolloff.
 > - Intermodal logistics: container hardstands, stacked containers, cranes/gantries, rail spurs, long cargo trains, switching ladders.
 > - Optional: scrapyard/recycling maze, checkpoints, fences, service roads.
 >
@@ -74,13 +74,13 @@
 > - Key light from the LEFT; primary cast shadows fall to the RIGHT.
 > - Wind pushes smoke/steam to the RIGHT: keep smoke/steam subtle, low-contrast, short, drifting right immediately (no heroic plumes).
 >
-> ATMOSPHERE (LATE-RIGHT — STRONG BUT NOT FULL WHITEOUT):
-> - Strong haze with distance collapse. Far background becomes ghosted silhouettes with no crisp skyline edges.
+> AIR / DEPTH (LATE-RIGHT — STRONG BUT NOT FULL WHITEOUT):
+> - Strong distance rolloff with distance collapse: far background becomes ghosted silhouettes with softened edges, but the horizon remains legible (no uniform veil/blanket).
 > - Midground remains readable with soft edges and reduced contrast; avoid full whiteout.
-> - Palette: polluted steel + tan/amber dust haze; desaturated; no clean “golden sunlight” look.
+> - Palette: polluted steel + tan/amber dust tint; desaturated; no clean “golden sunlight” look.
 >
 > LIGHT ACCENTS (ALLOWED, SUBTLE — DAYLIGHT):
-> - Sparse utilitarian industrial lights barely visible through haze (yard work lights, a few dim obstruction beacons).
+> - Sparse utilitarian industrial lights barely visible at distance (yard work lights, a few dim obstruction beacons).
 > - Must be diffused and low intensity; never nightlife sparkle.
 >
 > FORBIDDEN:

@@ -53,9 +53,9 @@
 > - Include at least one utilitarian cargo ship/tanker at correct scale near lower-right (not a hero centerpiece).
 > - Include working port machinery: container cranes, mooring zones, ECH handlers, stacked containers, rail spurs into the port.
 >
-> LIGHTING / ATMOSPHERE (keep it “tasty”, not blurry):
+> LIGHTING / AIR / DEPTH (keep it “tasty”, not blurry):
 > - Key light from LEFT; cast shadows fall to RIGHT (per canon). Wind pushes smoke/plumes to the RIGHT.
-> - Keep visibility high: NO fog veil, NO milky smog blur. (Atmospheric perspective allowed only as subtle distance desaturation, edges remain crisp.)
+> - Keep visibility high: NO atmospheric veil/blanket, NO milky diffusion blur. (Depth allowed only as subtle distance desaturation + contrast rolloff; edges remain crisp and the horizon stays legible.)
 > - Palette trends cool/gray-bluish industrial (no warmth return).
 >
 > STITCH SAFETY:
@@ -66,5 +66,5 @@
 > downtown skyline, CBD, corporate office towers, prestige skyscrapers, iconic spire, glass supertalls, postcard skyline,
 > residential neighborhood, parks, nature dominance,
 > wide-angle, fisheye, tilt-shift, CGI look,
-> fog veil, heavy haze blur, milky whiteout, volumetric smog blanket,
+> atmospheric veil, heavy distance blur, milky whiteout, volumetric diffusion blanket,
 > readable text/logos.
