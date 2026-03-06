@@ -185,6 +185,15 @@ Tiles generated in this step:
 
 This step increases continuity and reduces seam artifacts.
 
+**Optional (secondary seam-lock bridges, after tertiary tiles exist):**
+- Tile 3 seam-lock reference: Tile 2 right crop + transparency + Tile 4 left crop  → `tile2-4-bridge.png`
+- Tile 7 seam-lock reference: Tile 6 right crop + transparency + Tile 8 left crop  → `tile6-8-bridge.png`
+
+These **seam-lock references** are **OPTIONAL** and used only for a seam-lock refinement pass on secondary tiles (Tiles 3 and 7).
+Only apply the **seam-lock reference** after the initial tiles (3 and 7) have been generated and need refinement.
+The transparency zone for the seam-lock reference must adhere to the **fully transparent thirds (Operational Pipeline definition)** and not exceed **10%** of the tile width.
+The seam-lock reference applies solely to **seam continuity** and should **not** be used as the main layout anchor.
+
 
 ### Final Composition & Output
 
@@ -214,9 +223,12 @@ Downstream variants:
 
 ### Current directions:
 
-- Remove unnecessary specs (now we have R1)
-- Add the R1 pass to the spec (with optional header in prompts)
-- Add the R2 passes to the prompts (all except 5)
+- For Mr. Robot:
+  - Generate raw prompt files without `>  ` prefix, so it can be consumed by the generator
+  - Add the placeholders to the spec: `{master}`, `{bridgeComp}`, `{R1-tileN}`, `{tile5}`, …
+- ~~Remove unnecessary specs (now we have R1)~~
+- ~~Add the R1 pass to the spec (with optional header in prompts)~~
+- ~~Add the R2 passes to the prompts (all except 5)~~
 - Check conversation bellow to define next steps
 - Add to concepts:
   - Active calibration layer

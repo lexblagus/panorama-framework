@@ -52,6 +52,7 @@ _↳ Composition preview (before stitching; work in progress)_
   - [Tile 7: Logistics Transition Zone](docs/02_07_tile_07.md)
   - [Tile 8: Industrial](docs/02_08_tile_08.md)
   - [Tile 9: Heavy Industrial Expanse](docs/02_09_tile_09.md)
+  - [Previews](docs/02_10_previews.md)
   - [Operational Pipeline](docs/12_operational_pipeline.md)
   - [Runtime notes and variations](docs/13_runtime_notes_and_variants.md)
 - **Prompts**

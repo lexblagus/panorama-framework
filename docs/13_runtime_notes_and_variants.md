@@ -1,6 +1,5 @@
 # Runtime notes and variations
 
-- [Chat GPT library update](#chat-gpt-library-update)
 - [Running in Google Gemini (NanoBanana)](#running-in-google-gemini-nanobanana)
   - [Conceptual Differences Between ChatGPT Image Model and NanoBanana](#conceptual-differences-between-chatgpt-image-model-and-nanobanana)
   - [Source of Truth When Using NanoBanana](#source-of-truth-when-using-nanobanana)
@@ -15,43 +14,6 @@
   - [Validation Loop When Using NanoBanana](#validation-loop-when-using-nanobanana)
   - [When to Prefer NanoBanana Over ChatGPT Image Model](#when-to-prefer-nanobanana-over-chatgpt-image-model)
   - [Rule of Non-Divergence](#rule-of-non-divergence)
-
-## Chat GPT library update
-
-When changes are made to the specification, you can ask the model to read the raw repository files:
-
-```
-Fetch all files and read in the full contents (verbatim) of each Markdown file from RAW GitHub.
-
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/README.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/01_core_canonical.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_00_tile_system.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_01_tile_01.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_02_tile_02.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_03_tile_03.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_04_tile_04.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_05_tile_05.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_06_tile_06.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_07_tile_07.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_08_tile_08.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/02_09_tile_09.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/12_operational_pipeline.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/docs/13_runtime_notes_and_variants.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/master.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-01.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-02.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-03.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-04.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-05.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-06.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-07.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-08.md
-https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/prompts/tile-09.md
-
-If any RAW URL fails to load, list the missing ones and continue with the rest.
-```
-
-This file absorbs instability without contaminating canon.
 
 ## Running in Google Gemini (NanoBanana)
 

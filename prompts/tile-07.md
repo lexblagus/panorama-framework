@@ -4,20 +4,18 @@
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):
 > - Reference R1 (REQUIRED): Tile 7 composition map — `tile7-r1.png`
 > - Reference A (REQUIRED): Tile 5 ruler image — `tile5ruler.png`
-> - Reference B (OPTIONAL seam anchor): Tile 6 RIGHT EDGE crop — `tile6-right-edge.png`
-> - Reference C (OPTIONAL seam anchor): Tile 8 LEFT EDGE crop — `tile8-left-edge.png`
+> - Reference B (OPTIONAL seam bridge composite): Tile 6 right crop + transparency + Tile 8 left crop — `tile6-8-bridge.png`
 >
 > REFERENCE USE POLICY (STRICT):
 > - R1 is PRIMARY layout authority (horizon height, sky budget, envelope, reading orientation, seam/anchor zones).
 > - Tile 5 ruler controls framing/scale physics ONLY (telephoto compression, vertical pressure, vanishing-height read). Do NOT import Tile 5 content identity.
-> - Seam anchors (B/C) are edge continuity ONLY (edge texture density / silhouette continuity language). Not layout blueprints.
+> - Seam bridge (B), if provided, is edge continuity ONLY (edge texture density / silhouette continuity language / distance rolloff at both seams). Not a layout blueprint; do NOT copy its center.
 
 ## Generator prompt (LOCKED)
 > REFERENCES (ORDERED):
 > - R1 Tile 7 composition map (PRIMARY layout authority).
 > - Tile 5 ruler image (SECONDARY; framing/scale physics only).
-> - Optional: Tile 6 right-edge crop (left seam continuity language only).
-> - Optional: Tile 8 left-edge crop (right seam continuity language only).
+> - Optional: Tile 6–8 bridge composite (SEAM continuity only; never a scene blueprint).
 >
 > Generate: photorealistic aerial panorama tile (Tile 7 of 9 — LOGISTICS TRANSITION + EMBEDDED URBAN AIRPORT). Portrait 1024×1536. Ultra-detailed realism.
 > NON-MIRRORED OUTPUT: do NOT flip horizontally.
