@@ -54,9 +54,10 @@
 > - Include working port machinery: container cranes, mooring zones, ECH handlers, stacked containers, rail spurs into the port.
 >
 > LIGHTING / AIR / DEPTH (keep it “tasty”, not blurry):
+> - No sun disk (sun prohibited).
 > - Key light from LEFT; cast shadows fall to RIGHT (per canon). Wind pushes smoke/plumes to the RIGHT.
 > - Keep visibility high: NO atmospheric veil/blanket, NO milky diffusion blur. (Depth allowed only as subtle distance desaturation + contrast rolloff; edges remain crisp and the horizon stays legible.)
-> - Palette trends cool/gray-bluish industrial (no warmth return).
+> - Palette: cool-neutral desaturated polluted steel + dirty beige/soot-gray particulate; avoid cyan/blue cast drift; no warmth return as a global grade.
 >
 > STITCH SAFETY:
 > - Edges (especially left seam toward Tile 8) must stay repeatable: container grids, roof-fields, pipe repetition, service yards.
@@ -67,4 +68,5 @@
 > residential neighborhood, parks, nature dominance,
 > wide-angle, fisheye, tilt-shift, CGI look,
 > atmospheric veil, heavy distance blur, milky whiteout, volumetric diffusion blanket,
+> visible sun disk,
 > readable text/logos.

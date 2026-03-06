@@ -6,27 +6,28 @@
 
 > UPLOADS / INPUTS:
 > - Upload Reference A (Ruler): the Tile 5 ruler image.
-> - Upload Reference B (Seam Anchor): a crop from Tile 9’s LEFT EDGE showing industry only (exclude all channel/water/ships).
+> - Upload Reference B (Bridge Composite, REQUIRED): Tile 7 RIGHT EDGE crop + transparency + Tile 9 LEFT EDGE crop (industry-only; exclude channel/water/ships).
 >
 > REFERENCE USE POLICY (STRICT):
 > - Transfer ONLY from Reference A: camera/framing physics (horizon/vanishing-height read), rectilinear telephoto compression feel, vertical “pressure”, sky-budget discipline, and midground scale.
 > - Transfer FORBIDDEN from Reference A: any Tile 5 content identity.
-> - Transfer ONLY from Reference B: right-edge seam continuity (industrial silhouette height profile, distance rolloff language, industrial texture density).
-> - Transfer FORBIDDEN from Reference B: ANY water/channel/ship shapes, and any full composition/layout copying.
+> - Transfer ONLY from Reference B: seam continuity language only — LEFT edge continuity with Tile 7 (generic logistics/yard/warehouse repetition; no runway/terminal identity) AND RIGHT edge continuity with Tile 9 (industrial silhouette height profile, distance rolloff language, industrial texture density).
+> - Transfer FORBIDDEN from Reference B: ANY airport/runway/terminal identity, ANY water/channel/ship shapes, and any full composition/layout copying.
 >
 > GENERATOR PROMPT:
 > 
-> Generate Tile 8: Industrial. Photorealistic aerial megacity slice that extends Tile 9’s hard industry leftward without inheriting the channel/ships.
+> Generate Tile 8: Industrial. Photorealistic aerial megacity slice that bridges Tile 7's logistics substrate into Tile 9's hard industry, extending Tile 9 leftward without inheriting the channel/ships.
 >
 > CAMERA LOCK (CRITICAL — PREVENT ZOOM/TILT DRIFT):
-> - Match the ruler + seam anchor: diagonal-oblique aerial look (NOT top-down / not near-nadir).
-> - Do NOT zoom in. Maintain the same apparent altitude/scale as the seam anchor: rail cars / containers must not appear larger than in Tile 9.
+> - Match the ruler + bridge composite: diagonal-oblique aerial look (NOT top-down / not near-nadir).
+> - Do NOT zoom in. Maintain the same apparent altitude/scale as the bridge composite: rail cars / containers must not appear larger than in Tile 9.
 > - Keep the skyline/horizon band consistent; do NOT compress the sky band “too low.”
 > - No vertical recentering to fit tall elements. Cropping/clipping is allowed; lifting the frame is not.
 > - Do NOT add extra sky; if sky feels open, add midground industrial mass + stronger internal distance rolloff without changing framing.
 >
 > COMPOSITION LOCK (STITCH CONTROL):
 > - Reserve the RIGHTMOST 20–25% as generic dense refinery/pipe-rack texture to stitch into Tile 9.
+> - Reserve the LEFTMOST 20–25% as generic repeatable logistics/yard/warehouse substrate to stitch into Tile 7 (no airport/runway/terminal identity).
 > - No hero objects in the rightmost 20–25% (no dominant quarry face, no big cooling towers, no dominant conveyor).
 > - Keep the outer ~8% LEFT and RIGHT edges free of unique hero shapes; edges must be generic repeating texture.
 >
