@@ -2,8 +2,8 @@
 
 ## Header
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):
-> - Reference R1 (REQUIRED): Tile 9 R1 composition map — `132-tile9.png`
-> - Reference A (REQUIRED): Tile 5 ruler image — `008-19-tile5-R1.png`
+> - Reference R1 (REQUIRED): Tile 9 R1 composition map — `tile9-r1.png`
+> - Reference A (REQUIRED): Tile 5 ruler image — `tile5ruler.png`
 > - Reference B (OPTIONAL seam anchor): Tile 8 RIGHT EDGE crop (when available) — `tile8-right-edge.png`
 >
 > REFERENCE USE POLICY (STRICT):
