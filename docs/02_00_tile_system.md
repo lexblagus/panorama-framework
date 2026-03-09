@@ -71,10 +71,12 @@ Instead, framing stability is enforced by **reference conditioning**. When an **
   - avoid a single foreground object filling the bottom
   - add depth via **midground stacking + overlap**, not close foreground enlargement
 
-### Transparency Zone (for seam composites)
-- **Transparency zone** (optional): apply a small transparency zone (5-10%) between adjacent tiles when using a **seam bridge composite**.
-- **Opacity** should be set to **50%** (adjustable as needed), providing a seamless transition without creating a visible blur.
-- **Maximum width** of the transparency zone should not exceed 10% of the tile width.
+### Seam bridge composites (exact thirds)
+Bridge composites (required for tertiary tiles; optional seam-lock for secondary tiles) MUST follow the **Operational Pipeline exact-thirds** construction:
+- Left tile RIGHT crop: **341×1536**
+- Center band: **342×1536 fully transparent (alpha=0)** — no gradient, no feather, no blending
+- Right tile LEFT crop: **341×1536**
+Do NOT use percentage-based “transparency zones” or opacity fades for bridge composites.
 
 ### Horizon-loss handling (Tiles 7–9)
 If the true horizon disappears into haze:

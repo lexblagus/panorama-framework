@@ -191,7 +191,8 @@ This step increases continuity and reduces seam artifacts.
 
 These **seam-lock references** are **OPTIONAL** and used only for a seam-lock refinement pass on secondary tiles (Tiles 3 and 7).
 Only apply the **seam-lock reference** after the initial tiles (3 and 7) have been generated and need refinement.
-The transparency zone for the seam-lock reference must adhere to the **fully transparent thirds (Operational Pipeline definition)** and not exceed **10%** of the tile width.
+The seam-lock bridge MUST use the same **exact-thirds** construction defined above:
+- 341px crop + 342px **fully transparent (alpha=0)** band + 341px crop (for 1024×1536)
 The seam-lock reference applies solely to **seam continuity** and should **not** be used as the main layout anchor.
 
 
