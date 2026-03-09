@@ -1,4 +1,4 @@
-# Tile 7 Prompts (R1-first, airport canonical)
+# Tile 7 Prompts
 
 ## Header
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):

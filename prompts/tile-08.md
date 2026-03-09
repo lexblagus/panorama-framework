@@ -1,91 +1,87 @@
-# Tile 8 prompts
+# Tile 8 Prompts
 
-## ChatGPT provisional/anchored prompt
-
-### READY PROMPT (Single Pass) — Carrara Industrial Ridge (NO CHANNEL)
-
-> UPLOADS / INPUTS:
-> - Upload Reference A (Ruler): the Tile 5 ruler image.
-> - Upload Reference B (Bridge Composite, REQUIRED): Tile 7 RIGHT EDGE crop + transparency + Tile 9 LEFT EDGE crop (industry-only; exclude channel/water/ships).
+## Header
+> REFERENCE IMAGES PROVIDED (ONLY these; no extras):
+> - Reference R1 (REQUIRED): Tile 8 composition map — `tile8-r1.png`
+> - Reference A (REQUIRED): Tile 5 ruler image — `tile5ruler.png`
+> - Reference B (REQUIRED seam bridge composite): Tile 7 right crop + transparency + Tile 9 left crop — `tile7-9-bridge.png`
 >
 > REFERENCE USE POLICY (STRICT):
-> - Transfer ONLY from Reference A: camera/framing physics (horizon/vanishing-height read), rectilinear telephoto compression feel, vertical “pressure”, sky-budget discipline, and midground scale.
-> - Transfer FORBIDDEN from Reference A: any Tile 5 content identity.
-> - Transfer ONLY from Reference B: seam continuity language only — LEFT edge continuity with Tile 7 (generic logistics/yard/warehouse repetition; no runway/terminal identity) AND RIGHT edge continuity with Tile 9 (industrial silhouette height profile, distance rolloff language, industrial texture density).
-> - Transfer FORBIDDEN from Reference B: ANY airport/runway/terminal identity, ANY water/channel/ship shapes, and any full composition/layout copying.
+> - R1 is PRIMARY layout authority: match horizon height, sky budget, skyline/industrial envelope, reading orientation, anchor zone, seam blending strips.
+> - Reference A (Tile 5 ruler) controls framing/scale physics ONLY (telephoto compression feel, vertical pressure, sky discipline, midground scale). DO NOT import Tile 5 identity.
+> - Reference B (bridge) is seam language ONLY:
+>   - LEFT seam continuity with Tile 7: generic logistics/yard/warehouse repetition (ABSOLUTELY NO airport/runway/terminal identity).
+>   - RIGHT seam continuity with Tile 9: industrial silhouette height profile, distance rolloff language, industrial texture density (NO channel/water/ships).
+> - Transfer FORBIDDEN from any reference: copying full composition/layout, landmark duplication, importing airport identity, importing navigable channel/ships.
 >
-> GENERATOR PROMPT:
-> 
-> Generate Tile 8: Industrial. Photorealistic aerial megacity slice that bridges Tile 7's logistics substrate into Tile 9's hard industry, extending Tile 9 leftward without inheriting the channel/ships.
+> LOCK / PRESERVE (HARD):
+> - NON-MIRRORED OUTPUT: do NOT flip horizontally.
+> - CAMERA LOCK: fixed diagonal-oblique aerial view (not top-down), rectilinear optics, telephoto-like compression, narrow FOV.
+> - Do NOT change pitch/FOV/altitude. No vertical recentering; cropping/clipping is allowed.
+
+## Generator prompt (LOCKED)
+> REFERENCES (ORDERED):
+> - R1 Tile 8 composition map (PRIMARY layout authority): match horizon height, sky budget, envelope, anchor zone, seam strips, reading orientation.
+> - Tile 5 ruler image (SECONDARY; framing/scale physics only): match telephoto compression + apparent scale; do NOT import Tile 5 identity.
+> - Tile 7–9 bridge composite (REQUIRED; seam language only): left seam continuity with Tile 7 substrate; right seam continuity with Tile 9 industrial silhouette/rolloff; never a layout blueprint.
 >
-> CAMERA LOCK (CRITICAL — PREVENT ZOOM/TILT DRIFT):
-> - Match the ruler + bridge composite: diagonal-oblique aerial look (NOT top-down / not near-nadir).
-> - Do NOT zoom in. Maintain the same apparent altitude/scale as the bridge composite: rail cars / containers must not appear larger than in Tile 9.
-> - Keep the skyline/horizon band consistent; do NOT compress the sky band “too low.”
-> - No vertical recentering to fit tall elements. Cropping/clipping is allowed; lifting the frame is not.
-> - Do NOT add extra sky; if sky feels open, add midground industrial mass + stronger internal distance rolloff without changing framing.
+> Generate: photorealistic aerial panorama tile (Tile 8 of 9 — INDUSTRIAL / INFRASTRUCTURE, “CARRARA INDUSTRIAL RIDGE”). Portrait 1024×1536. Ultra-detailed realism.
+> NON-MIRRORED OUTPUT: do NOT flip horizontally.
 >
-> COMPOSITION LOCK (STITCH CONTROL):
-> - Reserve the RIGHTMOST 20–25% as generic dense refinery/pipe-rack texture to stitch into Tile 9.
-> - Reserve the LEFTMOST 20–25% as generic repeatable logistics/yard/warehouse substrate to stitch into Tile 7 (no airport/runway/terminal identity).
-> - No hero objects in the rightmost 20–25% (no dominant quarry face, no big cooling towers, no dominant conveyor).
-> - Keep the outer ~8% LEFT and RIGHT edges free of unique hero shapes; edges must be generic repeating texture.
+> CAMERA LOCK:
+> Fixed elevated diagonal-oblique aerial view (not top-down), rectilinear optics, strong telephoto-like depth compression, NARROW field of view.
+> Coherent two-point perspective implied along the horizon; verticals remain straight (no keystone).
+> Do NOT zoom. Do NOT change altitude. Do NOT change pitch. No vertical recentering; cropping/clipping is allowed.
 >
-> KEY FEATURE — CARRARA INDUSTRIAL RIDGE (REQUIRED, ENGINEERED, GEOMETRIC):
-> - Place a tall human-sculpted Carrara-like ridge at CENTER-LEFT / LEFT-MID: bright chalky cut faces, clean geometric terraces/benches, sharp bench lines, retaining walls.
-> - It must read as engineered quarry/cut ridge (NOT natural mountains). NO greenery.
-> - Ridge may anchor a subtle ambience gradient WITHOUT becoming a hard seam:
->   - Left of ridge: slightly clearer air + slightly warmer tint (Tile 7-adjacent), but still polluted/industrial (NOT Tile 5 amber).
->   - Right of ridge: heavier industrial dust/aerosol tint + stronger distance rolloff / distance collapse (Tile 8/9-adjacent).
->   - Transition must be a GRADIENT anchored on the ridge, not a binary split.
-> - Wind blows RIGHT: ridge emits localized low-contrast dust/aerosol drift to the RIGHT (no uniform blanket). This reinforces the right-half distance rolloff.
+> COMPOSITION / STITCH CONTROL (PIXEL-LOCK):
+> - Leftmost 120px and rightmost 120px are SEAM BLENDING STRIPS: low-uniqueness repeatable industrial texture only (pipe racks, low warehouses, rail spurs, haze).
+> - FORBIDDEN inside seam strips: dominant quarry face, big cooling towers, tall stacks, hero cranes, conveyor endpoints, strong diagonals, or any long straight high-contrast line.
+> - No major corridor begins/ends cleanly on edges; lines must curve/occlude internally before reaching seam strips.
 >
-> QUARRY MUST BE INDUSTRIALIZED (NO EMPTY BUFFER) — HARD:
-> - The ridge is NOT isolated. It is colonized by industry on multiple terraces.
-> - There must be NO wide empty road/apron between refinery and ridge. No “dead zone” band.
-> - Terraces/benches are built-out industrial platforms packed with: pipe racks, catwalks, small tank clusters, pump sheds, conveyor galleries, crushers/screening towers, substations/transformers, maintenance gantries.
-> - Industry climbs the terraces: multiple levels of pipe corridors and conveyors run UP and ACROSS the ridge, with bridge-like trusses and retaining-wall penetrations.
-> - Any roads on the ridge are narrow service switchbacks only (secondary), never a broad empty corridor.
+> HARD CONSTRAINTS (NON-NEGOTIABLE):
+> - NO navigable water channel. NO ships/tankers. Avoid prominent open water.
+> - Any liquid only as small industrial retention basins/puddles/slurry ponds (non-compositional).
+> - NO visible sun disk.
+> - Lighting: key light from LEFT; shadows fall to RIGHT.
+> - Wind: pushes smoke/steam/dust to the RIGHT (short, subtle, non-hero plumes; no epic columns).
 >
-> TERRACE POPULATION REQUIREMENT (HARD):
-> - At least 60–80% of visible terrace benches must contain industrial objects (equipment, racks, tanks, sheds, conveyors, cranes, pylons).
-> - Include at least two bench districts:
->   (1) crusher/screening + conveyor feed district
->   (2) tank/utility bench district with transformers/pylons/substation gear
+> AIR / DEPTH (LATE-RIGHT):
+> - Strong distance rolloff and distance collapse: far background becomes ghosted silhouettes, but horizon remains legible.
+> - Midground remains readable; avoid uniform veil/blanket and avoid full whiteout.
+> - Palette: polluted steel + tan/amber industrial dust tint; desaturated; NOT clean golden sunlight.
 >
-> REQUIRED ANCHOR — CONVEYOR (STITCH-SAFE):
-> - Include ONE major covered conveyor in the midground.
-> - It must run mostly LEFT–RIGHT (nearly horizontal) or as a shallow arc, fully internal.
+> TILE 8 IDENTITY:
+> - Ultra-dense petrochemical + intermodal megacomplex; no residential identity; no parks; no “city sparkle.”
+> - Horizontal substrate with 2–3 clustered refinery nodes (chimneys/stacks limited to those nodes only).
+> - Tank farms (cylinders + some spherical LPG tanks), containment berms/spill channels.
+> - Power block: turbine hall + cooling towers + dense substation/switchyard + pylons fading via distance rolloff.
+> - Intermodal logistics: container hardstands/stacks, cranes/gantries, rail spurs, long cargo trains, switching ladders, heavy truck staging.
+>
+> REQUIRED ANCHOR — CARRARA INDUSTRIAL RIDGE (HARD):
+> - Place a tall engineered Carrara-like ridge at CENTER-LEFT / LEFT-MID (but NOT inside the left 120px seam strip).
+> - Must read as human-sculpted quarry/cut ridge: bright chalky cut faces, clean geometric terraces/benches, sharp bench lines, retaining walls.
+> - NO greenery. NOT natural mountains. NOT scenic.
+>
+> RIDGE MUST BE INDUSTRIALIZED (NO EMPTY BUFFER) — HARD:
+> - Ridge is colonized by industry on multiple terraces; NO wide empty apron/road band separating ridge from refinery.
+> - Terraces/benches are built-out industrial platforms packed with pipe racks, catwalks, tank clusters, pump sheds, conveyor galleries,
+>   crushers/screening towers, substations/transformers, maintenance gantries.
+> - Industry climbs terraces: multiple pipe corridors and conveyors run UP and ACROSS the ridge, with bridge-like trusses and retaining-wall penetrations.
+> - Any ridge roads are narrow service switchbacks only (secondary), never a broad empty corridor.
+> - Terrace population requirement: at least 60–80% of visible benches contain industrial objects.
+>
+> REQUIRED ANCHOR — COVERED CONVEYOR (STITCH-SAFE):
+> - Include ONE major covered conveyor in the midground, running mostly LEFT–RIGHT (near horizontal) or a shallow arc.
 > - Endpoints must disappear behind structures; it must NOT run border-to-border and must NOT hit edges as a strong diagonal.
 >
-> INDUSTRIAL CONTENT (DIVERSITY, ANTI-MONOTONY):
-> - Ultra-dense petrochemical mass: pipe-rack megagrids, catwalks, heat exchangers, pump yards, gantries, maintenance scaffolds.
-> - Chimneys/stacks only in 2–3 clustered refinery nodes (not uniform coverage).
-> - Tank farms: large cylinders + some spherical LPG tanks; containment berms and spill channels.
-> - Power block: turbine hall + cooling towers + dense substation/switchyard + pylons fading via distance rolloff.
-> - Intermodal logistics: container hardstands, stacked containers, cranes/gantries, rail spurs, long cargo trains, switching ladders.
-> - Optional: scrapyard/recycling maze, checkpoints, fences, service roads.
->
-> ABSOLUTE CONSTRAINT (NO CHANNEL / NO SHIPS):
-> - No navigable water channel. No cargo ships/tankers. Avoid prominent open water.
-> - Any liquid may only appear as small industrial retention basins/puddles/slurry ponds and must not become a compositional feature.
->
-> LIGHTING / WIND / TIME:
-> - No sun disk.
-> - Key light from the LEFT; primary cast shadows fall to the RIGHT.
-> - Wind pushes smoke/steam to the RIGHT: keep smoke/steam subtle, low-contrast, short, drifting right immediately (no heroic plumes).
->
-> AIR / DEPTH (LATE-RIGHT — STRONG BUT NOT FULL WHITEOUT):
-> - Strong distance rolloff with distance collapse: far background becomes ghosted silhouettes with softened edges, but the horizon remains legible (no uniform veil/blanket).
-> - Midground remains readable with soft edges and reduced contrast; avoid full whiteout.
-> - Palette: polluted steel + tan/amber dust tint; desaturated; no clean “golden sunlight” look.
->
-> LIGHT ACCENTS (ALLOWED, SUBTLE — DAYLIGHT):
-> - Sparse utilitarian industrial lights barely visible at distance (yard work lights, a few dim obstruction beacons).
-> - Must be diffused and low intensity; never nightlife sparkle.
+> GRADIENT / AMBIENCE (SUBTLE, RIDGE-ANCHORED):
+> - Ridge may anchor a gentle ambience gradient: slightly clearer/warmer on far-left (Tile 7-adjacent), heavier dust/rolloff to the right (Tile 8/9-adjacent).
+> - Must be a GRADIENT, not a binary split. No hard seam bands.
 >
 > FORBIDDEN:
-> - Parks/nature dominance, any residential identity, landmarks, decorative signage, “city sparkle”, visible sun, prominent open water/channel, ships.
+> airport/runway/terminal identity • navigable channel • ships/tankers • ports-as-main-subject
+> residential neighborhoods • parks/nature dominance • landmark buildings • decorative signage
+> wide-angle/fisheye/tilt-shift/miniature look • CGI/illustration • readable text/logos
 >
 > OUTPUT:
-> - 1024 × 1536, portrait orientation.
+> 1024×1536 portrait.

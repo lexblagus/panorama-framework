@@ -52,7 +52,7 @@ Each tile section is structured as follows:
 
 This framework treats “zoom / skyline height / sky share drift” as a **framing physics problem**, but **does not use numeric band targets**.
 
-Instead, framing stability is enforced by **reference conditioning**. When an **R1 composition map** exists for a tile, treat it as the primary encoding of framing/sky-budget rules; per-tile specs should reference this section rather than duplicating drift rules.
+Instead, framing stability is enforced by **reference conditioning**. When an **R1 composition map** exists for a tile, treat it as the primary encoding of framing/sky-budget rules. In the current workflow, if an R1 composition map exists for a tile, it is **REQUIRED** for generation. Per-tile specs should reference this section rather than duplicating drift rules.
 
 ### Authority
 - **Tile 5 is the ruler** for perceived framing physics:
