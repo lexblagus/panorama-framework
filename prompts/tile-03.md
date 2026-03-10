@@ -1,4 +1,4 @@
-# Tile 3 Prompts (R1-first)
+# Tile 3 Prompts
 
 ## Header
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):

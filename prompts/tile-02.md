@@ -1,39 +1,66 @@
-# Tile 2: Experimental references
+# Tile 2 Prompts
 
-You are given a reference image that contains:
-- the LEFT edge of the previous tile (Tile 1) and
-- the RIGHT edge of the next tile (Tile 3),
-with a transparent/empty region in the center.
+## Header
 
-TASK
-- Fill ONLY the transparent/empty middle region to create a single continuous, natural, photorealistic shot.
-- The existing left and right regions are LOCKED: do not change, repaint, shift, recolor, blur, sharpen, or warp them in any way.
-- Blend both sides so the entire image reads as one coherent capture taken from the same camera at the same moment.
+> REFERENCE IMAGES PROVIDED (ONLY these; no extras):
+> - **Reference R1 (REQUIRED)**: Tile 2 composition map — `tile2-r1.png`
+> - **Reference A (REQUIRED)**: Tile 5 ruler image — `tile5ruler.png`
+> - **Reference B (REQUIRED seam bridge composite)**: Tile 1 right crop + transparency + Tile 3 left crop — `tile1-3-bridge.png`
+> 
+> REFERENCE USE POLICY (STRICT):
+> - **R1** is PRIMARY layout authority: match horizon height, sky budget, envelope, reading orientation, and seam blending strips.
+> - **Reference A** (Tile 5 ruler) controls framing/scale physics ONLY: telephoto compression feel, apparent scale, vertical pressure, and sky-budget discipline. DO NOT import Tile 5 content identity.
+> - **Reference B** (bridge) is seam language ONLY:
+>   - LEFT edge language must harmonize with **Tile 1** substrate (generic hillside/forestation).
+>   - RIGHT edge language must harmonize with **Tile 3** urban texture (residential streets).
+>   - Transfer FORBIDDEN: any landmark duplication, airport/runway identity, or water shapes.
+> 
+> LOCK / PRESERVE (HARD):
+> - NON-MIRRORED OUTPUT: do NOT flip horizontally.
+> - **CAMERA LOCK**: fixed diagonal-oblique aerial view (not top-down), rectilinear optics, telephoto-like compression, narrow FOV.
+> - Do NOT zoom. Do NOT change altitude. Do NOT change pitch. No vertical recentering; cropping/clipping is allowed.
 
-HARD CONSTRAINTS (do not violate)
-- Preserve all non-transparent pixels exactly.
-- Do not move the horizon / vanishing height. Do not tilt the camera. Do not “add sky” to create mood.
-- Rectilinear optics only (no fisheye, no barrel distortion). Telephoto-like compression / dense stacking.
-- Maintain lighting direction and shadow logic implied by the locked sides. Do not flip key light.
-- Maintain atmospheric ladder implied by the locked sides: clarity and haze must transition smoothly without discontinuities.
-- Do not introduce a new landmark focal point in the center.
+## Generator Prompt (LOCKED)
 
-BRIDGE CONTENT GOALS (Tile 2: Nature → Early Urban Accumulation)
-- The center region must evolve from terrain-led wilderness into early urban accumulation.
-- Introduce proto-infrastructure that “binds” the two sides:
-  - mountain roads transitioning into arterial roads,
-  - bridges/viaducts/tunnels becoming more frequent,
-  - clustered slope settlements gradually becoming denser blocks.
-- Keep the scene pre-skyline: no iconic tower cluster and no formal downtown.
-- Maintain a believable “first thickening” of built fabric: irregular mid-rise clusters, mixed roofs, occasional industrial/service structures beginning to appear, but still subordinate to terrain memory.
-- Ensure any linear features crossing the center (roads/rails/river edges) do so with slight occlusion, overlap, or atmospheric softening—avoid a single perfectly clean uninterrupted line.
-
-STYLE / REALISM
-- Photorealistic, believable materials, subtle wear, no hyper-clean or glossy “AI” surfaces.
-- Natural depth: sharper midground, softened far distance, mild haze depth behavior consistent with both locked sides.
-- No sci-fi/fantasy elements. No night lighting. Golden-hour daylight continuity only.
-
-OUTPUT
-- Fill the center seamlessly and naturally.
-- Leave the locked sides unchanged.
-- Dimensions: 1024 × 1536, portrait orientation.
+> **Generate**: a photorealistic aerial panorama tile (Tile 2 of 9 — Residential Urban Landscape). Portrait 1024×1536. Ultra-detailed realism.
+> 
+> **CAMERA LOCK**:
+> - Fixed elevated diagonal-oblique aerial view (not top-down), rectilinear optics, strong telephoto-like depth compression, NARROW field of view.
+> - Two-point perspective implied along horizon; verticals straight (no keystone).
+> - Do NOT zoom. Do NOT change altitude. Do NOT change pitch. No vertical recentering; cropping/clipping allowed.
+> 
+> **STITCH CONTROL (PIXEL-LOCK, HARD)**:
+> - **Leftmost 120px** and **rightmost 120px** are **seam blending strips**: low-uniqueness repeatable urban texture (small trees, street details, park edges, house walls, low-level shop elements, sidewalks).
+> - **FORBIDDEN** inside seam strips: prominent features (no dominant ridges, water, cranes, large vehicles, trees touching seams).
+> - The **bridge composite** (Tile 1 to Tile 3) provides **edge continuity** from Tile 1 and 3: it **must NOT** copy full composition.
+> 
+> **Horizon and Sky**:
+> - **Horizon** at **top-right**, maintaining a **slightly elevated ridge** on the left that gently slopes downward ↘ across the tile (hill continuation from Tile 1 fading into Tile 3’s flatter residential fabric).
+> - No visible sun disk, with key light coming from the **LEFT** casting subtle shadows to the **RIGHT**.
+> 
+> **URBAN FEATURES**:
+> - **Residential areas**: Mixed architecture with older homes, mid-century styles, and some modern homes.
+> - **Streets**: Interwoven small avenues and layered streets, descending along the **hill** from Tile 1, gradually transitioning into the more urban areas toward Tile 3.
+> - **Small Urban Bridges**: Include a few subtle urban-grade bridges connecting different street levels (spanning small irrigation channels, drainage runs, or short cut-valleys). These are details, not hero infrastructure.
+> - **Tunnels**: Include a few small urban tunnels/underpasses where terrain creates vertical drop-offs between street layers. These should read like neighborhood underpasses, not freeway tunnels.
+> - **Public Transport**: Older-style **buses**, small **markets**, **supermarkets**, **local commerce**.
+> 
+> **GREENERY AND WATER**:
+> - Interspersed **pockets of greenery** (small parks, trees, community gardens).
+> - Occasional **small lakes**, **ponds**, and **small concrete irrigation channels** should be scattered throughout the residential areas.
+> 
+> **TILE 3 TRANSITION**:
+> - Transition from **Tile 2** to **Tile 3**: Begin introducing denser urban features (more residential density, slightly larger buildings, more frequent intersections) as the hill flattens into Tile 3’s urban fabric.
+> 
+> **DETAILED TEXTURE**:
+> - Use **detailed textures** for **buildings**, **vehicles**, **street elements** like **curbside greenery** and **sidewalks**.
+> 
+> **FORBIDDEN MOTIFS**:
+> - **No visible sun disk**.
+> - **No navigable channel/harbor/coastline continuation** and **no ships/tankers**.
+> - Small ponds/lakes/irrigation/drainage are allowed (non-hero).
+> - **No modern industrial elements** like **power plants** or **cranes**.
+> - **No parks/nature dominance**; the focus should remain on **residential infrastructure**.
+> 
+> **OUTPUT**
+>  1024×1536 portrait.

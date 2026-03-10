@@ -1,6 +1,7 @@
 # Tile 9 Prompts
 
 ## Header
+
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):
 > - Reference R1 (REQUIRED): Tile 9 R1 composition map — `tile9-r1.png`
 > - Reference A (REQUIRED): Tile 5 ruler image — `tile5ruler.png`
@@ -15,6 +16,7 @@
 > - Do NOT change pitch/FOV/altitude. No vertical recentering; cropping/clipping is allowed.
 
 ## Generator prompt (LOCKED)
+
 > REFERENCES (ORDERED):
 > - R1 Tile 9 composition map: PRIMARY layout authority (horizon line, sky budget line, skyline envelope slope, reading orientation, seam zones, anchor zone).
 > - Tile 5 ruler image: SECONDARY, framing/scale physics ONLY (telephoto compression, vertical pressure, vanishing-height read). DO NOT import Tile 5 content identity.

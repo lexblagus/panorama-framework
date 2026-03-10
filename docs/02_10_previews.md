@@ -9,19 +9,45 @@
 
 ## Work in progress
 
+### Tile 2 bridging
+
+|1|2|3|
+|:---:|:---:|:---:|
+|![Tile 1 preview](../outputs/generated/009-350-tile1.png)|![Tile 2 preview](../outputs/generated/009-351-tile2.png)|![Tile 3 preview](../outputs/generated/009-352-tile3.png)|
+|009-350-tile1.png|009-351-tile2.png|009-352-tile3.png|
+|![Tile 1 preview](../outputs/generated/009-337-tile1.png)|![Tile 2 preview](../outputs/generated/009-338-tile2.png)|![Tile 3 preview](../outputs/generated/009-339-tile3.png)|
+|009-337-tile1.png|009-338-tile2.png|009-339-tile3.png|
+|![Tile 1 preview](../outputs/generated/009-324-tile1.png)|![Tile 2 preview](../outputs/generated/009-325-tile2.png)|![Tile 3 preview](../outputs/generated/009-326-tile3.png)|
+|009-324-tile1.png|009-325-tile2.png|009-326-tile3.png|
+|![Tile 1 preview](../outputs/generated/009-312-tile1.png)|![Tile 2 preview](../outputs/generated/009-313-tile2.png)|![Tile 3 preview](../outputs/generated/009-314-tile3.png)|
+|009-312-tile1.png|009-313-tile2.png|009-314-tile3.png|
+|![Tile 1 preview](../outputs/generated/009-299-tile1.png)|![Tile 2 preview](../outputs/generated/009-300-tile2.png)|![Tile 3 preview](../outputs/generated/009-301-tile3.png)|
+|009-299-tile1.png|009-300-tile2.png|009-301-tile3.png|
+|![Tile 1 preview](../outputs/generated/009-272-tile1.png)|![Tile 2 preview](../outputs/generated/009-273-tile2.png)|![Tile 3 preview](../outputs/generated/009-274-tile3.png)|
+|009-272-tile1.png|009-273-tile2.png|009-274-tile3.png|
+
+### Tile 8 bridging
+
 |7|8|9|
 |:---:|:---:|:---:|
 |![Tile 7 preview](../outputs/generated/009-263-tile7.png)|![Tile 8 preview](../outputs/generated/009-264-tile8.png)|![Tile 9 preview](../outputs/generated/009-265-tile9.png)|
+|009-263-tile7.png|009-264-tile8.png|009-265-tile9.png|
 |![Tile 7 preview](../outputs/generated/009-250-tile7.png)|![Tile 8 preview](../outputs/generated/009-251-tile8.png)|![Tile 9 preview](../outputs/generated/009-252-tile9.png)|
+|009-250-tile7.png|009-251-tile8.png|009-252-tile9.png|
 |![Tile 7 preview](../outputs/generated/009-237-tile7.png)|![Tile 8 preview](../outputs/generated/009-238-tile8.png)|![Tile 9 preview](../outputs/generated/009-239-tile9.png)|
+|009-237-tile7.png|009-238-tile8.png|009-239-tile9.png|
 |![Tile 7 preview](../outputs/generated/009-222-tile7.png)|![Tile 8 preview](../outputs/generated/009-223-tile8a.png)|![Tile 9 preview](../outputs/generated/009-224-tile9.png)|
+|009-222-tile7.png|009-223-tile8a.png|009-224-tile9.png|
 |![Tile 7 preview](../outputs/generated/009-209-tile7.png)|![Tile 8 preview](../outputs/generated/009-210-tile8.png)|![Tile 9 preview](../outputs/generated/009-211-tile9.png)|
+|009-209-tile7.png|009-210-tile8.png|009-211-tile9.png|
 |![Tile 7 preview](../outputs/generated/009-166-tile7.png)|![Tile 8 preview](../outputs/generated/009-167-tile8.png)|![Tile 9 preview](../outputs/generated/009-168-tile9.png)|
+|009-166-tile7.png|009-167-tile8.png|009-168-tile9.png|
 |![Tile 7 preview](../outputs/generated/009-194-tile7.png)|![Tile 8 preview](../outputs/generated/009-195-tile8.png)|![Tile 9 preview](../outputs/generated/009-196-tile9.png)|
+|009-194-tile7.png|009-195-tile8.png|009-196-tile9.png|
 |![Tile 7 preview](../outputs/generated/009-181-tile7.png)|![Tile 8 preview](../outputs/generated/009-182-tile8.png)|![Tile 9 preview](../outputs/generated/009-183-tile9.png)|
+|009-181-tile7.png|009-182-tile8.png|009-183-tile9.png|
 
-
-
+### Secondary tiles 3 and 7
 
 |1|3|5|7|9|
 |:---:|:---:|:---:|:---:|:---:|

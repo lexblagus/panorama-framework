@@ -43,6 +43,7 @@
 # Temporary prompt (as if it was a primary tile)
 
 ## Header
+
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):
 > - Reference R1 (REQUIRED): Tile 6 composition map (crop from Tiles 6–8 R1) — `tile6-r1.png` (source: `131-tiles6to8.png`)
 > - Reference A (REQUIRED): Tile 5 ruler image — `tile5ruler.png`
@@ -55,6 +56,7 @@
 > - Seam anchors (B/C) are edge continuity ONLY (edge texture density / silhouette continuity language). Not layout blueprints.
 
 ## Generator prompt (COMPILED)
+
 > REFERENCES (ORDERED):
 > - R1 Tile 6 composition map (PRIMARY layout authority).
 > - Tile 5 ruler image (SECONDARY; framing/scale physics only).

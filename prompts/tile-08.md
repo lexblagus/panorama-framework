@@ -1,6 +1,7 @@
-# Tile 8 Prompts (R1-first, Carrara Industrial Ridge — CENTERED)
+# Tile 8 Prompts
 
 ## Header
+
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):
 > - Reference R1 (REQUIRED): Tile 8 composition map — `tile8-r1.png`
 > - Reference A (REQUIRED): Tile 5 ruler image — `tile5ruler.png`
@@ -20,6 +21,7 @@
 > - Do NOT change pitch/FOV/altitude. No vertical recentering; cropping/clipping is allowed.
 
 ## Generator prompt (LOCKED)
+
 > REFERENCES (ORDERED):
 > - R1 Tile 8 composition map (PRIMARY layout authority): horizon height, sky budget, envelope, anchor zone, seam strips, reading orientation.
 > - Tile 5 ruler image (SECONDARY; framing/scale physics only): match telephoto compression + apparent scale; do NOT import Tile 5 identity.
