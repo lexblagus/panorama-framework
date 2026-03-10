@@ -175,12 +175,12 @@ Generated references:
 
 Responsability: **ChatGPT**
 
-Each tertiary tile is generated using its corresponding inter-tile reference image (bridge composite), plus its own R1 map if available.
+Each tertiary tile is generated using its corresponding inter-tile reference image (bridge composite), plus its own R1 map (REQUIRED in the current workflow when provided).
 
 Tiles generated in this step:
-- Tile 2 (using R1 `tile8-r1.png` + `tile1-3-bridge.png`)
-- Tile 4 (using R1 `tile8-r1.png` + `tile3-5-bridge.png`)
-- Tile 6 (using R1 `tile8-r1.png` + `tile5-7-bridge.png`)
+- Tile 2 (using R1 `tile2-r1.png` + `tile1-3-bridge.png`)
+- Tile 4 (using R1 `tile4-r1.png` + `tile3-5-bridge.png`)
+- Tile 6 (using R1 `tile6-r1.png` + `tile5-7-bridge.png`)
 - Tile 8 (using R1 `tile8-r1.png` + `tile7-9-bridge.png`)
 
 This step increases continuity and reduces seam artifacts.

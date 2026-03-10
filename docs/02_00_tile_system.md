@@ -26,7 +26,7 @@ Horizontal mirroring may be used only for **temporary diagnostic composites**, a
 | 6 | tertiary | bridge (required: Tile 5 right crop + transparency + Tile 7 left crop) | Post-Core Vertical | Urban Vertical | Fading warmth | `3757`<br />`4098` |
 | 7 | secondary | (ruler) + (optional Tile 6 right crop + transparency + Tile 8 left crop) | Logistics Transition Zone | Roads / Mid-rise | Desaturated haze | `4099`<br />⅓ `4439`<br />⅔ `4781`<br />`5122` |
 | 8 | tertiary | bridge (required: Tile 7 right crop + transparency + Tile 9 left crop) | Industrial | Infrastructure | Heavy smog | `5123`<br />`5464` |
-| 9 | primary | (ruler and mood) + (optional one-sided using Tile 8 right edge crop) | Heavy Industrial Expanse | Factories / Cargo | Bluish-gray fog | `5465`<br />⅓ `5805`<br />`6488` |
+| 9 | primary | (ruler and mood) | Heavy Industrial Expanse | Factories / Cargo | Bluish-gray fog | `5465`<br />⅓ `5805`<br />`6488` |
 
 ***Levels:***
 - **Master**: main tile based on Central Master Reference Image
@@ -52,7 +52,7 @@ Each tile section is structured as follows:
 
 This framework treats “zoom / skyline height / sky share drift” as a **framing physics problem**, but **does not use numeric band targets**.
 
-Instead, framing stability is enforced by **reference conditioning**. When an **R1 composition map** exists for a tile, treat it as the primary encoding of framing/sky-budget rules. In the current workflow, if an R1 composition map exists for a tile, it is **REQUIRED** for generation. Per-tile specs should reference this section rather than duplicating drift rules.
+Instead, framing stability is enforced by **reference conditioning**. When an **R1 composition map** exists for a tile, treat it as the primary encoding of framing/sky-budget rules. In the current workflow, if an R1 composition map exists for a tile, it is **REQUIRED** for generation; per-tile specs should reference this section rather than duplicating drift rules.
 
 ### Authority
 - **Tile 5 is the ruler** for perceived framing physics:
@@ -64,6 +64,7 @@ Instead, framing stability is enforced by **reference conditioning**. When an **
 ### Rules (must)
 - **No tile may vertically recenter** to “fit” the subject (sun, peaks, towers, smoke).
 - **Cropping/clipping is allowed and preferred** over lifting framing.
+- When a prompt must numerically lock seam blending strips for 1024×1536, use **120px** on each side unless the tile’s R1 specifies otherwise.
 - Fix “too much sky” **by adding mass inside the same framing**:
   - more roof-field / stacked midground slabs / layered infrastructure / terrain bulk
   - haze inside distance volume (not by opening sky)
