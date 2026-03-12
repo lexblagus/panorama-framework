@@ -33,6 +33,12 @@
 > - SKYLINE ENVELOPE: centered hump/crest peaking near the middle and gently falling toward both sides (match the map).
 > - HORIZON LINE: fixed at the map height; do not raise/lower.
 > - READING ORIENTATION: dominant read is bottom → top (central pull toward skyline crest).
+>
+> DRY URBAN CORE (HARD):
+> - Tile 5 must remain dry.
+> - No visible river, coastline, harbor, bay, canal, or distant open-water horizon read.
+> - Do not allow far-background blue bands or reflective planes that read as water.
+> - Any reflective surfaces must read as glass, roofs, paved surfaces, or urban infrastructure — not water.
 > - PRIMARY ANCHOR ZONE: highest-density “core” features live inside the anchor zone box; avoid unique hero shapes inside seam blending strips; do not clip major towers at left/right edges.
 >
 > TILE 5 IDENTITY (PEAK PRESSURE / RULER):
@@ -79,7 +85,7 @@
 > No major corridor exiting cleanly at side edges; no clipped landmark towers at edges; no edge-to-edge bridge/highway spans.
 >
 > NEGATIVE / AVOID:
-> wide-angle • fisheye • barrel distortion • tilt-shift • miniature look • CGI • illustration • sterile uniform tower field • single hero boulevard • single dominant interchange • perfect symmetry • edge-clipped megastructure • heavy industry • industrial decay • rural/nature dominance • readable text/logos
+> wide-angle • fisheye • barrel distortion • tilt-shift • miniature look • CGI • illustration • sterile uniform tower field • single hero boulevard • single dominant interchange • perfect symmetry • edge-clipped megastructure • heavy industry • industrial decay • rural/nature dominance • river/coastline/harbor/canal/open-water read • readable text/logos
 >
 > CALIBRATION KNOBS (edit these first if needed):
 > - If too open: add skyline mass + midground stacking + distance haze (not more sky).

@@ -1,99 +1,65 @@
-# Tile 6: Experimental references
-
-> You are given a reference image that contains:
-> - the LEFT edge of the previous tile (Tile 5) and
-> - the RIGHT edge of the next tile (Tile 7),
-> with a transparent/empty region in the center.
-> 
-> TASK
-> - Fill ONLY the transparent/empty middle region to create a single continuous, natural, photorealistic shot.
-> - The existing left and right regions are LOCKED: do not change, repaint, shift, recolor, blur, sharpen, or warp them in any way.
-> - Blend both sides so the entire image reads as one coherent capture taken from the same camera at the same moment.
-> 
-> HARD CONSTRAINTS (do not violate)
-> - Preserve all non-transparent pixels exactly.
-> - Do not move the horizon / vanishing height. Do not tilt the camera. Do not “add sky” to create mood.
-> - Rectilinear optics only (no fisheye, no barrel distortion). Telephoto-like compression / dense stacking.
-> - Maintain lighting direction and shadow logic implied by the locked sides. Do not flip key light.
-> - Maintain atmospheric ladder implied by the locked sides.
-> - Do not create a new iconic center landmark or a second “core.”
-> 
-> BRIDGE CONTENT GOALS (Tile 6: Post-Core Release → Logistics Threshold)
-> - The center region must feel like **post-core continuity**: still dense and urban, but less iconic than Tile 5.
-> - Begin the “release” from the core’s vertical spine:
->   - towers become less singular and more distributed,
->   - glass and newer construction become more common,
->   - the dominant central axis weakens and becomes fragmented.
-> - Increase midground infrastructure layering:
->   - interchanges, service corridors, rail branches, ring roads,
->   - but avoid a close-up highway foreground that implies a push-in.
-> - Warmth and contrast should begin gently declining relative to Tile 5, while haze slowly increases toward Tile 7.
-> - Ensure cross-center continuity for rail/roads/avenues by extending them through the center with slight occlusion and overlap (no clean uninterrupted ruler-straight seam crossing).
-> 
-> STYLE / REALISM
-> - Photorealistic, mixed-era urban fabric with subtle wear and grime.
-> - Golden-hour daylight, no dusk/night.
-> - No sci-fi/fantasy.
-> 
-> OUTPUT
-> - Fill the center seamlessly and naturally.
-> - Leave the locked sides unchanged.
-> - Dimensions: 1024 × 1536, portrait orientation.
-
-# Temporary prompt (as if it was a primary tile)
+# Tile 6 Prompts
 
 ## Header
-
 > REFERENCE IMAGES PROVIDED (ONLY these; no extras):
-> - Reference R1 (REQUIRED): Tile 6 composition map (crop from Tiles 6–8 R1) — `tile6-r1.png` (source: `131-tiles6to8.png`)
-> - Reference A (REQUIRED): Tile 5 ruler image — `tile5ruler.png`
-> - Reference B (OPTIONAL seam anchor): Tile 5 RIGHT EDGE crop — `tile5-right-edge.png`
-> - Reference C (OPTIONAL seam anchor): Tile 7 LEFT EDGE crop — `tile7-left-edge.png`
->
+> - **Reference R1 (REQUIRED)**: Tile 6 composition map — `tile6-r1.png`
+> - **Reference A (REQUIRED)**: Tile 5 ruler image — `tile5ruler.png`
+> - **Reference B (REQUIRED seam bridge composite)**: Tile 5 right crop + transparency + Tile 7 left crop — `tile5-7-bridge.png`
+> 
 > REFERENCE USE POLICY (STRICT):
-> - R1 is PRIMARY layout authority (horizon height, sky budget, envelope, reading orientation, seam/anchor zones).
-> - Tile 5 ruler controls framing/scale physics ONLY (telephoto compression, vertical pressure, vanishing-height read). Do NOT import Tile 5 content identity.
-> - Seam anchors (B/C) are edge continuity ONLY (edge texture density / silhouette continuity language). Not layout blueprints.
+> - **R1** is PRIMARY layout authority: match horizon height, sky budget, envelope, reading orientation, and seam blending strips.
+> - **Reference A** (Tile 5 ruler) controls framing/scale physics ONLY: telephoto compression feel, apparent scale, vertical pressure, and sky-budget discipline. DO NOT import Tile 5 content identity.
+> - **Reference B** (bridge) is seam language ONLY:
+>   - LEFT edge language must harmonize with **Tile 5** substrate (dense urban city fabric).
+>   - RIGHT edge language must harmonize with **Tile 7** logistics transition (flat, functional, lower-density structures).
+>   - Transfer FORBIDDEN: copying full composition or landmark duplication.
+> 
+> LOCK / PRESERVE (HARD):
+> - NON-MIRRORED OUTPUT: do NOT flip horizontally.
+> - **CAMERA LOCK**: fixed diagonal-oblique aerial view (not top-down), rectilinear optics, telephoto-like compression, narrow FOV.
+> - Do NOT zoom. Do NOT change altitude. Do NOT change pitch. No vertical recentering; cropping/clipping is allowed.
 
-## Generator prompt (COMPILED)
-
-> REFERENCES (ORDERED):
-> - R1 Tile 6 composition map (PRIMARY layout authority).
-> - Tile 5 ruler image (SECONDARY; framing/scale physics only).
-> - Optional: Tile 5 right-edge crop (left seam continuity language only).
-> - Optional: Tile 7 left-edge crop (right seam continuity language only).
+## Generator Prompt (LOCKED)
+> **Generate**: photorealistic aerial panorama tile (Tile 6 of 9 — Urban Core transitioning to Logistics Zone). Portrait 1024×1536. Ultra-detailed realism.
+> 
+> **CAMERA LOCK**:
+> - Fixed elevated diagonal-oblique aerial view (not top-down), rectilinear optics, strong telephoto-like depth compression, NARROW field of view.
+> - Two-point perspective implied along horizon; verticals straight (no keystone).
+> - Do NOT zoom. Do NOT change altitude. Do NOT change pitch. No vertical recentering; cropping/clipping allowed.
+> 
+> **STITCH CONTROL (PIXEL-LOCK, HARD)**:
+> - **Leftmost 120px** and **rightmost 120px** are **seam blending strips**: low-uniqueness repeatable urban texture (sidewalks, building bases, park areas, low-level shop elements, sidewalks).
+> - **FORBIDDEN** inside seam strips: prominent features (no dominant ridges, water, cranes, large vehicles, trees touching seams).
+> - The **bridge composite** (Tile 5 to Tile 7) provides **edge continuity** from Tile 5 and 7: it **must NOT** copy full composition.
+> 
+> **DRY URBAN CORE (HARD)**:
+> - Tile 6 must remain **dry**.
+> - No visible river, coastline, harbor, bay, canal, or distant open-water horizon read.
+> - Do not allow far-background blue bands or reflective water planes that read as coast/river.
+> - Any reflective surfaces must read as glass, roofs, paved surfaces, or transport infrastructure — not water.
 >
-> Generate: photorealistic aerial panorama tile (Tile 6 of 9 — POST-CORE VERTICAL RELEASE). Portrait 1024×1536. Ultra-detailed realism.
-> NON-MIRRORED OUTPUT: do NOT flip horizontally.
->
-> CAMERA LOCK:
-> Fixed elevated diagonal-oblique aerial view (not top-down), rectilinear optics, strong telephoto-like depth compression, narrow FOV.
-> Two-point perspective implied along horizon; verticals straight (no keystone).
-> Do NOT zoom. Do NOT change altitude. Do NOT change pitch. No vertical recentering; cropping/clipping allowed.
->
-> LIGHTING (Tiles 6–9 rule):
-> Key light from LEFT (off-frame); primary cast shadows fall to the RIGHT. No sun disk.
->
-> LAYOUT (match R1 exactly):
-> Match R1: horizon line height, sky budget line, roof-field/skyline envelope, reading orientation, seam blending strips, anchor zone placement.
-> Keep seam blending strips low-uniqueness (repeatable roof-fields/roads). No hero objects touching side edges.
->
-> TILE 6 IDENTITY (Post-Core Vertical):
-> Still dense and tall, but LESS iconic than Tile 5. Towers taper down and distribute; more glass and newer construction appears.
-> Urban intensity without an “icon.” No unique skyline markers.
->
-> INFRASTRUCTURE LAYERING (complex but not push-in):
-> Layer roads, ramps, partial interchanges, service corridors, bridges, rail crossings, overpasses; occasional tunnel mouths.
-> Optional: one small aerial/elevated transit station hint integrated into blocks (non-landmark).
-> Avoid a close-up foreground highway slab dominating the bottom third (no push-in read).
->
-> CIRCULATION CHARACTER:
-> Busy, braided corridors embedded into blocks (no single clean hero avenue). Fragment long corridors with occlusions/cross-cuts.
-> “Strong axial flow” may be suggested, but must NOT become one uninterrupted boulevard.
->
-> COLOR / GRADIENT POSITION:
-> Begin the post-core cooling: warmth and contrast gently decline relative to Tile 5; do not re-warm the scene.
->
-> FORBIDDEN:
-> iconic/landmark skyline markers • postcard silhouettes • a second “core” • nature dominance • heavy industry dominance
-> wide-angle/fisheye/tilt-shift • CGI/illustration • readable text/logos
+> **Urban Features**:
+> - **Buildings**: Keep very tall skyscrapers on the LEFT to pair with Tile 5, then gradually step down across the tile into dense mid-rise blocks, commercial slabs, apartment towers, and transport/civic structures toward the RIGHT.
+> - **Major Shopping Mall**: Place a major shopping mall as a central landmark. It should feel monumental and architecturally distinguished: gothic/cathedral-like arches, stonework, vaulted interiors, glass roofs, grand entrances. Avoid a boxy mall silhouette.
+> - **Train/Subway Terminal**: Include a large passenger rail/subway terminal in the center-right: grand arches, platforms, canopies, concourses, and station approaches integrated into dense urban fabric.
+> - **Public Transport**: Older-style buses, local shops, station frontage, retail podiums.
+> - **Optional placemark accents**: a civic plaza, cultural building, luxury hotel/apartment tower may appear occasionally, but only as secondary elements and never overcrowding the frame.
+> 
+> **Urban Texture / Greenery**:
+> - Sparse greenery is allowed only as small urban pockets: trees, plaza planting, medians, station forecourts, rooftop gardens.
+> - Do NOT introduce lakes, ponds, canals, rivers, coastline, or open-water reads.
+> 
+> **DETAILED TEXTURE**:
+> - Use **detailed textures** for **buildings**, **vehicles**, **street elements** like **curbside greenery** and **sidewalks**.
+> 
+> **TILE 7 TRANSITION**:
+> - **Transition** from **Tile 6** to **Tile 7**: Begin introducing **lower-density, functional architecture** of the logistics zone (airport and warehouses).
+> 
+> **FORBIDDEN MOTIFS**:
+> - **No visible sun disk**.
+> - **No river/coastline/harbor/bay/canal/open-water horizon read** and **no ships/tankers**.
+> - **No modern industrial elements** like **power plants** or **cranes**.
+> - **No parks/nature dominance**; the focus should remain on **dense urban and transport infrastructure**.
+> 
+> ## OUTPUT:
+> 1024×1536 portrait.

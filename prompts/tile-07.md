@@ -46,6 +46,12 @@
 > LAYOUT LOCK (match R1 exactly):
 > Match R1 horizon height, sky budget, envelope, reading orientation, anchor zone, seam blending strips.
 >
+> DRY LOGISTICS TRANSITION (HARD):
+> - Tile 7 must remain dry.
+> - No visible river, coastline, harbor, bay, canal, or distant open-water horizon read.
+> - Do not allow far-background blue bands or reflective planes that read as water.
+> - Any reflective surfaces must read as roofs, glass, paved surfaces, airport infrastructure, or industrial slabs — not water.
+>
 > SEAM STRIP LOCK (ABSOLUTE):
 > Leftmost 120px and rightmost 120px are SEAM BLENDING STRIPS: low-uniqueness repeatable texture ONLY (midrise roofs, repeating blocks, haze).
 > FORBIDDEN inside seam strips: runway edges, deck edges, terminal edges, taxiway paint/lines, aircraft, jet bridges, cranes, overpasses/bridges/viaducts, rail lines, or any long straight high-contrast line.
@@ -112,4 +118,4 @@
 > triptych/borders/seams • readable airline names/logos/text
 > wide-angle/fisheye/tilt-shift • CGI/illustration • suburbia/parks
 > full ports/refineries/container megayards as the main subject
-> iconic centered CBD crest • spires/supertall clusters • “Tile 5 skyline” look-alikes
+> iconic centered CBD crest • spires/supertall clusters • “Tile 5 skyline” look-alikes • river/coastline/harbor/canal/open-water read
