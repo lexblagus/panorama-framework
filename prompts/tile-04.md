@@ -39,6 +39,16 @@
 > - RIGHT seam strip should feel compatible with Tile 5: stronger density, tighter blocks, early tower rhythm, drier and more compressed urban texture.
 > - FORBIDDEN inside seam strips: hero facades, dominant water towers, stadium bowls, giant pipeline crossings ending at the edge, isolated landmark towers, strong diagonals, open-water reads.
 >
+> SKYLINE ENVELOPE / HORIZON DISCIPLINE (HARD):
+> - Tile 4 must NOT form a centered skyline crest, mini-CBD hump, or near-symmetric inverted-V background.
+> - Background and far-midground built mass must rise progressively from LEFT to RIGHT.
+> - Highest skyline pressure belongs in the RIGHT third, feeding Tile 5.
+> - The center may densify, but it must not become the dominant skyline apex.
+> - Do NOT solve this tile as “small Tile 5.”
+> - Keep the horizon broadly stable relative to neighboring tiles; the transition should be solved through skyline envelope and massing, not through a dramatic horizon shift.
+> - IMPORTANT: do not create a broad arching skyline band across the tile; the read must be ramp-like, with pressure accumulating toward the right.
+> - If the skyline starts to crown in the center, flatten the center and push the strongest far-background massing farther right.
+>
 > DRY URBAN BAND (HARD):
 > - Tile 4 must remain completely dry.
 > - No visible river, coastline, harbor, bay, canal, lake, or open-water read.
@@ -68,12 +78,18 @@
 > - CENTER: consolidated civic/transit/utility density with strong urban layering.
 > - RIGHT side: significantly taller and more compressed, with early tower field pressure feeding into Tile 5.
 > - Tile 4 must not visually “drop” before Tile 5.
+> - Do NOT let the center become a surrogate Tile 5; the strongest background massing belongs on the right side.
+> - The right side should feel like a pre-core climb, not like a complete skyline crest inside Tile 4.
 >
 > LARGE URBAN WATER PIPELINES (SIGNATURE MOTIF):
 > - Include multiple large exposed utility-water pipelines distributed through the district.
 > - These are major urban water mains, not domestic pipes and not refinery pipes.
 > - They must be large enough to read clearly at aerial scale, but never gigantic or absurd.
 > - Think real large metropolitan utility infrastructure: thick conduits, support frames, crossings above streets, concrete service trenches, risers attached to retaining walls or block edges.
+> - IMPORTANT: do NOT make one single giant serpent-pipe dominate the whole frame.
+> - Prefer 2–4 legible pipeline episodes across different blocks / depths.
+> - Some pipe segments may disappear underground, pass behind buildings, or re-emerge later.
+> - The pipes may feel strange and memorable, but must still read as plausible urban water infrastructure.
 > - Pipelines may:
 >   - cross above roads on supports
 >   - emerge from underground and re-enter the ground
@@ -183,6 +199,7 @@
 > - Avoid one single giant boulevard dominating the tile.
 > - Movement must feel braided and distributed.
 > - Infrastructure should be interlaced with blocks rather than isolated.
+> - No privileged straight boulevard should visually point at a centered skyline crest.
 >
 > HORIZON / SKY:
 > - Horizon remains dry and urban.
@@ -201,6 +218,7 @@
 > rural / suburban feel
 > single iconic landmark dominating the tile
 > overly sterile office-district uniformity
+> centered skyline crest / mini-Tile-5 behavior
 >
 > OUTPUT:
 > 1024×1536 portrait.

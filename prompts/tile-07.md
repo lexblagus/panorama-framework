@@ -36,11 +36,11 @@
 > Match Tile 5 ruler’s apparent pixel scale for buildings/vehicles.
 > If buildings/vehicles read larger than Tile 5, you are zoomed in — pull back until scale matches.
 >
-> VISIBILITY (anti-fog):
+> VISIBILITY (ANTI-FOG):
 > High visibility: NO fog veil, NO milky smog blur, NO volumetric whiteout.
 > Distance perspective allowed only as subtle desaturation/contrast rolloff; edges remain crisp.
 >
-> LIGHTING (Tiles 6–9):
+> LIGHTING:
 > Key light from LEFT (off-frame); shadows fall to RIGHT. No visible sun disk.
 >
 > LAYOUT LOCK (match R1 exactly):
@@ -52,17 +52,17 @@
 > - Do not allow far-background blue bands or reflective planes that read as water.
 > - Any reflective surfaces must read as roofs, glass, paved surfaces, airport infrastructure, or industrial slabs — not water.
 >
-> SEAM STRIP LOCK (ABSOLUTE):
-> Leftmost 120px and rightmost 120px are SEAM BLENDING STRIPS: low-uniqueness repeatable texture ONLY (midrise roofs, repeating blocks, haze).
-> FORBIDDEN inside seam strips: runway edges, deck edges, terminal edges, taxiway paint/lines, aircraft, jet bridges, cranes, overpasses/bridges/viaducts, rail lines, or any long straight high-contrast line.
-> Airport deck/runway bounding box must stay inside x = 160..864 (never near side edges).
+> STITCH CONTROL (PIXEL-LOCK, HARD):
+> - Leftmost 120px and rightmost 120px are SEAM BLENDING STRIPS: low-uniqueness repeatable texture ONLY (midrise roofs, repeating blocks, haze).
+> - FORBIDDEN inside seam strips: runway edges, deck edges, terminal edges, taxiway paint/lines, aircraft, jet bridges, cranes, overpasses/bridges/viaducts, rail lines, or any long straight high-contrast line.
+> - Airport deck/runway bounding box must stay inside x = 160..864 (never near side edges).
 >
 > TILE 7 IDENTITY:
 > Late-stage urban fabric transitioning toward logistics/service dominance.
 > High density via large footprints + layered infrastructure; low- to mid-rise mass; older/heavier service city.
 > Not suburbia. Not full port/refinery dominance.
 >
-> ANTI–TILE 5 BLEED (HARD):
+> ANTI-TILE 5 BLEED (HARD):
 > The far background must NOT contain an iconic CBD cluster or recognizable “core skyline crest.”
 > BAN: tall clustered supertalls, art-deco spires, Manhattan-like hero skyline, any centered skyline hump/crest.
 > REPLACE WITH: flattened distant urban haze + logistics sprawl + low industrial silhouettes + distant low ridgelines; background is non-hero, low-verticality, low-contrast.
@@ -71,39 +71,39 @@
 > DIRECTIONAL ENERGY:
 > Dominant energy bottom-left → top-right via mass orientation + layered circulation (not cinematic tilt).
 >
-> INFRASTRUCTURE LAYERING (stacked, not push-in):
+> INFRASTRUCTURE LAYERING (STACKED, NOT PUSH-IN):
 > Layer roads/ramps/partial interchanges, surface streets + flyovers, short overpasses; occasional tunnel mouths/underpasses.
 > Warehouses + service slabs + embedded utilities (pipelines, water backbone, service corridors).
 > Avoid a single near-foreground interchange filling the bottom third.
 > Break any long corridor before it reaches the seam strips (occlusions, block interruptions, stepped segments).
 >
-> VEHICLES (Tile 7 signature; diversity > volume):
+> VEHICLES:
 > Follow Core Canonical Vehicles (Tiles 7–9 heavy logistics mix). Emphasize variety over volume.
 > Include some muted orange/brown tarp-covered cargo trucks as diversity accents, plus tankers, semis, rigid multi-axle trucks, occasional road-train multi-trailer trucks. Cars/buses remain minor scale cues.
 >
-> AIRPORT (canonical; embedded, non-hero; stitch-safe; DECK required):
+> AIRPORT (CANONICAL; EMBEDDED, NON-HERO; STITCH-SAFE; DECK REQUIRED):
 > Create a FAR-MIDGROUND urban airport tarmac DECK embedded into dense city fabric (Congonhas/LAX-under-runway vibe).
 > HARD REQUIREMENTS:
 > 1) LAYERED DECK (must be elevated):
->    - runway/tarmac is a deck/viaduct on columns/structure (NOT ground-level).
->    - underside beams/columns visible; deck shadow falls onto roads/city beneath.
+> - runway/tarmac is a deck/viaduct on columns/structure (NOT ground-level).
+> - underside beams/columns visible; deck shadow falls onto roads/city beneath.
 > 2) VANISHING-POINT BLEND:
->    - tarmac is a trapezoid whose long edges converge to the SAME global vanishing point as roads/roof-fields.
->    - no horizon-parallel “flat bar” runway.
+> - tarmac is a trapezoid whose long edges converge to the SAME global vanishing point as roads/roof-fields.
+> - no horizon-parallel “flat bar” runway.
 > 3) UNDER-TARMAC ROAD NETWORK:
->    - >=2–3 visible underpasses/tunnel mouths where avenues pass UNDER the deck and re-emerge.
+> - >=2–3 visible underpasses/tunnel mouths where avenues pass UNDER the deck and re-emerge.
 > 4) SEAM SAFETY (REPEAT / ENFORCE):
->    - deck/runway stays well inside x = 160..864 and never enters the 120px seam strips.
->    - no runway/deck edges, markings, or taxiway lines trending into side seams.
+> - deck/runway stays well inside x = 160..864 and never enters the 120px seam strips.
+> - no runway/deck edges, markings, or taxiway lines trending into side seams.
 > 5) BREAK LONG STRAIGHT LINES BEFORE SEAMS:
->    - if a deck/runway edge trends toward a side, it must terminate/occlude/step down into buildings well before the seam strip.
->    - no continuous deck/runway edge line may run toward or parallel the frame edges.
+> - if a deck/runway edge trends toward a side, it must terminate/occlude/step down into buildings well before the seam strip.
+> - no continuous deck/runway edge line may run toward or parallel the frame edges.
 > 6) ANTI-ZOOM / NO HERO LEGIBILITY:
->    - do NOT zoom in to make airport readable.
->    - runway markings/gates/aircraft details should be barely readable at this distance.
->    - if the airport becomes crisp/hero, pull back and reduce its dominance.
+> - do NOT zoom in to make airport readable.
+> - runway markings/gates/aircraft details should be barely readable at this distance.
+> - if the airport becomes crisp/hero, pull back and reduce its dominance.
 >
-> AIRPORT LIFE + AIRCRAFT RANDOMIZATION (no repetition):
+> AIRPORT LIFE / AIRCRAFT RANDOMIZATION:
 > Add realistic airport activity at correct scale:
 > - 3–7 aircraft total, mixed positions (some parked at gates, one taxiing/holding).
 > - jet bridges visible for at least 1–3 parked aircraft.

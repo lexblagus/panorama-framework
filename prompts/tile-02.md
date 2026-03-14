@@ -44,6 +44,14 @@
 > - **Small Urban Bridges**: Include a few subtle urban-grade bridges connecting different street levels (spanning small irrigation channels, drainage runs, or short cut-valleys). These are details, not hero infrastructure.
 > - **Tunnels**: Include a few small urban tunnels/underpasses where terrain creates vertical drop-offs between street layers. These should read like neighborhood underpasses, not freeway tunnels.
 > - **Public Transport**: Older-style **buses**, small **markets**, **supermarkets**, **local commerce**.
+>
+> SUBTLE ARCHITECTURAL PLURALITY:
+> - Include a few subtle East Asian residential traces as part of the normal mixed urban fabric.
+> - Allowed: a small number of Chinese- or Japanese-influenced houses, tiled roof silhouettes, compact walled homes, courtyard-like compounds, or narrow shop-house rhythms.
+> - These must remain integrated and secondary, never the main subject.
+> - They should read as ordinary neighborhood variation inside a megacity, not as a themed district.
+> - Do NOT create a hero temple, pagoda, shrine, torii, oversized ceremonial gate, lantern street, or overt tourism imagery.
+> - Do NOT turn Tile 2 into a cultural-quarter tile.
 > 
 > **GREENERY AND WATER**:
 > - Interspersed **pockets of greenery** (small parks, trees, community gardens).

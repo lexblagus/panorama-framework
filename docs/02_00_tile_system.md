@@ -18,7 +18,7 @@ Horizontal mirroring may be used only for **temporary diagnostic composites**, a
 
 | # | Level | References | Title | Theme | Atmosphere | X axys pixels
 |---:|---|---|---|---|---|--:|
-| 1 | primary | (ruler) + (optional one-sided using Tile 2 left edge crop) | Nature as Dominant Chaos | Terrain-dominant natural systems | Clean daylight | `0`<br />⅔ `683`<br />`1024` |
+| 1 | primary | (ruler only) | Nature as Dominant Chaos | Terrain-dominant natural systems | Clean daylight | `0`<br />⅔ `683`<br />`1024` |
 | 2 | tertiary | bridge (required: Tile 1 right crop + transparency + Tile 3 left crop) | Dense Residential | Housing / Parks / Lakes | Slight warmth | `1025`<br />`1366` |
 | 3 | secondary | (ruler) + (optional Tile 2 right crop + transparency + Tile 4 left crop) | Transition Zone | Mixed typologies | Warmth + early haze | `1367`<br />⅓ `1707`<br />⅔ `2049`<br />`2390` |
 | 4 | tertiary | bridge (required: Tile 3 right crop + transparency + Tile 5 left crop) | Pre-Core Vertical | Urban Vertical | Amber build-up | `2391`<br />`2732` |
