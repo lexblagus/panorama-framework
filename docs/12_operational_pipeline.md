@@ -86,7 +86,7 @@ The maturity of the prompts are: _provisional → anchored → locked_
 
 ### Generate the ***Central Master Reference Image***
 
-Responsability: **ChatGPT**
+Responsibility: **ChatGPT**
 
 - Generate one **landscape** image based on:
   - **Global Constraints** section
@@ -98,7 +98,7 @@ Responsability: **ChatGPT**
 
 ### Generate Pivot Tile Images
 
-Responsability: **ChatGPT**
+Responsibility: **ChatGPT**
 
 Pivot tiles are generated first to establish compositional anchors and directional bias.
 
@@ -122,7 +122,7 @@ Prompts may be refined iteratively at this stage.
 
 ### Generate Secondary Tile Images
 
-Responsability: **ChatGPT**
+Responsibility: **ChatGPT**
 
 Secondary tiles establish intermediate transitions between the pivot tiles.
 
@@ -143,7 +143,7 @@ Prompts may be refined iteratively at this stage.
 
 ### Manual Assembly in Affinity
 
-Responsability: **User**
+Responsibility: **User**
 
 - Create a **large horizontal canvas**
 - Place tiles **1, 3, 5, 7, and 9** side-by-side
@@ -155,7 +155,7 @@ Responsability: **User**
 
 ### Generate Inter-Tile Reference Images
 
-Responsability: **User**
+Responsibility: **User**
 
 Inter-tile reference images are used to guide continuity for intermediate tiles.
 
@@ -173,7 +173,7 @@ Generated references:
 
 ### Generate Tertiary Tile Images
 
-Responsability: **ChatGPT**
+Responsibility: **ChatGPT**
 
 Each tertiary tile is generated using its corresponding inter-tile reference image (bridge composite), plus its own R1 map (REQUIRED in the current workflow when provided).
 
@@ -198,9 +198,9 @@ The seam-lock reference applies solely to **seam continuity** and should **not**
 
 ### Final Composition & Output
 
-Responsability: **User**
+Responsibility: **User**
 
-- Manual labor of:
+- Manual work:
   - Masking
   - Blending
   - Stitching
@@ -218,8 +218,9 @@ Downstream variants:
 ## Activities
 
 - Add to concepts: ***Active calibration layer***
-- TODO: Add the magic trick, stating that a chat gets wasted after too many iteractions; after a prompt lock try in a new chat.
-- Generate NanoBanana specs and prompts?
+- After a prompt is provisionally locked, test it in a fresh chat/session to reduce long-thread drift.
+- If results degrade after many iterations, restart from the locked prompt and current references instead of stacking more conversational context.
+- Optional future work: generate NanoBanana-specific specs and prompts.
 
 ---
 

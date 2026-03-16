@@ -44,7 +44,7 @@
 > - Background and far-midground built mass must rise progressively from LEFT to RIGHT.
 > - Highest skyline pressure belongs in the RIGHT third, feeding Tile 5.
 > - The center may densify, but it must not become the dominant skyline apex.
-> - Do NOT solve this tile as “small Tile 5.”
+> - Do NOT let this tile form an independent core-like crest.
 > - Keep the horizon broadly stable relative to neighboring tiles; the transition should be solved through skyline envelope and massing, not through a dramatic horizon shift.
 > - IMPORTANT: do not form a broad crowned silhouette across the tile. Tile 4 must feel like a ramp into Tile 5, not a crown beside Tile 5.
 > - If the skyline starts to arch in the center, flatten the center and push the strongest far-background tower pressure farther right.
@@ -70,7 +70,7 @@
 > - It is not a logistics tile.
 > - It is not an industrial tile.
 > - It is not a park tile.
-> - Its identity comes from DISTRIBUTED SYSTEMS and REPEATED URBAN MOTIFS, not from one single giant hero object.
+> - Its identity comes from DISTRIBUTED SYSTEMS and REPEATED URBAN MOTIFS, not from a single dominant landmark object.
 >
 > HEIGHT PROGRESSION (HARD):
 > - Preserve clear left-to-right build-up toward Tile 5.
@@ -86,7 +86,7 @@
 > - These are major urban water mains, not domestic pipes and not refinery pipes.
 > - They must be large enough to read clearly at aerial scale, but never gigantic or absurd.
 > - Think real large metropolitan utility infrastructure: thick conduits, support frames, crossings above streets, concrete service trenches, risers attached to retaining walls or block edges.
-> - IMPORTANT: do NOT make one single giant serpent-pipe dominate the whole frame.
+> - IMPORTANT: do NOT let one continuous oversized pipeline dominate the whole frame.
 > - Prefer 2–4 legible pipeline episodes across different blocks / depths.
 > - Some pipe segments may disappear underground, pass behind buildings, or re-emerge later.
 > - The pipes may feel strange and memorable, but must still read as plausible urban water infrastructure.

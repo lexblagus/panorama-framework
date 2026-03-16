@@ -56,7 +56,7 @@
 > Avoid symmetric V-shaped valley/canyon; no centered river-valley “V”.
 > IMPORTANT: right-side dominance does NOT mean a giant mountain filling the upper-right sky.
 >
-> ROAD STACK (intricated; blended into terrain, not highway porn):
+> ROAD STACK (layered roadway system integrated into terrain):
 > Show 2–3 distinct roadway traces stacked across the coastal hillside:
 > - lower coastline road carved into rock (tunnels + retaining walls + short viaducts)
 > - mid-slope contour road with switchbacks, partially occluded by trees/rock
@@ -65,7 +65,7 @@
 > Roads and settlements should help articulate a receding stepped hillside, not force a giant upper-right mountain shoulder.
 > Roads must be partially occluded; no single roadway occupies the bottom third.
 >
-> TUNNELS (make it real):
+> TUNNELS (physical realism):
 > 2–4 tunnel mouths visible, staggered at different heights; include cut-and-cover segments and rockfall netting/retaining.
 >
 > PASSENGER RAIL (occasional, subordinate):
@@ -74,8 +74,8 @@
 > DAM (occasional, integrated):
 > Optional small cliff-integrated dam/reservoir step OR spillway structure embedded into rock (reads as water control, not a big valley dam).
 >
-> FUNICULAR RAILWAY / AERIAL CABLE CAR (one only):
-> Optional hillside funicular track OR teleférico cable car line crossing one slope pocket; realistic scale; subordinate detail.
+> FUNICULAR RAILWAY / AERIAL CABLE CAR (optional single cue):
+> Optional hillside funicular track OR small aerial cable-car line crossing one slope pocket; realistic scale; subordinate detail.
 >
 > SETTLEMENTS (more, varied, interconnected):
 > Increase hillside settlement pockets (layered midground + background): mix terraced village clusters + hillside houses + a few large mansions/villas.

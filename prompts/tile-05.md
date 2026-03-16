@@ -59,7 +59,7 @@
 > NO single uninterrupted straight boulevard to the horizon. NO single dominant interchange. NO giant freeway ribbon.
 > Break any long corridor with occlusions, cross-cuts, short overpasses, block interruptions, and lateral feeders.
 > Center band must read as busy texture, not a privileged high-contrast spine.
-> The upward reading orientation is perceptual only; do NOT literalize it as one singular centerline corridor.
+> The upward reading orientation is perceptual only; do not literalize it into one singular central boulevard or one narrow illuminated centerline.
 >
 > DEPTH / LAYERING (keep push-in out):
 > Foreground: present but minor — rooftops, street hints, small vehicles; no huge near-field roadway filling the bottom.

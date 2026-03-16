@@ -51,7 +51,7 @@
 > - Optional placemark accents: a civic plaza, cultural building, luxury hotel/apartment tower may appear occasionally, but only as secondary elements and never overcrowding the frame.
 > - Skyline behavior: strongest background tower pressure belongs on the LEFT and must progressively relax toward the RIGHT.
 > - Do NOT rebuild a centered or center-right skyline hump inside Tile 6.
-> - Tile 6 must read as release from Tile 5, not as a second core.
+> - Tile 6 must read as release from Tile 5, not as a secondary core-like crest.
 >
 > URBAN TEXTURE / GREENERY:
 > - Sparse greenery is allowed only as small urban pockets: trees, plaza planting, medians, station forecourts, rooftop gardens.

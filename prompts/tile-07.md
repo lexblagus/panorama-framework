@@ -82,7 +82,7 @@
 > Include some muted orange/brown tarp-covered cargo trucks as diversity accents, plus tankers, semis, rigid multi-axle trucks, occasional road-train multi-trailer trucks. Cars/buses remain minor scale cues.
 >
 > AIRPORT (CANONICAL; EMBEDDED, NON-HERO; STITCH-SAFE; DECK REQUIRED):
-> Create a FAR-MIDGROUND urban airport tarmac DECK embedded into dense city fabric (Congonhas/LAX-under-runway vibe).
+> Create a FAR-MIDGROUND urban airport tarmac DECK embedded into dense city fabric, with active roads passing beneath the elevated runway structure.
 > HARD REQUIREMENTS:
 > 1) LAYERED DECK (must be elevated):
 > - runway/tarmac is a deck/viaduct on columns/structure (NOT ground-level).
