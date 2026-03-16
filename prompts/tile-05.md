@@ -50,8 +50,8 @@
 > TILE 5 IDENTITY (PEAK PRESSURE / RULER):
 > Maximum vertical pressure for the whole panorama: dense skyline crest near the upper frame boundary, telephoto-compressed stack, amber peak + maximum atmospheric diffusion.
 > Avoid postcard symmetry: prefer several comparable peaks (no single hero spire).
-> Build central pressure as a thick vertical field, not as one narrow axial spike.
-> Do NOT over-separate left and right shoulders into a theatrical arch; keep the center dominant but broadly packed.
+> Build central pressure as a thick vertical field, not as one narrow illuminated slot or a single privileged boulevard.
+> Do NOT over-separate left and right shoulders into a theatrical arch. Keep the center dominant, but broadly packed and horizontally spread.
 >
 > CIRCULATION (INTRICATE + EMBEDDED, NON-HERO):
 > Multiple intertwined avenues + service spines with frequent merges / splits, partially occluded by blocks.
@@ -59,7 +59,7 @@
 > NO single uninterrupted straight boulevard to the horizon. NO single dominant interchange. NO giant freeway ribbon.
 > Break any long corridor with occlusions, cross-cuts, short overpasses, block interruptions, and lateral feeders.
 > Center band must read as busy texture, not a privileged high-contrast spine.
-> The upward reading orientation is perceptual only; do not literalize it into one singular central boulevard or one thin illuminated slot.
+> The upward reading orientation is perceptual only; do NOT literalize it as one singular centerline corridor.
 >
 > DEPTH / LAYERING (keep push-in out):
 > Foreground: present but minor — rooftops, street hints, small vehicles; no huge near-field roadway filling the bottom.

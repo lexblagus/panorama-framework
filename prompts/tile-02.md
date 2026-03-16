@@ -33,6 +33,9 @@
 > - **Leftmost 120px** and **rightmost 120px** are **seam blending strips**: low-uniqueness repeatable urban texture (small trees, street details, park edges, house walls, low-level shop elements, sidewalks).
 > - **FORBIDDEN** inside seam strips: prominent features (no dominant ridges, water, cranes, large vehicles, trees touching seams).
 > - The **bridge composite** (Tile 1 to Tile 3) provides **edge continuity** from Tile 1 and 3: it **must NOT** copy full composition.
+> - EXTRA LEFT-SEAM FAIL-SAFE: do NOT let a road, bridge, tunnel mouth, canal edge, or other strong linear element touch or point directly into the left frame edge.
+> - The left seam must read as quiet hillside-residential texture compatible with Tile 1: vegetation, small houses, minor walls, minor street fragments only.
+> - Any stronger road logic must bend, fragment, occlude, or weaken before reaching the left seam strip.
 > 
 > **Horizon and Sky**:
 > - **Horizon** at **top-right**, maintaining a **slightly elevated ridge** on the left that gently slopes downward ↘ across the tile (hill continuation from Tile 1 fading into Tile 3’s flatter residential fabric).
@@ -42,6 +45,7 @@
 > - **Residential areas**: Mixed architecture with older homes, mid-century styles, and some modern homes.
 > - **Streets**: Interwoven small avenues and layered streets, descending along the **hill** from Tile 1, gradually transitioning into the more urban areas toward Tile 3.
 > - **Small Urban Bridges**: Include a few subtle urban-grade bridges connecting different street levels (spanning small irrigation channels, drainage runs, or short cut-valleys). These are details, not hero infrastructure.
+> - Keep bridges / tunnels interior to the composition; they must not become seam-driving objects on the left edge.
 > - **Tunnels**: Include a few small urban tunnels/underpasses where terrain creates vertical drop-offs between street layers. These should read like neighborhood underpasses, not freeway tunnels.
 > - **Public Transport**: Older-style **buses**, small **markets**, **supermarkets**, **local commerce**.
 >

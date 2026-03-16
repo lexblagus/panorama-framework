@@ -52,6 +52,9 @@
 > - Strong distance rolloff and distance collapse: far background becomes ghosted silhouettes, but horizon remains legible.
 > - Midground remains readable; avoid uniform veil/blanket and avoid full whiteout.
 > - Palette: polluted steel + tan/amber industrial dust tint; desaturated; NOT clean golden sunlight.
+> - Tile 8 must remain in the same late-right atmospheric family as Tiles 7 and 9.
+> - The bright chalky quarry may lighten local surfaces, but it must NOT wash out, cool down, or re-grade the whole tile into a separate lighting world.
+> - Keep overall haze density, contrast falloff, and industrial warmth compatible with neighboring Tiles 7 and 9.
 >
 > TILE 8 IDENTITY (MUST READ AS “INDUSTRIAL WALL”):
 > - Ultra-dense petrochemical + intermodal megacomplex; no residential identity; no parks; no “city sparkle.”
@@ -63,6 +66,7 @@
 > - Keep ridge silhouette safely inside the edge-safe zone: ridge must stay within x = 200..824 (never inside the 120px seam strips).
 > - Must read as human-sculpted quarry/cut ridge: bright chalky cut faces, clean geometric terraces/benches, sharp bench lines, retaining walls.
 > - NO greenery. NOT natural mountains. NOT scenic.
+> - The ridge is the anchor, not the whole color grade: do not let pale quarry stone overpower the tile-wide industrial family.
 >
 > RIDGE MUST BE INDUSTRIALIZED (NO EMPTY BUFFER) — HARD:
 > - Ridge is colonized by industry on multiple terraces; NO wide empty apron/road band separating ridge from refinery.
@@ -92,6 +96,7 @@
 > GRADIENT / AMBIENCE (SUBTLE, RIDGE-ANCHORED):
 > - Ridge may anchor a gentle ambience gradient: slightly clearer/warmer on far-left (Tile 7-adjacent), heavier dust/rolloff to the right (Tile 8/9-adjacent).
 > - Must be a GRADIENT, not a binary split. No hard seam bands.
+> - IMPORTANT: this gradient is subtle normalization only; Tile 8 must still read as one continuous tile, not as a left-warm / right-cold split.
 >
 > FORBIDDEN:
 > airport/runway/terminal identity • navigable channel • ships/tankers • big open water shapes

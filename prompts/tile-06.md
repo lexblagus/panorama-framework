@@ -62,7 +62,7 @@
 >
 > TRANSITION TO TILE 7:
 > - Transition from Tile 6 to Tile 7: begin introducing lower-density, functional architecture of the logistics zone (airport and warehouses).
-> - The far-background massing should flatten as it moves rightward; avoid any renewed crown or apex before Tile 7.
+> - Far-background massing should flatten as it moves rightward; avoid any renewed crown or apex before Tile 7.
 >
 > FORBIDDEN:
 > - No visible sun disk.

@@ -46,8 +46,8 @@
 > - The center may densify, but it must not become the dominant skyline apex.
 > - Do NOT solve this tile as “small Tile 5.”
 > - Keep the horizon broadly stable relative to neighboring tiles; the transition should be solved through skyline envelope and massing, not through a dramatic horizon shift.
-> - IMPORTANT: do not create a broad arching skyline band across the tile; the read must be ramp-like, with pressure accumulating toward the right.
-> - If the skyline starts to crown in the center, flatten the center and push the strongest far-background massing farther right.
+> - IMPORTANT: do not form a broad crowned silhouette across the tile. Tile 4 must feel like a ramp into Tile 5, not a crown beside Tile 5.
+> - If the skyline starts to arch in the center, flatten the center and push the strongest far-background tower pressure farther right.
 >
 > DRY URBAN BAND (HARD):
 > - Tile 4 must remain completely dry.
@@ -79,7 +79,7 @@
 > - RIGHT side: significantly taller and more compressed, with early tower field pressure feeding into Tile 5.
 > - Tile 4 must not visually “drop” before Tile 5.
 > - Do NOT let the center become a surrogate Tile 5; the strongest background massing belongs on the right side.
-> - The right side should feel like a pre-core climb, not like a complete skyline crest inside Tile 4.
+> - The right third should feel like pre-core accumulation, not like a complete skyline crest already fully resolved inside Tile 4.
 >
 > LARGE URBAN WATER PIPELINES (SIGNATURE MOTIF):
 > - Include multiple large exposed utility-water pipelines distributed through the district.
