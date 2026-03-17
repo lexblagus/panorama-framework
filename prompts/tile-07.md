@@ -56,6 +56,9 @@
 > - Leftmost 120px and rightmost 120px are SEAM BLENDING STRIPS: low-uniqueness repeatable texture ONLY (midrise roofs, repeating blocks, haze).
 > - FORBIDDEN inside seam strips: runway edges, deck edges, terminal edges, taxiway paint/lines, aircraft, jet bridges, cranes, overpasses/bridges/viaducts, rail lines, or any long straight high-contrast line.
 > - Airport deck/runway bounding box must stay inside x = 160..864 (never near side edges).
+> - EXTRA LEFT-SEAM FAIL-SAFE: the left side adjacent to Tile 6 must remain dense urban fabric, not an empty apron or runway shoulder.
+> - Do NOT allow a broad empty airport ground plane, runway verge, or open tarmac shoulder to occupy the left seam-adjacent zone.
+> - Any airport ground opening on the left side must be broken by buildings, road structure, deck supports, service blocks, or urban fabric before reaching the seam.
 >
 > TILE 7 IDENTITY:
 > Late-stage urban fabric transitioning toward logistics/service dominance.
@@ -95,6 +98,7 @@
 > 4) SEAM SAFETY (REPEAT / ENFORCE):
 > - deck/runway stays well inside x = 160..864 and never enters the 120px seam strips.
 > - no runway/deck edges, markings, or taxiway lines trending into side seams.
+> - no open runway shoulder, apron void, or empty airport buffer should read against the left seam toward Tile 6.
 > 5) BREAK LONG STRAIGHT LINES BEFORE SEAMS:
 > - if a deck/runway edge trends toward a side, it must terminate/occlude/step down into buildings well before the seam strip.
 > - no continuous deck/runway edge line may run toward or parallel the frame edges.

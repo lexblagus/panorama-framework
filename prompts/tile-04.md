@@ -80,6 +80,9 @@
 > - Tile 4 must not visually “drop” before Tile 5.
 > - Do NOT let the center become a surrogate Tile 5; the strongest background massing belongs on the right side.
 > - The right third should feel like pre-core accumulation, not like a complete skyline crest already fully resolved inside Tile 4.
+> - IMPORTANT: carry more density into the foreground and lower-mid band.
+> - Do NOT solve Tile 4 as a low-rise floor with a skyline behind it.
+> - Add more podium mass, taller mid-rise interruptions, stacked slabs, and dense block shoulders in the lower half of the frame.
 >
 > LARGE URBAN WATER PIPELINES (SIGNATURE MOTIF):
 > - Include multiple large exposed utility-water pipelines distributed through the district.

@@ -52,6 +52,8 @@
 > - Skyline behavior: strongest background tower pressure belongs on the LEFT and must progressively relax toward the RIGHT.
 > - Do NOT rebuild a centered or center-right skyline hump inside Tile 6.
 > - Tile 6 must read as release from Tile 5, not as a secondary core-like crest.
+> - Maintain substantial foreground and lower-mid density, especially on the left and center-left.
+> - Avoid a low-rise foreground blanket; carry more podium mass, slabs, and taller interruptions into the lower half of the frame.
 >
 > URBAN TEXTURE / GREENERY:
 > - Sparse greenery is allowed only as small urban pockets: trees, plaza planting, medians, station forecourts, rooftop gardens.

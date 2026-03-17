@@ -59,6 +59,8 @@
 > TILE 8 IDENTITY (MUST READ AS “INDUSTRIAL WALL”):
 > - Ultra-dense petrochemical + intermodal megacomplex; no residential identity; no parks; no “city sparkle.”
 > - Strong “systems” layering: pipe forests, racks, catwalks, exchangers, pump yards, utility corridors.
+> - Increase industrial core mass toward the RIGHT half so Tile 8 hands off more convincingly into Tile 9.
+> - Do NOT keep all major identity concentrated in the center only; distribute substantial plant mass into the right side while keeping seam strips quiet.
 >
 > REQUIRED ANCHOR — CARRARA INDUSTRIAL RIDGE (CENTERED, HARD):
 > - Place ONE dominant engineered Carrara-like terraced quarry ridge CENTERED in the frame.
@@ -80,6 +82,7 @@
 > - Add 1–2 dense refinery nodes in CENTER-RIGHT / RIGHT-MID (but NOT in the right 120px seam strip):
 >   distillation columns, pipe-rack megagrids, cracking towers, exchangers, subtle flare stacks.
 > - Tall vertical industrial elements must cluster into nodes (not uniform everywhere).
+> - Right-side plant mass should be visibly stronger than before; this tile must not drift into mostly harbor/logistics texture.
 >
 > POWER / GRID BLOCK (HARD):
 > - Include a visible power block: turbine hall + dense substation/switchyard grid + transformers + pylons fading into haze.

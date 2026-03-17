@@ -51,6 +51,7 @@
 > Maximum vertical pressure for the whole panorama: dense skyline crest near the upper frame boundary, telephoto-compressed stack, amber peak + maximum atmospheric diffusion.
 > Avoid postcard symmetry: prefer several comparable peaks (no single hero spire).
 > Build central pressure as a thick vertical field, not as one narrow illuminated slot or a single privileged boulevard.
+> The core should feel heavy through the full depth of the tile, not only at the far skyline.
 > Do NOT over-separate left and right shoulders into a theatrical arch. Keep the center dominant, but broadly packed and horizontally spread.
 >
 > CIRCULATION (INTRICATE + EMBEDDED, NON-HERO):
@@ -65,6 +66,8 @@
 > Foreground: present but minor — rooftops, street hints, small vehicles; no huge near-field roadway filling the bottom.
 > Midground: the texture engine — stacked blocks, mixed corridors, partial viaduct pieces, short bridges / overpasses (not edge-to-edge).
 > Background: compressed skyline mass dissolving slightly with distance; haze increases with distance only (preserve the telephoto stack).
+> - Increase vertical pressure in the foreground and lower-mid band: more podium mass, taller mid-rise shoulders, slab interruptions, and dense mixed-height blocks.
+> - Do NOT let the foreground read as mostly low-rise with all real density pushed into the background skyline.
 >
 > ARCHITECTURE DIVERSITY (FORCED HETEROGENEITY — avoid repetition):
 > Strong mix of districts / eras in one tile. Do NOT allow large contiguous areas of the same facade grid.

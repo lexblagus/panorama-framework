@@ -52,6 +52,8 @@
 > - Tall vertical elements must be INDUSTRIAL tall only: smokestacks, flare stacks, distillation columns, cranes, silos, gantries, cooling towers (utilitarian).
 > - The built fabric is heavy infrastructure + service blocks: pipe forests, conveyors, tank farms, substations, warehouses, railyards, container stacks, truck staging, utility corridors.
 > - Any distant “city” presence must read as low- to mid-rise utilitarian mass (service housing/warehouses), not prestige towers.
+> - Increase industrial plant density on the LEFT side before the harbor opens more fully to the right.
+> - Do NOT let Tile 9 read as mostly harbor/logistics texture; maintain a heavier industrial wall on the left half to continue Tile 8.
 >
 > PORT / SHIPPING:
 > - Include at least one utilitarian cargo ship/tanker at correct scale, but keep ships INSET (do not touch edges; keep off the left seam strip).
