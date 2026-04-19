@@ -77,6 +77,10 @@
 > - Industry climbs terraces: multiple levels of pipe corridors and conveyors run UP and ACROSS the ridge, with bridge-like trusses and retaining-wall penetrations.
 > - Any ridge roads are narrow service switchbacks only (secondary), never a broad empty corridor.
 > - Terrace population requirement: at least 60–80% of visible benches contain industrial objects.
+> - Narrative logic: this ridge began as a quarry, but visible industry has progressively overtaken it; extraction now continues underground while the terraces remain industrialized.
+> - Add several rectangular / square tunnel mouths in the ridge for heavy trucks, underground extraction access, service runs, and equipment movement.
+> - Include visible yellow heavy machinery across the terraces: excavators, loaders, dozers, haul trucks, conveyors, maintenance vehicles.
+> - These details should strengthen the quarry-industrial read without turning the ridge into a clean open mine pit.
 >
 > REFINERY NODE (HARD):
 > - Add 1–2 dense refinery nodes in CENTER-RIGHT / RIGHT-MID (but NOT in the right 120px seam strip):

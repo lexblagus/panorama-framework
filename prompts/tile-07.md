@@ -95,6 +95,8 @@
 > - no horizon-parallel “flat bar” runway.
 > 3) UNDER-TARMAC ROAD NETWORK:
 > - >=2–3 visible underpasses/tunnel mouths where avenues pass UNDER the deck and re-emerge.
+> - Optional subtle enrichment: under the deck, treat the avenue as a real lit urban road with sparse streetlights, curb activity, access points, and occasional frontage / entry behavior.
+> - Keep this subtle and secondary; it must never compete with the airport deck itself.
 > 4) SEAM SAFETY (REPEAT / ENFORCE):
 > - deck/runway stays well inside x = 160..864 and never enters the 120px seam strips.
 > - no runway/deck edges, markings, or taxiway lines trending into side seams.
@@ -113,6 +115,8 @@
 > - jet bridges visible for at least 1–3 parked aircraft.
 > - small control/observation tower (non-hero).
 > - small ground support vehicles: baggage carts, belt loaders, fuel truck, pushback tug, service vans.
+> - occasional small hangars or service sheds are allowed, but must remain secondary and sparse.
+> - EXPERIMENTAL: one aircraft may occasionally appear on the main runway in a believable taxi / takeoff / landing moment, but only if the result remains realistic and non-heroic.
 > Aircraft variety rules (HARD):
 > - do NOT repeat the same aircraft model; mix different silhouettes/sizes (narrow-body, regional jet, turboprop; optional one wide-body at most).
 > - vary liveries using FAKE/ARTISTIC branding (abstract stripes/blocks/gradients/symbols); NO readable airline names/logos/text.
