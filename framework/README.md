@@ -1,0 +1,125 @@
+# Global Megacity Panorama Framework
+
+This directory contains the **Global Megacity Panorama Framework**: a structured, versioned system for designing and generating a large-scale, multi-tile urban panorama using image generation models.
+
+This is **not** a collection of prompts.  
+It is a **specification-driven visual system**.
+
+Any model or human interacting with this repository must treat the Markdown files as the **single source of truth**.
+
+The goal of this project is to produce a **coherent, large-scale megacity panorama** composed of multiple tiles, each with a clear semantic role, unified camera system, and controlled perceptual transitions, suitable for both artistic exploration and rigorous prompt engineering research.
+
+This project treats image generation as a **systems design problem**, not a guessing game.
+
+---
+
+![Composition preview](../images/outputs/composites/Composition_03-02.png)
+
+_↳ Composition preview (before stitching; work in progress)_
+
+---
+
+## Framework Structure
+
+- `docs/`  
+  Canonical specifications, tile definitions, workflow, and runtime notes.
+
+- `prompts/`  
+  Executable generator prompts derived from the specs.
+  These should be treated as *outputs*, not authorities.
+
+- `../images/outputs/`  
+  Generated images, composites, and evaluation artifacts for the framework.
+
+- `../images/refs/`  
+  Reference imagery, moodboards, and external inspiration.
+
+- `../robot/`  
+  CLI tooling for image-generation workflows.
+
+---
+
+## Index
+
+- [Repository Readme](../README.md)
+- [Framework Readme](README.md)
+- **Docs**
+  - [Core Canonical](docs/01_core_canonical.md)
+  - [Tile System](docs/02_00_tile_system.md)
+  - [Tile 1: Nature as Dominant Chaos](docs/02_01_tile_01.md)
+  - [Tile 2: Dense Residential](docs/02_02_tile_02.md)
+  - [Tile 3: Transition Zone](docs/02_03_tile_03.md)
+  - [Tile 4: Pre-Core Vertical](docs/02_04_tile_04.md)
+  - [Tile 5: Iconic Core (Anchor)](docs/02_05_tile_05.md)
+  - [Tile 6: Post-Core Vertical](docs/02_06_tile_06.md)
+  - [Tile 7: Logistics Transition Zone](docs/02_07_tile_07.md)
+  - [Tile 8: Industrial](docs/02_08_tile_08.md)
+  - [Tile 9: Heavy Industrial Expanse](docs/02_09_tile_09.md)
+  - [Previews](docs/02_10_previews.md)
+  - [Operational Pipeline](docs/12_operational_pipeline.md)
+  - [Runtime Notes And Variations](docs/13_runtime_notes_and_variants.md)
+- **Prompts**
+  - [Global Base Prompt](prompts/master.md)
+  - [Tile 1](prompts/tile-01.md)
+  - [Tile 2](prompts/tile-02.md)
+  - [Tile 3](prompts/tile-03.md)
+  - [Tile 4](prompts/tile-04.md)
+  - [Tile 5](prompts/tile-05.md)
+  - [Tile 6](prompts/tile-06.md)
+  - [Tile 7](prompts/tile-07.md)
+  - [Tile 8](prompts/tile-08.md)
+  - [Tile 9](prompts/tile-09.md)
+
+---
+
+## How to Work With This Framework
+
+If you are an AI assistant (for example Codex in Cursor):
+
+1. **Read before acting**
+   - Always read the following files before proposing edits or generating prompts:
+     - `docs/01_core_canonical.md`
+     - `docs/02_00_tile_system.md`
+     - `docs/02_01_tile_01.md`
+     - `docs/02_02_tile_02.md`
+     - `docs/02_03_tile_03.md`
+     - `docs/02_04_tile_04.md`
+     - `docs/02_05_tile_05.md`
+     - `docs/02_06_tile_06.md`
+     - `docs/02_07_tile_07.md`
+     - `docs/02_08_tile_08.md`
+     - `docs/02_09_tile_09.md`
+   - These define global constraints, camera physics, semantic roles, and tile boundaries.
+
+2. **Respect authority layers**
+   - Canonical sections override all other instructions.
+   - Tile definitions override ad hoc prompting.
+   - Generator prompts are *compiled artifacts*, not conceptual sources.
+
+3. **Do not infer or “improve” intent**
+   - Do not guess what the project “should be”.
+   - Do not simplify constraints.
+   - Do not merge tiles, blur roles, or introduce new concepts unless explicitly requested.
+
+4. **Scale and camera are global**
+   - Camera position, optics, compression, and framing are globally fixed.
+   - If a perceived scale issue arises, assume **global drift** before local tile defects.
+
+5. **Tile work is modular**
+   - Each tile is defined independently but evaluated relationally.
+   - Changes to one tile must not silently affect others.
+
+---
+
+## Working Rules
+
+- Do not rewrite large sections without explicit instruction.
+- Do not collapse multiple conceptual layers into one.
+- Do not remove constraints for convenience.
+- When uncertain, **ask a clarification question instead of assuming**.
+
+This framework prioritizes:
+- structural integrity
+- reproducibility
+- perceptual consistency across tiles
+- long-term evolvability
