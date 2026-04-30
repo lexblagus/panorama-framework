@@ -261,10 +261,10 @@ This framework treats image generation as a systems-design problem. As such, mod
 - Patch text must be **copy/paste ready** and safe to apply verbatim.
 - When conflicts exist between documents, resolve by **authority order**:
   1. `docs/01_core_canonical.md` (global invariants)
-  2. `docs/02_00_tile_system.md` (tile system rules)
-  3. `docs/02_XX_tile_YY.md` (tile specs)
-  4. `docs/12_operational_pipeline.md` (process)
-  5. `docs/13_runtime_notes_and_variants.md` (runtime notes, non-canonical)
+  2. `docs/02_tile_system.md` (tile system rules)
+  3. `docs/03_tile_YY.md` (tile specs)
+  4. `docs/04_operational_pipeline.md` (process)
+  5. `docs/05_runtime_notes_and_variants.md` (runtime notes, non-canonical)
   6. `prompts/*` (execution artifacts)
 
 ### Required Output Format

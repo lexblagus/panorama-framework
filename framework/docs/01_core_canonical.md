@@ -224,7 +224,7 @@ Variations may occur only along the depth axis (foreground → background), neve
 **Framing stability protocol (no numeric bands)**
 - Treat vertical drift as camera pitch drift.
 - Enforce stability via **reference conditioning** (Tile 5 as ruler), cropping/clipping over lifting framing, and fixing “too much sky” by adding mass inside the same framing.
-- See: _docs/02_00_tile_system.md → Framing Stability Protocol (Reference-Conditioned, No Bands)_.
+- See: _docs/02_tile_system.md → Framing Stability Protocol (Reference-Conditioned, No Bands)_.
 
 #### Camera Lock (Promptable Block, v1)
 This block is the generator-facing encoding of the framing stability protocol and is intended to be compiled into prompts when needed.
