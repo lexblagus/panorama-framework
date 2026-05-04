@@ -16,6 +16,17 @@ describe("parseCliArgs", () => {
     });
   });
 
+  it("accepts nested recipe and plan ids", () => {
+    expect(parseCliArgs(["exec", "--recipe", "examples/empty"])).toEqual({
+      command: "exec",
+      recipeId: "examples/empty",
+    });
+    expect(parseCliArgs(["run", "--plan", "examples/empty"])).toEqual({
+      command: "run",
+      planId: "examples/empty",
+    });
+  });
+
   it("rejects --plan for build", () => {
     expect(() => parseCliArgs(["build", "--plan", "smoke-test"])).toThrow(
       CliError,
@@ -40,5 +51,10 @@ describe("parseCliArgs", () => {
       CliError,
     );
   });
-});
 
+  it("rejects path traversal recipe id", () => {
+    expect(() => parseCliArgs(["build", "--recipe", "../empty"])).toThrow(
+      CliError,
+    );
+  });
+});

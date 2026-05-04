@@ -9,7 +9,7 @@ import type {
   RobotGlobalConfig,
 } from "./types.js";
 
-const ID_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
+const ID_SEGMENT_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
 
 function serializeJson(value: unknown, options?: JsonWriteOptions): string {
   const format = options?.format ?? "formatted";
@@ -26,7 +26,24 @@ export class JsonService extends BaseService {
   }
 
   private ensureValidId(kind: "planId" | "recipeId", value: string): void {
-    if (!ID_PATTERN.test(value)) {
+    if (value.startsWith("/") || value.endsWith("/") || value.includes("//")) {
+      throw new Error(`Invalid ${kind}: "${value}"`);
+    }
+    const segments = value.split("/");
+    if (segments.length === 0) {
+      throw new Error(`Invalid ${kind}: "${value}"`);
+    }
+    for (const segment of segments) {
+      if (
+        segment.length === 0 ||
+        segment === "." ||
+        segment === ".." ||
+        !ID_SEGMENT_PATTERN.test(segment)
+      ) {
+        throw new Error(`Invalid ${kind}: "${value}"`);
+      }
+    }
+    if (path.isAbsolute(value)) {
       throw new Error(`Invalid ${kind}: "${value}"`);
     }
   }

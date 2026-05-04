@@ -123,6 +123,66 @@ describe("buildCommand", () => {
     });
   });
 
+  it("builds nested recipe id and writes nested plan path", async () => {
+    const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
+    const nestedFolder = path.join(recipesRoot, "examples");
+    await mkdir(nestedFolder, { recursive: true });
+    await writeFile(
+      path.join(nestedFolder, "empty.mjs"),
+      [
+        "export default {",
+        '  title: "Empty Nested",',
+        "  steps: [],",
+        "};",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    const result = await buildCommand({
+      recipeId: "examples/empty",
+      repoRoot,
+      robotRoot,
+      recipesRoot,
+    });
+
+    const planPath = path.join(robotRoot, "plans", "examples", "empty.json");
+    const plan = JSON.parse(await readFile(planPath, "utf8")) as Plan;
+
+    expect(result.recipeId).toBe("examples/empty");
+    expect(result.planId).toBe("examples/empty");
+    expect(plan.recipeId).toBe("examples/empty");
+    expect(plan.tasks).toHaveLength(0);
+  });
+
+  it("resolves recipe from legacy robot/recipes root", async () => {
+    const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
+    const legacyRecipesRoot = path.join(robotRoot, "recipes", "examples");
+    await mkdir(legacyRecipesRoot, { recursive: true });
+    await writeFile(
+      path.join(legacyRecipesRoot, "legacy-empty.ts"),
+      [
+        "const recipe = {",
+        '  title: "Legacy Empty",',
+        "  steps: [],",
+        "};",
+        "export default recipe;",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    const result = await buildCommand({
+      recipeId: "examples/legacy-empty",
+      repoRoot,
+      robotRoot,
+      recipesRoot,
+    });
+
+    expect(result.recipeId).toBe("examples/legacy-empty");
+    expect(result.planId).toBe("examples/legacy-empty");
+  });
+
   it("rejects invalid runtime recipe id", async () => {
     const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
     await expect(

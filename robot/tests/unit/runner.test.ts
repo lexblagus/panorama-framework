@@ -40,6 +40,7 @@ async function writePlan(
   plan: Plan,
 ): Promise<void> {
   const filePath = path.join(robotRoot, "plans", `${planId}.json`);
+  await mkdir(path.dirname(filePath), { recursive: true });
   await writeFile(filePath, `${JSON.stringify(plan, null, 2)}\n`, "utf8");
 }
 
@@ -172,6 +173,20 @@ describe("runner", () => {
     await expect(
       resumePlan({ planId: "missing", repoRoot, robotRoot }),
     ).rejects.toThrow('Plan not found: "missing"');
+  });
+
+  it("runs nested plan id from subfolder", async () => {
+    const { repoRoot, robotRoot } = await createWorkspace();
+    const planId = "examples/empty";
+    await writePlan(robotRoot, planId, {
+      recipeId: "examples/empty",
+      createdAt: "2026-05-04T00:00:00.000Z",
+      tasks: [],
+    });
+
+    const result = await runPlanFromStart({ planId, repoRoot, robotRoot });
+    expect(result.planId).toBe("examples/empty");
+    expect(result.taskCount).toBe(0);
   });
 
   it("dispatches workflow.run-recipe for nested exec", async () => {

@@ -1,5 +1,11 @@
 # Current iteraction
 
+- Create Base Service README
+
+- Update Robot README with links to Services READMEs
+
+- 
+
 ---
 
 # Previous iteraction

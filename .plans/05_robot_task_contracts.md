@@ -40,7 +40,7 @@ These contracts are for:
 ### 2.1 Recipe Id
 
 ```ts
-export type RecipeId = string; // constrained by /^[a-z0-9_-][a-z0-9_.-]*$/
+export type RecipeId = string; // slash-separated segments, each constrained by /^[a-z0-9_-][a-z0-9_.-]*$/
 ```
 
 Rules:
@@ -54,16 +54,16 @@ Rules:
 ### 2.2 Plan Id
 
 ```ts
-export type PlanId = string; // constrained by /^[a-z0-9_-][a-z0-9_.-]*$/
+export type PlanId = string; // slash-separated segments, each constrained by /^[a-z0-9_-][a-z0-9_.-]*$/
 ```
 
 Rules:
 
-- `PlanId` is the filename stem of a plan under `robot/plans/`
+- `PlanId` is a relative filename stem under `robot/plans/` and may include subfolders
 - recipe-driven `build` and `exec` use `RecipeId` as the default `PlanId`
-- `run --plan <plan-id>` and `resume --plan <plan-id>` may target any existing plan filename stem
+- `run --plan <plan-id>` and `resume --plan <plan-id>` may target any existing relative plan stem, including nested stems such as `examples/empty`
 - the runtime validates `PlanId` before resolving plan paths
-- `.` is allowed after the first character but not as the first character
+- `.` is allowed inside each segment, but segments cannot be `.` or `..`
 
 ### 2.3 Recipe Config
 
@@ -212,6 +212,7 @@ Rules:
 Path rules:
 
 - CLI `--plan` accepts a `planId` only, not a path
+- `recipeId` and `planId` may include subfolders as slash-separated relative segments (for example, `examples/empty`)
 - recipe and task file arguments are `repoRoot`-relative by default unless a service contract says otherwise
 
 ## 3. Task Identifier Convention

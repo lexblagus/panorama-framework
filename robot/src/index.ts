@@ -2,7 +2,7 @@ import { pathToFileURL } from "node:url";
 import { buildCommand } from "./builder.js";
 import { resumePlan, runPlanFromStart } from "./runner.js";
 
-const ID_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
+const ID_SEGMENT_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
 
 export type CliCommand =
   | { command: "build"; recipeId: string }
@@ -32,9 +32,32 @@ function usage(): string {
 }
 
 function ensureId(flag: "--recipe" | "--plan", value: string): string {
-  if (!ID_PATTERN.test(value)) {
+  if (value.startsWith("/") || value.endsWith("/")) {
     throw new CliError(
-      `Invalid ${flag} value "${value}". Must match ${ID_PATTERN.source}.`,
+      `Invalid ${flag} value "${value}". IDs must be relative path-like stems.`,
+    );
+  }
+  const segments = value.split("/");
+  if (segments.length === 0) {
+    throw new CliError(
+      `Invalid ${flag} value "${value}". IDs must be relative path-like stems.`,
+    );
+  }
+  for (const segment of segments) {
+    if (
+      segment.length === 0 ||
+      segment === "." ||
+      segment === ".." ||
+      !ID_SEGMENT_PATTERN.test(segment)
+    ) {
+      throw new CliError(
+        `Invalid ${flag} value "${value}". Must be slash-separated segments matching ${ID_SEGMENT_PATTERN.source}.`,
+      );
+    }
+  }
+  if (value.includes("//")) {
+    throw new CliError(
+      `Invalid ${flag} value "${value}". IDs must not contain empty path segments.`,
     );
   }
   return value;

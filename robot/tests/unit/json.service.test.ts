@@ -93,6 +93,25 @@ describe("JsonService", () => {
     expect(contents).toContain('"recipeId": "smoke-test"');
   });
 
+  it("writes and reads nested plan files by plan id", async () => {
+    const { service, robotRoot } = await createService();
+    const plan: Plan = {
+      recipeId: "examples/empty",
+      createdAt: "2026-05-03T00:00:00Z",
+      tasks: [],
+    };
+
+    await service.writePlan("examples/empty", plan);
+    const loaded = await service.readPlan("examples/empty");
+    const contents = await readFile(
+      path.join(robotRoot, "plans", "examples", "empty.json"),
+      "utf8",
+    );
+
+    expect(loaded).toEqual(plan);
+    expect(contents).toContain('"recipeId": "examples/empty"');
+  });
+
   it("rejects invalid plan ids", async () => {
     const { service } = await createService();
     const plan: Plan = {

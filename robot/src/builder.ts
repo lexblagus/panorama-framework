@@ -15,13 +15,43 @@ import type { Plan } from "./types/plan.js";
 import type { Recipe } from "./types/recipe.js";
 import type { Task } from "./types/task.js";
 
-const ID_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
+const ID_SEGMENT_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
 
 function ensureValidId(kind: "recipeId" | "planId", value: string): string {
-  if (!ID_PATTERN.test(value)) {
+  if (value.startsWith("/") || value.endsWith("/") || value.includes("//")) {
     throw new Error(`Invalid ${kind}: "${value}"`);
   }
+  if (path.isAbsolute(value)) {
+    throw new Error(`Invalid ${kind}: "${value}"`);
+  }
+  const segments = value.split("/");
+  if (segments.length === 0) {
+    throw new Error(`Invalid ${kind}: "${value}"`);
+  }
+  for (const segment of segments) {
+    if (
+      segment.length === 0 ||
+      segment === "." ||
+      segment === ".." ||
+      !ID_SEGMENT_PATTERN.test(segment)
+    ) {
+      throw new Error(`Invalid ${kind}: "${value}"`);
+    }
+  }
   return value;
+}
+
+function stripKnownExtension(identifier: string): string {
+  if (identifier.endsWith(".ts")) {
+    return identifier.slice(0, -3);
+  }
+  if (identifier.endsWith(".js")) {
+    return identifier.slice(0, -3);
+  }
+  if (identifier.endsWith(".mjs")) {
+    return identifier.slice(0, -4);
+  }
+  return identifier;
 }
 
 function resolveBuilderPaths(input: BuildCommandInput): BuilderPaths {
@@ -54,39 +84,48 @@ async function resolveRecipeFile(
   recipeId: string,
   paths: BuilderPaths,
 ): Promise<RecipeResolution> {
-  const explicitCandidates = [
-    {
-      recipeFilePath: path.join(paths.recipesRoot, `${recipeId}.ts`),
-      recipeId: path.basename(recipeId, ".ts"),
-    },
-    {
-      recipeFilePath: path.join(paths.recipesRoot, `${recipeId}.js`),
-      recipeId: path.basename(recipeId, ".js"),
-    },
-    {
-      recipeFilePath: path.join(paths.recipesRoot, `${recipeId}.mjs`),
-      recipeId: path.basename(recipeId, ".mjs"),
-    },
-    {
-      recipeFilePath: path.join(paths.recipesRoot, recipeId, "index.ts"),
-      recipeId: path.basename(recipeId),
-      folderPath: path.join(paths.recipesRoot, recipeId),
-    },
-    {
-      recipeFilePath: path.join(paths.recipesRoot, recipeId, "index.js"),
-      recipeId: path.basename(recipeId),
-      folderPath: path.join(paths.recipesRoot, recipeId),
-    },
-    {
-      recipeFilePath: path.join(paths.recipesRoot, recipeId, "index.mjs"),
-      recipeId: path.basename(recipeId),
-      folderPath: path.join(paths.recipesRoot, recipeId),
-    },
-  ];
+  const authoredRecipesRoots = Array.from(
+    new Set([
+      path.resolve(paths.recipesRoot),
+      path.resolve(paths.robotRoot, "recipes"),
+    ]),
+  );
 
-  for (const candidate of explicitCandidates) {
-    if (await fileExists(candidate.recipeFilePath)) {
-      return candidate;
+  for (const authoredRoot of authoredRecipesRoots) {
+    const explicitCandidates = [
+      {
+        recipeFilePath: path.join(authoredRoot, `${recipeId}.ts`),
+        recipeId: stripKnownExtension(recipeId),
+      },
+      {
+        recipeFilePath: path.join(authoredRoot, `${recipeId}.js`),
+        recipeId: stripKnownExtension(recipeId),
+      },
+      {
+        recipeFilePath: path.join(authoredRoot, `${recipeId}.mjs`),
+        recipeId: stripKnownExtension(recipeId),
+      },
+      {
+        recipeFilePath: path.join(authoredRoot, recipeId, "index.ts"),
+        recipeId,
+        folderPath: path.join(authoredRoot, recipeId),
+      },
+      {
+        recipeFilePath: path.join(authoredRoot, recipeId, "index.js"),
+        recipeId,
+        folderPath: path.join(authoredRoot, recipeId),
+      },
+      {
+        recipeFilePath: path.join(authoredRoot, recipeId, "index.mjs"),
+        recipeId,
+        folderPath: path.join(authoredRoot, recipeId),
+      },
+    ];
+
+    for (const candidate of explicitCandidates) {
+      if (await fileExists(candidate.recipeFilePath)) {
+        return candidate;
+      }
     }
   }
 
@@ -94,20 +133,20 @@ async function resolveRecipeFile(
   const distCandidates: RecipeResolution[] = [
     {
       recipeFilePath: path.join(distRecipesRoot, `${recipeId}.js`),
-      recipeId: path.basename(recipeId, ".js"),
+      recipeId: stripKnownExtension(recipeId),
     },
     {
       recipeFilePath: path.join(distRecipesRoot, `${recipeId}.mjs`),
-      recipeId: path.basename(recipeId, ".mjs"),
+      recipeId: stripKnownExtension(recipeId),
     },
     {
       recipeFilePath: path.join(distRecipesRoot, recipeId, "index.js"),
-      recipeId: path.basename(recipeId),
+      recipeId,
       folderPath: path.join(distRecipesRoot, recipeId),
     },
     {
       recipeFilePath: path.join(distRecipesRoot, recipeId, "index.mjs"),
-      recipeId: path.basename(recipeId),
+      recipeId,
       folderPath: path.join(distRecipesRoot, recipeId),
     },
   ];

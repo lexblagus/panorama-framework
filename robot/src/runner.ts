@@ -40,8 +40,27 @@ interface ExecutePlanOptions {
 }
 
 function ensureValidPlanId(planId: string): void {
-  if (!ID_PATTERN.test(planId)) {
+  if (
+    path.isAbsolute(planId) ||
+    planId.startsWith("/") ||
+    planId.endsWith("/") ||
+    planId.includes("//")
+  ) {
     throw new Error(`Invalid planId: "${planId}"`);
+  }
+  const segments = planId.split("/");
+  if (segments.length === 0) {
+    throw new Error(`Invalid planId: "${planId}"`);
+  }
+  for (const segment of segments) {
+    if (
+      segment.length === 0 ||
+      segment === "." ||
+      segment === ".." ||
+      !ID_PATTERN.test(segment)
+    ) {
+      throw new Error(`Invalid planId: "${planId}"`);
+    }
   }
 }
 

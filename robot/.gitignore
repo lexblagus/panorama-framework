@@ -27,6 +27,8 @@ coverage/
 # Runtime artifacts
 plans/*.json
 transient/*.json
+plans/**/*.json
+transient/**/*.json
 tests/.tmp/
 
 # OS/editor

@@ -209,8 +209,8 @@ Rules:
 - `exec` resolves recipe source, rewrites the default plan file `robot/plans/<recipe-id>.json`, and then executes it from the beginning
 - `run` loads `robot/plans/<plan-id>.json`, resets task state, and executes it from the beginning without rebuilding
 - `resume` loads `robot/plans/<plan-id>.json`, preserves persisted task state when present, and otherwise behaves like `run`
-- CLI `--plan` accepts a `planId` filename stem, not a path
-- `recipeId` and `planId` follow the same `^[a-z0-9_-][a-z0-9_.-]*$` pattern
+- CLI `--plan` accepts a relative `planId` stem that may include subfolders (for example, `examples/empty`)
+- `recipeId` and `planId` use slash-separated relative segments where each segment follows `^[a-z0-9_-][a-z0-9_.-]*$`
 - the runtime validates derived and provided ids before resolving recipe or plan paths
 - `resume` may target any existing `robot/plans/<plan-id>.json`, including a manually renamed file
 - `run` clears prior per-task runtime fields before execution, while `resume` skips successful tasks when persisted state exists
