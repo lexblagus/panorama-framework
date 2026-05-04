@@ -155,7 +155,11 @@ robot/
    │  │  ├─ types.ts
    │  │  ├─ openai.ts
    │  │  └─ config.json
-   │  └─ workflow.ts
+   │  └─ workflow/
+   │     ├─ README.md
+   │     ├─ index.ts
+   │     ├─ types.ts
+   │     └─ workflow.ts
    └─ recipes/
       ├─ minimal/
       │  ├─ README.md
@@ -179,9 +183,8 @@ Decisions captured in this structure:
 - `builder.ts` and `runner.ts` stay directly under `src/`
 - builder and runner type contracts live in `src/types/builder.ts` and `src/types/runner.ts`
 - services stay grouped under one `services/` folder
-- `json`, `markdown`, `image`, and `openai` are folderized so each service can carry its own README and local structure
+- `json`, `markdown`, `image`, `openai`, and `workflow` are folderized so each service can carry its own README and local structure
 - folderized services keep exported and shared service types in `types.ts`
-- `workflow` remains a single file until it needs additional surface area
 - recipe-specific assets live inside recipe folders when a recipe is folderized
 - tests live under `robot/tests/`, with tracked fixtures separate from runtime artifacts
 - recipes and services may later adopt deeper folder layouts only when one-file modules stop being sufficient
@@ -390,8 +393,7 @@ await dispatchByTaskId(task.taskId, task, services);
 Service packaging follows this rule:
 
 - service folders are preferred when a service needs a dedicated README, multiple source files, or service-local config
-- the current folderized services are `json`, `markdown`, `image`, and `openai`
-- `workflow` remains single-file until it needs more surface area
+- the current folderized services are `json`, `markdown`, `image`, `openai`, and `workflow`
 
 Folderized shape:
 

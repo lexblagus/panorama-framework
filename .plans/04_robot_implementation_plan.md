@@ -98,7 +98,7 @@ robot/
 │  │  ├─ markdown/
 │  │  ├─ image/
 │  │  ├─ openai/
-│  │  └─ workflow.ts
+│  │  └─ workflow/
 │  └─ recipes/
 │     ├─ minimal/
 │     ├─ smoke-test/
@@ -370,7 +370,10 @@ Files:
 
 - add `robot/src/runner.ts`
 - add `robot/src/types/runner.ts`
-- add `robot/src/services/workflow.ts`
+- add `robot/src/services/workflow/README.md`
+- add `robot/src/services/workflow/index.ts`
+- add `robot/src/services/workflow/types.ts`
+- add `robot/src/services/workflow/workflow.ts`
 
 Tasks:
 

@@ -1,23 +1,295 @@
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { buildCommand } from "./builder.js";
+import { ImageService } from "./services/image/index.js";
+import { JsonService } from "./services/json/index.js";
+import { MarkdownService } from "./services/markdown/index.js";
+import { OpenAIService } from "./services/openai/index.js";
+import { WorkflowService, type RunRecipeArgs } from "./services/workflow/index.js";
+import type { Plan } from "./types/plan.js";
 import type {
   ResumeInput,
   RunnerResult,
   RunFromStartInput,
 } from "./types/runner.js";
+import type { Task } from "./types/task.js";
+
+const ID_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
+
+interface RunnerPaths {
+  repoRoot: string;
+  robotRoot: string;
+  recipesRoot: string;
+}
+
+interface ServiceRegistry {
+  json: JsonService;
+  markdown: MarkdownService;
+  image: ImageService;
+  openai: OpenAIService;
+  workflow: WorkflowService;
+}
+
+interface ExecutePlanOptions {
+  planId: string;
+  command: "run" | "resume";
+  plan: Plan;
+  services: ServiceRegistry;
+  skipSuccessfulTasks: boolean;
+  resetBeforeRun: boolean;
+}
+
+function ensureValidPlanId(planId: string): void {
+  if (!ID_PATTERN.test(planId)) {
+    throw new Error(`Invalid planId: "${planId}"`);
+  }
+}
+
+function nowIso(): string {
+  return new Date().toISOString();
+}
+
+function resolveRunnerPaths(input: RunFromStartInput | ResumeInput): RunnerPaths {
+  const robotRootFromSource = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "..",
+  );
+  const robotRoot = path.resolve(input.robotRoot ?? robotRootFromSource);
+  const repoRoot = path.resolve(input.repoRoot ?? path.join(robotRoot, ".."));
+  const recipesRoot = path.resolve(input.recipesRoot ?? path.join(robotRoot, "src", "recipes"));
+  return {
+    repoRoot,
+    robotRoot,
+    recipesRoot,
+  };
+}
+
+function isPlanMissingError(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    (error as { code?: string }).code === "ENOENT"
+  );
+}
+
+async function loadPlanOrThrow(json: JsonService, planId: string): Promise<Plan> {
+  try {
+    return await json.readPlan(planId);
+  } catch (error: unknown) {
+    if (isPlanMissingError(error)) {
+      throw new Error(`Plan not found: "${planId}"`);
+    }
+    throw error;
+  }
+}
+
+function resetTask(task: Task): void {
+  task.state = "waiting";
+  delete task.errorMessage;
+  delete task.startedAt;
+  delete task.finishedAt;
+}
+
+function hasPersistedRuntimeState(plan: Plan): boolean {
+  return plan.tasks.some((task) =>
+    task.state !== "waiting" ||
+    task.errorMessage !== undefined ||
+    task.startedAt !== undefined ||
+    task.finishedAt !== undefined
+  );
+}
+
+function getStringArgument(argumentsValue: Record<string, unknown>, key: string): string {
+  const value = argumentsValue[key];
+  if (typeof value !== "string" || value.trim() === "") {
+    throw new Error(`Task argument "${key}" must be a non-empty string`);
+  }
+  return value;
+}
+
+function getObjectArgument(
+  argumentsValue: Record<string, unknown>,
+  key: string,
+): Record<string, unknown> {
+  const value = argumentsValue[key];
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    throw new Error(`Task argument "${key}" must be an object`);
+  }
+  return value as Record<string, unknown>;
+}
+
+async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void> {
+  switch (task.taskId) {
+    case "json.read": {
+      const targetPath = getStringArgument(task.arguments, "path");
+      await services.json.read(targetPath);
+      return;
+    }
+    case "json.write": {
+      const targetPath = getStringArgument(task.arguments, "path");
+      const value = task.arguments.value;
+      await services.json.write(targetPath, value);
+      return;
+    }
+    case "markdown.read": {
+      const file = getStringArgument(task.arguments, "file");
+      await services.markdown.read({ file });
+      return;
+    }
+    case "markdown.insert": {
+      const file = getStringArgument(task.arguments, "file");
+      const marker = getStringArgument(task.arguments, "marker");
+      const content = getStringArgument(task.arguments, "content");
+      await services.markdown.insert({ file, marker, content });
+      return;
+    }
+    case "image.create-bridge":
+      await services.image.createBridge(
+        task.arguments as unknown as Parameters<ImageService["createBridge"]>[0],
+      );
+      return;
+    case "image.compose-tiles-preview":
+      await services.image.composeTilesPreview(
+        task.arguments as unknown as Parameters<ImageService["composeTilesPreview"]>[0],
+      );
+      return;
+    case "openai.generate-image":
+      await services.openai.generateImage(
+        task.arguments as unknown as Parameters<OpenAIService["generateImage"]>[0],
+      );
+      return;
+    case "workflow.run-recipe": {
+      const args = (
+        "runRecipe" in task.arguments
+          ? getObjectArgument(task.arguments, "runRecipe")
+          : task.arguments
+      ) as RunRecipeArgs;
+      await services.workflow.runRecipe(args);
+      return;
+    }
+    case "openai.edit-image":
+    case "openai.respond":
+      throw new Error(`Task not implemented: ${task.taskId}`);
+    default: {
+      const neverTaskId: never = task.taskId;
+      throw new Error(`Unknown task id: ${neverTaskId}`);
+    }
+  }
+}
+
+async function executePlan({
+  planId,
+  command,
+  plan,
+  services,
+  skipSuccessfulTasks,
+  resetBeforeRun,
+}: ExecutePlanOptions): Promise<RunnerResult> {
+  if (resetBeforeRun) {
+    for (const task of plan.tasks) {
+      resetTask(task);
+    }
+    await services.json.writePlan(planId, plan);
+  }
+
+  for (const task of plan.tasks) {
+    if (skipSuccessfulTasks && task.state === "success") {
+      continue;
+    }
+
+    task.state = "running";
+    task.startedAt = nowIso();
+    delete task.finishedAt;
+    delete task.errorMessage;
+    await services.json.writePlan(planId, plan);
+
+    try {
+      await dispatchTask(task, services);
+      task.state = "success";
+      task.finishedAt = nowIso();
+      await services.json.writePlan(planId, plan);
+    } catch (error: unknown) {
+      task.state = "error";
+      task.errorMessage = error instanceof Error ? error.message : String(error);
+      task.finishedAt = nowIso();
+      await services.json.writePlan(planId, plan);
+      throw error;
+    }
+  }
+
+  const completedTaskCount = plan.tasks.filter((task) => task.state === "success").length;
+  return {
+    command,
+    planId,
+    taskCount: plan.tasks.length,
+    completedTaskCount,
+  };
+}
+
+function createServiceRegistry(paths: RunnerPaths): ServiceRegistry {
+  const json = new JsonService({
+    repoRoot: paths.repoRoot,
+    robotRoot: paths.robotRoot,
+  });
+  const markdown = new MarkdownService({
+    repoRoot: paths.repoRoot,
+  });
+  const image = new ImageService({
+    repoRoot: paths.repoRoot,
+  });
+  const openai = new OpenAIService({
+    repoRoot: paths.repoRoot,
+  });
+  const workflow = new WorkflowService({
+    repoRoot: paths.repoRoot,
+    robotRoot: paths.robotRoot,
+    recipesRoot: paths.recipesRoot,
+    buildCommand,
+    runPlanFromStart,
+    resumePlan,
+  });
+
+  return {
+    json,
+    markdown,
+    image,
+    openai,
+    workflow,
+  };
+}
 
 export async function runPlanFromStart(
   input: RunFromStartInput,
 ): Promise<RunnerResult> {
-  return {
-    scaffold: true,
-    command: "run",
+  ensureValidPlanId(input.planId);
+  const paths = resolveRunnerPaths(input);
+  const services = createServiceRegistry(paths);
+  const plan = await loadPlanOrThrow(services.json, input.planId);
+
+  return executePlan({
     planId: input.planId,
-  };
+    command: "run",
+    plan,
+    services,
+    skipSuccessfulTasks: false,
+    resetBeforeRun: true,
+  });
 }
 
 export async function resumePlan(input: ResumeInput): Promise<RunnerResult> {
-  return {
-    scaffold: true,
-    command: "resume",
+  ensureValidPlanId(input.planId);
+  const paths = resolveRunnerPaths(input);
+  const services = createServiceRegistry(paths);
+  const plan = await loadPlanOrThrow(services.json, input.planId);
+  const hasRuntimeState = hasPersistedRuntimeState(plan);
+
+  return executePlan({
     planId: input.planId,
-  };
+    command: "resume",
+    plan,
+    services,
+    skipSuccessfulTasks: hasRuntimeState,
+    resetBeforeRun: !hasRuntimeState,
+  });
 }

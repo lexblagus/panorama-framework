@@ -171,16 +171,23 @@ export interface BuildCommandResult {
 
 export interface RunFromStartInput {
   planId: PlanId;
+  repoRoot?: string;
+  robotRoot?: string;
+  recipesRoot?: string;
 }
 
 export interface ResumeInput {
   planId: PlanId;
+  repoRoot?: string;
+  robotRoot?: string;
+  recipesRoot?: string;
 }
 
 export interface RunnerResult {
-  scaffold: true;
   command: "run" | "resume";
   planId: PlanId;
+  taskCount: number;
+  completedTaskCount: number;
 }
 ```
 
@@ -297,7 +304,7 @@ Current packaging choices:
 - `src/services/markdown/`
 - `src/services/image/`
 - `src/services/openai/`
-- `src/services/workflow.ts`
+- `src/services/workflow/`
 
 Folderization is used when a service needs a dedicated README, multiple source files, or service-local config.
 `types.ts` is required for folderized services and holds service-owned type definitions.
@@ -571,7 +578,7 @@ Preview composition rules:
 
 File:
 
-- `src/services/workflow.ts`
+- `src/services/workflow/`
 
 Role:
 

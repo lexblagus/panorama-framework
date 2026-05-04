@@ -1,13 +1,20 @@
 export interface RunFromStartInput {
   planId: string;
+  repoRoot?: string;
+  robotRoot?: string;
+  recipesRoot?: string;
 }
 
 export interface ResumeInput {
   planId: string;
+  repoRoot?: string;
+  robotRoot?: string;
+  recipesRoot?: string;
 }
 
 export interface RunnerResult {
-  scaffold: true;
   command: "run" | "resume";
   planId: string;
+  taskCount: number;
+  completedTaskCount: number;
 }
