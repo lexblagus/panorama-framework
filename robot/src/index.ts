@@ -1,104 +1,174 @@
-type ReservedCommand = "edit" | "upload";
-type SupportedCommand = "generate" | ReservedCommand;
+import { pathToFileURL } from "node:url";
+import { buildCommand } from "./builder.js";
+import { resumePlan, runPlanFromStart } from "./runner.js";
 
-interface GenerateOptions {
-  command: "generate";
-  promptFile: string;
-  output: string;
-  cwd: string;
+const ID_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
+
+export type CliCommand =
+  | { command: "build"; recipeId: string }
+  | { command: "exec"; recipeId: string }
+  | { command: "run"; planId: string }
+  | { command: "resume"; planId: string };
+
+export class CliError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "CliError";
+  }
 }
 
 function usage(): string {
   return [
     "Usage:",
-    "  robot generate --prompt-file <path> --output <path>",
+    "  robot build --recipe <recipe-id>",
+    "  robot exec --recipe <recipe-id>",
+    "  robot run --plan <plan-id>",
+    "  robot resume --plan <plan-id>",
     "",
-    "Reserved subcommands:",
-    "  edit",
-    "  upload",
+    "Rules:",
+    "  build/exec accept only --recipe",
+    "  run/resume accept only --plan",
   ].join("\n");
 }
 
-function fail(message: string): never {
-  console.error(message);
-  console.error("");
-  console.error(usage());
-  process.exit(1);
-}
-
-function takeValue(args: string[], index: number, flag: string): string {
-  const value = args[index + 1];
-  if (!value || value.startsWith("--")) {
-    fail(`Missing value for ${flag}.`);
+function ensureId(flag: "--recipe" | "--plan", value: string): string {
+  if (!ID_PATTERN.test(value)) {
+    throw new CliError(
+      `Invalid ${flag} value "${value}". Must match ${ID_PATTERN.source}.`,
+    );
   }
   return value;
 }
 
-function parseGenerate(args: string[]): GenerateOptions {
-  let promptFile = "";
-  let output = "";
+function readFlagMap(args: string[]): Map<string, string> {
+  const values = new Map<string, string>();
 
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
+    if (!arg.startsWith("--")) {
+      throw new CliError(`Unexpected positional argument: ${arg}`);
+    }
 
-    switch (arg) {
-      case "--prompt-file":
-        promptFile = takeValue(args, index, arg);
-        index += 1;
-        break;
-      case "--output":
-        output = takeValue(args, index, arg);
-        index += 1;
-        break;
-      default:
-        fail(`Unknown argument: ${arg}`);
+    const value = args[index + 1];
+    if (!value || value.startsWith("--")) {
+      throw new CliError(`Missing value for ${arg}.`);
+    }
+    if (values.has(arg)) {
+      throw new CliError(`Duplicate flag: ${arg}`);
+    }
+    values.set(arg, value);
+    index += 1;
+  }
+
+  return values;
+}
+
+function expectOnlyFlag(
+  args: string[],
+  required: "--recipe" | "--plan",
+  rejected: "--recipe" | "--plan",
+): string {
+  const flagValues = readFlagMap(args);
+
+  if (flagValues.has(rejected)) {
+    throw new CliError(`${required === "--recipe" ? "build/exec" : "run/resume"} do not accept ${rejected}.`);
+  }
+
+  const requiredValue = flagValues.get(required);
+  if (!requiredValue) {
+    throw new CliError(`Missing required flag: ${required}`);
+  }
+
+  for (const key of flagValues.keys()) {
+    if (key !== required) {
+      throw new CliError(`Unknown argument: ${key}`);
     }
   }
 
-  if (!promptFile) {
-    fail("Missing required flag: --prompt-file");
-  }
-
-  if (!output) {
-    fail("Missing required flag: --output");
-  }
-
-  return {
-    command: "generate",
-    promptFile,
-    output,
-    cwd: process.cwd(),
-  };
+  return ensureId(required, requiredValue);
 }
 
-function main(argv: string[]): void {
+export function parseCliArgs(argv: string[]): CliCommand {
   const [command, ...rest] = argv;
-
-  if (!command || command === "--help" || command === "-h") {
-    console.log(usage());
-    process.exit(command ? 0 : 1);
+  if (!command) {
+    throw new CliError("Missing subcommand.");
   }
 
-  switch (command as SupportedCommand) {
-    case "generate":
-      console.log(
-        JSON.stringify(
-          {
-            scaffold: true,
-            ...parseGenerate(rest),
-          },
-          null,
-          2,
-        ),
-      );
-      break;
-    case "edit":
-    case "upload":
-      fail(`The "${command}" subcommand is reserved but not implemented yet.`);
-      break;
+  switch (command) {
+    case "build":
+      return {
+        command,
+        recipeId: expectOnlyFlag(rest, "--recipe", "--plan"),
+      };
+    case "exec":
+      return {
+        command,
+        recipeId: expectOnlyFlag(rest, "--recipe", "--plan"),
+      };
+    case "run":
+      return {
+        command,
+        planId: expectOnlyFlag(rest, "--plan", "--recipe"),
+      };
+    case "resume":
+      return {
+        command,
+        planId: expectOnlyFlag(rest, "--plan", "--recipe"),
+      };
     default:
-      fail(`Unknown subcommand: ${command}`);
+      throw new CliError(`Unknown subcommand: ${command}`);
   }
 }
 
-main(process.argv.slice(2));
+export async function runCli(argv: string[]): Promise<void> {
+  if (argv.length === 1 && (argv[0] === "--help" || argv[0] === "-h")) {
+    console.log(usage());
+    process.exit(0);
+  }
+
+  try {
+    const parsed = parseCliArgs(argv);
+
+    switch (parsed.command) {
+      case "build": {
+        const result = await buildCommand({ recipeId: parsed.recipeId });
+        console.log(JSON.stringify(result, null, 2));
+        return;
+      }
+      case "exec": {
+        const built = await buildCommand({ recipeId: parsed.recipeId });
+        const result = await runPlanFromStart({ planId: built.planId });
+        console.log(JSON.stringify(result, null, 2));
+        return;
+      }
+      case "run": {
+        const result = await runPlanFromStart({ planId: parsed.planId });
+        console.log(JSON.stringify(result, null, 2));
+        return;
+      }
+      case "resume": {
+        const result = await resumePlan({ planId: parsed.planId });
+        console.log(JSON.stringify(result, null, 2));
+        return;
+      }
+      default:
+        throw new CliError(`Unknown subcommand: ${(parsed as { command: string }).command}`);
+    }
+  } catch (error) {
+    if (error instanceof CliError) {
+      console.error(error.message);
+      console.error("");
+      console.error(usage());
+      process.exit(1);
+    }
+    throw error;
+  }
+}
+
+const invokedAsScript =
+  process.argv[1] != null &&
+  import.meta.url === pathToFileURL(process.argv[1]).href;
+
+if (invokedAsScript) {
+  void runCli(process.argv.slice(2));
+}

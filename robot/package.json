@@ -8,13 +8,15 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "./bin/robot"
+    "start": "./bin/robot",
+    "test": "vitest run"
   },
   "dependencies": {
     "openai": "^6.35.0"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.4"
   }
 }
