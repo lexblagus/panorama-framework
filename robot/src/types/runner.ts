@@ -1,14 +1,14 @@
 export interface RunFromStartInput {
   planId: string;
-  repoRoot?: string;
-  robotRoot?: string;
+  repoRootFolder?: string;
+  robotPackageFolder?: string;
   recipesRoot?: string;
 }
 
 export interface ResumeInput {
   planId: string;
-  repoRoot?: string;
-  robotRoot?: string;
+  repoRootFolder?: string;
+  robotPackageFolder?: string;
   recipesRoot?: string;
 }
 

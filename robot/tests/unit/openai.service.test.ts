@@ -59,8 +59,8 @@ describe("OpenAIService", () => {
     });
 
     const service = new OpenAIService({
-      repoRoot: root,
-      robotRoot: root,
+      repoRootFolder: root,
+      robotPackageFolder: root,
       apiKey: "test-key",
       fetchImpl: fetchMock as unknown as typeof fetch,
     });
@@ -75,8 +75,8 @@ describe("OpenAIService", () => {
   it("requires exactly one input image when maskFile is provided", async () => {
     const root = await createTempRoot();
     const service = new OpenAIService({
-      repoRoot: root,
-      robotRoot: root,
+      repoRootFolder: root,
+      robotPackageFolder: root,
       apiKey: "test-key",
       fetchImpl: vi.fn() as unknown as typeof fetch,
     });
@@ -93,8 +93,8 @@ describe("OpenAIService", () => {
   it("rejects unsupported size values at runtime", async () => {
     const root = await createTempRoot();
     const service = new OpenAIService({
-      repoRoot: root,
-      robotRoot: root,
+      repoRootFolder: root,
+      robotPackageFolder: root,
       apiKey: "test-key",
       fetchImpl: vi.fn() as unknown as typeof fetch,
     });
@@ -118,8 +118,8 @@ describe("OpenAIService", () => {
       ));
 
     const service = new OpenAIService({
-      repoRoot: root,
-      robotRoot: root,
+      repoRootFolder: root,
+      robotPackageFolder: root,
       apiKey: "test-key",
       fetchImpl: fetchMock as unknown as typeof fetch,
     });
@@ -158,8 +158,8 @@ describe("OpenAIService", () => {
     });
 
     const service = new OpenAIService({
-      repoRoot: root,
-      robotRoot: root,
+      repoRootFolder: root,
+      robotPackageFolder: root,
       apiKey: "test-key",
       fetchImpl: fetchMock as unknown as typeof fetch,
     });
@@ -197,8 +197,8 @@ describe("OpenAIService", () => {
         );
       });
       const service = new OpenAIService({
-        repoRoot: root,
-        robotRoot: root,
+        repoRootFolder: root,
+        robotPackageFolder: root,
         apiKey: "test-key",
         fetchImpl: fetchMock as unknown as typeof fetch,
       });
@@ -220,8 +220,8 @@ describe("OpenAIService", () => {
         { status: 200 },
       ));
     const service = new OpenAIService({
-      repoRoot: root,
-      robotRoot: root,
+      repoRootFolder: root,
+      robotPackageFolder: root,
       apiKey: "test-key",
       fetchImpl: fetchMock as unknown as typeof fetch,
     });
@@ -242,8 +242,8 @@ describe("OpenAIService", () => {
   it("rejects transparent background for gpt-image-2", async () => {
     const root = await createTempRoot();
     const service = new OpenAIService({
-      repoRoot: root,
-      robotRoot: root,
+      repoRootFolder: root,
+      robotPackageFolder: root,
       apiKey: "test-key",
       fetchImpl: vi.fn() as unknown as typeof fetch,
     });

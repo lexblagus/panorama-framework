@@ -6,50 +6,50 @@ import type {
 } from "./types.js";
 
 export class WorkflowService extends BaseService {
-  private readonly options: WorkflowServiceOptions;
+  #options: WorkflowServiceOptions;
 
   constructor(options: WorkflowServiceOptions) {
     super(options);
-    this.options = options;
+    this.#options = options;
   }
 
   async runRecipe(args: RunRecipeArgs): Promise<WorkflowResult> {
     switch (args.mode) {
       case "build":
-        return this.options.buildCommand({
+        return this.#options.buildCommand({
           recipeId: args.recipeId,
-          repoRoot: this.options.repoRoot,
-          robotRoot: this.options.robotRoot,
-          recipesRoot: this.options.recipesRoot,
+          repoRootFolder: this.#options.repoRootFolder,
+          robotPackageFolder: this.#options.robotPackageFolder,
+          recipesRoot: this.#options.recipesRoot,
         });
       case "exec": {
-        const built = await this.options.buildCommand({
+        const built = await this.#options.buildCommand({
           recipeId: args.recipeId,
-          repoRoot: this.options.repoRoot,
-          robotRoot: this.options.robotRoot,
-          recipesRoot: this.options.recipesRoot,
+          repoRootFolder: this.#options.repoRootFolder,
+          robotPackageFolder: this.#options.robotPackageFolder,
+          recipesRoot: this.#options.recipesRoot,
         });
 
-        return this.options.runPlanFromStart({
+        return this.#options.runPlanFromStart({
           planId: built.planId,
-          repoRoot: this.options.repoRoot,
-          robotRoot: this.options.robotRoot,
-          recipesRoot: this.options.recipesRoot,
+          repoRootFolder: this.#options.repoRootFolder,
+          robotPackageFolder: this.#options.robotPackageFolder,
+          recipesRoot: this.#options.recipesRoot,
         });
       }
       case "run":
-        return this.options.runPlanFromStart({
+        return this.#options.runPlanFromStart({
           planId: args.planId,
-          repoRoot: this.options.repoRoot,
-          robotRoot: this.options.robotRoot,
-          recipesRoot: this.options.recipesRoot,
+          repoRootFolder: this.#options.repoRootFolder,
+          robotPackageFolder: this.#options.robotPackageFolder,
+          recipesRoot: this.#options.recipesRoot,
         });
       case "resume":
-        return this.options.resumePlan({
+        return this.#options.resumePlan({
           planId: args.planId,
-          repoRoot: this.options.repoRoot,
-          robotRoot: this.options.robotRoot,
-          recipesRoot: this.options.recipesRoot,
+          repoRootFolder: this.#options.repoRootFolder,
+          robotPackageFolder: this.#options.robotPackageFolder,
+          recipesRoot: this.#options.recipesRoot,
         });
       default: {
         const neverMode: never = args;

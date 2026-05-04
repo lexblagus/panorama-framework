@@ -48,13 +48,13 @@ export class JsonService extends BaseService {
     }
   }
 
-  async readJson<T>(targetPath: string): Promise<T> {
+  async read<T>(targetPath: string): Promise<T> {
     const absolutePath = this.resolveRepoPath(targetPath);
     const raw = await readFile(absolutePath, "utf8");
     return JSON.parse(raw) as T;
   }
 
-  async writeJson(
+  async write(
     targetPath: string,
     value: unknown,
     options?: JsonWriteOptions,
@@ -65,25 +65,13 @@ export class JsonService extends BaseService {
     await writeFile(absolutePath, `${serialized}\n`, "utf8");
   }
 
-  async read<T>(targetPath: string): Promise<T> {
-    return this.readJson<T>(targetPath);
-  }
-
-  async write(
-    targetPath: string,
-    value: unknown,
-    options?: JsonWriteOptions,
-  ): Promise<void> {
-    await this.writeJson(targetPath, value, options);
-  }
-
   async readGlobalConfig(): Promise<RobotGlobalConfig> {
-    return this.readJson<RobotGlobalConfig>(this.resolveRobotPath("config.json"));
+    return this.read<RobotGlobalConfig>(this.resolveRobotPath("config.json"));
   }
 
   async readPlan(planId: string): Promise<Plan> {
     this.ensureValidId("planId", planId);
-    return this.readJson<Plan>(this.resolveRobotPath("plans", `${planId}.json`));
+    return this.read<Plan>(this.resolveRobotPath("plans", `${planId}.json`));
   }
 
   async writePlan(
@@ -92,7 +80,7 @@ export class JsonService extends BaseService {
     options?: JsonWriteOptions,
   ): Promise<void> {
     this.ensureValidId("planId", planId);
-    await this.writeJson(
+    await this.write(
       this.resolveRobotPath("plans", `${planId}.json`),
       plan,
       options,
@@ -102,7 +90,7 @@ export class JsonService extends BaseService {
   async readRecipeState(recipeId: string): Promise<RecipeState | null> {
     this.ensureValidId("recipeId", recipeId);
     try {
-      return await this.readJson<RecipeState>(
+      return await this.read<RecipeState>(
         this.resolveRobotPath("transient", `${recipeId}.state.json`),
       );
     } catch (error: unknown) {
@@ -124,7 +112,7 @@ export class JsonService extends BaseService {
     options?: JsonWriteOptions,
   ): Promise<void> {
     this.ensureValidId("recipeId", recipeId);
-    await this.writeJson(
+    await this.write(
       this.resolveRobotPath("transient", `${recipeId}.state.json`),
       value,
       options,

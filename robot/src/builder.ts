@@ -3,6 +3,9 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { JsonService } from "./services/json/index.js";
 import { MarkdownService } from "./services/markdown/index.js";
+import { ImageService } from "./services/image/index.js";
+import { OpenAIService } from "./services/openai/index.js";
+import { WorkflowService } from "./services/workflow/index.js";
 import type {
   BuildCommandInput,
   BuildCommandResult,
@@ -55,18 +58,23 @@ function stripKnownExtension(identifier: string): string {
 }
 
 function resolveBuilderPaths(input: BuildCommandInput): BuilderPaths {
-  const robotRootFromSource = path.resolve(
+  const robotPackageFolderFromSource = path.resolve(
     path.dirname(fileURLToPath(import.meta.url)),
     "..",
   );
-  const normalizedRobotRoot = input.robotRoot ?? robotRootFromSource;
-  const robotRoot = path.resolve(normalizedRobotRoot);
-  const repoRoot = path.resolve(input.repoRoot ?? path.join(robotRoot, ".."));
-  const recipesRoot = path.resolve(input.recipesRoot ?? path.join(robotRoot, "src", "recipes"));
+  const normalizedRobotPackageFolder =
+    input.robotPackageFolder ?? robotPackageFolderFromSource;
+  const robotPackageFolder = path.resolve(normalizedRobotPackageFolder);
+  const repoRootFolder = path.resolve(
+    input.repoRootFolder ?? path.join(robotPackageFolder, ".."),
+  );
+  const recipesRoot = path.resolve(
+    input.recipesRoot ?? path.join(robotPackageFolder, "src", "recipes"),
+  );
 
   return {
-    repoRoot,
-    robotRoot,
+    repoRootFolder,
+    robotPackageFolder,
     recipesRoot,
   };
 }
@@ -87,7 +95,7 @@ async function resolveRecipeFile(
   const authoredRecipesRoots = Array.from(
     new Set([
       path.resolve(paths.recipesRoot),
-      path.resolve(paths.robotRoot, "recipes"),
+      path.resolve(paths.robotPackageFolder, "recipes"),
     ]),
   );
 
@@ -129,7 +137,7 @@ async function resolveRecipeFile(
     }
   }
 
-  const distRecipesRoot = path.join(paths.robotRoot, "dist", "recipes");
+  const distRecipesRoot = path.join(paths.robotPackageFolder, "dist", "recipes");
   const distCandidates: RecipeResolution[] = [
     {
       recipeFilePath: path.join(distRecipesRoot, `${recipeId}.js`),
@@ -170,7 +178,7 @@ async function loadOptionalRecipeConfig(
 
   const folderConfigPath = path.join(resolution.folderPath, "config.json");
   const fallbackConfigPath = path.join(
-    paths.robotRoot,
+    paths.robotPackageFolder,
     "src",
     "recipes",
     resolution.recipeId,
@@ -265,23 +273,48 @@ export async function buildCommand(
   ensureValidId("recipeId", resolution.recipeId);
 
   const json = new JsonService({
-    repoRoot: paths.repoRoot,
-    robotRoot: paths.robotRoot,
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
   });
   const markdown = new MarkdownService({
-    repoRoot: paths.repoRoot,
-    robotRoot: paths.robotRoot,
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
+  });
+  const image = new ImageService({
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
+  });
+  const openai = new OpenAIService({
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
+  });
+  const workflow = new WorkflowService({
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
+    recipesRoot: paths.recipesRoot,
+    buildCommand,
+    runPlanFromStart: async (runnerInput) => {
+      const { runPlanFromStart } = await import("./runner.js");
+      return runPlanFromStart(runnerInput);
+    },
+    resumePlan: async (runnerInput) => {
+      const { resumePlan } = await import("./runner.js");
+      return resumePlan(runnerInput);
+    },
   });
 
   const recipeConfig = await loadOptionalRecipeConfig(resolution, paths);
   const recipe = await loadRecipeFromModule(resolution, {
     recipeId: resolution.recipeId,
-    repoRoot: paths.repoRoot,
-    robotRoot: paths.robotRoot,
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
     recipeConfig,
     services: {
       json,
       markdown,
+      image,
+      openai,
+      workflow,
     },
   });
 

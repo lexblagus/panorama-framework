@@ -22,20 +22,20 @@ async function createTempRoot(): Promise<string> {
 }
 
 async function createWorkspace(): Promise<{
-  repoRoot: string;
-  robotRoot: string;
+  repoRootFolder: string;
+  robotPackageFolder: string;
   recipesRoot: string;
 }> {
-  const repoRoot = await createTempRoot();
-  const robotRoot = path.join(repoRoot, "robot");
-  const recipesRoot = path.join(robotRoot, "src", "recipes");
+  const repoRootFolder = await createTempRoot();
+  const robotPackageFolder = path.join(repoRootFolder, "robot");
+  const recipesRoot = path.join(robotPackageFolder, "src", "recipes");
   await mkdir(recipesRoot, { recursive: true });
-  return { repoRoot, robotRoot, recipesRoot };
+  return { repoRootFolder, robotPackageFolder, recipesRoot };
 }
 
 describe("buildCommand", () => {
   it("builds plan from flat recipe file and writes waiting tasks", async () => {
-    const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder, recipesRoot } = await createWorkspace();
     const recipeFile = path.join(recipesRoot, "smoke-test.mjs");
     await writeFile(
       recipeFile,
@@ -57,12 +57,12 @@ describe("buildCommand", () => {
 
     const result = await buildCommand({
       recipeId: "smoke-test",
-      repoRoot,
-      robotRoot,
+      repoRootFolder,
+      robotPackageFolder,
       recipesRoot,
     });
 
-    const planPath = path.join(robotRoot, "plans", "smoke-test.json");
+    const planPath = path.join(robotPackageFolder, "plans", "smoke-test.json");
     const plan = JSON.parse(await readFile(planPath, "utf8")) as Plan;
 
     expect(result.command).toBe("build");
@@ -76,7 +76,7 @@ describe("buildCommand", () => {
   });
 
   it("loads folderized recipe config and uses buildRecipe function", async () => {
-    const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder, recipesRoot } = await createWorkspace();
     const folder = path.join(recipesRoot, "minimal");
     await mkdir(folder, { recursive: true });
     await writeFile(
@@ -110,12 +110,12 @@ describe("buildCommand", () => {
 
     await buildCommand({
       recipeId: "minimal",
-      repoRoot,
-      robotRoot,
+      repoRootFolder,
+      robotPackageFolder,
       recipesRoot,
     });
 
-    const planPath = path.join(robotRoot, "plans", "minimal.json");
+    const planPath = path.join(robotPackageFolder, "plans", "minimal.json");
     const plan = JSON.parse(await readFile(planPath, "utf8")) as Plan;
     expect(plan.tasks).toHaveLength(1);
     expect(plan.tasks[0].arguments).toMatchObject({
@@ -124,7 +124,7 @@ describe("buildCommand", () => {
   });
 
   it("builds nested recipe id and writes nested plan path", async () => {
-    const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder, recipesRoot } = await createWorkspace();
     const nestedFolder = path.join(recipesRoot, "examples");
     await mkdir(nestedFolder, { recursive: true });
     await writeFile(
@@ -141,12 +141,12 @@ describe("buildCommand", () => {
 
     const result = await buildCommand({
       recipeId: "examples/empty",
-      repoRoot,
-      robotRoot,
+      repoRootFolder,
+      robotPackageFolder,
       recipesRoot,
     });
 
-    const planPath = path.join(robotRoot, "plans", "examples", "empty.json");
+    const planPath = path.join(robotPackageFolder, "plans", "examples", "empty.json");
     const plan = JSON.parse(await readFile(planPath, "utf8")) as Plan;
 
     expect(result.recipeId).toBe("examples/empty");
@@ -156,8 +156,8 @@ describe("buildCommand", () => {
   });
 
   it("resolves recipe from legacy robot/recipes root", async () => {
-    const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
-    const legacyRecipesRoot = path.join(robotRoot, "recipes", "examples");
+    const { repoRootFolder, robotPackageFolder, recipesRoot } = await createWorkspace();
+    const legacyRecipesRoot = path.join(robotPackageFolder, "recipes", "examples");
     await mkdir(legacyRecipesRoot, { recursive: true });
     await writeFile(
       path.join(legacyRecipesRoot, "legacy-empty.ts"),
@@ -174,8 +174,8 @@ describe("buildCommand", () => {
 
     const result = await buildCommand({
       recipeId: "examples/legacy-empty",
-      repoRoot,
-      robotRoot,
+      repoRootFolder,
+      robotPackageFolder,
       recipesRoot,
     });
 
@@ -184,24 +184,24 @@ describe("buildCommand", () => {
   });
 
   it("rejects invalid runtime recipe id", async () => {
-    const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder, recipesRoot } = await createWorkspace();
     await expect(
       buildCommand({
         recipeId: ".bad",
-        repoRoot,
-        robotRoot,
+        repoRootFolder,
+        robotPackageFolder,
         recipesRoot,
       }),
     ).rejects.toThrow('Invalid recipeId: ".bad"');
   });
 
   it("fails when recipe cannot be resolved", async () => {
-    const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder, recipesRoot } = await createWorkspace();
     await expect(
       buildCommand({
         recipeId: "missing",
-        repoRoot,
-        robotRoot,
+        repoRootFolder,
+        robotPackageFolder,
         recipesRoot,
       }),
     ).rejects.toThrow('Recipe not found: "missing"');

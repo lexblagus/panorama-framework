@@ -16,20 +16,20 @@ export interface WorkflowServiceOptions extends ServiceBaseOptions {
   recipesRoot: string;
   buildCommand: (input: {
     recipeId: string;
-    repoRoot?: string;
-    robotRoot?: string;
+    repoRootFolder?: string;
+    robotPackageFolder?: string;
     recipesRoot?: string;
   }) => Promise<BuildCommandResult>;
   runPlanFromStart: (input: {
     planId: string;
-    repoRoot?: string;
-    robotRoot?: string;
+    repoRootFolder?: string;
+    robotPackageFolder?: string;
     recipesRoot?: string;
   }) => Promise<RunnerResult>;
   resumePlan: (input: {
     planId: string;
-    repoRoot?: string;
-    robotRoot?: string;
+    repoRootFolder?: string;
+    robotPackageFolder?: string;
     recipesRoot?: string;
   }) => Promise<RunnerResult>;
 }

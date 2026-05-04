@@ -22,39 +22,39 @@ async function createTempRoot(): Promise<string> {
 }
 
 async function createWorkspace(): Promise<{
-  repoRoot: string;
-  robotRoot: string;
+  repoRootFolder: string;
+  robotPackageFolder: string;
   recipesRoot: string;
 }> {
-  const repoRoot = await createTempRoot();
-  const robotRoot = path.join(repoRoot, "robot");
-  const recipesRoot = path.join(robotRoot, "src", "recipes");
-  await mkdir(path.join(robotRoot, "plans"), { recursive: true });
+  const repoRootFolder = await createTempRoot();
+  const robotPackageFolder = path.join(repoRootFolder, "robot");
+  const recipesRoot = path.join(robotPackageFolder, "src", "recipes");
+  await mkdir(path.join(robotPackageFolder, "plans"), { recursive: true });
   await mkdir(recipesRoot, { recursive: true });
-  return { repoRoot, robotRoot, recipesRoot };
+  return { repoRootFolder, robotPackageFolder, recipesRoot };
 }
 
 async function writePlan(
-  robotRoot: string,
+  robotPackageFolder: string,
   planId: string,
   plan: Plan,
 ): Promise<void> {
-  const filePath = path.join(robotRoot, "plans", `${planId}.json`);
+  const filePath = path.join(robotPackageFolder, "plans", `${planId}.json`);
   await mkdir(path.dirname(filePath), { recursive: true });
   await writeFile(filePath, `${JSON.stringify(plan, null, 2)}\n`, "utf8");
 }
 
-async function readPlan(robotRoot: string, planId: string): Promise<Plan> {
-  const filePath = path.join(robotRoot, "plans", `${planId}.json`);
+async function readPlan(robotPackageFolder: string, planId: string): Promise<Plan> {
+  const filePath = path.join(robotPackageFolder, "plans", `${planId}.json`);
   return JSON.parse(await readFile(filePath, "utf8")) as Plan;
 }
 
 describe("runner", () => {
   it("run executes tasks from start and resets runtime fields", async () => {
-    const { repoRoot, robotRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder } = await createWorkspace();
     const planId = "smoke-test";
 
-    await writePlan(robotRoot, planId, {
+    await writePlan(robotPackageFolder, planId, {
       recipeId: "smoke-test",
       createdAt: "2026-05-04T00:00:00.000Z",
       tasks: [
@@ -73,9 +73,9 @@ describe("runner", () => {
       ],
     });
 
-    const result = await runPlanFromStart({ planId, repoRoot, robotRoot });
-    const plan = await readPlan(robotRoot, planId);
-    const outputFile = path.join(repoRoot, "robot/tests/.tmp/runner/run-output.json");
+    const result = await runPlanFromStart({ planId, repoRootFolder, robotPackageFolder });
+    const plan = await readPlan(robotPackageFolder, planId);
+    const outputFile = path.join(repoRootFolder, "robot/tests/.tmp/runner/run-output.json");
     const outputPayload = JSON.parse(await readFile(outputFile, "utf8")) as {
       ok: boolean;
     };
@@ -91,12 +91,12 @@ describe("runner", () => {
   });
 
   it("resume skips success tasks and executes first non-success task", async () => {
-    const { repoRoot, robotRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder } = await createWorkspace();
     const planId = "resume-case";
-    const skippedOutput = path.join(repoRoot, "robot/tests/.tmp/runner/skipped.json");
-    const resumedOutput = path.join(repoRoot, "robot/tests/.tmp/runner/resumed.json");
+    const skippedOutput = path.join(repoRootFolder, "robot/tests/.tmp/runner/skipped.json");
+    const resumedOutput = path.join(repoRootFolder, "robot/tests/.tmp/runner/resumed.json");
 
-    await writePlan(robotRoot, planId, {
+    await writePlan(robotPackageFolder, planId, {
       recipeId: "resume-case",
       createdAt: "2026-05-04T00:00:00.000Z",
       tasks: [
@@ -123,8 +123,8 @@ describe("runner", () => {
       ],
     });
 
-    const result = await resumePlan({ planId, repoRoot, robotRoot });
-    const plan = await readPlan(robotRoot, planId);
+    const result = await resumePlan({ planId, repoRootFolder, robotPackageFolder });
+    const plan = await readPlan(robotPackageFolder, planId);
     const resumedPayload = JSON.parse(await readFile(resumedOutput, "utf8")) as {
       resumed: boolean;
     };
@@ -138,11 +138,11 @@ describe("runner", () => {
   });
 
   it("resume behaves like run when no runtime state exists", async () => {
-    const { repoRoot, robotRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder } = await createWorkspace();
     const planId = "fresh-resume";
-    const outputFile = path.join(repoRoot, "robot/tests/.tmp/runner/fresh.json");
+    const outputFile = path.join(repoRootFolder, "robot/tests/.tmp/runner/fresh.json");
 
-    await writePlan(robotRoot, planId, {
+    await writePlan(robotPackageFolder, planId, {
       recipeId: "fresh-resume",
       createdAt: "2026-05-04T00:00:00.000Z",
       tasks: [
@@ -158,7 +158,7 @@ describe("runner", () => {
       ],
     });
 
-    const result = await resumePlan({ planId, repoRoot, robotRoot });
+    const result = await resumePlan({ planId, repoRootFolder, robotPackageFolder });
     const payload = JSON.parse(await readFile(outputFile, "utf8")) as { fresh: boolean };
     expect(result.command).toBe("resume");
     expect(result.completedTaskCount).toBe(1);
@@ -166,32 +166,32 @@ describe("runner", () => {
   });
 
   it("fails clearly when plan file does not exist", async () => {
-    const { repoRoot, robotRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder } = await createWorkspace();
     await expect(
-      runPlanFromStart({ planId: "missing", repoRoot, robotRoot }),
+      runPlanFromStart({ planId: "missing", repoRootFolder, robotPackageFolder }),
     ).rejects.toThrow('Plan not found: "missing"');
     await expect(
-      resumePlan({ planId: "missing", repoRoot, robotRoot }),
+      resumePlan({ planId: "missing", repoRootFolder, robotPackageFolder }),
     ).rejects.toThrow('Plan not found: "missing"');
   });
 
   it("runs nested plan id from subfolder", async () => {
-    const { repoRoot, robotRoot } = await createWorkspace();
+    const { repoRootFolder, robotPackageFolder } = await createWorkspace();
     const planId = "examples/empty";
-    await writePlan(robotRoot, planId, {
+    await writePlan(robotPackageFolder, planId, {
       recipeId: "examples/empty",
       createdAt: "2026-05-04T00:00:00.000Z",
       tasks: [],
     });
 
-    const result = await runPlanFromStart({ planId, repoRoot, robotRoot });
+    const result = await runPlanFromStart({ planId, repoRootFolder, robotPackageFolder });
     expect(result.planId).toBe("examples/empty");
     expect(result.taskCount).toBe(0);
   });
 
   it("dispatches workflow.run-recipe for nested exec", async () => {
-    const { repoRoot, robotRoot, recipesRoot } = await createWorkspace();
-    const childOutput = path.join(repoRoot, "robot/tests/.tmp/runner/workflow-child.json");
+    const { repoRootFolder, robotPackageFolder, recipesRoot } = await createWorkspace();
+    const childOutput = path.join(repoRootFolder, "robot/tests/.tmp/runner/workflow-child.json");
     const childRecipeFile = path.join(recipesRoot, "child.mjs");
 
     await writeFile(
@@ -212,7 +212,7 @@ describe("runner", () => {
       "utf8",
     );
 
-    await writePlan(robotRoot, "parent", {
+    await writePlan(robotPackageFolder, "parent", {
       recipeId: "parent",
       createdAt: "2026-05-04T00:00:00.000Z",
       tasks: [
@@ -230,15 +230,15 @@ describe("runner", () => {
 
     await runPlanFromStart({
       planId: "parent",
-      repoRoot,
-      robotRoot,
+      repoRootFolder,
+      robotPackageFolder,
       recipesRoot,
     });
 
     const childPayload = JSON.parse(await readFile(childOutput, "utf8")) as {
       nested: boolean;
     };
-    const childPlan = await readPlan(robotRoot, "child");
+    const childPlan = await readPlan(robotPackageFolder, "child");
     expect(childPayload.nested).toBe(true);
     expect(childPlan.tasks[0].state).toBe("success");
   });

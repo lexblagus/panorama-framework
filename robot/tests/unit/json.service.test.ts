@@ -23,13 +23,13 @@ async function createTempRoot(): Promise<string> {
 
 async function createService(): Promise<{
   root: string;
-  robotRoot: string;
+  robotPackageFolder: string;
   service: JsonService;
 }> {
   const root = await createTempRoot();
-  const robotRoot = path.join(root, "robot");
-  const service = new JsonService({ repoRoot: root, robotRoot });
-  return { root, robotRoot, service };
+  const robotPackageFolder = path.join(root, "robot");
+  const service = new JsonService({ repoRootFolder: root, robotPackageFolder });
+  return { root, robotPackageFolder, service };
 }
 
 describe("JsonService", () => {
@@ -59,23 +59,23 @@ describe("JsonService", () => {
   it("reads and writes JSON using repo-root relative paths", async () => {
     const { service } = await createService();
 
-    await service.writeJson("data/sample.json", { ok: true });
-    const loaded = await service.readJson<{ ok: boolean }>("data/sample.json");
+    await service.write("data/sample.json", { ok: true });
+    const loaded = await service.read<{ ok: boolean }>("data/sample.json");
 
     expect(loaded).toEqual({ ok: true });
   });
 
   it("reads global config from robot/config.json", async () => {
-    const { service, robotRoot } = await createService();
+    const { service, robotPackageFolder } = await createService();
 
-    await service.writeJson(path.join(robotRoot, "config.json"), { env: "test" });
+    await service.write(path.join(robotPackageFolder, "config.json"), { env: "test" });
     const config = await service.readGlobalConfig();
 
     expect(config).toEqual({ env: "test" });
   });
 
   it("writes and reads plan files by plan id", async () => {
-    const { service, robotRoot } = await createService();
+    const { service, robotPackageFolder } = await createService();
     const plan: Plan = {
       recipeId: "smoke-test",
       createdAt: "2026-05-03T00:00:00Z",
@@ -85,7 +85,7 @@ describe("JsonService", () => {
     await service.writePlan("smoke-test", plan);
     const loaded = await service.readPlan("smoke-test");
     const contents = await readFile(
-      path.join(robotRoot, "plans", "smoke-test.json"),
+      path.join(robotPackageFolder, "plans", "smoke-test.json"),
       "utf8",
     );
 
@@ -94,7 +94,7 @@ describe("JsonService", () => {
   });
 
   it("writes and reads nested plan files by plan id", async () => {
-    const { service, robotRoot } = await createService();
+    const { service, robotPackageFolder } = await createService();
     const plan: Plan = {
       recipeId: "examples/empty",
       createdAt: "2026-05-03T00:00:00Z",
@@ -104,7 +104,7 @@ describe("JsonService", () => {
     await service.writePlan("examples/empty", plan);
     const loaded = await service.readPlan("examples/empty");
     const contents = await readFile(
-      path.join(robotRoot, "plans", "examples", "empty.json"),
+      path.join(robotPackageFolder, "plans", "examples", "empty.json"),
       "utf8",
     );
 
@@ -132,13 +132,13 @@ describe("JsonService", () => {
   });
 
   it("writes and reads recipe state by recipe id", async () => {
-    const { service, robotRoot } = await createService();
+    const { service, robotPackageFolder } = await createService();
     const payload = { fileIndex: 17 };
 
     await service.writeRecipeState("generate-panorama", payload);
     const loaded = await service.readRecipeState("generate-panorama");
     const contents = await readFile(
-      path.join(robotRoot, "transient", "generate-panorama.state.json"),
+      path.join(robotPackageFolder, "transient", "generate-panorama.state.json"),
       "utf8",
     );
 

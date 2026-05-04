@@ -156,8 +156,8 @@ export interface Recipe {
 ```ts
 export interface BuildCommandInput {
   recipeId: RecipeId;
-  repoRoot?: string;
-  robotRoot?: string;
+  repoRootFolder?: string;
+  robotPackageFolder?: string;
   recipesRoot?: string;
 }
 
@@ -171,15 +171,15 @@ export interface BuildCommandResult {
 
 export interface RunFromStartInput {
   planId: PlanId;
-  repoRoot?: string;
-  robotRoot?: string;
+  repoRootFolder?: string;
+  robotPackageFolder?: string;
   recipesRoot?: string;
 }
 
 export interface ResumeInput {
   planId: PlanId;
-  repoRoot?: string;
-  robotRoot?: string;
+  repoRootFolder?: string;
+  robotPackageFolder?: string;
   recipesRoot?: string;
 }
 
@@ -213,7 +213,7 @@ Path rules:
 
 - CLI `--plan` accepts a `planId` only, not a path
 - `recipeId` and `planId` may include subfolders as slash-separated relative segments (for example, `examples/empty`)
-- recipe and task file arguments are `repoRoot`-relative by default unless a service contract says otherwise
+- recipe and task file arguments are `repoRootFolder`-relative by default unless a service contract says otherwise
 
 ## 3. Task Identifier Convention
 
@@ -255,8 +255,8 @@ Suggested shape:
 
 ```ts
 export interface ServiceContext {
-  repoRoot: string;
-  robotRoot: string;
+  repoRootFolder: string;
+  robotPackageFolder: string;
   planId?: PlanId;
   services: ServiceRegistry;
 }
@@ -272,7 +272,7 @@ export interface ServiceRegistry {
 
 Implications:
 
-- builder may call `json` and `markdown` directly
+- builder may call services directly through the same registry
 - runner dispatches plan tasks through the same registry
 - services may call other services through `context.services`
 
@@ -281,7 +281,7 @@ The service registry is a dependency container and dispatch table created for on
 Illustrative flow:
 
 ```ts
-const services = createServiceRegistry({ repoRoot, robotRoot });
+const services = createServiceRegistry({ repoRootFolder, robotPackageFolder });
 await services.markdown.read(...);
 await dispatchByTaskId(task.taskId, task, services);
 ```

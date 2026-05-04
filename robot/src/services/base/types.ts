@@ -1,4 +1,4 @@
 export interface ServiceBaseOptions {
-  repoRoot: string;
-  robotRoot: string;
+  repoRootFolder: string;
+  robotPackageFolder: string;
 }

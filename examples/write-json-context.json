@@ -1,0 +1,16 @@
+{
+		"recipeId": "examples/write-json",
+		"repoRootFolder": "/Users/blagus/Gallery/Photos/Panorama/05 Global Megacity Panorama/repo-framework",
+		"robotPackageFolder": "/Users/blagus/Gallery/Photos/Panorama/05 Global Megacity Panorama/repo-framework/robot",
+		"recipeConfig": null,
+		"services": {
+				"json": {
+						"repoRootFolder": "/Users/blagus/Gallery/Photos/Panorama/05 Global Megacity Panorama/repo-framework",
+						"robotPackageFolder": "/Users/blagus/Gallery/Photos/Panorama/05 Global Megacity Panorama/repo-framework/robot"
+				},
+				"markdown": {
+						"repoRootFolder": "/Users/blagus/Gallery/Photos/Panorama/05 Global Megacity Panorama/repo-framework",
+						"robotPackageFolder": "/Users/blagus/Gallery/Photos/Panorama/05 Global Megacity Panorama/repo-framework/robot"
+				}
+		}
+}

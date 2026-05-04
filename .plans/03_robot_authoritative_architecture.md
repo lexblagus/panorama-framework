@@ -383,7 +383,7 @@ Example uses:
 Illustrative flow:
 
 ```ts
-const services = createServiceRegistry({ repoRoot, robotRoot });
+const services = createServiceRegistry({ repoRootFolder, robotPackageFolder });
 await services.markdown.read(...);
 await dispatchByTaskId(task.taskId, task, services);
 ```

@@ -17,8 +17,8 @@ import type { Task } from "./types/task.js";
 const ID_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
 
 interface RunnerPaths {
-  repoRoot: string;
-  robotRoot: string;
+  repoRootFolder: string;
+  robotPackageFolder: string;
   recipesRoot: string;
 }
 
@@ -69,16 +69,22 @@ function nowIso(): string {
 }
 
 function resolveRunnerPaths(input: RunFromStartInput | ResumeInput): RunnerPaths {
-  const robotRootFromSource = path.resolve(
+  const robotPackageFolderFromSource = path.resolve(
     path.dirname(fileURLToPath(import.meta.url)),
     "..",
   );
-  const robotRoot = path.resolve(input.robotRoot ?? robotRootFromSource);
-  const repoRoot = path.resolve(input.repoRoot ?? path.join(robotRoot, ".."));
-  const recipesRoot = path.resolve(input.recipesRoot ?? path.join(robotRoot, "src", "recipes"));
+  const robotPackageFolder = path.resolve(
+    input.robotPackageFolder ?? robotPackageFolderFromSource,
+  );
+  const repoRootFolder = path.resolve(
+    input.repoRootFolder ?? path.join(robotPackageFolder, ".."),
+  );
+  const recipesRoot = path.resolve(
+    input.recipesRoot ?? path.join(robotPackageFolder, "src", "recipes"),
+  );
   return {
-    repoRoot,
-    robotRoot,
+    repoRootFolder,
+    robotPackageFolder,
     recipesRoot,
   };
 }
@@ -248,24 +254,24 @@ async function executePlan({
 
 function createServiceRegistry(paths: RunnerPaths): ServiceRegistry {
   const json = new JsonService({
-    repoRoot: paths.repoRoot,
-    robotRoot: paths.robotRoot,
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
   });
   const markdown = new MarkdownService({
-    repoRoot: paths.repoRoot,
-    robotRoot: paths.robotRoot,
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
   });
   const image = new ImageService({
-    repoRoot: paths.repoRoot,
-    robotRoot: paths.robotRoot,
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
   });
   const openai = new OpenAIService({
-    repoRoot: paths.repoRoot,
-    robotRoot: paths.robotRoot,
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
   });
   const workflow = new WorkflowService({
-    repoRoot: paths.repoRoot,
-    robotRoot: paths.robotRoot,
+    repoRootFolder: paths.repoRootFolder,
+    robotPackageFolder: paths.robotPackageFolder,
     recipesRoot: paths.recipesRoot,
     buildCommand,
     runPlanFromStart,

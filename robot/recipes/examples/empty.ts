@@ -1,5 +1,5 @@
 const emptyRecipe = {
-  title: "Empty Example Recipe: minimal with no steps",
+  title: "Empty example recipe: minimal with no steps",
   steps: [],
 };
 

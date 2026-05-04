@@ -1,21 +1,27 @@
 import type { JsonService } from "../services/json/index.js";
 import type { MarkdownService } from "../services/markdown/index.js";
+import type { ImageService } from "../services/image/index.js";
+import type { OpenAIService } from "../services/openai/index.js";
+import type { WorkflowService } from "../services/workflow/index.js";
 import type { Recipe } from "./recipe.js";
 
 export interface BuilderPaths {
-  repoRoot: string;
-  robotRoot: string;
+  repoRootFolder: string;
+  robotPackageFolder: string;
   recipesRoot: string;
 }
 
 export interface BuildRecipeContext {
   recipeId: string;
-  repoRoot: string;
-  robotRoot: string;
+  repoRootFolder: string;
+  robotPackageFolder: string;
   recipeConfig: Record<string, unknown> | null;
   services: {
     json: JsonService;
     markdown: MarkdownService;
+    image: ImageService;
+    openai: OpenAIService;
+    workflow: WorkflowService;
   };
 }
 
@@ -33,8 +39,8 @@ export interface RecipeResolution {
 
 export interface BuildCommandInput {
   recipeId: string;
-  repoRoot?: string;
-  robotRoot?: string;
+  repoRootFolder?: string;
+  robotPackageFolder?: string;
   recipesRoot?: string;
 }
 

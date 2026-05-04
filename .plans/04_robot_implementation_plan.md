@@ -222,8 +222,8 @@ Tasks:
 
 Recommended capabilities:
 
-- `readJson(path)`
-- `writeJson(path, value)`
+- `read(path)`
+- `write(path, value)`
 - `readGlobalConfig()`
 - `readRecipeState(recipeId)`
 - `writeRecipeState(recipeId, value)`
@@ -546,7 +546,7 @@ Test rules:
 
 Phase 2 (`json` service):
 
-- test each JSON capability directly: `readJson`, `writeJson`, `readGlobalConfig`, `readPlan`, `writePlan`, `readRecipeState`, `writeRecipeState`
+- test each JSON capability directly: `read`, `write`, `readGlobalConfig`, `readPlan`, `writePlan`, `readRecipeState`, `writeRecipeState`
 - verify missing-file behavior and initialization fallback from recipe config
 - verify path resolution to `robot/plans/` and `robot/transient/`
 

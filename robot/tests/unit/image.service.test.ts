@@ -42,7 +42,7 @@ async function createPng(
 describe("ImageService", () => {
   it("creates bridge image using right side of left image and left side of right image", async () => {
     const root = await createTempRoot();
-    const service = new ImageService({ repoRoot: root, robotRoot: root });
+    const service = new ImageService({ repoRootFolder: root, robotPackageFolder: root });
 
     const left = path.join(root, "left.png");
     const right = path.join(root, "right.png");
@@ -82,7 +82,7 @@ describe("ImageService", () => {
 
   it("rejects createBridge when input dimensions do not match", async () => {
     const root = await createTempRoot();
-    const service = new ImageService({ repoRoot: root, robotRoot: root });
+    const service = new ImageService({ repoRootFolder: root, robotPackageFolder: root });
 
     const left = path.join(root, "left.png");
     const right = path.join(root, "right.png");
@@ -104,7 +104,7 @@ describe("ImageService", () => {
 
   it("composes tiles as row-only strip preserving order", async () => {
     const root = await createTempRoot();
-    const service = new ImageService({ repoRoot: root, robotRoot: root });
+    const service = new ImageService({ repoRootFolder: root, robotPackageFolder: root });
 
     const tile1 = path.join(root, "tile1.png");
     const tile2 = path.join(root, "tile2.png");
@@ -137,7 +137,7 @@ describe("ImageService", () => {
 
   it("rejects composeTilesPreview when image sizes mismatch", async () => {
     const root = await createTempRoot();
-    const service = new ImageService({ repoRoot: root, robotRoot: root });
+    const service = new ImageService({ repoRootFolder: root, robotPackageFolder: root });
 
     const tile1 = path.join(root, "tile1.png");
     const tile2 = path.join(root, "tile2.png");
@@ -156,7 +156,7 @@ describe("ImageService", () => {
 
   it("writes output file to disk", async () => {
     const root = await createTempRoot();
-    const service = new ImageService({ repoRoot: root, robotRoot: root });
+    const service = new ImageService({ repoRootFolder: root, robotPackageFolder: root });
     const tile1 = path.join(root, "tile1.png");
     const output = path.join(root, "out", "preview.png");
 

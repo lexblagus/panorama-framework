@@ -15,6 +15,7 @@ pnpm-debug.log*
 # Env
 .env
 .env.*
+!.env.sample
 
 # Coverage
 coverage/

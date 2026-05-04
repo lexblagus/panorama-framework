@@ -1,10 +1,20 @@
 # Current iteraction
 
-- Create Base Service README
+- Improve JSON service examples: initializeRecipeState, writeRecipeState, readRecipeState
+
+- Friendly recipe not found message
+
+- Logs with levels (mainly in recipes) using Chalk
+
+---
+
+# Previous iteraction
+
+- Create Base Service README: add something like "now intended for recipe use"
 
 - Update Robot README with links to Services READMEs
 
-- 
+- Update Service READMEs with code snnipets examples in how to use in your recipe
 
 ---
 
