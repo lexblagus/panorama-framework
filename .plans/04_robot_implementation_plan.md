@@ -204,6 +204,7 @@ Files:
 
 - add `robot/src/services/json/README.md`
 - add `robot/src/services/json/index.ts`
+- add `robot/src/services/json/types.ts`
 - add `robot/src/services/json/json.ts`
 - add `robot/config.json`
 - update `robot/.gitignore`
@@ -242,6 +243,7 @@ Files:
 
 - add `robot/src/services/markdown/README.md`
 - add `robot/src/services/markdown/index.ts`
+- add `robot/src/services/markdown/types.ts`
 - add `robot/src/services/markdown/markdown.ts`
 
 Tasks:
@@ -281,12 +283,13 @@ Files:
 
 - add `robot/src/services/openai/README.md`
 - add `robot/src/services/openai/index.ts`
+- add `robot/src/services/openai/types.ts`
 - add `robot/src/services/openai/openai.ts`
 - add `robot/src/services/openai/config.json`
 - add `robot/src/services/image/README.md`
 - add `robot/src/services/image/index.ts`
+- add `robot/src/services/image/types.ts`
 - add `robot/src/services/image/image.ts`
-- add `robot/src/services/image/config.json`
 
 Tasks:
 
@@ -552,7 +555,7 @@ Phase 4 (`openai` and `image` services):
 - keep live OpenAI calls out of default CI; run them only in an explicit opt-in lane
 - use dummy fixture images under `robot/tests/fixtures/images` for all image service tests
 - write generated image artifacts only under `robot/tests/.tmp/`
-- verify strict OpenAI size enum handling, including accepted portrait, landscape, and 4K options
+- verify OpenAI size validation by model (`gpt-image-2` dynamic constrained sizes, legacy fixed sizes)
 - verify default OpenAI generation values (`model`, `size`, `quality`, `n`, `outputFormat`)
 - verify `maskFile` requires exactly one input image
 - verify optional sidecar metadata file naming and content when enabled

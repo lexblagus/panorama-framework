@@ -101,7 +101,7 @@ describe("OpenAIService", () => {
         ...buildDefaultArgs(root),
         size: "999x999" as never,
       }),
-    ).rejects.toThrow('Unsupported size "999x999"');
+    ).rejects.toThrow('Unsupported size "999x999" for model "gpt-image-1.5"');
   });
 
   it("saves sidecar metadata file when requested", async () => {
@@ -169,5 +169,85 @@ describe("OpenAIService", () => {
 
     expect(result.files).toHaveLength(1);
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("accepts all GPT image model ids supported by this service", async () => {
+    const root = await createTempRoot();
+    const acceptedModels = [
+      "gpt-image-2",
+      "gpt-image-1.5",
+      "gpt-image-1",
+      "gpt-image-1-mini",
+    ] as const;
+
+    for (const model of acceptedModels) {
+      const fetchMock = vi.fn(async (_input: RequestInfo | URL, init?: RequestInit) => {
+        const form = init?.body as FormData;
+        expect(form.get("model")).toBe(model);
+        return new Response(
+          JSON.stringify({
+            data: [{ b64_json: ONE_PIXEL_PNG_BASE64 }],
+          }),
+          { status: 200 },
+        );
+      });
+      const service = new OpenAIService({
+        repoRoot: root,
+        apiKey: "test-key",
+        fetchImpl: fetchMock as unknown as typeof fetch,
+      });
+
+      await service.generateImage({
+        ...buildDefaultArgs(root),
+        model,
+      });
+    }
+  });
+
+  it("accepts constrained dynamic sizes for gpt-image-2", async () => {
+    const root = await createTempRoot();
+    const fetchMock = vi.fn(async () =>
+      new Response(
+        JSON.stringify({
+          data: [{ b64_json: ONE_PIXEL_PNG_BASE64 }],
+        }),
+        { status: 200 },
+      ));
+    const service = new OpenAIService({
+      repoRoot: root,
+      apiKey: "test-key",
+      fetchImpl: fetchMock as unknown as typeof fetch,
+    });
+
+    await expect(
+      service.generateImage({
+        ...buildDefaultArgs(root),
+        model: "gpt-image-2",
+        size: "2048x1152",
+      }),
+    ).resolves.toEqual(
+      expect.objectContaining({
+        files: expect.any(Array),
+      }),
+    );
+  });
+
+  it("rejects transparent background for gpt-image-2", async () => {
+    const root = await createTempRoot();
+    const service = new OpenAIService({
+      repoRoot: root,
+      apiKey: "test-key",
+      fetchImpl: vi.fn() as unknown as typeof fetch,
+    });
+
+    await expect(
+      service.generateImage({
+        ...buildDefaultArgs(root),
+        model: "gpt-image-2",
+        background: "transparent",
+      }),
+    ).rejects.toThrow(
+      'background "transparent" is not supported for model "gpt-image-2"',
+    );
   });
 });

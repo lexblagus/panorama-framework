@@ -1,57 +1,18 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-
-export type OpenAIModel = "gpt-image-1.5" | "gpt-image-2";
-export type OpenAIImageSize =
-  | "1024x1024"
-  | "1024x1536"
-  | "1536x1024"
-  | "2160x3840"
-  | "3840x2160";
-export type OpenAIImageQuality = "high" | "medium" | "low" | "auto";
-export type OpenAIOutputFormat = "png" | "jpeg" | "webp";
-export type OpenAIImageBackground = "transparent" | "opaque" | "auto";
-
-export interface OpenAIServiceConfig {
-  baseUrl: string;
-  imageGenerationServicePath: string;
-  imageEditServicePath: string;
-  responsesServicePath: string;
-  generationTimeoutMs: number;
-}
-
-export interface OpenAIServiceOptions {
-  repoRoot: string;
-  apiKey?: string;
-  fetchImpl?: typeof fetch;
-  config?: Partial<OpenAIServiceConfig>;
-}
-
-export interface GenerateImageArgs {
-  prompt: string;
-  outputDir: string;
-  outputFilePrefix: string;
-  inputImages?: string[];
-  model?: OpenAIModel;
-  maskFile?: string;
-  size?: OpenAIImageSize;
-  n?: number;
-  quality?: OpenAIImageQuality;
-  outputFormat?: OpenAIOutputFormat;
-  outputCompression?: number;
-  background?: OpenAIImageBackground;
-  saveSidecarMetadataFile?: boolean;
-  user?: string;
-}
-
-export interface GeneratedImageFile {
-  file: string;
-  revisedPrompt?: string;
-}
-
-export interface GenerateImageResult {
-  files: GeneratedImageFile[];
-}
+import defaultConfigJson from "./config.json" with { type: "json" };
+import type {
+  GenerateImageArgs,
+  GenerateImageResult,
+  GeneratedImageFile,
+  OpenAIImageBackground,
+  OpenAIImageQuality,
+  OpenAIImageSize,
+  OpenAIModel,
+  OpenAIOutputFormat,
+  OpenAIServiceConfig,
+  OpenAIServiceOptions,
+} from "./types.js";
 
 interface OpenAIImageResponseDataItem {
   b64_json?: string;
@@ -62,21 +23,31 @@ interface OpenAIImageResponse {
   data?: OpenAIImageResponseDataItem[];
 }
 
-const DEFAULT_CONFIG: OpenAIServiceConfig = {
-  baseUrl: "https://api.openai.com",
-  imageGenerationServicePath: "/v1/images/edits",
-  imageEditServicePath: "/v1/images/edits",
-  responsesServicePath: "/v1/responses",
-  generationTimeoutMs: 180000,
-};
+const GPT_IMAGE_LEGACY_MODELS: ReadonlySet<OpenAIModel> = new Set([
+  "gpt-image-1.5",
+  "gpt-image-1",
+  "gpt-image-1-mini",
+]);
 
-const ALLOWED_SIZES: ReadonlySet<OpenAIImageSize> = new Set([
+const LEGACY_ALLOWED_SIZES: ReadonlySet<OpenAIImageSize> = new Set([
   "1024x1024",
   "1024x1536",
   "1536x1024",
-  "2160x3840",
-  "3840x2160",
 ]);
+
+const POPULAR_GPT_IMAGE_2_SIZES: ReadonlySet<OpenAIImageSize> = new Set([
+  "1024x1024",
+  "1024x1536",
+  "1536x1024",
+  "2048x2048",
+  "2048x1152",
+  "3840x2160",
+  "2160x3840",
+]);
+
+const DEFAULT_CONFIG: OpenAIServiceConfig = {
+  ...(defaultConfigJson as OpenAIServiceConfig),
+};
 
 function normalizeResponse(response: unknown): OpenAIImageResponseDataItem[] {
   if (
@@ -102,6 +73,45 @@ function safeString(value: unknown): string {
   return typeof value === "string" ? value : "";
 }
 
+function parseSize(size: Exclude<OpenAIImageSize, "auto">): {
+  width: number;
+  height: number;
+} | null {
+  const match = /^(\d+)x(\d+)$/.exec(size);
+  if (!match) {
+    return null;
+  }
+  return {
+    width: Number.parseInt(match[1], 10),
+    height: Number.parseInt(match[2], 10),
+  };
+}
+
+function isSizeAllowedForGptImage2(size: OpenAIImageSize): boolean {
+  if (size === "auto" || POPULAR_GPT_IMAGE_2_SIZES.has(size)) {
+    return true;
+  }
+
+  const parsed = parseSize(size as Exclude<OpenAIImageSize, "auto">);
+  if (!parsed) {
+    return false;
+  }
+
+  const longEdge = Math.max(parsed.width, parsed.height);
+  const shortEdge = Math.min(parsed.width, parsed.height);
+  const totalPixels = parsed.width * parsed.height;
+  const ratio = longEdge / shortEdge;
+
+  return (
+    longEdge <= 3840 &&
+    parsed.width % 16 === 0 &&
+    parsed.height % 16 === 0 &&
+    ratio <= 3 &&
+    totalPixels >= 655_360 &&
+    totalPixels <= 8_294_400
+  );
+}
+
 export class OpenAIService {
   private readonly repoRoot: string;
   private readonly fetchImpl: typeof fetch;
@@ -115,6 +125,10 @@ export class OpenAIService {
     this.config = {
       ...DEFAULT_CONFIG,
       ...options.config,
+      defaults: {
+        ...DEFAULT_CONFIG.defaults,
+        ...(options.config?.defaults ?? {}),
+      },
     };
   }
 
@@ -142,9 +156,8 @@ export class OpenAIService {
       }
     }
 
-    if (args.size !== undefined && !ALLOWED_SIZES.has(args.size)) {
-      throw new Error(`Unsupported size "${args.size}"`);
-    }
+    const model: OpenAIModel = args.model ?? this.config.defaults.model;
+    const size: OpenAIImageSize = args.size ?? this.config.defaults.size;
 
     if (args.outputCompression !== undefined) {
       if (
@@ -160,6 +173,24 @@ export class OpenAIService {
       if (!args.inputImages || args.inputImages.length !== 1) {
         throw new Error("maskFile requires exactly one input image");
       }
+    }
+
+    if (model === "gpt-image-2") {
+      if (!isSizeAllowedForGptImage2(size)) {
+        throw new Error(`Unsupported size "${size}" for model "${model}"`);
+      }
+    } else if (!LEGACY_ALLOWED_SIZES.has(size)) {
+      throw new Error(
+        `Unsupported size "${size}" for model "${model}". Allowed sizes: 1024x1024, 1024x1536, 1536x1024`,
+      );
+    }
+
+    if (
+      model === "gpt-image-2" &&
+      args.background !== undefined &&
+      args.background === "transparent"
+    ) {
+      throw new Error('background "transparent" is not supported for model "gpt-image-2"');
     }
   }
 
@@ -182,12 +213,15 @@ export class OpenAIService {
       throw new Error("OPENAI_API_KEY is required");
     }
 
-    const model: OpenAIModel = args.model ?? "gpt-image-1.5";
-    const size: OpenAIImageSize = args.size ?? "1024x1536";
-    const quality: OpenAIImageQuality = args.quality ?? "high";
-    const n = args.n ?? 1;
-    const outputFormat: OpenAIOutputFormat = args.outputFormat ?? "png";
-    const saveSidecarMetadataFile = args.saveSidecarMetadataFile ?? false;
+    const model: OpenAIModel = args.model ?? this.config.defaults.model;
+    const size: OpenAIImageSize = args.size ?? this.config.defaults.size;
+    const quality: OpenAIImageQuality = args.quality ?? this.config.defaults.quality;
+    const n = args.n ?? this.config.defaults.outputImages;
+    const outputFormat: OpenAIOutputFormat =
+      args.outputFormat ?? this.config.defaults.outputFormat;
+    const saveSidecarMetadataFile =
+      args.saveSidecarMetadataFile ??
+      this.config.defaults.defaultSaveSidecarMetadataFile;
 
     const form = new FormData();
     form.set("prompt", args.prompt);
@@ -200,8 +234,9 @@ export class OpenAIService {
     if (args.outputCompression !== undefined) {
       form.set("output_compression", String(args.outputCompression));
     }
-    if (args.background !== undefined) {
-      form.set("background", args.background);
+    const background: OpenAIImageBackground | undefined = args.background;
+    if (background !== undefined) {
+      form.set("background", background);
     }
     if (args.user !== undefined) {
       form.set("user", args.user);
@@ -286,7 +321,7 @@ export class OpenAIService {
               quality,
               outputFormat,
               outputCompression: args.outputCompression,
-              background: args.background,
+              background,
               user: args.user,
               outputIndex: index,
               revisedPrompt: safeString(dataItem.revised_prompt) || null,

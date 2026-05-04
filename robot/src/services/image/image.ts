@@ -1,23 +1,11 @@
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
-
-export interface ImageServiceOptions {
-  repoRoot: string;
-}
-
-export interface CreateBridgeArgs {
-  leftImageFile: string;
-  rightImageFile: string;
-  outputImageFile: string;
-  leftCropWidth: number;
-  rightCropWidth: number;
-}
-
-export interface ComposeTilesPreviewArgs {
-  inputImages: string[];
-  outputImageFile: string;
-}
+import type {
+  ComposeTilesPreviewArgs,
+  CreateBridgeArgs,
+  ImageServiceOptions,
+} from "./types.js";
 
 interface RequiredImageMetadata {
   width: number;

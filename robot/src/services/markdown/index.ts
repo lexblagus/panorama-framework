@@ -1,7 +1,8 @@
 export {
   MarkdownService,
-  type MarkdownInsertRequest,
-  type MarkdownReadRequest,
-  type MarkdownServiceOptions,
 } from "./markdown.js";
-
+export type {
+  MarkdownInsertRequest,
+  MarkdownReadRequest,
+  MarkdownServiceOptions,
+} from "./types.js";

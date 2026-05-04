@@ -1,20 +1,12 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Plan } from "../../types/plan.js";
-
-export type JsonWriteFormat = "formatted" | "compact";
-
-export interface JsonWriteOptions {
-  format?: JsonWriteFormat;
-}
-
-export interface JsonServiceOptions {
-  repoRoot: string;
-  robotRoot: string;
-}
-
-export type RobotGlobalConfig = Record<string, unknown>;
-export type RecipeState = Record<string, unknown>;
+import type {
+  JsonServiceOptions,
+  JsonWriteOptions,
+  RecipeState,
+  RobotGlobalConfig,
+} from "./types.js";
 
 const ID_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
 

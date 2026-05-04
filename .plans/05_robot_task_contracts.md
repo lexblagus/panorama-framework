@@ -248,6 +248,7 @@ Folderized services use this pattern:
 src/services/<service-name>/
 ├─ README.md
 ├─ index.ts
+├─ types.ts
 ├─ <service-name>.ts
 └─ config.json
 ```
@@ -261,6 +262,7 @@ Current packaging choices:
 - `src/services/workflow.ts`
 
 Folderization is used when a service needs a dedicated README, multiple source files, or service-local config.
+`types.ts` is required for folderized services and holds service-owned type definitions.
 
 ## 5. JSON Service Contract
 
@@ -374,6 +376,7 @@ Files:
 
 - `src/services/openai/README.md`
 - `src/services/openai/index.ts`
+- `src/services/openai/types.ts`
 - `src/services/openai/openai.ts`
 - `src/services/openai/config.json`
 
@@ -385,6 +388,7 @@ Role:
 Packaging notes:
 
 - `index.ts` is the public export surface for the service
+- `types.ts` contains service-owned exported contracts
 - `openai.ts` holds the implementation
 - `config.json` stores service-local static config
 - `README.md` explains service-specific behavior, caveats, and integration notes
@@ -415,10 +419,19 @@ Suggested service config shape:
 
 ```json
 {
+  "baseUrl": "https://api.openai.com",
   "imageGenerationServicePath": "/v1/images/edits",
   "imageEditServicePath": "/v1/images/edits",
   "responsesServicePath": "/v1/responses",
-  "generationTimeoutMs": 180000
+  "generationTimeoutMs": 180000,
+  "defaults": {
+    "model": "gpt-image-1.5",
+    "size": "1024x1536",
+    "quality": "high",
+    "outputImages": 1,
+    "outputFormat": "png",
+    "defaultSaveSidecarMetadataFile": false
+  }
 }
 ```
 
@@ -430,14 +443,9 @@ interface GenerateImageArgs {
   inputImages?: string[];
   outputDir: string;
   outputFilePrefix: string;
-  model?: "gpt-image-1.5" | "gpt-image-2";
+  model?: "gpt-image-2" | "gpt-image-1.5" | "gpt-image-1" | "gpt-image-1-mini";
   maskFile?: string;
-  size?:
-    | "1024x1024"
-    | "1024x1536"
-    | "1536x1024"
-    | "2160x3840"
-    | "3840x2160";
+  size?: "auto" | `${number}x${number}`;
   n?: number;
   quality?: "high" | "medium" | "low" | "auto";
   outputFormat?: "png" | "jpeg" | "webp";
@@ -460,7 +468,9 @@ Default behavior:
 Validation rules:
 
 - if `maskFile` is provided, exactly one `inputImages` entry is required
-- `size` must use the strict enum above (no free-form size values)
+- for `gpt-image-2`, `size` accepts `auto` or dynamic `<width>x<height>` values under API constraints
+- for `gpt-image-1.5`, `gpt-image-1`, and `gpt-image-1-mini`, `size` is limited to `1024x1024`, `1024x1536`, `1536x1024`
+- `background: "transparent"` is invalid for `gpt-image-2`
 - service call timeout should use a very high default (`>= 180000ms`)
 - output files are saved deterministically from `outputDir` and `outputFilePrefix`
 - when enabled, sidecar metadata file name matches the generated image file name stem

@@ -1,19 +1,10 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-
-export interface MarkdownServiceOptions {
-  repoRoot: string;
-}
-
-export interface MarkdownReadRequest {
-  file: string;
-}
-
-export interface MarkdownInsertRequest {
-  file: string;
-  marker: string;
-  content: string;
-}
+import type {
+  MarkdownInsertRequest,
+  MarkdownReadRequest,
+  MarkdownServiceOptions,
+} from "./types.js";
 
 export class MarkdownService {
   private readonly repoRoot: string;
@@ -69,4 +60,3 @@ export class MarkdownService {
     await writeFile(absolutePath, output, "utf8");
   }
 }
-

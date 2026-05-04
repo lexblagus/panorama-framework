@@ -1,13 +1,15 @@
 export {
   OpenAIService,
-  type GenerateImageArgs,
-  type GenerateImageResult,
-  type GeneratedImageFile,
-  type OpenAIModel,
-  type OpenAIOutputFormat,
-  type OpenAIServiceConfig,
-  type OpenAIServiceOptions,
-  type OpenAIImageSize,
-  type OpenAIImageQuality,
-  type OpenAIImageBackground,
 } from "./openai.js";
+export type {
+  GenerateImageArgs,
+  GenerateImageResult,
+  GeneratedImageFile,
+  OpenAIImageBackground,
+  OpenAIImageQuality,
+  OpenAIImageSize,
+  OpenAIModel,
+  OpenAIOutputFormat,
+  OpenAIServiceConfig,
+  OpenAIServiceOptions,
+} from "./types.js";

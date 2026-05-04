@@ -134,19 +134,23 @@ robot/
    │  ├─ image/
    │  │  ├─ README.md
    │  │  ├─ index.ts
+   │  │  ├─ types.ts
    │  │  ├─ image.ts
    │  │  └─ config.json
    │  ├─ json/
    │  │  ├─ README.md
    │  │  ├─ index.ts
+   │  │  ├─ types.ts
    │  │  └─ json.ts
    │  ├─ markdown/
    │  │  ├─ README.md
    │  │  ├─ index.ts
+   │  │  ├─ types.ts
    │  │  └─ markdown.ts
    │  ├─ openai/
    │  │  ├─ README.md
    │  │  ├─ index.ts
+   │  │  ├─ types.ts
    │  │  ├─ openai.ts
    │  │  └─ config.json
    │  └─ workflow.ts
@@ -173,6 +177,7 @@ Decisions captured in this structure:
 - `builder.ts` and `runner.ts` stay directly under `src/`
 - services stay grouped under one `services/` folder
 - `json`, `markdown`, `image`, and `openai` are folderized so each service can carry its own README and local structure
+- folderized services keep exported and shared service types in `types.ts`
 - `workflow` remains a single file until it needs additional surface area
 - recipe-specific assets live inside recipe folders when a recipe is folderized
 - tests live under `robot/tests/`, with tracked fixtures separate from runtime artifacts
@@ -391,6 +396,7 @@ Folderized shape:
 src/services/<service-name>/
 ├─ README.md
 ├─ index.ts
+├─ types.ts
 ├─ <service-name>.ts
 └─ config.json
 ```

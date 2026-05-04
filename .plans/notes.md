@@ -1,5 +1,9 @@
 # Current iteraction
 
+---
+
+# Previous iteraction
+
 - Defaults `size` to `1024x1536` – this is **portrait**; are "reversed" values accepted? If so, add to the acceptance list.
 
 - Defaults `quality` to `high`

@@ -1,6 +1,15 @@
 {
+	"baseUrl": "https://api.openai.com",
 	"imageGenerationServicePath": "/v1/images/edits",
 	"imageEditServicePath": "/v1/images/edits",
 	"responsesServicePath": "/v1/responses",
-	"generationTimeoutMs": 180000
+	"generationTimeoutMs": 180000,
+	"defaults": {
+		"model": "gpt-image-1.5",
+		"size": "1024x1536",
+		"quality": "high",
+		"outputImages": 1,
+		"outputFormat": "png",
+		"defaultSaveSidecarMetadataFile": false
+	}
 }

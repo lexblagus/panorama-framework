@@ -1,6 +1,8 @@
 export {
   ImageService,
-  type ComposeTilesPreviewArgs,
-  type CreateBridgeArgs,
-  type ImageServiceOptions,
 } from "./image.js";
+export type {
+  ComposeTilesPreviewArgs,
+  CreateBridgeArgs,
+  ImageServiceOptions,
+} from "./types.js";

@@ -1,8 +1,10 @@
 export {
   JsonService,
-  type JsonServiceOptions,
-  type RecipeState,
-  type RobotGlobalConfig,
-  type JsonWriteFormat,
-  type JsonWriteOptions,
 } from "./json.js";
+export type {
+  JsonServiceOptions,
+  JsonWriteFormat,
+  JsonWriteOptions,
+  RecipeState,
+  RobotGlobalConfig,
+} from "./types.js";

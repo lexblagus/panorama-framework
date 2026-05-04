@@ -16,7 +16,18 @@ Defaults:
 - `saveSidecarMetadataFile`: `false`
 - `generationTimeoutMs`: `180000`
 
+Defaults are defined in `config.json` and loaded by `OpenAIService`.
+
+Supported models:
+
+- `gpt-image-2`
+- `gpt-image-1.5`
+- `gpt-image-1`
+- `gpt-image-1-mini`
+
 Validation highlights:
 
 - if `maskFile` is provided, exactly one `inputImages` entry is required
-- `size` must be one of the strict enum values defined in service types
+- for `gpt-image-2`, `size` accepts `auto` or any `<width>x<height>` that meets API constraints
+- for legacy models (`gpt-image-1.5`, `gpt-image-1`, `gpt-image-1-mini`), `size` is limited to `1024x1024`, `1024x1536`, `1536x1024`
+- `background: "transparent"` is rejected for `gpt-image-2`
