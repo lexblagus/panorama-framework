@@ -149,6 +149,8 @@ Files:
 - add `robot/src/types/step.ts`
 - add `robot/src/types/task.ts`
 - add `robot/src/types/plan.ts`
+- add `robot/src/types/builder.ts`
+- add `robot/src/types/runner.ts`
 
 Tasks:
 
@@ -323,6 +325,7 @@ Goal:
 Files:
 
 - add `robot/src/builder.ts`
+- add `robot/src/types/builder.ts`
 - add recipe discovery utilities if needed
 
 Tasks:
@@ -366,6 +369,7 @@ Goal:
 Files:
 
 - add `robot/src/runner.ts`
+- add `robot/src/types/runner.ts`
 - add `robot/src/services/workflow.ts`
 
 Tasks:

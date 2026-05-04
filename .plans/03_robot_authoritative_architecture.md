@@ -126,8 +126,10 @@ robot/
    ├─ builder.ts
    ├─ runner.ts
    ├─ types/
+   │  ├─ builder.ts
    │  ├─ plan.ts
    │  ├─ recipe.ts
+   │  ├─ runner.ts
    │  ├─ step.ts
    │  └─ task.ts
    ├─ services/
@@ -175,6 +177,7 @@ robot/
 Decisions captured in this structure:
 
 - `builder.ts` and `runner.ts` stay directly under `src/`
+- builder and runner type contracts live in `src/types/builder.ts` and `src/types/runner.ts`
 - services stay grouped under one `services/` folder
 - `json`, `markdown`, `image`, and `openai` are folderized so each service can carry its own README and local structure
 - folderized services keep exported and shared service types in `types.ts`

@@ -1,16 +1,8 @@
-export interface RunFromStartInput {
-  planId: string;
-}
-
-export interface ResumeInput {
-  planId: string;
-}
-
-export interface RunnerResult {
-  scaffold: true;
-  command: "run" | "resume";
-  planId: string;
-}
+import type {
+  ResumeInput,
+  RunnerResult,
+  RunFromStartInput,
+} from "./types/runner.js";
 
 export async function runPlanFromStart(
   input: RunFromStartInput,
@@ -29,4 +21,3 @@ export async function resumePlan(input: ResumeInput): Promise<RunnerResult> {
     planId: input.planId,
   };
 }
-

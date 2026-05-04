@@ -151,6 +151,44 @@ export interface Recipe {
 }
 ```
 
+### 2.10 Builder and Runner Command Types
+
+```ts
+export interface BuildCommandInput {
+  recipeId: RecipeId;
+  repoRoot?: string;
+  robotRoot?: string;
+  recipesRoot?: string;
+}
+
+export interface BuildCommandResult {
+  command: "build";
+  recipeId: RecipeId;
+  planId: PlanId;
+  recipeFile: string;
+  taskCount: number;
+}
+
+export interface RunFromStartInput {
+  planId: PlanId;
+}
+
+export interface ResumeInput {
+  planId: PlanId;
+}
+
+export interface RunnerResult {
+  scaffold: true;
+  command: "run" | "resume";
+  planId: PlanId;
+}
+```
+
+Location rule:
+
+- builder and runner command-related types live in `src/types/builder.ts` and `src/types/runner.ts`
+- `src/builder.ts` and `src/runner.ts` should contain orchestration logic, not inline type declarations
+
 Rules:
 
 - `build` and `exec` accept only `--recipe`
