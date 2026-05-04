@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Plan } from "../../types/plan.js";
+import { BaseService } from "../base/index.js";
 import type {
   JsonServiceOptions,
   JsonWriteOptions,
@@ -19,30 +20,15 @@ function serializeJson(value: unknown, options?: JsonWriteOptions): string {
   return JSON.stringify(value, null, "\t\t");
 }
 
-export class JsonService {
-  private readonly repoRoot: string;
-  private readonly robotRoot: string;
-
+export class JsonService extends BaseService {
   constructor(options: JsonServiceOptions) {
-    this.repoRoot = options.repoRoot;
-    this.robotRoot = options.robotRoot;
+    super(options);
   }
 
   private ensureValidId(kind: "planId" | "recipeId", value: string): void {
     if (!ID_PATTERN.test(value)) {
       throw new Error(`Invalid ${kind}: "${value}"`);
     }
-  }
-
-  private resolveRepoPath(targetPath: string): string {
-    if (path.isAbsolute(targetPath)) {
-      return targetPath;
-    }
-    return path.join(this.repoRoot, targetPath);
-  }
-
-  private resolveRobotPath(...segments: string[]): string {
-    return path.join(this.robotRoot, ...segments);
   }
 
   async readJson<T>(targetPath: string): Promise<T> {

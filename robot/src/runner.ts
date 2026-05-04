@@ -234,12 +234,15 @@ function createServiceRegistry(paths: RunnerPaths): ServiceRegistry {
   });
   const markdown = new MarkdownService({
     repoRoot: paths.repoRoot,
+    robotRoot: paths.robotRoot,
   });
   const image = new ImageService({
     repoRoot: paths.repoRoot,
+    robotRoot: paths.robotRoot,
   });
   const openai = new OpenAIService({
     repoRoot: paths.repoRoot,
+    robotRoot: paths.robotRoot,
   });
   const workflow = new WorkflowService({
     repoRoot: paths.repoRoot,

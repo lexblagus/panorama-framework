@@ -1,6 +1,6 @@
-export interface MarkdownServiceOptions {
-  repoRoot: string;
-}
+import type { ServiceBaseOptions } from "../base/index.js";
+
+export type MarkdownServiceOptions = ServiceBaseOptions;
 
 export interface MarkdownReadRequest {
   file: string;

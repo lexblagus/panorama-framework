@@ -1,6 +1,6 @@
-export interface ImageServiceOptions {
-  repoRoot: string;
-}
+import type { ServiceBaseOptions } from "../base/index.js";
+
+export type ImageServiceOptions = ServiceBaseOptions;
 
 export interface CreateBridgeArgs {
   leftImageFile: string;

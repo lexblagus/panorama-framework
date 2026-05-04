@@ -1,13 +1,15 @@
+import { BaseService } from "../base/index.js";
 import type {
   RunRecipeArgs,
   WorkflowResult,
   WorkflowServiceOptions,
 } from "./types.js";
 
-export class WorkflowService {
+export class WorkflowService extends BaseService {
   private readonly options: WorkflowServiceOptions;
 
   constructor(options: WorkflowServiceOptions) {
+    super(options);
     this.options = options;
   }
 

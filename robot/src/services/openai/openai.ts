@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import defaultConfigJson from "./config.json" with { type: "json" };
+import { BaseService } from "../base/index.js";
 import type {
   GenerateImageArgs,
   GenerateImageResult,
@@ -112,14 +113,13 @@ function isSizeAllowedForGptImage2(size: OpenAIImageSize): boolean {
   );
 }
 
-export class OpenAIService {
-  private readonly repoRoot: string;
+export class OpenAIService extends BaseService {
   private readonly fetchImpl: typeof fetch;
   private readonly apiKey?: string;
   private readonly config: OpenAIServiceConfig;
 
   constructor(options: OpenAIServiceOptions) {
-    this.repoRoot = options.repoRoot;
+    super(options);
     this.fetchImpl = options.fetchImpl ?? fetch;
     this.apiKey = options.apiKey ?? process.env.OPENAI_API_KEY;
     this.config = {
@@ -130,13 +130,6 @@ export class OpenAIService {
         ...(options.config?.defaults ?? {}),
       },
     };
-  }
-
-  private resolveRepoPath(targetPath: string): string {
-    if (path.isAbsolute(targetPath)) {
-      return targetPath;
-    }
-    return path.join(this.repoRoot, targetPath);
   }
 
   private assertGenerateImageArgs(args: GenerateImageArgs): void {

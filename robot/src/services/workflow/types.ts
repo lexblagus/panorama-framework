@@ -1,5 +1,6 @@
 import type { BuildCommandResult } from "../../types/builder.js";
 import type { RunnerResult } from "../../types/runner.js";
+import type { ServiceBaseOptions } from "../base/index.js";
 
 export type RunRecipeArgs =
   | {
@@ -11,9 +12,7 @@ export type RunRecipeArgs =
       planId: string;
     };
 
-export interface WorkflowServiceOptions {
-  repoRoot: string;
-  robotRoot: string;
+export interface WorkflowServiceOptions extends ServiceBaseOptions {
   recipesRoot: string;
   buildCommand: (input: {
     recipeId: string;

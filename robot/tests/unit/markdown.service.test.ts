@@ -27,7 +27,7 @@ async function createServices(): Promise<{
   const root = await createTempRoot();
   return {
     root,
-    markdown: new MarkdownService({ repoRoot: root }),
+    markdown: new MarkdownService({ repoRoot: root, robotRoot: root }),
   };
 }
 

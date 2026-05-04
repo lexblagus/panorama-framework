@@ -231,6 +231,7 @@ export async function buildCommand(
   });
   const markdown = new MarkdownService({
     repoRoot: paths.repoRoot,
+    robotRoot: paths.robotRoot,
   });
 
   const recipeConfig = await loadOptionalRecipeConfig(resolution, paths);

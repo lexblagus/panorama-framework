@@ -24,8 +24,7 @@ export interface OpenAIServiceConfig {
   };
 }
 
-export interface OpenAIServiceOptions {
-  repoRoot: string;
+export interface OpenAIServiceOptions extends ServiceBaseOptions {
   apiKey?: string;
   fetchImpl?: typeof fetch;
   config?: Partial<OpenAIServiceConfig>;
@@ -56,3 +55,4 @@ export interface GeneratedImageFile {
 export interface GenerateImageResult {
   files: GeneratedImageFile[];
 }
+import type { ServiceBaseOptions } from "../base/index.js";

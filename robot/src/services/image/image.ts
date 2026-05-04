@@ -1,6 +1,7 @@
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
+import { BaseService } from "../base/index.js";
 import type {
   ComposeTilesPreviewArgs,
   CreateBridgeArgs,
@@ -18,18 +19,9 @@ function assertPositiveInteger(value: number, name: string): void {
   }
 }
 
-export class ImageService {
-  private readonly repoRoot: string;
-
+export class ImageService extends BaseService {
   constructor(options: ImageServiceOptions) {
-    this.repoRoot = options.repoRoot;
-  }
-
-  private resolveRepoPath(targetPath: string): string {
-    if (path.isAbsolute(targetPath)) {
-      return targetPath;
-    }
-    return path.join(this.repoRoot, targetPath);
+    super(options);
   }
 
   private async readRequiredMetadata(filePath: string): Promise<RequiredImageMetadata> {

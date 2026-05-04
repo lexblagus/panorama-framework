@@ -60,6 +60,7 @@ describe("OpenAIService", () => {
 
     const service = new OpenAIService({
       repoRoot: root,
+      robotRoot: root,
       apiKey: "test-key",
       fetchImpl: fetchMock as unknown as typeof fetch,
     });
@@ -75,6 +76,7 @@ describe("OpenAIService", () => {
     const root = await createTempRoot();
     const service = new OpenAIService({
       repoRoot: root,
+      robotRoot: root,
       apiKey: "test-key",
       fetchImpl: vi.fn() as unknown as typeof fetch,
     });
@@ -92,6 +94,7 @@ describe("OpenAIService", () => {
     const root = await createTempRoot();
     const service = new OpenAIService({
       repoRoot: root,
+      robotRoot: root,
       apiKey: "test-key",
       fetchImpl: vi.fn() as unknown as typeof fetch,
     });
@@ -116,6 +119,7 @@ describe("OpenAIService", () => {
 
     const service = new OpenAIService({
       repoRoot: root,
+      robotRoot: root,
       apiKey: "test-key",
       fetchImpl: fetchMock as unknown as typeof fetch,
     });
@@ -155,6 +159,7 @@ describe("OpenAIService", () => {
 
     const service = new OpenAIService({
       repoRoot: root,
+      robotRoot: root,
       apiKey: "test-key",
       fetchImpl: fetchMock as unknown as typeof fetch,
     });
@@ -193,6 +198,7 @@ describe("OpenAIService", () => {
       });
       const service = new OpenAIService({
         repoRoot: root,
+        robotRoot: root,
         apiKey: "test-key",
         fetchImpl: fetchMock as unknown as typeof fetch,
       });
@@ -215,6 +221,7 @@ describe("OpenAIService", () => {
       ));
     const service = new OpenAIService({
       repoRoot: root,
+      robotRoot: root,
       apiKey: "test-key",
       fetchImpl: fetchMock as unknown as typeof fetch,
     });
@@ -236,6 +243,7 @@ describe("OpenAIService", () => {
     const root = await createTempRoot();
     const service = new OpenAIService({
       repoRoot: root,
+      robotRoot: root,
       apiKey: "test-key",
       fetchImpl: vi.fn() as unknown as typeof fetch,
     });

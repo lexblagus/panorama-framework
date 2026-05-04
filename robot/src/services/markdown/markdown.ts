@@ -1,23 +1,15 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { BaseService } from "../base/index.js";
 import type {
   MarkdownInsertRequest,
   MarkdownReadRequest,
   MarkdownServiceOptions,
 } from "./types.js";
 
-export class MarkdownService {
-  private readonly repoRoot: string;
-
+export class MarkdownService extends BaseService {
   constructor(options: MarkdownServiceOptions) {
-    this.repoRoot = options.repoRoot;
-  }
-
-  private resolveRepoPath(targetPath: string): string {
-    if (path.isAbsolute(targetPath)) {
-      return targetPath;
-    }
-    return path.join(this.repoRoot, targetPath);
+    super(options);
   }
 
   async read(request: MarkdownReadRequest): Promise<string> {
