@@ -179,6 +179,7 @@ export type TaskId =
   | "openai.edit-image"
   | "openai.respond"
   | "image.create-bridge"
+  | "image.compose-tiles-preview"
   | "markdown.read"
   | "markdown.insert"
   | "json.read"
@@ -390,7 +391,7 @@ Packaging notes:
 
 Initial capabilities:
 
-- image generation
+- image generation via image edits endpoint
 - reserved hooks for image edits
 - reserved hooks for response-based text operations
 
@@ -414,9 +415,10 @@ Suggested service config shape:
 
 ```json
 {
-  "imageGenerationServicePath": "/v1/images/generations",
+  "imageGenerationServicePath": "/v1/images/edits",
   "imageEditServicePath": "/v1/images/edits",
-  "responsesServicePath": "/v1/responses"
+  "responsesServicePath": "/v1/responses",
+  "generationTimeoutMs": 180000
 }
 ```
 
@@ -425,11 +427,43 @@ Example generation arguments:
 ```ts
 interface GenerateImageArgs {
   prompt: string;
-  saveAs: string;
-  uploads?: string[];
-  model?: string;
+  inputImages?: string[];
+  outputDir: string;
+  outputFilePrefix: string;
+  model?: "gpt-image-1.5" | "gpt-image-2";
+  maskFile?: string;
+  size?:
+    | "1024x1024"
+    | "1024x1536"
+    | "1536x1024"
+    | "2160x3840"
+    | "3840x2160";
+  n?: number;
+  quality?: "high" | "medium" | "low" | "auto";
+  outputFormat?: "png" | "jpeg" | "webp";
+  outputCompression?: number;
+  background?: "transparent" | "opaque" | "auto";
+  saveSidecarMetadataFile?: boolean;
+  user?: string;
 }
 ```
+
+Default behavior:
+
+- default `model` is intentionally `gpt-image-1.5`
+- default `size` is `1024x1536`
+- default `quality` is `high`
+- default `n` is `1`
+- default `outputFormat` is `png`
+- default `saveSidecarMetadataFile` is `false`
+
+Validation rules:
+
+- if `maskFile` is provided, exactly one `inputImages` entry is required
+- `size` must use the strict enum above (no free-form size values)
+- service call timeout should use a very high default (`>= 180000ms`)
+- output files are saved deterministically from `outputDir` and `outputFilePrefix`
+- when enabled, sidecar metadata file name matches the generated image file name stem
 
 ## 8. Image Service Contract
 
@@ -445,21 +479,45 @@ Role:
 Primary task id:
 
 - `image.create-bridge`
+- `image.compose-tiles-preview`
 
 Suggested arguments:
 
 ```ts
 interface CreateBridgeArgs {
-  leftImage: string;
-  rightImage: string;
-  saveAs: string;
-  tileWidth: number;
-  tileHeight: number;
+  leftImageFile: string;
+  rightImageFile: string;
+  outputImageFile: string;
   leftCropWidth: number;
   rightCropWidth: number;
-  centerWidth: number;
 }
 ```
+
+Bridge rules:
+
+- both input files must be decodable images
+- both inputs must have exactly the same dimensions
+- output dimensions must match input dimensions
+- `centerWidth` is auto-calculated as `imageWidth - leftCropWidth - rightCropWidth`
+- `leftCropWidth` and `rightCropWidth` must each be positive and must not exceed image width
+- preserve alpha channel in output
+
+Suggested preview composition arguments:
+
+```ts
+interface ComposeTilesPreviewArgs {
+  inputImages: string[];
+  outputImageFile: string;
+}
+```
+
+Preview composition rules:
+
+- `inputImages` order is authoritative and must be preserved
+- all input images must have exactly the same dimensions
+- composition mode in this phase is row-only (side-by-side panorama strip)
+- output width is `singleImageWidth * inputImages.length`
+- output height is `singleImageHeight`
 
 ## 9. Workflow Service Contract
 
@@ -553,8 +611,9 @@ Suggested steps:
 2. `markdown.read` to load a fixture markdown file
 3. `markdown.insert` into a sandbox markdown copy using `robot:preview-table-first-row`
 4. `image.create-bridge` using fixture images
-5. `openai.generate-image` through an injectable mock seam by default
-6. `workflow.run-recipe` targeting `minimal`
+5. `image.compose-tiles-preview` using fixture images in fixed order
+6. `openai.generate-image` through an injectable mock seam by default
+7. `workflow.run-recipe` targeting `minimal`
 
 Suggested config shape:
 
@@ -568,6 +627,12 @@ Suggested config shape:
   "leftImage": "robot/tests/fixtures/images/left.png",
   "rightImage": "robot/tests/fixtures/images/right.png",
   "bridgeOutputFile": "robot/tests/.tmp/smoke-test/bridge.png",
+  "previewInputImages": [
+    "robot/tests/fixtures/images/tile1.png",
+    "robot/tests/fixtures/images/tile2.png",
+    "robot/tests/fixtures/images/tile3.png"
+  ],
+  "previewOutputFile": "robot/tests/.tmp/smoke-test/preview-strip.png",
   "openaiOutputFile": "robot/tests/.tmp/smoke-test/openai-output.png",
   "workflowRecipeId": "minimal"
 }

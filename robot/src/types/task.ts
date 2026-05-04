@@ -5,6 +5,7 @@ export type TaskId =
   | "openai.edit-image"
   | "openai.respond"
   | "image.create-bridge"
+  | "image.compose-tiles-preview"
   | "markdown.read"
   | "markdown.insert"
   | "json.read"
@@ -21,4 +22,3 @@ export interface Task {
   startedAt?: string;
   finishedAt?: string;
 }
-

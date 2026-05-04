@@ -293,6 +293,10 @@ Tasks:
 - define OpenAI request/response adapter methods
 - implement image-generation save flow
 - implement Sharp-based bridge composition
+- enforce `maskFile` plus single-input validation in OpenAI image generation
+- implement row-only `compose-tiles-preview` image composition
+- support OpenAI sidecar metadata output when requested
+- set a high OpenAI generation timeout default (`>= 180000ms`)
 - make both services injectable and mockable
 
 Recommended approach:
@@ -303,7 +307,9 @@ Recommended approach:
 Exit criteria:
 
 - image service produces deterministic bridge output from fixture inputs
+- image service composes row-only preview strips from ordered fixture inputs
 - OpenAI service can be mocked without touching runner logic
+- OpenAI `generate-image` enforces strict size enum and mask-input constraints
 
 ### Phase 5. Build the Builder
 
@@ -546,6 +552,11 @@ Phase 4 (`openai` and `image` services):
 - keep live OpenAI calls out of default CI; run them only in an explicit opt-in lane
 - use dummy fixture images under `robot/tests/fixtures/images` for all image service tests
 - write generated image artifacts only under `robot/tests/.tmp/`
+- verify strict OpenAI size enum handling, including accepted portrait, landscape, and 4K options
+- verify default OpenAI generation values (`model`, `size`, `quality`, `n`, `outputFormat`)
+- verify `maskFile` requires exactly one input image
+- verify optional sidecar metadata file naming and content when enabled
+- verify row-only `compose-tiles-preview` output order and dimensions
 
 Phase 5 (`builder`):
 

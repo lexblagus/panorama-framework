@@ -1,0 +1,6 @@
+{
+	"imageGenerationServicePath": "/v1/images/edits",
+	"imageEditServicePath": "/v1/images/edits",
+	"responsesServicePath": "/v1/responses",
+	"generationTimeoutMs": 180000
+}

@@ -1,5 +1,85 @@
 # Current iteraction
 
+- Defaults `size` to `1024x1536` – this is **portrait**; are "reversed" values accepted? If so, add to the acceptance list.
+
+- Defaults `quality` to `high`
+
+- Defaults `n` to `1`
+
+- Defaults `model` to `gpt-image-1.5` – this is the most advanced, right?
+
+- Defaults `outputFormat` to `png`
+
+- *"1. Do you want compose-tiles-preview v1 to support both row and grid, or row only?"* Row only
+
+- *"2. For OpenAI size, keep strict enum (safer) or string passthrough (more flexible)?"* strict enum!
+
+- *"3. For OpenAI response handling, save only files, or also persist metadata JSON sidecar per call?"* Add a optional boolean parameter `saveSidecarMetadataFile` (that matches the image name without extension). Default to `false`.
+
+- *"4. For maskFile, allow only single input image in v1?"* Isn't mask single file only? 
+
+- Please support `gpt-image-2` and `2160x3840` (4K). These are in the [docs](https://developers.openai.com/api/docs/guides/image-generation)
+
+- Use a very high timeout (> 2 minutes) for OpenAI image generation service.
+
+---
+
+# Previous iteraction
+
+- Next: improve Phase 4 prior implementation. Decribe the OpenAI and Image services.
+
+- Phase 4: OpenAI service. `generate-image` task
+
+  - Use `POST /v1/images/edits`
+
+  - Allow upload reference images (none, one or several) from a given path (e.g.: `images/refs/R1/151-tile5`)
+
+  - Accepts a prompt text
+
+  - Optional model parameter -- list the possible models
+
+  - Optional mask file
+
+  - size -- list possible sizes
+
+  - quantity of generated images (default to 1)
+
+  - also add other options from API
+
+- Phase 4: image service. `generate-bridge` task.
+
+  - Please refer to the legacy repo-robot project (`/Users/blagus/Gallery/Photos/Panorama/05 Global Megacity Panorama/repo-robot`) to see how to use Sharp to generate the bridge image.
+
+    - `leftImageFile` input argument (must be an actual image from disk)
+
+    - `rightImageFile` input argument (must be an actual image from disk)
+
+    - `outputImageFile`  input argument (to be the actual image in disk)
+
+    - `leftCropWidth` and `rightCropWidth`: the left and right image portion width to be bridged. The transparent `centerWidth` (from legacy) will be auto-calculated here.
+
+    - Different from legacy `generate-bridge.ts`, check if the two input images have the same dimensions and generate the output image with those dimensions. So, no dimensions input.
+
+    - Did I miss something? Feel free to ask.
+
+- Phase 4: image service. `compose-tiles-preview` task.
+
+  - This is a new image servive not in legacy robot. This service will take several image inputs and compile the side-by-side in a single image. Very simple: each image gets glued next to other compposing a panorama, or, a mosaic of images in a given order. Example: `images/outputs/composites/Composition_03-02.png`
+
+  - Argument: `inputImages`: an array of images from the disk. They all must have the very same dimensions. Orders matter. A lot.
+
+  - Argument: `outputImageFile`: the final generated images.
+
+  - Did I miss something? Feel free to ask.
+
+- I believe tests are pretty straightforward: given the sample input images, test if the output image matches the exact output reference image. Not sure how are you going to test the OpenAI service; maybe stub the API and simulate the output with a mocked image (s)? Do you need me to provide the sample images?
+
+- DO NOT implement Phase 4 yet, lets discuss what we have to discuss and improve the specs.
+
+---
+
+# Previous iteraction
+
 - Tests:
 
    - Phase 2 tests for each capability. Phase 3 very similar (read/write).

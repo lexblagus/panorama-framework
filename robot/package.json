@@ -12,7 +12,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "openai": "^6.35.0"
+    "openai": "^6.35.0",
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
