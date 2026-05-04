@@ -8,7 +8,6 @@ It is a small Node.js + TypeScript ESM command-line tool intended to drive image
 
 - `generate` is implemented as a CLI scaffold.
 - `edit` and `upload` are reserved subcommands and are not implemented yet.
-- Legacy helper files are preserved in `legacy/` for reference only.
 
 ## Requirements
 
@@ -86,19 +85,12 @@ Reserved. Not implemented yet.
 - [`src/index.ts`](src/index.ts): command parsing and scaffold behavior
 - [`tsconfig.json`](tsconfig.json): TypeScript config for the CLI build
 - [`package.json`](package.json): private package metadata and scripts
-- [`legacy/`](legacy): old helper artifacts retained as reference material
+- [`.plans/03_robot_authoritative_architecture.md`](../.plans/03_robot_authoritative_architecture.md): authoritative architecture for the planned CLI shape
+- [`.plans/04_robot_implementation_plan.md`](../.plans/04_robot_implementation_plan.md): phased implementation plan
+- [`.plans/05_robot_task_contracts.md`](../.plans/05_robot_task_contracts.md): task and service contract reference
 
 ## Development Notes
 
 - The package is intentionally private.
 - The current runtime dependency is `openai`, but the live API integration is still to be added.
 - There are no tests in this phase.
-
-## Legacy
-
-The files in [`legacy/`](legacy) are not part of the active CLI flow:
-
-- [`legacy/generate-images.mjs`](legacy/generate-images.mjs)
-- [`legacy/prompts.json`](legacy/prompts.json)
-
-They are kept only as historical reference while the new CLI is being built out.
