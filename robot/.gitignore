@@ -24,6 +24,11 @@ coverage/
 .tmp/
 *.tsbuildinfo
 
+# Runtime artifacts
+plans/*.json
+transient/*.json
+tests/.tmp/
+
 # OS/editor
 .DS_Store
 Thumbs.db
