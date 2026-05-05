@@ -26,9 +26,9 @@ coverage/
 *.tsbuildinfo
 
 # Runtime artifacts
-plans/*.json
+plans/*
+!plans/.gitkeep
 transient/*.json
-plans/**/*.json
 transient/**/*.json
 tests/.tmp/
 

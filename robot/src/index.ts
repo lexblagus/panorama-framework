@@ -95,6 +95,10 @@ function usage(): string {
   ].join("\n");
 }
 
+function isRecipeNotFoundError(error: unknown): error is Error {
+  return error instanceof Error && error.message.startsWith("Recipe not found");
+}
+
 function ensureId(flag: "--recipe" | "--plan", value: string): string {
   if (value.startsWith("/") || value.endsWith("/")) {
     throw new CliError(
@@ -248,6 +252,10 @@ export async function runCli(argv: string[]): Promise<void> {
       console.error(error.message);
       console.error("");
       console.error(usage());
+      process.exit(1);
+    }
+    if (isRecipeNotFoundError(error)) {
+      console.error("Recipe not found");
       process.exit(1);
     }
     throw error;
