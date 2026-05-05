@@ -258,14 +258,13 @@ Tasks:
 Suggested first API:
 
 ```ts
-await markdown.read({
-  file: "framework/prompts/tile-01.md",
-});
+await markdown.read("framework/prompts/tile-01.md");
 
 await markdown.insert({
   file: "images/PREVIEW.md",
   marker: "robot:preview-table-first-row",
   content: nextRow,
+  position: "before",
 });
 ```
 

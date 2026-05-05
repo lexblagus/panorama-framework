@@ -23,7 +23,7 @@ Recipe usage examples for all JSON service tasks:
   title: "Write manifest",
   taskId: "json.write",
   arguments: {
-    path: "robot/tests/.tmp/examples/manifest.json",
+    file: "robot/tests/.tmp/examples/manifest.json",
     value: { ok: true },
   },
 }
@@ -51,7 +51,7 @@ export default {
       title: "Write manifest",
       taskId: "json.write",
       arguments: {
-        path: "robot/tests/.tmp/examples/manifest.json",
+        file: "robot/tests/.tmp/examples/manifest.json",
         value: { ok: true },
       },
     },
@@ -115,7 +115,7 @@ export async function buildRecipe(context) {
         title: "Persist run marker",
         taskId: "json.write",
         arguments: {
-          path: "robot/tests/.tmp/examples/current-run.json",
+          file: "robot/tests/.tmp/examples/current-run.json",
           value: { currentRun: nextRun },
         },
       },
@@ -142,7 +142,7 @@ export async function buildRecipe(
         title: "Write manifest",
         taskId: "json.write",
         arguments: {
-          path: jsonFile,
+          file: jsonFile,
           value: { ok: true },
         },
       },

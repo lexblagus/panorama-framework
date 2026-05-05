@@ -5,7 +5,7 @@ export async function buildRecipe(
   context: BuildRecipeContext,
 ): Promise<Recipe> {
   const jsonFile =
-    `${context.robotPackageFolder}/recipes/${context.recipeId}.json`;
+    `${context.robotPackageFolder}/recipes/${context.recipeId}.example.json`;
 
   const jsonContents = await context.services.json.read(jsonFile)
 

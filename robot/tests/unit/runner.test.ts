@@ -62,7 +62,7 @@ describe("runner", () => {
           taskId: "json.write",
           title: "Write output",
           arguments: {
-            path: "robot/tests/.tmp/runner/run-output.json",
+            file: "robot/tests/.tmp/runner/run-output.json",
             value: { ok: true },
           },
           state: "error",
@@ -90,6 +90,36 @@ describe("runner", () => {
     expect(plan.tasks[0].finishedAt).toBeTypeOf("string");
   });
 
+  it("run dispatches markdown.write task", async () => {
+    const { repoRootFolder, robotPackageFolder } = await createWorkspace();
+    const planId = "markdown-write";
+    const outputFile = path.join(repoRootFolder, "robot/tests/.tmp/runner/output.md");
+
+    await writePlan(robotPackageFolder, planId, {
+      recipeId: "markdown-write",
+      createdAt: "2026-05-04T00:00:00.000Z",
+      tasks: [
+        {
+          taskId: "markdown.write",
+          title: "Write markdown",
+          arguments: {
+            file: "robot/tests/.tmp/runner/output.md",
+            content: "# Written by markdown.write\n",
+          },
+          state: "waiting",
+        },
+      ],
+    });
+
+    const result = await runPlanFromStart({ planId, repoRootFolder, robotPackageFolder });
+    const written = await readFile(outputFile, "utf8");
+
+    expect(result.command).toBe("run");
+    expect(result.taskCount).toBe(1);
+    expect(result.completedTaskCount).toBe(1);
+    expect(written).toBe("# Written by markdown.write\n");
+  });
+
   it("resume skips success tasks and executes first non-success task", async () => {
     const { repoRootFolder, robotPackageFolder } = await createWorkspace();
     const planId = "resume-case";
@@ -104,7 +134,7 @@ describe("runner", () => {
           taskId: "json.write",
           title: "Already done",
           arguments: {
-            path: "robot/tests/.tmp/runner/skipped.json",
+            file: "robot/tests/.tmp/runner/skipped.json",
             value: { skipped: false },
           },
           state: "success",
@@ -115,7 +145,7 @@ describe("runner", () => {
           taskId: "json.write",
           title: "Needs run",
           arguments: {
-            path: "robot/tests/.tmp/runner/resumed.json",
+            file: "robot/tests/.tmp/runner/resumed.json",
             value: { resumed: true },
           },
           state: "waiting",
@@ -150,7 +180,7 @@ describe("runner", () => {
           taskId: "json.write",
           title: "Write fresh",
           arguments: {
-            path: "robot/tests/.tmp/runner/fresh.json",
+            file: "robot/tests/.tmp/runner/fresh.json",
             value: { fresh: true },
           },
           state: "waiting",
@@ -203,7 +233,7 @@ describe("runner", () => {
         "    {",
         '      title: "Write child output",',
         '      taskId: "json.write",',
-        '      arguments: { path: "robot/tests/.tmp/runner/workflow-child.json", value: { nested: true } },',
+        '      arguments: { file: "robot/tests/.tmp/runner/workflow-child.json", value: { nested: true } },',
         "    },",
         "  ],",
         "};",

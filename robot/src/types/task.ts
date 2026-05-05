@@ -7,6 +7,7 @@ export type TaskId =
   | "image.create-bridge"
   | "image.compose-tiles-preview"
   | "markdown.read"
+  | "markdown.write"
   | "markdown.insert"
   | "json.read"
   | "json.write"

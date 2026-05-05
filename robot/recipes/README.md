@@ -79,7 +79,7 @@ export async function buildRecipe(context) {
         title: "Write JSON",
         taskId: "json.write",
         arguments: {
-          path: "robot/tests/.tmp/examples/output.json",
+          file: "robot/tests/.tmp/examples/output.json",
           value: { ok: true },
         },
       },

@@ -46,7 +46,7 @@ describe("buildCommand", () => {
         "    {",
         '      title: "Write file",',
         '      taskId: "json.write",',
-        '      arguments: { path: "robot/tests/.tmp/a.json", value: { ok: true } },',
+        '      arguments: { file: "robot/tests/.tmp/a.json", value: { ok: true } },',
         "    },",
         "  ],",
         "};",

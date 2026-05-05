@@ -5,11 +5,11 @@ export async function buildRecipe(
   context: BuildRecipeContext,
 ): Promise<Recipe> {
   
-  // WARNING: is not a good practice to write JSON files in the recipes folder.
-  // This is intended to be used outside `robot` package, e.g.:
+  // WARNING: is not a good practice to write files in the recipes folder.
+  // This is just an example intended to be used outside `robot` package, e.g.:
   // const jsonFile = `${context.context.repoRootFolder}/<package-name>/…/….json`
   const jsonFile =
-    `${context.robotPackageFolder}/recipes/${context.recipeId}.json`;
+    `${context.robotPackageFolder}/recipes/${context.recipeId}.example.json`;
 
   return {
     title: "Write JSON recipe example",
@@ -18,7 +18,7 @@ export async function buildRecipe(
         title: "Write JSON",
         taskId: "json.write",
         arguments: {
-          path: jsonFile,
+          file: jsonFile,
           value: { success: true },
         },
       }

@@ -30,7 +30,7 @@ export async function buildRecipe(
     counter: nextValue,
   });
 
-  console.log(`nextValue=${nextValue}`);
+  console.log(`nextValue=${nextValue}`, "\n");
 
   return {
     title: "Initialize, read and write state example",

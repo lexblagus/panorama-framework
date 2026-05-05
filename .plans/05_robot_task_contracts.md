@@ -227,6 +227,7 @@ export type TaskId =
   | "image.create-bridge"
   | "image.compose-tiles-preview"
   | "markdown.read"
+  | "markdown.write"
   | "markdown.insert"
   | "json.read"
   | "json.write"
@@ -379,18 +380,25 @@ Suggested method:
 ```ts
 interface MarkdownInsertRequest {
   file: string;
-  marker: string;
+  marker: string | [string, string];
   content: string;
+  position?: "before" | "over" | "after" | "between";
 }
 ```
 
 Primary task id:
 
+- `markdown.write`
 - `markdown.insert`
 
 Failure rule:
 
 - if the marker is not found, fail with `insert marker not found`
+- insert positioning:
+- `before`: inserts before marker, keeps marker
+- `after`: inserts before marker, keeps marker
+- `over`: replaces marker with content
+- `between`: `marker` must be `[startMarker, endMarker]`; replace only content between markers, keep both markers
 
 ### 6.2 Read Contract
 
@@ -399,9 +407,7 @@ Reads return the full file contents as stored.
 Suggested method:
 
 ```ts
-interface MarkdownReadRequest {
-  file: string;
-}
+type MarkdownReadTargetPath = string;
 ```
 
 Primary task id:
@@ -412,7 +418,7 @@ Concrete initial example:
 
 ```ts
 {
-  file: "framework/prompts/tile-01.md"
+  targetPath: "framework/prompts/tile-01.md"
 }
 ```
 
@@ -643,7 +649,7 @@ steps.push({
   title: "Record current run",
   taskId: "json.write",
   arguments: {
-    path: "robot/tests/.tmp/minimal/current-run.json",
+    file: "robot/tests/.tmp/minimal/current-run.json",
     value: { currentRun: 1 },
   },
 });

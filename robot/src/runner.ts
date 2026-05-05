@@ -4,6 +4,10 @@ import { buildCommand } from "./builder.js";
 import { ImageService } from "./services/image/index.js";
 import { JsonService } from "./services/json/index.js";
 import { MarkdownService } from "./services/markdown/index.js";
+import type {
+  MarkdownInsertMarker,
+  MarkdownInsertPosition,
+} from "./services/markdown/index.js";
 import { OpenAIService } from "./services/openai/index.js";
 import { WorkflowService, type RunRecipeArgs } from "./services/workflow/index.js";
 import type { Plan } from "./types/plan.js";
@@ -152,21 +156,70 @@ async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void
       return;
     }
     case "json.write": {
-      const targetPath = getStringArgument(task.arguments, "path");
+      const targetPath = getStringArgument(task.arguments, "file");
       const value = task.arguments.value;
       await services.json.write(targetPath, value);
       return;
     }
     case "markdown.read": {
+      const targetPath = (
+        typeof task.arguments.targetPath === "string" &&
+        task.arguments.targetPath.trim() !== ""
+      )
+        ? task.arguments.targetPath
+        : getStringArgument(task.arguments, "file");
+      await services.markdown.read(targetPath);
+      return;
+    }
+    case "markdown.write": {
       const file = getStringArgument(task.arguments, "file");
-      await services.markdown.read({ file });
+      const content = getStringArgument(task.arguments, "content");
+      await services.markdown.write(file, content);
       return;
     }
     case "markdown.insert": {
       const file = getStringArgument(task.arguments, "file");
-      const marker = getStringArgument(task.arguments, "marker");
       const content = getStringArgument(task.arguments, "content");
-      await services.markdown.insert({ file, marker, content });
+      const rawPosition = task.arguments.position;
+      let position: MarkdownInsertPosition | undefined;
+      if (rawPosition !== undefined) {
+        const parsed = getStringArgument(task.arguments, "position");
+        if (
+          parsed !== "before" &&
+          parsed !== "over" &&
+          parsed !== "after" &&
+          parsed !== "between"
+        ) {
+          throw new Error(
+            'Task argument "position" must be one of: before, over, after, between',
+          );
+        }
+        position = parsed;
+      }
+      let marker: MarkdownInsertMarker;
+      if (position === "between") {
+        const rawMarker = task.arguments.marker;
+        if (!Array.isArray(rawMarker) || rawMarker.length !== 2) {
+          throw new Error(
+            'Task argument "marker" must be [startMarker, endMarker] when position is "between"',
+          );
+        }
+        const [startMarker, endMarker] = rawMarker;
+        if (
+          typeof startMarker !== "string" ||
+          !startMarker.trim() ||
+          typeof endMarker !== "string" ||
+          !endMarker.trim()
+        ) {
+          throw new Error(
+            'Task argument "marker" must be [startMarker, endMarker] when position is "between"',
+          );
+        }
+        marker = [startMarker, endMarker];
+      } else {
+        marker = getStringArgument(task.arguments, "marker");
+      }
+      await services.markdown.insert({ file, marker, content, position });
       return;
     }
     case "image.create-bridge":
