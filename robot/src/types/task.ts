@@ -5,7 +5,7 @@ export type TaskId =
   | "openai.edit-image"
   | "openai.respond"
   | "image.create-bridge"
-  | "image.compose-tiles-preview"
+  | "image.compose-tiles"
   | "markdown.read"
   | "markdown.write"
   | "markdown.insert"

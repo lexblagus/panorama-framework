@@ -298,7 +298,7 @@ Tasks:
 - implement image-generation save flow
 - implement Sharp-based bridge composition
 - enforce `maskFile` plus single-input validation in OpenAI image generation
-- implement row-only `compose-tiles-preview` image composition
+- implement row-only `compose-tiles` image composition
 - support OpenAI sidecar metadata output when requested
 - set a high OpenAI generation timeout default (`>= 180000ms`)
 - make both services injectable and mockable
@@ -565,7 +565,7 @@ Phase 4 (`openai` and `image` services):
 - verify default OpenAI generation values (`model`, `size`, `quality`, `n`, `outputFormat`)
 - verify `maskFile` requires exactly one input image
 - verify optional sidecar metadata file naming and content when enabled
-- verify row-only `compose-tiles-preview` output order and dimensions
+- verify row-only `compose-tiles` output order and dimensions
 
 Phase 5 (`builder`):
 

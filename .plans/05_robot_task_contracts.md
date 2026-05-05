@@ -225,7 +225,7 @@ export type TaskId =
   | "openai.edit-image"
   | "openai.respond"
   | "image.create-bridge"
-  | "image.compose-tiles-preview"
+  | "image.compose-tiles"
   | "markdown.read"
   | "markdown.write"
   | "markdown.insert"
@@ -541,7 +541,7 @@ Role:
 Primary task id:
 
 - `image.create-bridge`
-- `image.compose-tiles-preview`
+- `image.compose-tiles`
 
 Suggested arguments:
 
@@ -673,7 +673,7 @@ Suggested steps:
 2. `markdown.read` to load a fixture markdown file
 3. `markdown.insert` into a sandbox markdown copy using `robot:preview-table-first-row`
 4. `image.create-bridge` using fixture images
-5. `image.compose-tiles-preview` using fixture images in fixed order
+5. `image.compose-tiles` using fixture images in fixed order
 6. `openai.generate-image` through an injectable mock seam by default
 7. `workflow.run-recipe` targeting `minimal`
 

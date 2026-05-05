@@ -30,7 +30,7 @@ export default {
     },
     {
       title: "Compose preview strip",
-      taskId: "image.compose-tiles-preview",
+      taskId: "image.compose-tiles",
       arguments: {
         inputImages: [
           "robot/tests/fixtures/images/tile1.png",

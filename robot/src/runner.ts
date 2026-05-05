@@ -227,7 +227,7 @@ async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void
         task.arguments as unknown as Parameters<ImageService["createBridge"]>[0],
       );
       return;
-    case "image.compose-tiles-preview":
+    case "image.compose-tiles":
       await services.image.composeTilesPreview(
         task.arguments as unknown as Parameters<ImageService["composeTilesPreview"]>[0],
       );

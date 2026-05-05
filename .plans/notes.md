@@ -30,7 +30,7 @@
 
 - Defaults `outputFormat` to `png`
 
-- *"1. Do you want compose-tiles-preview v1 to support both row and grid, or row only?"* Row only
+- *"1. Do you want compose-tiles v1 to support both row and grid, or row only?"* Row only
 
 - *"2. For OpenAI size, keep strict enum (safer) or string passthrough (more flexible)?"* strict enum!
 
@@ -82,7 +82,7 @@
 
     - Did I miss something? Feel free to ask.
 
-- Phase 4: image service. `compose-tiles-preview` task.
+- Phase 4: image service. `compose-tiles` task.
 
   - This is a new image servive not in legacy robot. This service will take several image inputs and compile the side-by-side in a single image. Very simple: each image gets glued next to other compposing a panorama, or, a mosaic of images in a given order. Example: `images/outputs/composites/Composition_03-02.png`
 
