@@ -472,7 +472,7 @@ Suggested service config shape:
 ```json
 {
   "baseUrl": "https://api.openai.com",
-  "imageGenerationServicePath": "/v1/images/edits",
+  "imageGenerationServicePath": "/v1/images/generations",
   "imageEditServicePath": "/v1/images/edits",
   "responsesServicePath": "/v1/responses",
   "generationTimeoutMs": 180000,
