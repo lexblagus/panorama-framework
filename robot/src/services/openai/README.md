@@ -4,7 +4,9 @@ OpenAI API adapter for runner task execution.
 
 Implemented task methods:
 
-- `generateImage` (`POST /v1/images/edits`)
+- `generateImage`
+  - uses `POST /v1/images/generations` when `inputImages` is not provided
+  - uses `POST /v1/images/edits` when `inputImages` and/or `maskFile` is provided
 
 Defaults:
 

@@ -216,55 +216,94 @@ export class OpenAIService extends BaseService {
       args.saveSidecarMetadataFile ??
       this.config.defaults.defaultSaveSidecarMetadataFile;
 
-    const form = new FormData();
-    form.set("prompt", args.prompt);
-    form.set("model", model);
-    form.set("size", size);
-    form.set("quality", quality);
-    form.set("n", String(n));
-    form.set("output_format", outputFormat);
-
-    if (args.outputCompression !== undefined) {
-      form.set("output_compression", String(args.outputCompression));
-    }
     const background: OpenAIImageBackground | undefined = args.background;
-    if (background !== undefined) {
-      form.set("background", background);
-    }
-    if (args.user !== undefined) {
-      form.set("user", args.user);
-    }
-
-    if (args.inputImages) {
-      for (let index = 0; index < args.inputImages.length; index += 1) {
-        const inputImagePath = this.resolveRepoPath(args.inputImages[index]);
-        const buffer = await readFile(inputImagePath);
-        form.append(
-          "image[]",
-          new Blob([buffer]),
-          path.basename(inputImagePath),
-        );
-      }
-    }
-
-    if (args.maskFile) {
-      const maskPath = this.resolveRepoPath(args.maskFile);
-      const buffer = await readFile(maskPath);
-      form.set("mask", new Blob([buffer]), path.basename(maskPath));
-    }
+    const hasInputImages = Array.isArray(args.inputImages) && args.inputImages.length > 0;
+    const hasMask = args.maskFile !== undefined;
+    const isEditRequest = hasInputImages || hasMask;
 
     const timeoutMs = this.config.generationTimeoutMs;
-    const response = await this.fetchImpl(
-      `${this.config.baseUrl}${this.config.imageGenerationServicePath}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${this.apiKey}`,
+    let response: Response;
+
+    if (isEditRequest) {
+      const form = new FormData();
+      form.set("prompt", args.prompt);
+      form.set("model", model);
+      form.set("size", size);
+      form.set("quality", quality);
+      form.set("n", String(n));
+      form.set("output_format", outputFormat);
+
+      if (args.outputCompression !== undefined) {
+        form.set("output_compression", String(args.outputCompression));
+      }
+      if (background !== undefined) {
+        form.set("background", background);
+      }
+      if (args.user !== undefined) {
+        form.set("user", args.user);
+      }
+
+      if (args.inputImages) {
+        for (let index = 0; index < args.inputImages.length; index += 1) {
+          const inputImagePath = this.resolveRepoPath(args.inputImages[index]);
+          const buffer = await readFile(inputImagePath);
+          form.append(
+            "image[]",
+            new Blob([buffer]),
+            path.basename(inputImagePath),
+          );
+        }
+      }
+
+      if (args.maskFile) {
+        const maskPath = this.resolveRepoPath(args.maskFile);
+        const buffer = await readFile(maskPath);
+        form.set("mask", new Blob([buffer]), path.basename(maskPath));
+      }
+
+      response = await this.fetchImpl(
+        `${this.config.baseUrl}${this.config.imageEditServicePath}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${this.apiKey}`,
+          },
+          body: form,
+          signal: this.createTimeoutSignal(timeoutMs),
         },
-        body: form,
-        signal: this.createTimeoutSignal(timeoutMs),
-      },
-    );
+      );
+    } else {
+      const payload: Record<string, unknown> = {
+        prompt: args.prompt,
+        model,
+        size,
+        quality,
+        n,
+        output_format: outputFormat,
+      };
+      if (args.outputCompression !== undefined) {
+        payload.output_compression = args.outputCompression;
+      }
+      if (background !== undefined) {
+        payload.background = background;
+      }
+      if (args.user !== undefined) {
+        payload.user = args.user;
+      }
+
+      response = await this.fetchImpl(
+        `${this.config.baseUrl}${this.config.imageGenerationServicePath}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${this.apiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+          signal: this.createTimeoutSignal(timeoutMs),
+        },
+      );
+    }
 
     if (!response.ok) {
       const body = await response.text();

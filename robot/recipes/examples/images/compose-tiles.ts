@@ -18,7 +18,7 @@ export async function buildRecipe(
   const outputImageFile = `${folderPath}/composed-tiles.example.png`
 
   return {
-    title: "Compose tiles recipe example",
+    title: "Compose tiles images recipe example",
     steps: [
       {
         title: "Compose tiles",

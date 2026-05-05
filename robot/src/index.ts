@@ -1,8 +1,72 @@
-import { pathToFileURL } from "node:url";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { buildCommand } from "./builder.js";
 import { resumePlan, runPlanFromStart } from "./runner.js";
 
 const ID_SEGMENT_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
+
+function parseEnvLine(line: string): [string, string] | null {
+  const trimmed = line.trim();
+  if (!trimmed || trimmed.startsWith("#")) {
+    return null;
+  }
+
+  const withoutExport = trimmed.startsWith("export ")
+    ? trimmed.slice("export ".length)
+    : trimmed;
+  const separatorIndex = withoutExport.indexOf("=");
+  if (separatorIndex <= 0) {
+    return null;
+  }
+
+  const key = withoutExport.slice(0, separatorIndex).trim();
+  if (!key) {
+    return null;
+  }
+
+  let value = withoutExport.slice(separatorIndex + 1).trim();
+  if (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    value = value.slice(1, -1);
+  }
+
+  return [key, value];
+}
+
+async function loadDotEnvIfPresent(): Promise<void> {
+  const robotPackageFolder = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "..",
+  );
+  const dotEnvPath = path.join(robotPackageFolder, ".env");
+
+  try {
+    const source = await readFile(dotEnvPath, "utf8");
+    for (const line of source.split(/\r?\n/)) {
+      const parsed = parseEnvLine(line);
+      if (!parsed) {
+        continue;
+      }
+      const [key, value] = parsed;
+      if (process.env[key] === undefined) {
+        process.env[key] = value;
+      }
+    }
+  } catch (error: unknown) {
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "code" in error &&
+      (error as { code?: string }).code === "ENOENT"
+    ) {
+      return;
+    }
+    throw error;
+  }
+}
 
 export type CliCommand =
   | { command: "build"; recipeId: string }
@@ -144,6 +208,8 @@ export function parseCliArgs(argv: string[]): CliCommand {
 }
 
 export async function runCli(argv: string[]): Promise<void> {
+  await loadDotEnvIfPresent();
+
   if (argv.length === 1 && (argv[0] === "--help" || argv[0] === "-h")) {
     console.log(usage());
     process.exit(0);

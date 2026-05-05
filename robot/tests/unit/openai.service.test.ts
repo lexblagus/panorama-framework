@@ -35,20 +35,22 @@ function buildDefaultArgs(root: string): GenerateImageArgs {
 }
 
 describe("OpenAIService", () => {
-  it("applies defaults and calls images edits endpoint", async () => {
+  it("applies defaults and calls images generations endpoint when no input image is provided", async () => {
     const root = await createTempRoot();
     const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
-      expect(String(input)).toBe("https://api.openai.com/v1/images/edits");
+      expect(String(input)).toBe("https://api.openai.com/v1/images/generations");
       expect(init?.method).toBe("POST");
-      expect(init?.headers).toEqual({ Authorization: "Bearer test-key" });
+      expect(init?.headers).toEqual({
+        Authorization: "Bearer test-key",
+        "Content-Type": "application/json",
+      });
       expect(init?.signal).toBeDefined();
-
-      const form = init?.body as FormData;
-      expect(form.get("model")).toBe("gpt-image-1.5");
-      expect(form.get("size")).toBe("1024x1536");
-      expect(form.get("quality")).toBe("high");
-      expect(form.get("n")).toBe("1");
-      expect(form.get("output_format")).toBe("png");
+      const body = JSON.parse(String(init?.body)) as Record<string, unknown>;
+      expect(body.model).toBe("gpt-image-1.5");
+      expect(body.size).toBe("1024x1536");
+      expect(body.quality).toBe("high");
+      expect(body.n).toBe(1);
+      expect(body.output_format).toBe("png");
 
       return new Response(
         JSON.stringify({
@@ -145,7 +147,8 @@ describe("OpenAIService", () => {
     await writeFile(inputPath, Buffer.from(ONE_PIXEL_PNG_BASE64, "base64"));
     await writeFile(maskPath, Buffer.from(ONE_PIXEL_PNG_BASE64, "base64"));
 
-    const fetchMock = vi.fn(async (_input: RequestInfo | URL, init?: RequestInit) => {
+    const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      expect(String(input)).toBe("https://api.openai.com/v1/images/edits");
       const form = init?.body as FormData;
       expect(form.getAll("image[]")).toHaveLength(1);
       expect(form.get("mask")).toBeTruthy();
@@ -187,8 +190,8 @@ describe("OpenAIService", () => {
 
     for (const model of acceptedModels) {
       const fetchMock = vi.fn(async (_input: RequestInfo | URL, init?: RequestInit) => {
-        const form = init?.body as FormData;
-        expect(form.get("model")).toBe(model);
+        const body = JSON.parse(String(init?.body)) as Record<string, unknown>;
+        expect(body.model).toBe(model);
         return new Response(
           JSON.stringify({
             data: [{ b64_json: ONE_PIXEL_PNG_BASE64 }],

@@ -13,22 +13,27 @@ export async function buildRecipe(
   // This is just an example intended to be used outside `robot` package, e.g.:
   // const folderPath = `${context.context.repoRootFolder}/<package-name>/…`
   const folderPath = path.dirname(thisFilePath);
-  const leftImageFile = `${folderPath}/white.example.png`
-  const rightImageFile = `${folderPath}/black.example.png`
-  const outputImageFile = `${folderPath}/bridge.example.png`
+  const outputImageFile = `${folderPath}/generated-image.example.png`
 
   return {
-    title: "Write bridge image recipe example",
+    title: "Generate image OpenAI example",
     steps: [
       {
-        title: "Write markdown",
-        taskId: "image.create-bridge",
+        title: "Generate image",
+        taskId: "openai.generate-image",
         arguments: {
-          leftImageFile,
-          rightImageFile,
-          outputImageFile,
-          leftCropWidth: 33,
-          rightCropWidth: 33,
+          prompt: "Just an empty, blank image",
+          outputDir: folderPath,
+          outputFilePrefix: "generated-image.example",
+          // optional:
+          model: "gpt-image-1-mini",
+          size: "1024x1024",
+          n: 1,
+          quality: "low",
+          outputFormat: "png",
+          outputCompression: 100,
+          background: "transparent",
+          saveSidecarMetadataFile: false,
         },
       }
     ],
