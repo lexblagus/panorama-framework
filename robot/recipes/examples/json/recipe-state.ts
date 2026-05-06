@@ -14,11 +14,11 @@ export async function buildRecipe(
   } satisfies CounterState);
 
   // 2) Read current state
-  const current =
+  const state =
     (await context.services.json.readRecipeState(recipeId)) ?? initial;
 
   const counter =
-    typeof current.counter === "number" ? current.counter : 0;
+    typeof state.counter === "number" ? state.counter : 0;
 
   console.log(`counter=${counter}`);
 
@@ -26,7 +26,7 @@ export async function buildRecipe(
   // 3) Persist updated state
   const nextValue = counter + 1;
   await context.services.json.writeRecipeState(recipeId, {
-    ...current,
+    ...state,
     counter: nextValue,
   });
 

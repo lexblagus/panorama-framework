@@ -1,0 +1,45 @@
+{
+  "promptFolder": "framework/prompts",
+  "promptFiles": {
+    "master": "master.md",
+    "tile1": "tile-01.md",
+    "tile2": "tile-02.md",
+    "tile3": "tile-03.md",
+    "tile4": "tile-04.md",
+    "tile5": "tile-05.md",
+    "tile6": "tile-06.md",
+    "tile7": "tile-07.md",
+    "tile8": "tile-08.md",
+    "tile9": "tile-09.md"
+  },
+  "previewFile": "images/PREVIEW.md",
+  "previewMarker": "robot:preview-table-first-row",
+  "compositionMapsR1Folder": "images/refs/R1",
+  "compositionMapsR1": {
+    "tile1": "151-tile1",
+    "tile2": "151-tile2",
+    "tile3": "151-tile3",
+    "tile4": "151-tile4",
+    "tile5": "151-tile5",
+    "tile6": "151-tile6",
+    "tile7": "151-tile7",
+    "tile8": "151-tile8",
+    "tile9": "151-tile9"
+  },
+  "generatedImagePath": "images/outputs/generated",
+  "filePrefix": "012",
+  "fileIndex": 0,
+  "samples": 3,
+  "variations": 3,
+  "image": {
+    "REM_model": "gpt-image-1-mini",
+    "model": "gpt-image-1.5",
+    "quality": "high",
+    "outputFormat": "png",
+    "outputCompression": 100,
+    "masterSize": "1536x1024",
+    "tileSize": "1024x1536",
+    "leftCropWidth": 341,
+    "rightCropWidth": 341
+  }
+}
