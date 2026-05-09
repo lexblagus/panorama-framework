@@ -34,8 +34,9 @@
   "variations": 3,
   "image": {
     "model": "gpt-image-1-mini",
-    "REM_model": "gpt-image-1.5",
     "quality": "low",
+    "REM_model": "gpt-image-1.5",
+    "REM_quality": "high",
     "outputFormat": "png",
     "outputCompression": 100,
     "masterSize": "1536x1024",

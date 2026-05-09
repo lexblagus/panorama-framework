@@ -25,8 +25,9 @@ _↳ Composition preview (before stitching; work in progress)_
   Canonical specifications, tile definitions, workflow, and runtime notes.
 
 - `prompts/`  
-  Executable generator prompts derived from the specs.
-  These should be treated as *outputs*, not authorities.
+  **Paste-ready prompts** for the image tool: each file is only the text that goes into the prompt box (no framework headers, no blockquote wrapper).  
+  `master-base.md` + `master-only.md` concatenate for Central Master generation; tile files are self-contained.  
+  Canonical attachment names in prompts: `r1-composition-map.png`, `master.png`, `ruler.png` (Tile 5 framing reference), `bridge.png` (seam composite when used).
 
 - `../images/outputs/`  
   Generated images, composites, and evaluation artifacts for the framework.
@@ -58,7 +59,8 @@ _↳ Composition preview (before stitching; work in progress)_
   - [Operational Pipeline](docs/04_operational_pipeline.md)
   - [Runtime Notes And Variations](docs/05_runtime_notes_and_variants.md)
 - **Prompts**
-  - [Global Base Prompt](prompts/master.md)
+  - [Master — shared base](prompts/master-base.md)
+  - [Master — central master only](prompts/master-only.md)
   - [Tile 1](prompts/tile-01.md)
   - [Tile 2](prompts/tile-02.md)
   - [Tile 3](prompts/tile-03.md)

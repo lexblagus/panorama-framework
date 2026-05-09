@@ -223,23 +223,27 @@ export async function buildRecipe(
   );
   // console.log(`promptTextTile5: "${promptTextTile5}"`);
 
-  const promptTextTile5Replaced = promptTextTile5
-    .replace("`tile5-r1.png`", "`" + recipeConfig.compositionMapsR1.tile5 + "`")
-    .replace(
-      "`master.png`",
-      "`" +
-        generateImageFilePrefixes.masterImage +
-        "." +
-        recipeConfig.image.outputFormat +
-        "`"
-    )
-    .replace("`tile4-6-bridge.png`", "(not uploaded)");
+  // Upload filenames replacements
+  const promptTile5CompMapR1Label =
+    "`" + recipeConfig.compositionMapsR1.tile5 + "`";
+  const promptTile5MasterLabel =
+    "`" +
+    generateImageFilePrefixes.masterImage +
+    "." +
+    recipeConfig.image.outputFormat +
+    "`";
+  const promptTile5BridgeLabel = "(not uploaded)";
+  const promptTile5TextReplaced = promptTextTile5
+    .replace("`r1-composition-map.png`", promptTile5CompMapR1Label)
+    .replace("`master.png`", promptTile5MasterLabel)
+    .replace("`bridge.png`", promptTile5BridgeLabel);
 
+  // Step definition
   const stepTile5: Step = {
     title: "Generate tile 5 image",
     taskId: "openai.generate-image",
     arguments: {
-      prompt: promptTextTile5Replaced,
+      prompt: promptTile5TextReplaced,
       outputFilePrefix: generateImageFilePrefixes.tile5Image,
       inputImages: [
         r1CompRefImagesFullPaths.tile5,
@@ -250,6 +254,210 @@ export async function buildRecipe(
     },
   };
   // console.log(`stepTile5: "${JSON.stringify(stepTile5, null, 2)}"`);
+
+  // -----------------------------------------------------------------------------
+  // Tile 1 step
+  // -----------------------------------------------------------------------------
+
+  // Get Master Base prompt
+  const promptTextTile1 = await context.services.markdown.read(
+    promptFilesFullPath.tile1
+  );
+  // console.log(`promptTextTile1: "${promptTextTile1}"`);
+
+  // Upload filenames replacements
+  const promptTile1CompMapR1Label =
+    "`" + recipeConfig.compositionMapsR1.tile1 + "`";
+  const promptTile1MasterLabel =
+    "`" +
+    generateImageFilePrefixes.masterImage +
+    "." +
+    recipeConfig.image.outputFormat +
+    "`";
+  const promptTile1RulerLabel =
+    "`" +
+    generateImageFilePrefixes.tile5Image +
+    "." +
+    recipeConfig.image.outputFormat +
+    "`";
+  const promptTile1BridgeLabel = "(not uploaded)";
+  const promptTile1TextReplaced = promptTextTile1
+    .replace("`r1-composition-map.png`", promptTile1CompMapR1Label)
+    .replace("`master.png`", promptTile1MasterLabel)
+    .replace("`ruler.png`", promptTile1RulerLabel)
+    .replace("`bridge.png`", promptTile1BridgeLabel);
+
+  // Step definition
+  const stepTile1: Step = {
+    title: "Generate tile 1 image",
+    taskId: "openai.generate-image",
+    arguments: {
+      prompt: promptTile1TextReplaced,
+      outputFilePrefix: generateImageFilePrefixes.tile1Image,
+      inputImages: [
+        r1CompRefImagesFullPaths.tile1,
+        generatedImagesFullPaths.tile5Image,
+      ],
+      size: recipeConfig.image.tileSize,
+      ...stepDefaults,
+    },
+  };
+  // console.log(`stepTile1: "${JSON.stringify(stepTile1, null, 2)}"`);
+
+  // -----------------------------------------------------------------------------
+  // Tile 9 step
+  // -----------------------------------------------------------------------------
+
+  // Get Master Base prompt
+  const promptTextTile9 = await context.services.markdown.read(
+    promptFilesFullPath.tile9
+  );
+  // console.log(`promptTextTile9: "${promptTextTile9}"`);
+
+  // Upload filenames replacements
+  const promptTile9CompMapR1Label =
+    "`" + recipeConfig.compositionMapsR1.tile9 + "`";
+  const promptTile9MasterLabel =
+    "`" +
+    generateImageFilePrefixes.masterImage +
+    "." +
+    recipeConfig.image.outputFormat +
+    "`";
+  const promptTile9RulerLabel =
+    "`" +
+    generateImageFilePrefixes.tile5Image +
+    "." +
+    recipeConfig.image.outputFormat +
+    "`";
+  const promptTile9BridgeLabel = "(not uploaded)";
+  const promptTile9TextReplaced = promptTextTile9
+    .replace("`r1-composition-map.png`", promptTile9CompMapR1Label)
+    .replace("`master.png`", promptTile9MasterLabel)
+    .replace("`ruler.png`", promptTile9RulerLabel)
+    .replace("`bridge.png`", promptTile9BridgeLabel);
+
+  // Step definition
+  const stepTile9: Step = {
+    title: "Generate tile 9 image",
+    taskId: "openai.generate-image",
+    arguments: {
+      prompt: promptTile9TextReplaced,
+      outputFilePrefix: generateImageFilePrefixes.tile9Image,
+      inputImages: [
+        r1CompRefImagesFullPaths.tile9,
+        generatedImagesFullPaths.tile5Image,
+      ],
+      size: recipeConfig.image.tileSize,
+      ...stepDefaults,
+    },
+  };
+  // console.log(`stepTile9: "${JSON.stringify(stepTile9, null, 2)}"`);
+
+  // -----------------------------------------------------------------------------
+  // Tile 3 step
+  // -----------------------------------------------------------------------------
+
+  // Get Master Base prompt
+  const promptTextTile3 = await context.services.markdown.read(
+    promptFilesFullPath.tile3
+  );
+  // console.log(`promptTextTile3: "${promptTextTile3}"`);
+
+  // Upload filenames replacements
+  const promptTile3CompMapR1Label =
+    "`" + recipeConfig.compositionMapsR1.tile3 + "`";
+  const promptTile3MasterLabel =
+    "`" +
+    generateImageFilePrefixes.masterImage +
+    "." +
+    recipeConfig.image.outputFormat +
+    "`";
+  const promptTile3RulerLabel =
+    "`" +
+    generateImageFilePrefixes.tile5Image +
+    "." +
+    recipeConfig.image.outputFormat +
+    "`";
+  const promptTile3BridgeLabel = "(not uploaded)";
+  const promptTile3TextReplaced = promptTextTile3
+    .replace("`r1-composition-map.png`", promptTile3CompMapR1Label)
+    .replace("`master.png`", promptTile3MasterLabel)
+    .replace("`ruler.png`", promptTile3RulerLabel)
+    .replace("`bridge.png`", promptTile3BridgeLabel);
+
+  // Step definition
+  const stepTile3: Step = {
+    title: "Generate tile 3 image",
+    taskId: "openai.generate-image",
+    arguments: {
+      prompt: promptTile3TextReplaced,
+      outputFilePrefix: generateImageFilePrefixes.tile3Image,
+      inputImages: [
+        r1CompRefImagesFullPaths.tile3,
+        generatedImagesFullPaths.tile5Image,
+      ],
+      size: recipeConfig.image.tileSize,
+      ...stepDefaults,
+    },
+  };
+  // console.log(`stepTile3: "${JSON.stringify(stepTile3, null, 2)}"`);
+
+  // -----------------------------------------------------------------------------
+  // Tile 7 step
+  // -----------------------------------------------------------------------------
+
+  // Get Master Base prompt
+  const promptTextTile7 = await context.services.markdown.read(
+    promptFilesFullPath.tile7
+  );
+  // console.log(`promptTextTile7: "${promptTextTile7}"`);
+
+  // Upload filenames replacements
+  const promptTile7CompMapR1Label =
+    "`" + recipeConfig.compositionMapsR1.tile7 + "`";
+  const promptTile7MasterLabel =
+    "`" +
+    generateImageFilePrefixes.masterImage +
+    "." +
+    recipeConfig.image.outputFormat +
+    "`";
+  const promptTile7RulerLabel =
+    "`" +
+    generateImageFilePrefixes.tile5Image +
+    "." +
+    recipeConfig.image.outputFormat +
+    "`";
+  const promptTile7BridgeLabel = "(not uploaded)";
+  const promptTile7TextReplaced = promptTextTile7
+    .replace("`r1-composition-map.png`", promptTile7CompMapR1Label)
+    .replace("`master.png`", promptTile7MasterLabel)
+    .replace("`ruler.png`", promptTile7RulerLabel)
+    .replace("`bridge.png`", promptTile7BridgeLabel);
+
+  // Step definition
+  const stepTile7: Step = {
+    title: "Generate tile 7 image",
+    taskId: "openai.generate-image",
+    arguments: {
+      prompt: promptTile7TextReplaced,
+      outputFilePrefix: generateImageFilePrefixes.tile7Image,
+      inputImages: [
+        r1CompRefImagesFullPaths.tile7,
+        generatedImagesFullPaths.tile5Image,
+      ],
+      size: recipeConfig.image.tileSize,
+      ...stepDefaults,
+    },
+  };
+  // console.log(`stepTile7: "${JSON.stringify(stepTile7, null, 2)}"`);
+
+  // -----------------------------------------------------------------------------
+  // Next steps
+  // -----------------------------------------------------------------------------
+  // Bridges
+  // Tiles 2, 4, 6, 8
+  // Preview
+  // Latest compiled preview at `framework/README.md`
 
   // -----------------------------------------------------------------------------
   // Finish
@@ -263,7 +471,7 @@ export async function buildRecipe(
   // Return steps
   return {
     title: "Generate Panorama",
-    steps: [stepMaster, stepTile5],
+    steps: [stepMaster, stepTile5, stepTile1, stepTile9, stepTile3, stepTile7],
     // steps: [],
   };
 }

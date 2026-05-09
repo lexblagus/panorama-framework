@@ -4,8 +4,7 @@ This file defines how humans and models interact over time.
 
 - [Image dimensions](#image-dimensions)
 - [Prompt Compilation Contract](#prompt-compilation-contract)
-  - [Compiled Prompt Rule](#compiled-prompt-rule)
-  - [Delimiters](#delimiters)
+  - [Prompt file contents](#prompt-file-contents)
   - [Multi-pass Requirement](#multi-pass-requirement)
 - [Workflow](#workflow)
   - [Generate the Central Master Reference Image](#generate-the-central-master-reference-image)
@@ -33,33 +32,26 @@ This file defines how humans and models interact over time.
 
 ## Prompt Compilation Contract
 
-All generated prompts must be **copy/paste ready** with **no user thinking**.
+All files under `framework/prompts/` (except `context.md`) must be **copy/paste ready**: the file contents are exactly what goes into the destination tool’s prompt field, with **no** extra framework metadata (no “Header / Generator / observations” sections, no title lines that are not part of the instruction itself).
 
-### Compiled Prompt Rule
+### Prompt file contents
 
-The **compiled prompt** is the exact concatenation of:
+- **No blockquote wrapper:** do not prefix prompt lines with `> `.
+- **Markdown is allowed** inside the prompt when it carries semantics for the model (lists, emphasis, etc.).
+- **Central Master** uses two files concatenated in this order:
+  1. `prompts/master-base.md` — shared global base
+  2. `prompts/master-only.md` — additional instructions used only for the Central Master image
+- **Canonical upload filenames** in backticks (so they match user attachments in the tool; automation may map to different paths on disk):
+  - `r1-composition-map.png` — per-tile R1 composition map
+  - `master.png` — Central Master reference
+  - `ruler.png` — Tile 5 ruler (framing / scale physics only)
+  - `bridge.png` — seam-bridge composite between neighbors, when applicable
 
-1) The tile’s **Uploads / Inputs** lines (imperative, user-facing)
-2) The tile’s **Reference Use Policy** lines (imperative, user-facing)
-3) The tile’s **Lock / Preserve** lines (if any, imperative)
-4) The tile’s **Generator Prompt** block (the scene spec)
-5) The tile’s **Output** line(s)
-
-No other sections are assumed. If a behavior must happen, it must appear in (1–5).
-
-### Delimiters
-
-Each compiled prompt must be emitted as a **single continuous Markdown blockquote**.
-
-- Every line of the compiled prompt must begin with `> ` (greater-than + space).
-- Blank lines inside the prompt must be represented by a standalone `>` line.
-- The compiled prompt begins at the **first** `> ` line and ends at the **last** `> ` line of that block.
-- No prompt-relevant instructions may exist outside the blockquote.
+Typical structure inside a tile prompt (all part of the same paste): reference list + use policy + lock/preserve + scene spec. If a behavior must happen, it must appear in that pasted text.
 
 ### Multi-pass Requirement
 
-If `## Generation Passes` exists, then **each pass must include its own full compiled prompt** (items 1–5 above), and must be labeled:
-- `### Pass N prompt: (pass description, if exists)`
+If generation uses multiple passes, **each pass must include its own full prompt text** (same rules as above), labeled clearly, e.g. `### Pass N: (description)`.
 
 #### Reference stack (R0–R3)
 Treat references as **roles** (one reference = one job). This mirrors the hierarchy: **geometry > seam safety > style > motifs**.
@@ -90,7 +82,7 @@ Responsibility: **ChatGPT**
 
 - Generate one **landscape** image based on:
   - **Global Constraints** section
-  - **Global Base Prompt** section
+  - **`prompts/master-base.md`** + **`prompts/master-only.md`** (concatenated, in that order)
 - This image must implicitly contain the architectural DNA for *all* other tiles.
 - This image becomes the **visual reference** for all subsequent slices.
 - Output resolution of `1536×1024 pixels` (ChatGPT standard)
@@ -164,12 +156,13 @@ Each reference image `(1024×1536)` is composed as:
 - Central transparent band `(1024×1536 / 3) = (342×1536)`
 - Right tile left crop `(1024×1536 / 3) = (341×1536)`
 
-Generated references:
-- Tile 2 reference: Tile 1 + transparency + Tile 3  → `tile1-3-bridge.png`
-- Tile 4 reference: Tile 3 + transparency + Tile 5  → `tile3-5-bridge.png`
-- Tile 6 reference: Tile 5 + transparency + Tile 7  → `tile5-7-bridge.png`
-- Tile 8 reference: Tile 7 + transparency + Tile 9  → `tile7-9-bridge.png`
+Generated references (typical filenames on disk when you export composites):
+- Tile 2 reference: Tile 1 + transparency + Tile 3  → `bridge-2.png`
+- Tile 4 reference: Tile 3 + transparency + Tile 5  → `bridge-4.png`
+- Tile 6 reference: Tile 5 + transparency + Tile 7  → `bridge-6.png`
+- Tile 8 reference: Tile 7 + transparency + Tile 9  → `bridge-8.png`
 
+In **prompt text** under `framework/prompts/`, every bridge attachment is referred to as **`bridge.png`** (paste-ready contract). Map your real file to that name when uploading, or rename the export for the tool.
 
 ### Generate Tertiary Tile Images
 
@@ -177,17 +170,17 @@ Responsibility: **ChatGPT**
 
 Each tertiary tile is generated using its corresponding inter-tile reference image (bridge composite), plus its own R1 map (REQUIRED in the current workflow when provided).
 
-Tiles generated in this step:
-- Tile 2 (using R1 `tile2-r1.png` + `tile1-3-bridge.png`)
-- Tile 4 (using R1 `tile4-r1.png` + `tile3-5-bridge.png`)
-- Tile 6 (using R1 `tile6-r1.png` + `tile5-7-bridge.png`)
-- Tile 8 (using R1 `tile8-r1.png` + `tile7-9-bridge.png`)
+Tiles generated in this step (prompts use canonical names `r1-composition-map.png`, `bridge.png`, `ruler.png` as applicable):
+- Tile 2 (R1 map + bridge composite + Tile 5 ruler)
+- Tile 4 (R1 map + bridge composite + Tile 5 ruler)
+- Tile 6 (R1 map + bridge composite + Tile 5 ruler)
+- Tile 8 (R1 map + bridge composite + Tile 5 ruler)
 
 This step increases continuity and reduces seam artifacts.
 
 **Optional (secondary seam-lock bridges, after tertiary tiles exist):**
-- Tile 3 seam-lock reference: Tile 2 right crop + transparency + Tile 4 left crop  → `tile2-4-bridge.png`
-- Tile 7 seam-lock reference: Tile 6 right crop + transparency + Tile 8 left crop  → `tile6-8-bridge.png`
+- Tile 3 seam-lock reference: Tile 2 right crop + transparency + Tile 4 left crop  → export e.g. `tile2-4-bridge.png` (attach as **`bridge.png`** in the prompt)
+- Tile 7 seam-lock reference: Tile 6 right crop + transparency + Tile 8 left crop  → export e.g. `tile6-8-bridge.png` (attach as **`bridge.png`** in the prompt)
 
 These **seam-lock references** are **OPTIONAL** and used only for a seam-lock refinement pass on secondary tiles (Tiles 3 and 7).
 Only apply the **seam-lock reference** after the initial tiles (3 and 7) have been generated and need refinement.

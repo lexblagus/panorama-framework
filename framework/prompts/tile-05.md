@@ -1,11 +1,10 @@
-
 REFERENCE IMAGES PROVIDED (ONLY these; no extras):
-- Reference A (REQUIRED): R1 Tile 5 composition map — `tile5-r1.png`
+- Reference R1 (REQUIRED): Tile 5 composition map — `r1-composition-map.png`
 - Reference M (RECOMMENDED): Central Master reference — `master.png`
-- Reference B (OPTIONAL seam bridge composite, used ONLY in a seam-lock pass after Tile 4 + Tile 6 exist): Tile 4 right crop + transparency + Tile 6 left crop — `tile4-6-bridge.png`
+- Reference B (OPTIONAL seam bridge composite, used ONLY in a seam-lock pass after Tile 4 + Tile 6 exist): Tile 4 right crop + transparency + Tile 6 left crop — `bridge.png`
 
 REFERENCE USE POLICY (STRICT):
-- Reference A (R1) is the PRIMARY layout authority: horizon / sky budget / skyline envelope / anchor zone / seam zones / reading orientation.
+- Reference R1 is the PRIMARY layout authority: horizon / sky budget / skyline envelope / anchor zone / seam zones / reading orientation.
 - Reference M (Central Master) is SECONDARY and controls ONLY palette + diffusion + “rig feel” (DO NOT import its exact layout).
 - Reference B (Bridge) is seam conditioning ONLY: left / right edge continuity (silhouette height profile, haze rolloff language, edge texture density).
 - Transfer FORBIDDEN from Reference B: copying neighbor composition into the center, landmark duplication, importing Tile 4 / 6 content into the anchor zone. Bridge is NOT a scene blueprint.

@@ -19,7 +19,8 @@ When changes are made to the specification, you can ask the model to read the ra
 > https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/framework/docs/03_tile_09.md
 > https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/framework/docs/04_operational_pipeline.md
 > https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/framework/docs/05_runtime_notes_and_variants.md
-> https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/framework/prompts/master.md
+> https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/framework/prompts/master-base.md
+> https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/framework/prompts/master-only.md
 > https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/framework/prompts/tile-01.md
 > https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/framework/prompts/tile-02.md
 > https://raw.githubusercontent.com/lexblagus/panorama-framework/refs/heads/main/framework/prompts/tile-03.md
