@@ -150,8 +150,14 @@ describe("OpenAIService", () => {
     const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
       expect(String(input)).toBe("https://api.openai.com/v1/images/edits");
       const form = init?.body as FormData;
-      expect(form.getAll("image[]")).toHaveLength(1);
-      expect(form.get("mask")).toBeTruthy();
+      const imageParts = form.getAll("image[]");
+      expect(imageParts).toHaveLength(1);
+      expect(imageParts[0]).toBeInstanceOf(Blob);
+      expect((imageParts[0] as Blob).type).toBe("image/png");
+      const maskPart = form.get("mask");
+      expect(maskPart).toBeTruthy();
+      expect(maskPart).toBeInstanceOf(Blob);
+      expect((maskPart as Blob).type).toBe("image/png");
       return new Response(
         JSON.stringify({
           data: [{ b64_json: ONE_PIXEL_PNG_BASE64 }],
@@ -177,6 +183,27 @@ describe("OpenAIService", () => {
 
     expect(result.files).toHaveLength(1);
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("rejects unsupported input image extensions for edits", async () => {
+    const root = await createTempRoot();
+    const badPath = path.join(root, "input.gif");
+    await writeFile(badPath, Buffer.from(ONE_PIXEL_PNG_BASE64, "base64"));
+    const service = new OpenAIService({
+      repoRootFolder: root,
+      robotPackageFolder: root,
+      apiKey: "test-key",
+      fetchImpl: vi.fn() as unknown as typeof fetch,
+    });
+
+    await expect(
+      service.generateImage({
+        ...buildDefaultArgs(root),
+        inputImages: [badPath],
+        model: "gpt-image-2",
+        size: "1024x1024",
+      }),
+    ).rejects.toThrow(/Unsupported image extension/);
   });
 
   it("accepts all GPT image model ids supported by this service", async () => {

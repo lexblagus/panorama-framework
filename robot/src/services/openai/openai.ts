@@ -70,6 +70,25 @@ function extensionForOutputFormat(format: OpenAIOutputFormat): string {
   return format;
 }
 
+/** OpenAI Images Edits rejects parts with default `application/octet-stream`. */
+const IMAGE_MIME_BY_EXT: Readonly<Record<string, string>> = {
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
+};
+
+function mimeTypeForImageFilePath(filePath: string): string {
+  const ext = path.extname(filePath).toLowerCase();
+  const mime = IMAGE_MIME_BY_EXT[ext];
+  if (!mime) {
+    throw new Error(
+      `Unsupported image extension "${ext || "(none)"}" for "${filePath}". Use .png, .jpg, .jpeg, or .webp.`,
+    );
+  }
+  return mime;
+}
+
 function safeString(value: unknown): string {
   return typeof value === "string" ? value : "";
 }
@@ -247,9 +266,10 @@ export class OpenAIService extends BaseService {
         for (let index = 0; index < args.inputImages.length; index += 1) {
           const inputImagePath = this.resolveRepoPath(args.inputImages[index]);
           const buffer = await readFile(inputImagePath);
+          const mime = mimeTypeForImageFilePath(inputImagePath);
           form.append(
             "image[]",
-            new Blob([buffer]),
+            new Blob([buffer], { type: mime }),
             path.basename(inputImagePath),
           );
         }
@@ -258,7 +278,8 @@ export class OpenAIService extends BaseService {
       if (args.maskFile) {
         const maskPath = this.resolveRepoPath(args.maskFile);
         const buffer = await readFile(maskPath);
-        form.set("mask", new Blob([buffer]), path.basename(maskPath));
+        const mime = mimeTypeForImageFilePath(maskPath);
+        form.set("mask", new Blob([buffer], { type: mime }), path.basename(maskPath));
       }
 
       response = await this.fetchImpl(

@@ -13,13 +13,14 @@ export async function buildRecipe(
   // This is just an example intended to be used outside `robot` package, e.g.:
   // const folderPath = `${context.context.repoRootFolder}/<package-name>/…`
   const folderPath = path.dirname(thisFilePath);
-  const outputImageFile = `${folderPath}/generated-image.example.png`
+  const uploadImageFile1 = `${folderPath}/upload-image-1.example.png`
+  const uploadImageFile2 = `${folderPath}/upload-image-2.example.png`
 
   return {
     title: "Generate image OpenAI example",
     steps: [
       {
-        title: "Generate image",
+        title: "Generate blank image",
         taskId: "openai.generate-image",
         arguments: {
           prompt: "Just an empty, blank image",
@@ -33,6 +34,24 @@ export async function buildRecipe(
           outputFormat: "png",
           outputCompression: 100,
           background: "transparent",
+          saveSidecarMetadataFile: false,
+        },
+      },
+      {
+        title: "Combine images",
+        taskId: "openai.generate-image",
+        arguments: {
+          prompt: "Using the two uploaded images, create a clean side-by-side comparison layout.",
+          outputDir: folderPath,
+          outputFilePrefix: "combined-images.example",
+          inputImages: [uploadImageFile1, uploadImageFile2],
+          // optional:
+          model: "gpt-image-1-mini",
+          size: "1024x1024",
+          n: 1,
+          quality: "low",
+          outputFormat: "png",
+          outputCompression: 100,
           saveSidecarMetadataFile: false,
         },
       }
