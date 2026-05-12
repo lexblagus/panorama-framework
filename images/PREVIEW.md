@@ -5,12 +5,16 @@
 ||
 |:---:|
 ||<!-- robot:table-compositions-header-end -->
+|![Composition preview](../images/outputs/generated/012-0012-composition-preview.png)|
+|012-0012-composition-preview.png|
 
 ## Tiles
 
 |1|2|3|4|5|6|7|8|9|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |**primary**|tertiary|*secondary*|tertiary|***primary master***|tertiary|*secondary*|tertiary|**primary**|<!-- robot:table-tiles-header-end -->
+|![Tile 1 preview](../images/outputs/generated/012-0003-tile1.png)|![Tile 2 preview](../images/outputs/generated/012-0004-tile2.png)|![Tile 3 preview](../images/outputs/generated/012-0005-tile3.png)|![Tile 4 preview](../images/outputs/generated/012-0006-tile4.png)|![Tile 5 preview](../images/outputs/generated/012-0007-tile5.png)|![Tile 6 preview](../images/outputs/generated/012-0008-tile6.png)|![Tile 7 preview](../images/outputs/generated/012-0009-tile7.png)|![Tile 8 preview](../images/outputs/generated/012-0010-tile8.png)|![Tile 9 preview](../images/outputs/generated/012-0011-tile9.png)|
+|012-0003-tile1.png|012-0004-tile2.png|012-0005-tile3.png|012-0006-tile4.png|012-0007-tile5.png|012-0008-tile6.png|012-0009-tile7.png|012-0010-tile8.png|012-0011-tile9.png|
 |![Tile 1 preview](./outputs/generated/011-151-03-01-tile1.png)|![Tile 2 preview](./outputs/generated/011-152-03-01-tile2.png)|![Tile 3 preview](./outputs/generated/011-153-03-01-tile3.png)|![Tile 4 preview](./outputs/generated/011-154-03-01-tile4.png)|![Tile 5 preview](./outputs/generated/011-155-03-01-tile5.png)|![Tile 6 preview](./outputs/generated/011-156-03-01-tile6.png)|![Tile 7 preview](./outputs/generated/011-157-03-01-tile7.png)|![Tile 8 preview](./outputs/generated/011-158-03-01-tile8.png)|![Tile 9 preview](./outputs/generated/011-159-03-01-tile9.png)|
 |011-151-03-01-tile1.png|011-152-03-01-tile2.png|011-153-03-01-tile3.png|011-154-03-01-tile4.png|011-155-03-01-tile5.png|011-156-03-01-tile6.png|011-157-03-01-tile7.png|011-158-03-01-tile8.png|011-159-03-01-tile9.png|
 |![Tile 1 preview](./outputs/generated/011-137-02-03-tile1.png)|![Tile 2 preview](./outputs/generated/011-138-02-03-tile2.png)|![Tile 3 preview](./outputs/generated/011-139-02-03-tile3.png)|![Tile 4 preview](./outputs/generated/011-140-02-03-tile4.png)|![Tile 5 preview](./outputs/generated/011-141-02-03-tile5.png)|![Tile 6 preview](./outputs/generated/011-142-02-03-tile6.png)|![Tile 7 preview](./outputs/generated/011-143-02-03-tile7.png)|![Tile 8 preview](./outputs/generated/011-144-02-03-tile8.png)|![Tile 9 preview](./outputs/generated/011-145-02-03-tile9.png)|
