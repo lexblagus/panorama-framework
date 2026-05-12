@@ -240,6 +240,11 @@ export class OpenAIService extends BaseService {
     const hasMask = args.maskFile !== undefined;
     const isEditRequest = hasInputImages || hasMask;
 
+    this.log(
+      "info",
+      `Generating image (model: ${model}, size: ${size}, quality: ${quality}${isEditRequest ? ", edit mode" : ""})...`,
+    );
+
     const timeoutMs = this.config.generationTimeoutMs;
     let response: Response;
 
@@ -328,8 +333,11 @@ export class OpenAIService extends BaseService {
 
     if (!response.ok) {
       const body = await response.text();
+      this.log("error", `OpenAI API returned ${response.status}`);
       throw new Error(`OpenAI image generation failed (${response.status}): ${body}`);
     }
+
+    this.log("debug", `OpenAI API responded ${response.status}`);
 
     const json = (await response.json()) as unknown;
     const data = normalizeResponse(json);
@@ -387,6 +395,7 @@ export class OpenAIService extends BaseService {
       }
     }
 
+    this.log("info", `Image generated: ${files.length} file(s) written`);
     return { files };
   }
 }

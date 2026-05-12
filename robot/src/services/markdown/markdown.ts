@@ -23,9 +23,10 @@ export class MarkdownService extends BaseService {
   }
 
   async insert(request: MarkdownInsertRequest): Promise<void> {
+    const position = request.position ?? "after";
+    this.log("debug", `Inserting markdown (${position}) in "${request.file}"`);
     const absolutePath = this.resolveRepoPath(request.file);
     const source = await readFile(absolutePath, "utf8");
-    const position = request.position ?? "after";
     const lineBreak = source.includes("\r\n") ? "\r\n" : "\n";
 
     if (position === "between") {

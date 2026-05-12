@@ -1,8 +1,11 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import Log, { type LogFn } from "./log.js";
 import { buildCommand } from "./builder.js";
+import type { BuildCommandResult } from "./types/builder.js";
 import { resumePlan, runPlanFromStart } from "./runner.js";
+import type { RunnerResult } from "./types/runner.js";
 
 const ID_SEGMENT_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
 
@@ -211,6 +214,15 @@ export function parseCliArgs(argv: string[]): CliCommand {
   }
 }
 
+function logBuildResult(log: LogFn, result: BuildCommandResult): void {
+  log("info", `Build complete: plan "${result.planId}" with ${result.taskCount} tasks`);
+}
+
+function logRunnerResult(log: LogFn, result: RunnerResult): void {
+  const status = result.completedTaskCount === result.taskCount ? "Done" : "Partial";
+  log("info", `${status}: ${result.completedTaskCount}/${result.taskCount} tasks completed (${result.command} "${result.planId}")`);
+}
+
 export async function runCli(argv: string[]): Promise<void> {
   await loadDotEnvIfPresent();
 
@@ -219,29 +231,31 @@ export async function runCli(argv: string[]): Promise<void> {
     process.exit(0);
   }
 
+  const log = new Log("cli", "yellow");
+
   try {
     const parsed = parseCliArgs(argv);
 
     switch (parsed.command) {
       case "build": {
         const result = await buildCommand({ recipeId: parsed.recipeId });
-        console.log(JSON.stringify(result, null, 2));
+        logBuildResult(log, result);
         return;
       }
       case "exec": {
         const built = await buildCommand({ recipeId: parsed.recipeId });
         const result = await runPlanFromStart({ planId: built.planId });
-        console.log(JSON.stringify(result, null, 2));
+        logRunnerResult(log, result);
         return;
       }
       case "run": {
         const result = await runPlanFromStart({ planId: parsed.planId });
-        console.log(JSON.stringify(result, null, 2));
+        logRunnerResult(log, result);
         return;
       }
       case "resume": {
         const result = await resumePlan({ planId: parsed.planId });
-        console.log(JSON.stringify(result, null, 2));
+        logRunnerResult(log, result);
         return;
       }
       default:

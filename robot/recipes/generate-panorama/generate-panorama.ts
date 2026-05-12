@@ -1,7 +1,7 @@
 import type { BuildRecipeContext } from "../../src/types/builder.ts";
 import type { Recipe } from "../../src/types/recipe.ts";
 import type { Step } from "../../src/types/step.ts";
-import log from "../../src/log.ts";
+import Log from "../../src/log.ts";
 
 // -----------------------------------------------------------------------------
 // Local types
@@ -71,6 +71,8 @@ function padZeroes(value: number, padLength: number = 4): string {
 export async function buildRecipe(
   context: BuildRecipeContext
 ): Promise<Recipe> {
+  const log = new Log('recipe', 'magenta');
+
   // -----------------------------------------------------------------------------
   log('info', 'Context and configuration');
   // -----------------------------------------------------------------------------

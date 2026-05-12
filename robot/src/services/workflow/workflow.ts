@@ -14,6 +14,9 @@ export class WorkflowService extends BaseService {
   }
 
   async runRecipe(args: RunRecipeArgs): Promise<WorkflowResult> {
+    const id = "recipeId" in args ? args.recipeId : args.planId;
+    this.log("info", `Workflow: ${args.mode} "${id}"`);
+
     switch (args.mode) {
       case "build":
         return this.#options.buildCommand({

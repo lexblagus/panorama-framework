@@ -1,5 +1,6 @@
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import Log from "./log.js";
 import { buildCommand } from "./builder.js";
 import { ImageService } from "./services/image/index.js";
 import { JsonService } from "./services/json/index.js";
@@ -17,6 +18,8 @@ import type {
   RunFromStartInput,
 } from "./types/runner.js";
 import type { Task } from "./types/task.js";
+
+const log = new Log("runner", "red");
 
 const ID_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
 
@@ -264,17 +267,26 @@ async function executePlan({
   skipSuccessfulTasks,
   resetBeforeRun,
 }: ExecutePlanOptions): Promise<RunnerResult> {
+  const total = plan.tasks.length;
+
   if (resetBeforeRun) {
+    log("debug", `Resetting ${total} tasks`);
     for (const task of plan.tasks) {
       resetTask(task);
     }
     await services.json.writePlan(planId, plan);
   }
 
-  for (const task of plan.tasks) {
+  for (let i = 0; i < total; i++) {
+    const task = plan.tasks[i];
+    const progress = `[${i + 1}/${total}]`;
+
     if (skipSuccessfulTasks && task.state === "success") {
+      log("debug", `${progress} Skipping "${task.title}" (already succeeded)`);
       continue;
     }
+
+    log("info", `${progress} Running "${task.title}" (${task.taskId})`);
 
     task.state = "running";
     task.startedAt = nowIso();
@@ -287,44 +299,41 @@ async function executePlan({
       task.state = "success";
       task.finishedAt = nowIso();
       await services.json.writePlan(planId, plan);
+      log("info", `${progress} Completed "${task.title}"`);
     } catch (error: unknown) {
       task.state = "error";
       task.errorMessage = error instanceof Error ? error.message : String(error);
       task.finishedAt = nowIso();
       await services.json.writePlan(planId, plan);
+      log("error", `${progress} Failed "${task.title}": ${task.errorMessage}`);
       throw error;
     }
   }
 
   const completedTaskCount = plan.tasks.filter((task) => task.state === "success").length;
+  log("info", `Plan complete: ${completedTaskCount}/${total} tasks succeeded`);
   return {
     command,
     planId,
-    taskCount: plan.tasks.length,
+    taskCount: total,
     completedTaskCount,
   };
 }
 
 function createServiceRegistry(paths: RunnerPaths): ServiceRegistry {
-  const json = new JsonService({
+  const serviceLog = new Log("service", "green");
+  const serviceOptions = {
     repoRootFolder: paths.repoRootFolder,
     robotPackageFolder: paths.robotPackageFolder,
-  });
-  const markdown = new MarkdownService({
-    repoRootFolder: paths.repoRootFolder,
-    robotPackageFolder: paths.robotPackageFolder,
-  });
-  const image = new ImageService({
-    repoRootFolder: paths.repoRootFolder,
-    robotPackageFolder: paths.robotPackageFolder,
-  });
-  const openai = new OpenAIService({
-    repoRootFolder: paths.repoRootFolder,
-    robotPackageFolder: paths.robotPackageFolder,
-  });
+    log: serviceLog,
+  };
+
+  const json = new JsonService(serviceOptions);
+  const markdown = new MarkdownService(serviceOptions);
+  const image = new ImageService(serviceOptions);
+  const openai = new OpenAIService(serviceOptions);
   const workflow = new WorkflowService({
-    repoRootFolder: paths.repoRootFolder,
-    robotPackageFolder: paths.robotPackageFolder,
+    ...serviceOptions,
     recipesRoot: paths.recipesRoot,
     buildCommand,
     runPlanFromStart,
@@ -344,6 +353,7 @@ export async function runPlanFromStart(
   input: RunFromStartInput,
 ): Promise<RunnerResult> {
   ensureValidPlanId(input.planId);
+  log("info", `Starting plan "${input.planId}" from scratch`);
   const paths = resolveRunnerPaths(input);
   const services = createServiceRegistry(paths);
   const plan = await loadPlanOrThrow(services.json, input.planId);
@@ -360,6 +370,7 @@ export async function runPlanFromStart(
 
 export async function resumePlan(input: ResumeInput): Promise<RunnerResult> {
   ensureValidPlanId(input.planId);
+  log("info", `Resuming plan "${input.planId}"`);
   const paths = resolveRunnerPaths(input);
   const services = createServiceRegistry(paths);
   const plan = await loadPlanOrThrow(services.json, input.planId);

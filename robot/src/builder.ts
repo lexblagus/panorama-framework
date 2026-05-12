@@ -1,6 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import Log from "./log.js";
 import { JsonService } from "./services/json/index.js";
 import { MarkdownService } from "./services/markdown/index.js";
 import { ImageService } from "./services/image/index.js";
@@ -266,31 +267,31 @@ function buildPlan(recipeId: string, recipe: Recipe): Plan {
 export async function buildCommand(
   input: BuildCommandInput,
 ): Promise<BuildCommandResult> {
+  const log = new Log("builder", "blue");
+  const serviceLog = new Log("service", "green");
+
+  log("info", `Building recipe "${input.recipeId}"`);
+
   ensureValidId("recipeId", input.recipeId);
   const paths = resolveBuilderPaths(input);
+  log("debug", `Paths resolved: repo=${paths.repoRootFolder}, robot=${paths.robotPackageFolder}`);
 
   const resolution = await resolveRecipeFile(input.recipeId, paths);
   ensureValidId("recipeId", resolution.recipeId);
+  log("info", `Recipe file found: "${resolution.recipeFilePath}"`);
 
-  const json = new JsonService({
+  const serviceOptions = {
     repoRootFolder: paths.repoRootFolder,
     robotPackageFolder: paths.robotPackageFolder,
-  });
-  const markdown = new MarkdownService({
-    repoRootFolder: paths.repoRootFolder,
-    robotPackageFolder: paths.robotPackageFolder,
-  });
-  const image = new ImageService({
-    repoRootFolder: paths.repoRootFolder,
-    robotPackageFolder: paths.robotPackageFolder,
-  });
-  const openai = new OpenAIService({
-    repoRootFolder: paths.repoRootFolder,
-    robotPackageFolder: paths.robotPackageFolder,
-  });
+    log: serviceLog,
+  };
+
+  const json = new JsonService(serviceOptions);
+  const markdown = new MarkdownService(serviceOptions);
+  const image = new ImageService(serviceOptions);
+  const openai = new OpenAIService(serviceOptions);
   const workflow = new WorkflowService({
-    repoRootFolder: paths.repoRootFolder,
-    robotPackageFolder: paths.robotPackageFolder,
+    ...serviceOptions,
     recipesRoot: paths.recipesRoot,
     buildCommand,
     runPlanFromStart: async (runnerInput) => {
@@ -304,6 +305,9 @@ export async function buildCommand(
   });
 
   const recipeConfig = await loadOptionalRecipeConfig(resolution, paths);
+  log("debug", recipeConfig ? "Recipe config loaded" : "No recipe config found");
+
+  log("info", "Loading recipe module...");
   const recipe = await loadRecipeFromModule(resolution, {
     recipeId: resolution.recipeId,
     repoRootFolder: paths.repoRootFolder,
@@ -317,11 +321,13 @@ export async function buildCommand(
       workflow,
     },
   });
+  log("info", `Recipe "${recipe.title}" built with ${recipe.steps.length} steps`);
 
   const planId = resolution.recipeId;
   ensureValidId("planId", planId);
   const plan = buildPlan(resolution.recipeId, recipe);
   await json.writePlan(planId, plan);
+  log("info", `Plan "${planId}" written`);
 
   return {
     command: "build",

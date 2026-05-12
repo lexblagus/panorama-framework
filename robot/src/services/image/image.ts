@@ -33,6 +33,7 @@ export class ImageService extends BaseService {
   }
 
   async createBridge(args: CreateBridgeArgs): Promise<{ outputImageFile: string }> {
+    this.log("info", `Creating bridge image...`);
     assertPositiveInteger(args.leftCropWidth, "leftCropWidth");
     assertPositiveInteger(args.rightCropWidth, "rightCropWidth");
 
@@ -99,12 +100,14 @@ export class ImageService extends BaseService {
       .png()
       .toFile(outputImageFile);
 
+    this.log("info", `Bridge image created: ${path.basename(outputImageFile)}`);
     return { outputImageFile };
   }
 
   async composeTilesPreview(
     args: ComposeTilesPreviewArgs,
   ): Promise<{ outputImageFile: string }> {
+    this.log("info", `Composing tiles preview (${args.inputImages?.length ?? 0} tiles)...`);
     if (!Array.isArray(args.inputImages) || args.inputImages.length === 0) {
       throw new Error("inputImages must contain at least one image");
     }
@@ -149,6 +152,7 @@ export class ImageService extends BaseService {
       .png()
       .toFile(outputImageFile);
 
+    this.log("info", `Tiles preview created: ${path.basename(outputImageFile)}`);
     return { outputImageFile };
   }
 }
