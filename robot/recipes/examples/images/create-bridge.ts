@@ -18,10 +18,10 @@ export async function buildRecipe(
   const outputImageFile = `${folderPath}/bridge.example.png`
 
   return {
-    title: "Write bridge image recipe example",
+    title: "Create bridge image recipe example",
     steps: [
       {
-        title: "Write markdown",
+        title: "Create bridge image step",
         taskId: "image.create-bridge",
         arguments: {
           leftImageFile,

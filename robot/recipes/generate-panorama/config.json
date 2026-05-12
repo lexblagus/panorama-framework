@@ -13,20 +13,7 @@
     "tile8": "tile-08.md",
     "tile9": "tile-09.md"
   },
-  "previewFile": "images/PREVIEW.md",
-  "previewMarker": "robot:preview-table-first-row",
-  "compositionMapsR1Folder": "images/refs/R1",
-  "compositionMapsR1": {
-    "tile1": "151-tile1.png",
-    "tile2": "151-tile2.png",
-    "tile3": "151-tile3.png",
-    "tile4": "151-tile4.png",
-    "tile5": "151-tile5.png",
-    "tile6": "151-tile6.png",
-    "tile7": "151-tile7.png",
-    "tile8": "151-tile8.png",
-    "tile9": "151-tile9.png"
-  },
+
   "generatedImagePath": "images/outputs/generated",
   "filePrefix": "012",
   "fileIndex": 5,
@@ -43,5 +30,28 @@
     "tileSize": "1024x1536",
     "leftCropWidth": 341,
     "rightCropWidth": 341
+  },
+
+  "previewMarkDownFile": "images/PREVIEW.md",
+  "previewCompositionMarker": "robot:table-compositions-header-end",
+  "previewTilesTableMarker": "robot:table-tiles-header-end",
+
+  "frameworkHomeMarkDownFile": "framework/README.md",
+  "frameworkHomeCompositionMarkers": [
+    "robot:composition-preview-before",
+    "robot:composition-preview-after"
+  ],
+
+  "compositionMapsR1Folder": "images/refs/R1",
+  "compositionMapsR1": {
+    "tile1": "151-tile1.png",
+    "tile2": "151-tile2.png",
+    "tile3": "151-tile3.png",
+    "tile4": "151-tile4.png",
+    "tile5": "151-tile5.png",
+    "tile6": "151-tile6.png",
+    "tile7": "151-tile7.png",
+    "tile8": "151-tile8.png",
+    "tile9": "151-tile9.png"
   }
 }

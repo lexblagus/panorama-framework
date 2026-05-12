@@ -13,7 +13,9 @@ This project treats image generation as a **systems design problem**, not a gues
 
 ---
 
-![Composition preview](../images/outputs/composites/Composition_03-02.png)
+<!-- robot:composition-preview-before -->
+![Composition preview](../images/outputs/generated/012-0020-composition-preview.png)
+<!-- robot:composition-preview-after -->
 
 _↳ Composition preview (before stitching; work in progress)_
 
