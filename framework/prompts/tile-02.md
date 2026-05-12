@@ -34,7 +34,7 @@ LOCK / PRESERVE (HARD):
 
 **Horizon and Sky**:
 - **Horizon** at **top-right**, maintaining a **slightly elevated ridge** on the left that gently slopes downward ↘ across the tile (hill continuation from Tile 1 fading into Tile 3’s flatter residential fabric).
-- No visible sun disk, with key light coming from the **LEFT** casting subtle shadows to the **RIGHT**.
+- No visible sun disk, with key light coming from the **RIGHT** casting subtle shadows to the **LEFT**.
 
 **URBAN FEATURES**:
 - **Residential areas**: Mixed architecture with older homes, mid-century styles, and some modern homes.
