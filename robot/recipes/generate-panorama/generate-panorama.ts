@@ -2,62 +2,13 @@ import type { BuildRecipeContext } from "../../src/types/builder.ts";
 import type { Recipe } from "../../src/types/recipe.ts";
 import type { Step } from "../../src/types/step.ts";
 import Log from "../../src/log.ts";
+import { parseGeneratePanoramaConfig } from "./config.schema.ts";
 
 // -----------------------------------------------------------------------------
 // Local types
 // -----------------------------------------------------------------------------
 
 type LocalState = { index: number };
-
-type GeneratePanoramaConfig = {
-  promptFolder: string;
-  promptFiles: {
-    masterBase: string;
-    masterOnly: string;
-    tile1: string;
-    tile2: string;
-    tile3: string;
-    tile4: string;
-    tile5: string;
-    tile6: string;
-    tile7: string;
-    tile8: string;
-    tile9: string;
-  };
-
-  previewMarkDownFile: string;
-  previewCompositionMarker: string;
-  previewTilesTableMarker: string;
-
-  frameworkHomeMarkDownFile: string;
-  frameworkHomeCompositionMarkers: string[];
-
-  compositionMapsR1Folder: string;
-  compositionMapsR1: {
-    tile1: string;
-    tile2: string;
-    tile3: string;
-    tile4: string;
-    tile5: string;
-    tile6: string;
-    tile7: string;
-    tile8: string;
-    tile9: string;
-  };
-  generatedImagePath: string;
-  filePrefix: string;
-  fileIndex: number;
-  image: {
-    model: string;
-    quality: string;
-    outputFormat: string;
-    outputCompression: number;
-    masterSize: string;
-    tileSize: string;
-    leftCropWidth: number;
-    rightCropWidth: number;
-  };
-};
 
 // -----------------------------------------------------------------------------
 // Auxiliar functions
@@ -83,7 +34,7 @@ export async function buildRecipe(
   if (!rawConfig) {
     throw new Error("generate-panorama requires recipe config");
   }
-  const recipeConfig = rawConfig as GeneratePanoramaConfig;
+  const recipeConfig = parseGeneratePanoramaConfig(rawConfig);
   log(
     "debug",
     "Recipe configuration:",
