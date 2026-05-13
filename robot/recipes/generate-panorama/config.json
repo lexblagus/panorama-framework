@@ -16,9 +16,9 @@
 
   "generatedImagePath": "images/outputs/generated",
   "filePrefix": "012",
-  "fileIndex": 17,
-  "samples": 3,
-  "variations": 3,
+  "fileIndex": 145,
+  "REM_samples": 3,
+  "REM_variations": 3,
   "image": {
     "model": "gpt-image-1-mini",
     "quality": "low",
