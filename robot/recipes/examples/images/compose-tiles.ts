@@ -2,20 +2,24 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { BuildRecipeContext } from "../../../src/types/builder.js";
 import type { Recipe } from "../../../src/types/recipe.js";
+import Log from "../../../src/log.ts";
 
 const thisFilePath = fileURLToPath(import.meta.url);
 
 export async function buildRecipe(
-  context: BuildRecipeContext,
+  _context: BuildRecipeContext,
 ): Promise<Recipe> {
+  const log = new Log("recipe", "magenta");
+  log("info", "Compose tiles images recipe example");
 
   // WARNING: is not a good practice to write images in the recipes folder.
   // This is just an example intended to be used outside `robot` package, e.g.:
   // const folderPath = `${context.context.repoRootFolder}/<package-name>/…`
   const folderPath = path.dirname(thisFilePath);
-  const whiteImageFile = `${folderPath}/white.example.png`
-  const blackImageFile = `${folderPath}/black.example.png`
-  const outputImageFile = `${folderPath}/composed-tiles.example.png`
+  const whiteImageFile = `${folderPath}/white.example.png`;
+  const blackImageFile = `${folderPath}/black.example.png`;
+  const outputImageFile = `${folderPath}/composed-tiles.example.png`;
+  log("debug", `folderPath=${JSON.stringify(folderPath)} output=${JSON.stringify(outputImageFile)}`);
 
   return {
     title: "Compose tiles images recipe example",

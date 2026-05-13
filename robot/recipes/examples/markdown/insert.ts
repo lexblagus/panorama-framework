@@ -1,15 +1,19 @@
 import type { BuildRecipeContext } from "../../../src/types/builder.js";
 import type { Recipe } from "../../../src/types/recipe.js";
+import Log from "../../../src/log.ts";
 
 export async function buildRecipe(
   context: BuildRecipeContext,
 ): Promise<Recipe> {
-  
+  const log = new Log("recipe", "magenta");
+  log("info", "Insert markdown recipe example");
+
   // WARNING: is not a good practice to write files in the recipes folder.
   // This is just an example intended to be used outside `robot` package, e.g.:
   // const mdFile = `${context.context.repoRootFolder}/<package-name>/…/….md`
   const mdFile =
     `${context.robotPackageFolder}/recipes/${context.recipeId}.example.md`;
+  log("debug", `mdFile=${JSON.stringify(mdFile)}`);
 
   return {
     title: "Insert markdown recipe example",

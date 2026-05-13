@@ -1,6 +1,12 @@
-const emptyRecipe = {
-  title: "Empty example recipe: minimal with no steps",
-  steps: [],
-};
+import Log from "../../src/log.ts";
+import type { Recipe } from "../../src/types/recipe.js";
 
-export default emptyRecipe;
+export async function buildRecipe(): Promise<Recipe> {
+  const log = new Log("recipe", "magenta");
+  log("info", "Empty example recipe: minimal with no steps");
+
+  return {
+    title: "Empty example recipe: minimal with no steps",
+    steps: [],
+  };
+}
