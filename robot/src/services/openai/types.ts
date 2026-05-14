@@ -14,6 +14,7 @@ export interface OpenAIServiceConfig {
   imageEditServicePath: string;
   responsesServicePath: string;
   generationTimeoutMs: number;
+  retriesOnError: number;
   defaults: {
     model: OpenAIModel;
     size: OpenAIImageSize;

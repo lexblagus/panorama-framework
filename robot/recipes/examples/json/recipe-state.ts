@@ -1,6 +1,6 @@
 import type { BuildRecipeContext } from "../../../src/types/builder.js";
 import type { Recipe } from "../../../src/types/recipe.js";
-import Log from "../../../src/log.ts";
+import Log from "../../../src/utils/log.ts";
 
 type CounterState = { counter: number };
 

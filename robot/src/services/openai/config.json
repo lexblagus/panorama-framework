@@ -4,6 +4,7 @@
 	"imageEditServicePath": "/v1/images/edits",
 	"responsesServicePath": "/v1/responses",
 	"generationTimeoutMs": 180000,
+	"retriesOnError": 3,
 	"defaults": {
 		"model": "gpt-image-1.5",
 		"size": "1024x1536",

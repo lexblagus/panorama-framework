@@ -1,7 +1,8 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import Log from "./log.js";
+import Log from "./utils/log.js";
+import { ensureValidId } from "./utils/shared.js";
 import { JsonService } from "./services/json/index.js";
 import { MarkdownService } from "./services/markdown/index.js";
 import { ImageService } from "./services/image/index.js";
@@ -19,43 +20,10 @@ import type { Plan } from "./types/plan.js";
 import type { Recipe } from "./types/recipe.js";
 import type { Task } from "./types/task.js";
 
-const ID_SEGMENT_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
+const RECIPE_LOAD_TIMEOUT_MS = 30_000;
 
-function ensureValidId(kind: "recipeId" | "planId", value: string): string {
-  if (value.startsWith("/") || value.endsWith("/") || value.includes("//")) {
-    throw new Error(`Invalid ${kind}: "${value}"`);
-  }
-  if (path.isAbsolute(value)) {
-    throw new Error(`Invalid ${kind}: "${value}"`);
-  }
-  const segments = value.split("/");
-  if (segments.length === 0) {
-    throw new Error(`Invalid ${kind}: "${value}"`);
-  }
-  for (const segment of segments) {
-    if (
-      segment.length === 0 ||
-      segment === "." ||
-      segment === ".." ||
-      !ID_SEGMENT_PATTERN.test(segment)
-    ) {
-      throw new Error(`Invalid ${kind}: "${value}"`);
-    }
-  }
-  return value;
-}
-
-function stripKnownExtension(identifier: string): string {
-  if (identifier.endsWith(".ts")) {
-    return identifier.slice(0, -3);
-  }
-  if (identifier.endsWith(".js")) {
-    return identifier.slice(0, -3);
-  }
-  if (identifier.endsWith(".mjs")) {
-    return identifier.slice(0, -4);
-  }
-  return identifier;
+function fileIdFromInput(input: string): string {
+  return input.replace(/\.(ts|mjs|js)$/, "");
 }
 
 function resolveBuilderPaths(input: BuildCommandInput): BuilderPaths {
@@ -104,15 +72,15 @@ async function resolveRecipeFile(
     const explicitCandidates = [
       {
         recipeFilePath: path.join(authoredRoot, `${recipeId}.ts`),
-        recipeId: stripKnownExtension(recipeId),
+        recipeId: fileIdFromInput(recipeId),
       },
       {
         recipeFilePath: path.join(authoredRoot, `${recipeId}.js`),
-        recipeId: stripKnownExtension(recipeId),
+        recipeId: fileIdFromInput(recipeId),
       },
       {
         recipeFilePath: path.join(authoredRoot, `${recipeId}.mjs`),
-        recipeId: stripKnownExtension(recipeId),
+        recipeId: fileIdFromInput(recipeId),
       },
       {
         recipeFilePath: path.join(authoredRoot, recipeId, "index.ts"),
@@ -142,11 +110,11 @@ async function resolveRecipeFile(
   const distCandidates: RecipeResolution[] = [
     {
       recipeFilePath: path.join(distRecipesRoot, `${recipeId}.js`),
-      recipeId: stripKnownExtension(recipeId),
+      recipeId: fileIdFromInput(recipeId),
     },
     {
       recipeFilePath: path.join(distRecipesRoot, `${recipeId}.mjs`),
-      recipeId: stripKnownExtension(recipeId),
+      recipeId: fileIdFromInput(recipeId),
     },
     {
       recipeFilePath: path.join(distRecipesRoot, recipeId, "index.js"),
@@ -239,7 +207,15 @@ async function loadRecipeFromModule(
   context: BuildRecipeContext,
 ): Promise<Recipe> {
   const moduleUrl = pathToFileURL(resolution.recipeFilePath).href;
-  const imported = (await import(moduleUrl)) as RecipeModule;
+  const imported = await Promise.race([
+    import(moduleUrl) as Promise<RecipeModule>,
+    new Promise<never>((_, reject) =>
+      setTimeout(
+        () => reject(new Error(`Recipe module load timed out: ${moduleUrl}`)),
+        RECIPE_LOAD_TIMEOUT_MS,
+      ).unref(),
+    ),
+  ]);
 
   let recipeValue: unknown;
   if (typeof imported.buildRecipe === "function") {

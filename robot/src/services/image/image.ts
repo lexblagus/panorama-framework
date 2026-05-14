@@ -117,26 +117,25 @@ export class ImageService extends BaseService {
     );
     const outputImageFile = this.resolveRepoPath(args.outputImageFile);
 
-    const baseMeta = await this.readRequiredMetadata(absoluteInputImages[0]);
-    const composites: Array<{ input: Buffer; left: number; top: number }> = [];
-
-    for (let index = 0; index < absoluteInputImages.length; index += 1) {
-      const imageFile = absoluteInputImages[index];
-      const metadata = await this.readRequiredMetadata(imageFile);
-      if (
-        metadata.width !== baseMeta.width ||
-        metadata.height !== baseMeta.height
-      ) {
-        throw new Error("All inputImages must have exactly the same dimensions");
+    // Pass 1: read all metadata and validate dimensions before loading any pixel data
+    const allMeta = await Promise.all(absoluteInputImages.map((f) => this.readRequiredMetadata(f)));
+    const baseMeta = allMeta[0];
+    for (let i = 1; i < allMeta.length; i++) {
+      if (allMeta[i].width !== baseMeta.width || allMeta[i].height !== baseMeta.height) {
+        throw new Error(
+          `Image "${absoluteInputImages[i]}" dimensions ${allMeta[i].width}×${allMeta[i].height} differ from base ${baseMeta.width}×${baseMeta.height}`,
+        );
       }
+    }
 
-      const inputBuffer = await sharp(imageFile).ensureAlpha().toBuffer();
-      composites.push({
-        input: inputBuffer,
+    // Pass 2: load all pixel buffers (all dimensions confirmed equal)
+    const composites = await Promise.all(
+      absoluteInputImages.map(async (imageFile, index) => ({
+        input: await sharp(imageFile).ensureAlpha().toBuffer(),
         left: baseMeta.width * index,
         top: 0,
-      });
-    }
+      })),
+    );
 
     await mkdir(path.dirname(outputImageFile), { recursive: true });
 

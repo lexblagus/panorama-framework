@@ -1,5 +1,5 @@
-import Log from "../../src/log.ts";
-import type { Recipe } from "../../src/types/recipe.js";
+import Log from "../../../src/utils/log.ts";
+import type { Recipe } from "../../../src/types/recipe.js";
 
 export async function buildRecipe(): Promise<Recipe> {
   const log = new Log("recipe", "magenta");

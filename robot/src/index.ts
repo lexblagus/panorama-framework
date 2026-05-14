@@ -1,13 +1,14 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import Log, { type LogFn } from "./log.js";
+import Log, { type LogFn } from "./utils/log.js";
 import { buildCommand } from "./builder.js";
 import type { BuildCommandResult } from "./types/builder.js";
 import { resumePlan, runPlanFromStart } from "./runner.js";
 import type { RunnerResult } from "./types/runner.js";
 
 const ID_SEGMENT_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
+const ENV_KEY_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*$/;
 
 function parseEnvLine(line: string): [string, string] | null {
   const trimmed = line.trim();
@@ -25,6 +26,10 @@ function parseEnvLine(line: string): [string, string] | null {
 
   const key = withoutExport.slice(0, separatorIndex).trim();
   if (!key) {
+    return null;
+  }
+
+  if (!ENV_KEY_PATTERN.test(key)) {
     return null;
   }
 

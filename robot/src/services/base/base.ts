@@ -1,5 +1,5 @@
 import path from "node:path";
-import type { LogFn } from "../../log.js";
+import type { LogFn } from "../../utils/log.js";
 import type { ServiceBaseOptions } from "./types.js";
 
 const noopLog: LogFn = () => {};
@@ -16,10 +16,15 @@ export abstract class BaseService {
   }
 
   protected resolveRepoPath(targetPath: string): string {
-    if (path.isAbsolute(targetPath)) {
-      return targetPath;
+    const resolved = path.isAbsolute(targetPath)
+      ? path.normalize(targetPath)
+      : path.join(this.#repoRootFolder, targetPath);
+
+    const root = this.#repoRootFolder;
+    if (resolved !== root && !resolved.startsWith(root + path.sep)) {
+      throw new Error(`Path is outside the repo root: "${targetPath}"`);
     }
-    return path.join(this.#repoRootFolder, targetPath);
+    return resolved;
   }
 
   protected resolveRobotPath(...segments: string[]): string {

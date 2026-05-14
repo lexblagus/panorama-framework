@@ -47,9 +47,12 @@ export class MarkdownService extends BaseService {
       const startComment = `<!-- ${startMarker} -->`;
       const endComment = `<!-- ${endMarker} -->`;
       const startIndex = source.indexOf(startComment);
-      const endIndex = source.indexOf(endComment);
-      if (startIndex === -1 || endIndex === -1) {
-        throw new Error("insert marker not found");
+      if (startIndex === -1) {
+        throw new Error(`insert start marker not found: "${startMarker}"`);
+      }
+      const endIndex = source.indexOf(endComment, startIndex + startComment.length);
+      if (endIndex === -1) {
+        throw new Error(`insert end marker not found: "${endMarker}"`);
       }
       if (startIndex >= endIndex) {
         throw new Error("between markers order invalid");

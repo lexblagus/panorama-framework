@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(ts|js|json\\)$\")",
+      "Bash(npm test *)",
+      "Bash(npm run *)",
+      "Bash(find /Users/lexablagus/Gallery/Work/Blagus/Panorama/panorama-framework/robot -name vitest.setup.* -o -name test-utils.* -o -name *test-helper*)",
+      "Bash(git -C /Users/lexablagus/Gallery/Work/Blagus/Panorama/panorama-framework/.claude/worktrees/agent-a8153ee7ac57c1293 status)",
+      "Bash(git -C /Users/lexablagus/Gallery/Work/Blagus/Panorama/panorama-framework/.claude/worktrees/agent-a8153ee7ac57c1293 log --oneline -5)",
+      "Bash(git -C /Users/lexablagus/Gallery/Work/Blagus/Panorama/panorama-framework/.claude/worktrees/agent-a8153ee7ac57c1293 diff HEAD)",
+      "Bash(git -C /Users/lexablagus/Gallery/Work/Blagus/Panorama/panorama-framework/.claude/worktrees/agent-a8153ee7ac57c1293 status --short)"
+    ]
+  }
+}

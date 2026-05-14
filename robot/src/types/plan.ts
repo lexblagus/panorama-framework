@@ -1,3 +1,4 @@
+import { z } from "zod";
 import type { Task } from "./task.js";
 
 export interface Plan {
@@ -6,3 +7,33 @@ export interface Plan {
   tasks: Task[];
 }
 
+const taskStateSchema = z.enum(["waiting", "running", "success", "error"]);
+
+const taskIdSchema = z.enum([
+  "openai.generate-image",
+  "image.create-bridge",
+  "image.compose-tiles",
+  "markdown.read",
+  "markdown.write",
+  "markdown.insert",
+  "json.read",
+  "json.write",
+  "workflow.run-recipe",
+]);
+
+const taskSchema = z.object({
+  taskId: taskIdSchema,
+  title: z.string(),
+  description: z.string().optional(),
+  arguments: z.record(z.unknown()),
+  state: taskStateSchema,
+  errorMessage: z.string().optional(),
+  startedAt: z.string().optional(),
+  finishedAt: z.string().optional(),
+});
+
+export const planSchema = z.object({
+  recipeId: z.string(),
+  createdAt: z.string(),
+  tasks: z.array(taskSchema),
+});

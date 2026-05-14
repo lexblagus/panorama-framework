@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import Log from "./log.js";
+import Log, { type LogFn } from "./utils/log.js";
+import { ensureValidId as ensureValidIdUtil } from "./utils/shared.js";
 import { buildCommand } from "./builder.js";
 import { ImageService } from "./services/image/index.js";
 import { JsonService } from "./services/json/index.js";
@@ -20,8 +21,6 @@ import type {
 import type { Task } from "./types/task.js";
 
 const log = new Log("runner", "red");
-
-const ID_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
 
 interface RunnerPaths {
   repoRootFolder: string;
@@ -47,28 +46,7 @@ interface ExecutePlanOptions {
 }
 
 function ensureValidPlanId(planId: string): void {
-  if (
-    path.isAbsolute(planId) ||
-    planId.startsWith("/") ||
-    planId.endsWith("/") ||
-    planId.includes("//")
-  ) {
-    throw new Error(`Invalid planId: "${planId}"`);
-  }
-  const segments = planId.split("/");
-  if (segments.length === 0) {
-    throw new Error(`Invalid planId: "${planId}"`);
-  }
-  for (const segment of segments) {
-    if (
-      segment.length === 0 ||
-      segment === "." ||
-      segment === ".." ||
-      !ID_PATTERN.test(segment)
-    ) {
-      throw new Error(`Invalid planId: "${planId}"`);
-    }
-  }
+  ensureValidIdUtil("planId", planId);
 }
 
 function nowIso(): string {
@@ -132,12 +110,52 @@ function hasPersistedRuntimeState(plan: Plan): boolean {
   );
 }
 
+function resetStaleTasks(plan: Plan): void {
+  let count = 0;
+  for (const task of plan.tasks) {
+    if (task.state === "running") {
+      task.state = "waiting";
+      delete task.errorMessage;
+      delete task.startedAt;
+      delete task.finishedAt;
+      count++;
+    }
+  }
+  if (count > 0) {
+    log("warn", `Reset ${count} task(s) stuck in "running" state (likely from a previous crash)`);
+  }
+}
+
 function getStringArgument(argumentsValue: Record<string, unknown>, key: string): string {
   const value = argumentsValue[key];
   if (typeof value !== "string" || value.trim() === "") {
     throw new Error(`Task argument "${key}" must be a non-empty string`);
   }
+  return value.trim();
+}
+
+function getContentArgument(argumentsValue: Record<string, unknown>, key: string): string {
+  const value = argumentsValue[key];
+  if (typeof value !== "string") {
+    throw new Error(`Task argument "${key}" must be a string`);
+  }
   return value;
+}
+
+function getNumberArgument(argumentsValue: Record<string, unknown>, key: string): number {
+  const value = argumentsValue[key];
+  if (typeof value !== "number" || !Number.isFinite(value)) {
+    throw new Error(`Task argument "${key}" must be a finite number`);
+  }
+  return value;
+}
+
+function getStringArrayArgument(argumentsValue: Record<string, unknown>, key: string): string[] {
+  const value = argumentsValue[key];
+  if (!Array.isArray(value) || value.some((v) => typeof v !== "string")) {
+    throw new Error(`Task argument "${key}" must be an array of strings`);
+  }
+  return value as string[];
 }
 
 function getObjectArgument(
@@ -169,20 +187,20 @@ async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void
         typeof task.arguments.targetPath === "string" &&
         task.arguments.targetPath.trim() !== ""
       )
-        ? task.arguments.targetPath
+        ? task.arguments.targetPath.trim()
         : getStringArgument(task.arguments, "file");
       await services.markdown.read(targetPath);
       return;
     }
     case "markdown.write": {
       const file = getStringArgument(task.arguments, "file");
-      const content = getStringArgument(task.arguments, "content");
+      const content = getContentArgument(task.arguments, "content");
       await services.markdown.write(file, content);
       return;
     }
     case "markdown.insert": {
       const file = getStringArgument(task.arguments, "file");
-      const content = getStringArgument(task.arguments, "content");
+      const content = getContentArgument(task.arguments, "content");
       const rawPosition = task.arguments.position;
       let position: MarkdownInsertPosition | undefined;
       if (rawPosition !== undefined) {
@@ -226,20 +244,32 @@ async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void
       return;
     }
     case "image.create-bridge":
-      await services.image.createBridge(
-        task.arguments as unknown as Parameters<ImageService["createBridge"]>[0],
-      );
+      await services.image.createBridge({
+        leftImageFile: getStringArgument(task.arguments, "leftImageFile"),
+        rightImageFile: getStringArgument(task.arguments, "rightImageFile"),
+        outputImageFile: getStringArgument(task.arguments, "outputImageFile"),
+        leftCropWidth: getNumberArgument(task.arguments, "leftCropWidth"),
+        rightCropWidth: getNumberArgument(task.arguments, "rightCropWidth"),
+      });
       return;
     case "image.compose-tiles":
-      await services.image.composeTilesPreview(
-        task.arguments as unknown as Parameters<ImageService["composeTilesPreview"]>[0],
-      );
+      await services.image.composeTilesPreview({
+        inputImages: getStringArrayArgument(task.arguments, "inputImages"),
+        outputImageFile: getStringArgument(task.arguments, "outputImageFile"),
+      });
       return;
-    case "openai.generate-image":
-      await services.openai.generateImage(
-        task.arguments as unknown as Parameters<OpenAIService["generateImage"]>[0],
-      );
+    case "openai.generate-image": {
+      const prompt = getStringArgument(task.arguments, "prompt");
+      const outputDir = getStringArgument(task.arguments, "outputDir");
+      const outputFilePrefix = getStringArgument(task.arguments, "outputFilePrefix");
+      await services.openai.generateImage({
+        prompt,
+        outputDir,
+        outputFilePrefix,
+        ...(task.arguments as Record<string, unknown>),
+      } as Parameters<OpenAIService["generateImage"]>[0]);
       return;
+    }
     case "workflow.run-recipe": {
       const args = (
         "runRecipe" in task.arguments
@@ -249,9 +279,6 @@ async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void
       await services.workflow.runRecipe(args);
       return;
     }
-    case "openai.edit-image":
-    case "openai.respond":
-      throw new Error(`Task not implemented: ${task.taskId}`);
     default: {
       const neverTaskId: never = task.taskId;
       throw new Error(`Unknown task id: ${neverTaskId}`);
@@ -357,6 +384,7 @@ export async function runPlanFromStart(
   const paths = resolveRunnerPaths(input);
   const services = createServiceRegistry(paths);
   const plan = await loadPlanOrThrow(services.json, input.planId);
+  resetStaleTasks(plan);
 
   return executePlan({
     planId: input.planId,
@@ -374,6 +402,7 @@ export async function resumePlan(input: ResumeInput): Promise<RunnerResult> {
   const paths = resolveRunnerPaths(input);
   const services = createServiceRegistry(paths);
   const plan = await loadPlanOrThrow(services.json, input.planId);
+  resetStaleTasks(plan);
   const hasRuntimeState = hasPersistedRuntimeState(plan);
 
   return executePlan({

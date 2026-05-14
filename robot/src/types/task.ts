@@ -2,8 +2,6 @@ export type TaskState = "waiting" | "running" | "success" | "error";
 
 export type TaskId =
   | "openai.generate-image"
-  | "openai.edit-image"
-  | "openai.respond"
   | "image.create-bridge"
   | "image.compose-tiles"
   | "markdown.read"

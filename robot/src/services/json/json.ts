@@ -1,7 +1,9 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { planSchema } from "../../types/plan.js";
 import type { Plan } from "../../types/plan.js";
 import { BaseService } from "../base/index.js";
+import { ensureValidId } from "../../utils/shared.js";
 import type {
   JsonServiceOptions,
   JsonWriteOptions,
@@ -9,43 +11,23 @@ import type {
   RobotGlobalConfig,
 } from "./types.js";
 
-const ID_SEGMENT_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
-
 function serializeJson(value: unknown, options?: JsonWriteOptions): string {
   const format = options?.format ?? "formatted";
   if (format === "compact") {
     return JSON.stringify(value);
   }
-
   return JSON.stringify(value, null, "\t\t");
+}
+
+async function atomicWriteFile(filePath: string, content: string): Promise<void> {
+  const tmp = `${filePath}.tmp`;
+  await writeFile(tmp, content, "utf8");
+  await rename(tmp, filePath);
 }
 
 export class JsonService extends BaseService {
   constructor(options: JsonServiceOptions) {
     super(options);
-  }
-
-  private ensureValidId(kind: "planId" | "recipeId", value: string): void {
-    if (value.startsWith("/") || value.endsWith("/") || value.includes("//")) {
-      throw new Error(`Invalid ${kind}: "${value}"`);
-    }
-    const segments = value.split("/");
-    if (segments.length === 0) {
-      throw new Error(`Invalid ${kind}: "${value}"`);
-    }
-    for (const segment of segments) {
-      if (
-        segment.length === 0 ||
-        segment === "." ||
-        segment === ".." ||
-        !ID_SEGMENT_PATTERN.test(segment)
-      ) {
-        throw new Error(`Invalid ${kind}: "${value}"`);
-      }
-    }
-    if (path.isAbsolute(value)) {
-      throw new Error(`Invalid ${kind}: "${value}"`);
-    }
   }
 
   async read<T>(targetPath: string): Promise<T> {
@@ -62,7 +44,7 @@ export class JsonService extends BaseService {
     const absolutePath = this.resolveRepoPath(targetPath);
     const serialized = serializeJson(value, options);
     await mkdir(path.dirname(absolutePath), { recursive: true });
-    await writeFile(absolutePath, `${serialized}\n`, "utf8");
+    await atomicWriteFile(absolutePath, `${serialized}\n`);
   }
 
   async readGlobalConfig(): Promise<RobotGlobalConfig> {
@@ -70,8 +52,16 @@ export class JsonService extends BaseService {
   }
 
   async readPlan(planId: string): Promise<Plan> {
-    this.ensureValidId("planId", planId);
-    return this.read<Plan>(this.resolveRobotPath("plans", `${planId}.json`));
+    ensureValidId("planId", planId);
+    const raw = await this.read<unknown>(this.resolveRobotPath("plans", `${planId}.json`));
+    const result = planSchema.safeParse(raw);
+    if (!result.success) {
+      const detail = result.error.issues
+        .map((i) => `  - ${i.path.join(".") || "(root)"}: ${i.message}`)
+        .join("\n");
+      throw new Error(`Invalid plan "${planId}":\n${detail}`);
+    }
+    return result.data as Plan;
   }
 
   async writePlan(
@@ -79,7 +69,7 @@ export class JsonService extends BaseService {
     plan: Plan,
     options?: JsonWriteOptions,
   ): Promise<void> {
-    this.ensureValidId("planId", planId);
+    ensureValidId("planId", planId);
     await this.write(
       this.resolveRobotPath("plans", `${planId}.json`),
       plan,
@@ -88,7 +78,7 @@ export class JsonService extends BaseService {
   }
 
   async readRecipeState(recipeId: string): Promise<RecipeState | null> {
-    this.ensureValidId("recipeId", recipeId);
+    ensureValidId("recipeId", recipeId);
     try {
       return await this.read<RecipeState>(
         this.resolveRobotPath("transient", `${recipeId}.state.json`),
@@ -111,7 +101,7 @@ export class JsonService extends BaseService {
     value: RecipeState,
     options?: JsonWriteOptions,
   ): Promise<void> {
-    this.ensureValidId("recipeId", recipeId);
+    ensureValidId("recipeId", recipeId);
     await this.write(
       this.resolveRobotPath("transient", `${recipeId}.state.json`),
       value,
@@ -128,7 +118,6 @@ export class JsonService extends BaseService {
     if (existing) {
       return existing;
     }
-
     await this.writeRecipeState(recipeId, fallback, options);
     return fallback;
   }

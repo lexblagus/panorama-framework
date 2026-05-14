@@ -151,7 +151,7 @@ describe("ImageService", () => {
         inputImages: [tile1, tile2],
         outputImageFile: output,
       }),
-    ).rejects.toThrow("All inputImages must have exactly the same dimensions");
+    ).rejects.toThrow("dimensions");
   });
 
   it("writes output file to disk", async () => {

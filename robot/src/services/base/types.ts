@@ -1,4 +1,4 @@
-import type { LogFn } from "../../log.js";
+import type { LogFn } from "../../utils/log.js";
 
 export interface ServiceBaseOptions {
   repoRootFolder: string;
