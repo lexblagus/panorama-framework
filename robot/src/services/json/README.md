@@ -13,6 +13,8 @@ Notes:
 - Pass `{ format: "compact" }` for compact one-line JSON output.
 - `readRecipeState` returns `null` if the state file does not exist.
 - `initializeRecipeState` writes fallback seed values only when no state file exists.
+- All writes are atomic (written to a `.tmp` file then renamed) — safe against process crashes mid-write.
+- `readPlan` validates the loaded JSON against a Zod schema and throws a descriptive error on malformed plans.
 
 Recipe usage examples for all JSON service tasks:
 

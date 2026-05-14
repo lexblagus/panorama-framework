@@ -45,6 +45,7 @@ interface ExecutePlanOptions {
   resetBeforeRun: boolean;
 }
 
+/** Validates `planId` via the shared ID utility, throwing a descriptive error on failure. */
 function ensureValidPlanId(planId: string): void {
   ensureValidIdUtil("planId", planId);
 }
@@ -83,6 +84,7 @@ function isPlanMissingError(error: unknown): boolean {
   );
 }
 
+/** Reads a plan from disk and converts an ENOENT error into a user-friendly "Plan not found" message. */
 async function loadPlanOrThrow(json: JsonService, planId: string): Promise<Plan> {
   try {
     return await json.readPlan(planId);
@@ -101,6 +103,7 @@ function resetTask(task: Task): void {
   delete task.finishedAt;
 }
 
+/** Returns `true` if any task has moved beyond its initial `"waiting"` state, indicating a previous run left state on disk. */
 function hasPersistedRuntimeState(plan: Plan): boolean {
   return plan.tasks.some((task) =>
     task.state !== "waiting" ||
@@ -110,6 +113,11 @@ function hasPersistedRuntimeState(plan: Plan): boolean {
   );
 }
 
+/**
+ * Resets any tasks still stuck in the `"running"` state back to `"waiting"`.
+ * These are tasks that were interrupted mid-flight by a previous crash and would otherwise
+ * block a resume from ever retrying them.
+ */
 function resetStaleTasks(plan: Plan): void {
   let count = 0;
   for (const task of plan.tasks) {
@@ -126,6 +134,7 @@ function resetStaleTasks(plan: Plan): void {
   }
 }
 
+/** Extracts a non-empty trimmed string from a task arguments map; throws if missing or blank. */
 function getStringArgument(argumentsValue: Record<string, unknown>, key: string): string {
   const value = argumentsValue[key];
   if (typeof value !== "string" || value.trim() === "") {
@@ -134,6 +143,7 @@ function getStringArgument(argumentsValue: Record<string, unknown>, key: string)
   return value.trim();
 }
 
+/** Extracts a string argument that may legitimately be empty (e.g. markdown content). */
 function getContentArgument(argumentsValue: Record<string, unknown>, key: string): string {
   const value = argumentsValue[key];
   if (typeof value !== "string") {
@@ -142,6 +152,7 @@ function getContentArgument(argumentsValue: Record<string, unknown>, key: string
   return value;
 }
 
+/** Extracts a finite number from a task arguments map; throws if missing or non-finite. */
 function getNumberArgument(argumentsValue: Record<string, unknown>, key: string): number {
   const value = argumentsValue[key];
   if (typeof value !== "number" || !Number.isFinite(value)) {
@@ -150,6 +161,7 @@ function getNumberArgument(argumentsValue: Record<string, unknown>, key: string)
   return value;
 }
 
+/** Extracts a string array from a task arguments map; throws if missing or contains non-strings. */
 function getStringArrayArgument(argumentsValue: Record<string, unknown>, key: string): string[] {
   const value = argumentsValue[key];
   if (!Array.isArray(value) || value.some((v) => typeof v !== "string")) {
@@ -158,6 +170,7 @@ function getStringArrayArgument(argumentsValue: Record<string, unknown>, key: st
   return value as string[];
 }
 
+/** Extracts a plain object (non-null, non-array) from a task arguments map. */
 function getObjectArgument(
   argumentsValue: Record<string, unknown>,
   key: string,
@@ -169,6 +182,7 @@ function getObjectArgument(
   return value as Record<string, unknown>;
 }
 
+/** Routes a task to the appropriate service method based on `task.taskId`. */
 async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void> {
   switch (task.taskId) {
     case "json.read": {
@@ -286,6 +300,10 @@ async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void
   }
 }
 
+/**
+ * Core execution loop: iterates tasks, dispatches each, and persists state to disk after every
+ * state transition. Stops and rethrows on the first task failure.
+ */
 async function executePlan({
   planId,
   command,
@@ -347,6 +365,7 @@ async function executePlan({
   };
 }
 
+/** Instantiates all services wired together with the resolved paths and a shared logger. */
 function createServiceRegistry(paths: RunnerPaths): ServiceRegistry {
   const serviceLog = new Log("service", "green");
   const serviceOptions = {
@@ -376,6 +395,7 @@ function createServiceRegistry(paths: RunnerPaths): ServiceRegistry {
   };
 }
 
+/** Resets all task states and runs the plan from the beginning. */
 export async function runPlanFromStart(
   input: RunFromStartInput,
 ): Promise<RunnerResult> {
@@ -396,6 +416,7 @@ export async function runPlanFromStart(
   });
 }
 
+/** Continues a partially-executed plan, skipping tasks that already succeeded. */
 export async function resumePlan(input: ResumeInput): Promise<RunnerResult> {
   ensureValidPlanId(input.planId);
   log("info", `Resuming plan "${input.planId}"`);

@@ -2,7 +2,7 @@
 
 `MarkdownService` provides deterministic markdown file operations:
 
-- `read(targetPath)` returns full file contents.
+- `read(targetPath)` returns full file contents. Both `file` and `targetPath` are accepted as step arguments; they are mutually exclusive (use one or the other).
 - `write(file, content)` writes full file contents.
 - `insert({ file, marker, content, position })` inserts content around markers.
 
@@ -10,10 +10,10 @@ Behavior rules:
 
 - paths are resolved relative to `repoRootFolder` unless absolute
 - insert `position` values:
-- `before`: inserts before marker, marker preserved
-- `after`: inserts after marker, marker preserved
-- `over`: replaces marker with content
-- `between`: requires `marker: [startMarker, endMarker]`; keeps both markers and replaces only the content between them
+  - `before`: inserts before marker, marker preserved
+  - `after`: inserts after marker, marker preserved
+  - `over`: replaces marker with content
+  - `between`: requires `marker: [startMarker, endMarker]`; keeps both markers and replaces only the content between them; end-marker search starts after the start-marker, so duplicate marker names in the same file resolve correctly
 - missing markers fail with `insert marker not found`
 - text outside the insertion point is preserved exactly
 

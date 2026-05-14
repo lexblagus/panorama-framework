@@ -19,12 +19,14 @@ function serializeJson(value: unknown, options?: JsonWriteOptions): string {
   return JSON.stringify(value, null, "\t\t");
 }
 
+/** Writes `content` to `filePath` via a `.tmp` sibling then renames, preventing partial reads. */
 async function atomicWriteFile(filePath: string, content: string): Promise<void> {
   const tmp = `${filePath}.tmp`;
   await writeFile(tmp, content, "utf8");
   await rename(tmp, filePath);
 }
 
+/** Service for reading and writing JSON files within the repo, with plan- and recipe-state helpers. */
 export class JsonService extends BaseService {
   constructor(options: JsonServiceOptions) {
     super(options);
@@ -51,6 +53,7 @@ export class JsonService extends BaseService {
     return this.read<RobotGlobalConfig>(this.resolveRobotPath("config.json"));
   }
 
+  /** Reads and validates a plan file via `planSchema`; throws a descriptive error on schema violations. */
   async readPlan(planId: string): Promise<Plan> {
     ensureValidId("planId", planId);
     const raw = await this.read<unknown>(this.resolveRobotPath("plans", `${planId}.json`));
@@ -64,6 +67,7 @@ export class JsonService extends BaseService {
     return result.data as Plan;
   }
 
+  /** Atomically writes `plan` to `robot/plans/<planId>.json`. */
   async writePlan(
     planId: string,
     plan: Plan,
@@ -77,6 +81,7 @@ export class JsonService extends BaseService {
     );
   }
 
+  /** Reads transient recipe state from disk, returning `null` if the file does not yet exist. */
   async readRecipeState(recipeId: string): Promise<RecipeState | null> {
     ensureValidId("recipeId", recipeId);
     try {
@@ -96,6 +101,7 @@ export class JsonService extends BaseService {
     }
   }
 
+  /** Atomically writes `value` to `robot/transient/<recipeId>.state.json`. */
   async writeRecipeState(
     recipeId: string,
     value: RecipeState,
@@ -109,6 +115,7 @@ export class JsonService extends BaseService {
     );
   }
 
+  /** Returns the existing recipe state if present; otherwise writes and returns `fallback`. */
   async initializeRecipeState(
     recipeId: string,
     fallback: RecipeState,

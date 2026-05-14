@@ -6,6 +6,7 @@ import type {
   MarkdownServiceOptions,
 } from "./types.js";
 
+/** Service for reading and writing Markdown files, with a marker-based insertion helper. */
 export class MarkdownService extends BaseService {
   constructor(options: MarkdownServiceOptions) {
     super(options);
@@ -22,6 +23,11 @@ export class MarkdownService extends BaseService {
     await writeFile(absolutePath, content, "utf8");
   }
 
+  /**
+   * Inserts, replaces, or surrounds content relative to HTML comment markers in a Markdown file.
+   * Markers are expressed as `<!-- marker-name -->`; position controls whether content goes
+   * before, after, or over a single marker, or entirely replaces the region between two markers.
+   */
   async insert(request: MarkdownInsertRequest): Promise<void> {
     const position = request.position ?? "after";
     this.log("debug", `Inserting markdown (${position}) in "${request.file}"`);

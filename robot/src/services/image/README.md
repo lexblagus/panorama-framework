@@ -7,9 +7,14 @@ Implemented task methods:
 - `createBridge`
 - `composeTilesPreview`
 
-`createBridge` requires equal input dimensions and keeps output dimensions equal to input dimensions.
+`createBridge` requires equal input dimensions and keeps output dimensions equal to input dimensions. The output image has a transparent center band between the two crops.
 
 `composeTilesPreview` is row-only in this phase and preserves `inputImages` order.
+
+Validation:
+
+- `createBridge`: both inputs must have identical dimensions; `leftCropWidth + rightCropWidth` must be less than image width.
+- `composeTilesPreview`: all images must have identical dimensions; the first failing image is named in the error message.
 
 Recipe usage example:
 

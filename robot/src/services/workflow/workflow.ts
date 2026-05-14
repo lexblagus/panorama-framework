@@ -5,6 +5,7 @@ import type {
   WorkflowServiceOptions,
 } from "./types.js";
 
+/** Service that delegates to the builder and runner, enabling recipes to compose other recipes. */
 export class WorkflowService extends BaseService {
   #options: WorkflowServiceOptions;
 
@@ -13,6 +14,7 @@ export class WorkflowService extends BaseService {
     this.#options = options;
   }
 
+  /** Executes the requested workflow mode (`build`, `exec`, `run`, or `resume`) for the given recipe or plan. */
   async runRecipe(args: RunRecipeArgs): Promise<WorkflowResult> {
     const id = "recipeId" in args ? args.recipeId : args.planId;
     this.log("info", `Workflow: ${args.mode} "${id}"`);

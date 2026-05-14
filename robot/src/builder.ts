@@ -22,6 +22,7 @@ import type { Task } from "./types/task.js";
 
 const RECIPE_LOAD_TIMEOUT_MS = 30_000;
 
+/** Strips a `.ts`, `.mjs`, or `.js` extension from a recipe filename to derive its canonical ID. */
 function fileIdFromInput(input: string): string {
   return input.replace(/\.(ts|mjs|js)$/, "");
 }
@@ -57,6 +58,11 @@ async function fileExists(filePath: string): Promise<boolean> {
   }
 }
 
+/**
+ * Searches authored recipe roots then the compiled `dist/recipes/` directory for a matching
+ * `.ts`, `.js`, or `.mjs` file (or an `index.*` inside a same-named folder).
+ * @throws if no candidate file is found for `recipeId`.
+ */
 async function resolveRecipeFile(
   recipeId: string,
   paths: BuilderPaths,
@@ -137,6 +143,10 @@ async function resolveRecipeFile(
   throw new Error(`Recipe not found: "${recipeId}"`);
 }
 
+/**
+ * Loads `config.json` from the recipe's folder (or the compiled `src/recipes/` counterpart),
+ * returning `null` if neither file exists or the recipe is a single-file recipe with no folder.
+ */
 async function loadOptionalRecipeConfig(
   resolution: RecipeResolution,
   paths: BuilderPaths,
@@ -178,6 +188,7 @@ async function loadOptionalRecipeConfig(
   return null;
 }
 
+/** Type-asserts that `recipe` has the required `title` string and `steps` array. */
 function assertRecipe(recipe: unknown, sourcePath: string): asserts recipe is Recipe {
   if (typeof recipe !== "object" || recipe === null) {
     throw new Error(`Invalid recipe export from ${sourcePath}: expected object`);
@@ -192,16 +203,21 @@ function assertRecipe(recipe: unknown, sourcePath: string): asserts recipe is Re
   }
 }
 
+/** Converts a recipe step into a task record with initial state `"waiting"`. */
 function stepToTask(step: Recipe["steps"][number]): Task {
   return {
     taskId: step.taskId,
     title: step.title,
     description: step.description,
-    arguments: step.arguments,
+    arguments: step.arguments as Record<string, unknown>,
     state: "waiting",
   };
 }
 
+/**
+ * Dynamically imports the recipe module and extracts the recipe value, trying export forms in
+ * priority order: `buildRecipe` (async factory) > `default` (function) > `default` (object) > `recipe`.
+ */
 async function loadRecipeFromModule(
   resolution: RecipeResolution,
   context: BuildRecipeContext,
@@ -232,6 +248,7 @@ async function loadRecipeFromModule(
   return recipeValue;
 }
 
+/** Constructs a fresh `Plan` from a loaded recipe, stamping all tasks as `"waiting"`. */
 function buildPlan(recipeId: string, recipe: Recipe): Plan {
   return {
     recipeId,
@@ -240,6 +257,10 @@ function buildPlan(recipeId: string, recipe: Recipe): Plan {
   };
 }
 
+/**
+ * Resolves, loads, and validates a recipe, then writes the resulting plan JSON to disk.
+ * This is the primary build entry point consumed by the CLI and the `WorkflowService`.
+ */
 export async function buildCommand(
   input: BuildCommandInput,
 ): Promise<BuildCommandResult> {

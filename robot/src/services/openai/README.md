@@ -15,8 +15,9 @@ Defaults:
 - `quality`: `high`
 - `n`: `1`
 - `outputFormat`: `png`
-- `saveSidecarMetadataFile`: `false`
+- `saveSidecarMetadataFile`: `false` — when `true`, a `.json` sidecar file is written alongside each output image with the same base name
 - `generationTimeoutMs`: `180000`
+- `retriesOnError`: `3` — retries apply to non-2xx responses and JSON parse failures; argument validation errors do not retry.
 
 Defaults are defined in `config.json` and loaded by `OpenAIService`.
 

@@ -19,6 +19,7 @@ function assertPositiveInteger(value: number, name: string): void {
   }
 }
 
+/** Service for Sharp-based image composition operations used in the panorama pipeline. */
 export class ImageService extends BaseService {
   constructor(options: ImageServiceOptions) {
     super(options);
@@ -32,6 +33,11 @@ export class ImageService extends BaseService {
     return { width: metadata.width, height: metadata.height };
   }
 
+  /**
+   * Composites a transparent bridge image from two adjacent tiles: the right edge of the left
+   * tile and the left edge of the right tile are placed on opposite sides of a transparent center
+   * band, all within a canvas that matches the original tile dimensions.
+   */
   async createBridge(args: CreateBridgeArgs): Promise<{ outputImageFile: string }> {
     this.log("info", `Creating bridge image...`);
     assertPositiveInteger(args.leftCropWidth, "leftCropWidth");
@@ -104,6 +110,7 @@ export class ImageService extends BaseService {
     return { outputImageFile };
   }
 
+  /** Lays out all input tiles side-by-side into a single wide PNG preview strip. */
   async composeTilesPreview(
     args: ComposeTilesPreviewArgs,
   ): Promise<{ outputImageFile: string }> {

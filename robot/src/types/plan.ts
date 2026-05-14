@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { Task } from "./task.js";
 
+/** Serialised plan written to `robot/plans/<planId>.json`; task states are updated in-place during execution. */
 export interface Plan {
   recipeId: string;
   createdAt: string;
@@ -32,6 +33,7 @@ const taskSchema = z.object({
   finishedAt: z.string().optional(),
 });
 
+/** Zod schema used to parse and validate plan JSON loaded from disk at runtime. */
 export const planSchema = z.object({
   recipeId: z.string(),
   createdAt: z.string(),

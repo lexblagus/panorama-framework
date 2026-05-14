@@ -8,6 +8,10 @@ export type OpenAIImageQuality = "high" | "medium" | "low" | "auto";
 export type OpenAIOutputFormat = "png" | "jpeg" | "webp";
 export type OpenAIImageBackground = "transparent" | "opaque" | "auto";
 
+/**
+ * Static configuration for the OpenAI service: API endpoints, timeouts, retry count, and
+ * default generation parameters loaded from `services/openai/config.json`.
+ */
 export interface OpenAIServiceConfig {
   baseUrl: string;
   imageGenerationServicePath: string;
@@ -25,12 +29,14 @@ export interface OpenAIServiceConfig {
   };
 }
 
+/** Constructor options for `OpenAIService`; `fetchImpl` and `config` are mainly for testing. */
 export interface OpenAIServiceOptions extends ServiceBaseOptions {
   apiKey?: string;
   fetchImpl?: typeof fetch;
   config?: Partial<OpenAIServiceConfig>;
 }
 
+/** Arguments for a single image-generation or image-edit request. Presence of `inputImages` selects edit mode. */
 export interface GenerateImageArgs {
   prompt: string;
   outputDir: string;
@@ -48,11 +54,13 @@ export interface GenerateImageArgs {
   user?: string;
 }
 
+/** A single output image file path, plus the model's revised prompt if the API returned one. */
 export interface GeneratedImageFile {
   file: string;
   revisedPrompt?: string;
 }
 
+/** Result of a successful `generateImage` call; `files` has one entry per requested output. */
 export interface GenerateImageResult {
   files: GeneratedImageFile[];
 }

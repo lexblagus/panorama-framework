@@ -45,8 +45,20 @@ Required fields:
 
 - `title: string`
 - `taskId: TaskId`
-- `arguments: Record<string, unknown>`
+- `arguments` — typed per `taskId` (discriminated union in `src/types/step.ts`)
 - `description?: string`
+
+| `taskId` | Required `arguments` fields |
+|----------|-----------------------------|
+| `openai.generate-image` | `prompt`, `outputDir`, `outputFilePrefix` |
+| `image.create-bridge` | `leftImageFile`, `rightImageFile`, `outputImageFile`, `leftCropWidth`, `rightCropWidth` |
+| `image.compose-tiles` | `inputImages`, `outputImageFile` |
+| `markdown.read` | `file` or `targetPath` |
+| `markdown.write` | `file`, `content` |
+| `markdown.insert` | `file`, `marker`, `content`, `position?` |
+| `json.read` | `path` |
+| `json.write` | `file`, `value` |
+| `workflow.run-recipe` | `mode`, `recipeId` (build/exec) or `planId` (run/resume) |
 
 ## Supported Recipe Export Styles
 

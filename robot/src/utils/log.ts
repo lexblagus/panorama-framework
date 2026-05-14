@@ -1,5 +1,6 @@
 import chalk, { type ChalkInstance } from "chalk";
 
+/** Severity levels in ascending order; messages below the active LOG_LEVEL are suppressed. */
 export type Level =
   | "trace"
   | "debug"
@@ -9,6 +10,7 @@ export type Level =
   | "error"
   | "fatal";
 
+/** Chalk background-color names accepted by the Log constructor for the module label. */
 export type LabelColor =
   | "black"
   | "red"
@@ -29,6 +31,7 @@ export type LabelColor =
   | "cyanBright"
   | "whiteBright";
 
+/** Callable signature shared by all logger instances; first arg selects the severity level. */
 export type LogFn = (level: Level, ...message: unknown[]) => void;
 
 const mapLevels: Level[] = ["trace", "debug", "log", "info", "warn", "error", "fatal"];
@@ -64,6 +67,12 @@ function resolveLogLevel(): Level {
 
 const logLevel: Level = resolveLogLevel();
 
+/**
+ * Colored, level-filtered console logger.
+ *
+ * Despite being declared as a class, the constructor returns a `LogFn` callable rather than a
+ * class instance — `new Log("tag")` produces a function, not an object.
+ */
 class Log {
   constructor(label: string, labelColor: LabelColor = "white") {
     const bgFn = BG_LABEL_FN[labelColor];

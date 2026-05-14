@@ -6,6 +6,7 @@ What it provides:
 
 - `repoRootFolder` and `robotPackageFolder` constructor wiring
 - common path helpers (`resolveRepoPath`, `resolveRobotPath`)
+- `resolveRepoPath` enforces that resolved paths stay within `repoRootFolder` — paths escaping the repo root throw at runtime.
 
 Usage intent:
 

@@ -4,6 +4,7 @@ import type { ServiceBaseOptions } from "./types.js";
 
 const noopLog: LogFn = () => {};
 
+/** Base class for all robot services; supplies path-safe resolution helpers and a shared logger. */
 export abstract class BaseService {
   #repoRootFolder: string;
   #robotPackageFolder: string;
@@ -15,6 +16,10 @@ export abstract class BaseService {
     this.log = options.log ?? noopLog;
   }
 
+  /**
+   * Resolves `targetPath` against the repo root and throws if the result would escape that root,
+   * preventing path-traversal attacks from recipe-supplied strings.
+   */
   protected resolveRepoPath(targetPath: string): string {
     const resolved = path.isAbsolute(targetPath)
       ? path.normalize(targetPath)
@@ -27,6 +32,7 @@ export abstract class BaseService {
     return resolved;
   }
 
+  /** Joins `segments` under the robot package folder (no traversal check needed — internal use only). */
   protected resolveRobotPath(...segments: string[]): string {
     return path.join(this.#robotPackageFolder, ...segments);
   }

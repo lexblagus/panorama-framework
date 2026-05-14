@@ -10,6 +10,11 @@ import type { RunnerResult } from "./types/runner.js";
 const ID_SEGMENT_PATTERN = /^[a-z0-9_-][a-z0-9_.-]*$/;
 const ENV_KEY_PATTERN = /^[A-Za-z_][A-Za-z0-9_]*$/;
 
+/**
+ * Parses a single `.env` file line into a `[key, value]` pair.
+ * Supports `export KEY=VALUE` syntax, quoted values, and strips comment / blank lines.
+ * Returns `null` for lines that should be ignored.
+ */
 function parseEnvLine(line: string): [string, string] | null {
   const trimmed = line.trim();
   if (!trimmed || trimmed.startsWith("#")) {
@@ -44,6 +49,7 @@ function parseEnvLine(line: string): [string, string] | null {
   return [key, value];
 }
 
+/** Reads `robot/.env` and injects any declared variables into `process.env`, skipping keys that are already set. */
 async function loadDotEnvIfPresent(): Promise<void> {
   const robotPackageFolder = path.resolve(
     path.dirname(fileURLToPath(import.meta.url)),
@@ -82,6 +88,7 @@ export type CliCommand =
   | { command: "run"; planId: string }
   | { command: "resume"; planId: string };
 
+/** Signals a user-facing CLI input error; caught by `runCli` to print a friendly message and exit 1 without a stack trace. */
 export class CliError extends Error {
   constructor(message: string) {
     super(message);
@@ -187,6 +194,7 @@ function expectOnlyFlag(
   return ensureId(required, requiredValue);
 }
 
+/** Parses raw CLI arguments (after the script name) into a typed `CliCommand` discriminated union. */
 export function parseCliArgs(argv: string[]): CliCommand {
   const [command, ...rest] = argv;
   if (!command) {
@@ -228,6 +236,10 @@ function logRunnerResult(log: LogFn, result: RunnerResult): void {
   log("info", `${status}: ${result.completedTaskCount}/${result.taskCount} tasks completed (${result.command} "${result.planId}")`);
 }
 
+/**
+ * Main CLI entry point: loads `.env`, parses arguments, and dispatches to `buildCommand`,
+ * `runPlanFromStart`, or `resumePlan`.  Handles `CliError` and recipe-not-found gracefully.
+ */
 export async function runCli(argv: string[]): Promise<void> {
   await loadDotEnvIfPresent();
 

@@ -132,6 +132,7 @@ function isSizeAllowedForGptImage2(size: OpenAIImageSize): boolean {
   );
 }
 
+/** Service that wraps the OpenAI Images API, supporting both generation and edit (inpainting) modes with automatic retries. */
 export class OpenAIService extends BaseService {
   private readonly fetchImpl: typeof fetch;
   private readonly apiKey?: string;
@@ -151,6 +152,10 @@ export class OpenAIService extends BaseService {
     };
   }
 
+  /**
+   * Validates `args` before a network call: checks required fields, numeric constraints,
+   * size compatibility per model, and mask/inputImages co-requirements.
+   */
   private assertGenerateImageArgs(args: GenerateImageArgs): void {
     if (!args.prompt || !args.prompt.trim()) {
       throw new Error("prompt is required");
@@ -206,6 +211,7 @@ export class OpenAIService extends BaseService {
     }
   }
 
+  /** Creates an `AbortSignal` that fires after `timeoutMs` milliseconds; the underlying timer is unreffed so it won't block process exit. */
   private createTimeoutSignal(timeoutMs: number): AbortSignal {
     const controller = new AbortController();
     const timer = setTimeout(
@@ -218,6 +224,11 @@ export class OpenAIService extends BaseService {
     return controller.signal;
   }
 
+  /**
+   * Generates or edits images via the OpenAI API and writes the results to disk.
+   * Presence of `inputImages` selects the edit endpoint; absence uses the generation endpoint.
+   * Retries up to `config.retriesOnError` times on non-fatal HTTP or JSON parse errors.
+   */
   async generateImage(args: GenerateImageArgs): Promise<GenerateImageResult> {
     this.assertGenerateImageArgs(args);
 
