@@ -5,6 +5,14 @@
 ||
 |:---:|
 ||<!-- robot:table-compositions-header-end -->
+|![Composition preview](../images/outputs/generated/012-0236-composition-preview.png)|
+|012-0236-composition-preview.png|
+|![Composition preview](../images/outputs/generated/012-0220-composition-preview.png)|
+|012-0220-composition-preview.png|
+|![Composition preview](../images/outputs/generated/012-0204-composition-preview.png)|
+|012-0204-composition-preview.png|
+|![Composition preview](../images/outputs/generated/012-0188-composition-preview.png)|
+|012-0188-composition-preview.png|
 |![Composition preview](../images/outputs/generated/012-0140-composition-preview.png)|
 |012-0140-composition-preview.png|
 |![Composition preview](../images/outputs/generated/012-0124-composition-preview.png)|
@@ -29,6 +37,14 @@
 |1|2|3|4|5|6|7|8|9|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |**primary**|tertiary|*secondary*|tertiary|***primary master***|tertiary|*secondary*|tertiary|**primary**|<!-- robot:table-tiles-header-end -->
+|![Tile 1 preview](../images/outputs/generated/012-0227-tile1.png)|![Tile 2 preview](../images/outputs/generated/012-0228-tile2.png)|![Tile 3 preview](../images/outputs/generated/012-0229-tile3.png)|![Tile 4 preview](../images/outputs/generated/012-0230-tile4.png)|![Tile 5 preview](../images/outputs/generated/012-0231-tile5.png)|![Tile 6 preview](../images/outputs/generated/012-0232-tile6.png)|![Tile 7 preview](../images/outputs/generated/012-0233-tile7.png)|![Tile 8 preview](../images/outputs/generated/012-0234-tile8.png)|![Tile 9 preview](../images/outputs/generated/012-0235-tile9.png)|
+|012-0227-tile1.png|012-0228-tile2.png|012-0229-tile3.png|012-0230-tile4.png|012-0231-tile5.png|012-0232-tile6.png|012-0233-tile7.png|012-0234-tile8.png|012-0235-tile9.png|
+|![Tile 1 preview](../images/outputs/generated/012-0211-tile1.png)|![Tile 2 preview](../images/outputs/generated/012-0212-tile2.png)|![Tile 3 preview](../images/outputs/generated/012-0213-tile3.png)|![Tile 4 preview](../images/outputs/generated/012-0214-tile4.png)|![Tile 5 preview](../images/outputs/generated/012-0215-tile5.png)|![Tile 6 preview](../images/outputs/generated/012-0216-tile6.png)|![Tile 7 preview](../images/outputs/generated/012-0217-tile7.png)|![Tile 8 preview](../images/outputs/generated/012-0218-tile8.png)|![Tile 9 preview](../images/outputs/generated/012-0219-tile9.png)|
+|012-0211-tile1.png|012-0212-tile2.png|012-0213-tile3.png|012-0214-tile4.png|012-0215-tile5.png|012-0216-tile6.png|012-0217-tile7.png|012-0218-tile8.png|012-0219-tile9.png|
+|![Tile 1 preview](../images/outputs/generated/012-0195-tile1.png)|![Tile 2 preview](../images/outputs/generated/012-0196-tile2.png)|![Tile 3 preview](../images/outputs/generated/012-0197-tile3.png)|![Tile 4 preview](../images/outputs/generated/012-0198-tile4.png)|![Tile 5 preview](../images/outputs/generated/012-0199-tile5.png)|![Tile 6 preview](../images/outputs/generated/012-0200-tile6.png)|![Tile 7 preview](../images/outputs/generated/012-0201-tile7.png)|![Tile 8 preview](../images/outputs/generated/012-0202-tile8.png)|![Tile 9 preview](../images/outputs/generated/012-0203-tile9.png)|
+|012-0195-tile1.png|012-0196-tile2.png|012-0197-tile3.png|012-0198-tile4.png|012-0199-tile5.png|012-0200-tile6.png|012-0201-tile7.png|012-0202-tile8.png|012-0203-tile9.png|
+|![Tile 1 preview](../images/outputs/generated/012-0179-tile1.png)|![Tile 2 preview](../images/outputs/generated/012-0180-tile2.png)|![Tile 3 preview](../images/outputs/generated/012-0181-tile3.png)|![Tile 4 preview](../images/outputs/generated/012-0182-tile4.png)|![Tile 5 preview](../images/outputs/generated/012-0183-tile5.png)|![Tile 6 preview](../images/outputs/generated/012-0184-tile6.png)|![Tile 7 preview](../images/outputs/generated/012-0185-tile7.png)|![Tile 8 preview](../images/outputs/generated/012-0186-tile8.png)|![Tile 9 preview](../images/outputs/generated/012-0187-tile9.png)|
+|012-0179-tile1.png|012-0180-tile2.png|012-0181-tile3.png|012-0182-tile4.png|012-0183-tile5.png|012-0184-tile6.png|012-0185-tile7.png|012-0186-tile8.png|012-0187-tile9.png|
 |![Tile 1 preview](../images/outputs/generated/012-0131-tile1.png)|![Tile 2 preview](../images/outputs/generated/012-0132-tile2.png)|![Tile 3 preview](../images/outputs/generated/012-0133-tile3.png)|![Tile 4 preview](../images/outputs/generated/012-0134-tile4.png)|![Tile 5 preview](../images/outputs/generated/012-0135-tile5.png)|![Tile 6 preview](../images/outputs/generated/012-0136-tile6.png)|![Tile 7 preview](../images/outputs/generated/012-0137-tile7.png)|![Tile 8 preview](../images/outputs/generated/012-0138-tile8.png)|![Tile 9 preview](../images/outputs/generated/012-0139-tile9.png)|
 |012-0131-tile1.png|012-0132-tile2.png|012-0133-tile3.png|012-0134-tile4.png|012-0135-tile5.png|012-0136-tile6.png|012-0137-tile7.png|012-0138-tile8.png|012-0139-tile9.png|
 |![Tile 1 preview](../images/outputs/generated/012-0115-tile1.png)|![Tile 2 preview](../images/outputs/generated/012-0116-tile2.png)|![Tile 3 preview](../images/outputs/generated/012-0117-tile3.png)|![Tile 4 preview](../images/outputs/generated/012-0118-tile4.png)|![Tile 5 preview](../images/outputs/generated/012-0119-tile5.png)|![Tile 6 preview](../images/outputs/generated/012-0120-tile6.png)|![Tile 7 preview](../images/outputs/generated/012-0121-tile7.png)|![Tile 8 preview](../images/outputs/generated/012-0122-tile8.png)|![Tile 9 preview](../images/outputs/generated/012-0123-tile9.png)|
@@ -176,6 +192,10 @@
 
 |Tile 1|Tile 2|Tile 3|Tile 4|Tile 5|Tiles 6|Tile 7|Tiles 8|Tile 9|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|![Tile 1](./refs/R1/153-tile1.png)|![Tile 2](./refs/R1/153-tile2.png)|![Tile 3](./refs/R1/153-tile3.png)|![Tile 4](./refs/R1/153-tile4.png)|![Tile 5](./refs/R1/153-tile5.png)|![Tile 6](./refs/R1/153-tile6.png)|![Tile 7](./refs/R1/153-tile7.png)|![Tile 8](./refs/R1/153-tile8.png)|![Tile 9](./refs/R1/153-tile9.png)|
+|153-tile1.png|153-tile2.png|153-tile3.png|153-tile4.png|153-tile5.png|153-tile6.png|153-tile7.png|153-tile8.png|153-tile9.png|
+|![Tile 1](./refs/R1/152-tile1.png)|![Tile 2](./refs/R1/152-tile2.png)|![Tile 3](./refs/R1/152-tile3.png)|![Tile 4](./refs/R1/152-tile4.png)|![Tile 5](./refs/R1/152-tile5.png)|![Tile 6](./refs/R1/152-tile6.png)|![Tile 7](./refs/R1/152-tile7.png)|![Tile 8](./refs/R1/152-tile8.png)|![Tile 9](./refs/R1/152-tile9.png)|
+|152-tile1.png|152-tile2.png|152-tile3.png|152-tile4.png|152-tile5.png|152-tile6.png|152-tile7.png|152-tile8.png|152-tile9.png|
 |![Tile 1](./refs/R1/151-tile1.png)|![Tile 2](./refs/R1/151-tile2.png)|![Tile 3](./refs/R1/151-tile3.png)|![Tile 4](./refs/R1/151-tile4.png)|![Tile 5](./refs/R1/151-tile5.png)|![Tile 6](./refs/R1/151-tile6.png)|![Tile 7](./refs/R1/151-tile7.png)|![Tile 8](./refs/R1/151-tile8.png)|![Tile 9](./refs/R1/151-tile9.png)|
 |151-tile1.png|151-tile2.png|151-tile3.png|151-tile4.png|151-tile5.png|151-tile6.png|151-tile7.png|151-tile8.png|151-tile9.png|
 |![Tile 1](./refs/R1/150-tile1.png)|![Tile 2](./refs/R1/150-tile2.png)|![Tile 3](./refs/R1/150-tile3.png)|![Tile 4](./refs/R1/150-tile4.png)|![Tile 5](./refs/R1/150-tile5.png)|![Tile 6](./refs/R1/150-tile6.png)|![Tile 7](./refs/R1/150-tile7.png)|![Tile 8](./refs/R1/150-tile8.png)|![Tile 9](./refs/R1/150-tile9.png)|
