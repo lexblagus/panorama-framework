@@ -14,6 +14,7 @@ const taskIdSchema = z.enum([
   "openai.generate-image",
   "image.create-bridge",
   "image.compose-tiles",
+  "image.assemble-layers",
   "markdown.read",
   "markdown.write",
   "markdown.insert",

@@ -4,6 +4,7 @@ import Log, { type LogFn } from "./utils/log.js";
 import { ensureValidId as ensureValidIdUtil } from "./utils/shared.js";
 import { buildCommand } from "./builder.js";
 import { ImageService } from "./services/image/index.js";
+import type { AssembleLayersArgs } from "./services/image/index.js";
 import { JsonService } from "./services/json/index.js";
 import { MarkdownService } from "./services/markdown/index.js";
 import type {
@@ -271,6 +272,9 @@ async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void
         inputImages: getStringArrayArgument(task.arguments, "inputImages"),
         outputImageFile: getStringArgument(task.arguments, "outputImageFile"),
       });
+      return;
+    case "image.assemble-layers":
+      await services.image.assembleLayers(task.arguments as unknown as AssembleLayersArgs);
       return;
     case "openai.generate-image": {
       const prompt = getStringArgument(task.arguments, "prompt");

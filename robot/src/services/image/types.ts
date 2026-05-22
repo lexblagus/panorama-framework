@@ -19,3 +19,30 @@ export interface ComposeTilesPreviewArgs {
   inputImages: string[];
   outputImageFile: string;
 }
+
+export type AssembleLayersPosition =
+  | "top-left"    | "top-center"    | "top-right"
+  | "middle-left" | "middle-center" | "middle-right"
+  | "bottom-left" | "bottom-center" | "bottom-right";
+
+export interface AssembleLayersInput {
+  imageFile: string;
+  /** @default "middle-center" */
+  position?: AssembleLayersPosition;
+}
+
+/**
+ * Arguments for stacking images as layers on a transparent canvas.
+ * First input is the background; last input is the foreground.
+ * Canvas size defaults to the bounding box of all inputs when width/height are omitted.
+ */
+export interface AssembleLayersArgs {
+  inputs: (AssembleLayersInput | string)[];
+  output: {
+    imageFile: string;
+    /** @default "png" */
+    format?: "png" | "jpeg" | "webp";
+    width?: number;
+    height?: number;
+  };
+}

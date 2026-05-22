@@ -3,6 +3,9 @@ import path from "node:path";
 import sharp from "sharp";
 import { BaseService } from "../base/index.js";
 import type {
+  AssembleLayersArgs,
+  AssembleLayersInput,
+  AssembleLayersPosition,
   ComposeTilesPreviewArgs,
   CreateBridgeArgs,
   ImageServiceOptions,
@@ -11,6 +14,25 @@ import type {
 interface RequiredImageMetadata {
   width: number;
   height: number;
+}
+
+function resolvePositionOffset(
+  position: AssembleLayersPosition,
+  canvasWidth: number,
+  canvasHeight: number,
+  imageWidth: number,
+  imageHeight: number,
+): { left: number; top: number } {
+  const [vert, horiz] = position.split("-");
+  const left =
+    horiz === "left"   ? 0
+    : horiz === "right"  ? canvasWidth - imageWidth
+    : Math.round((canvasWidth - imageWidth) / 2);
+  const top =
+    vert === "top"    ? 0
+    : vert === "bottom" ? canvasHeight - imageHeight
+    : Math.round((canvasHeight - imageHeight) / 2);
+  return { left, top };
 }
 
 function assertPositiveInteger(value: number, name: string): void {
@@ -159,6 +181,72 @@ export class ImageService extends BaseService {
       .toFile(outputImageFile);
 
     this.log("info", `Tiles preview created: ${path.basename(outputImageFile)}`);
+    return { outputImageFile };
+  }
+
+  /**
+   * Stacks images as transparent layers on a single canvas.
+   * First input is the background; last input is the foreground (highest z-index).
+   * Canvas size is the bounding box of all inputs unless overridden by output.width/height.
+   */
+  async assembleLayers(args: AssembleLayersArgs): Promise<{ outputImageFile: string }> {
+    this.log("info", `Assembling layers (${args.inputs?.length ?? 0} inputs)...`);
+
+    if (!Array.isArray(args.inputs) || args.inputs.length === 0) {
+      throw new Error("inputs must contain at least one image");
+    }
+
+    const normalized: Required<AssembleLayersInput>[] = args.inputs.map((input) =>
+      typeof input === "string"
+        ? { imageFile: this.resolveRepoPath(input), position: "middle-center" }
+        : { imageFile: this.resolveRepoPath(input.imageFile), position: input.position ?? "middle-center" },
+    );
+
+    const outputImageFile = this.resolveRepoPath(args.output.imageFile);
+    const format = args.output.format ?? "png";
+
+    const allMeta = await Promise.all(normalized.map((n) => this.readRequiredMetadata(n.imageFile)));
+
+    const canvasWidth  = args.output.width  ?? Math.max(...allMeta.map((m) => m.width));
+    const canvasHeight = args.output.height ?? Math.max(...allMeta.map((m) => m.height));
+
+    const composites = await Promise.all(
+      normalized.map(async (input, i) => {
+        const { left, top } = resolvePositionOffset(
+          input.position,
+          canvasWidth,
+          canvasHeight,
+          allMeta[i].width,
+          allMeta[i].height,
+        );
+        return {
+          input: await sharp(input.imageFile).ensureAlpha().toBuffer(),
+          left,
+          top,
+        };
+      }),
+    );
+
+    await mkdir(path.dirname(outputImageFile), { recursive: true });
+
+    const pipeline = sharp({
+      create: {
+        width: canvasWidth,
+        height: canvasHeight,
+        channels: 4,
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      },
+    }).composite(composites);
+
+    if (format === "jpeg") {
+      await pipeline.jpeg().toFile(outputImageFile);
+    } else if (format === "webp") {
+      await pipeline.webp().toFile(outputImageFile);
+    } else {
+      await pipeline.png().toFile(outputImageFile);
+    }
+
+    this.log("info", `Layers assembled: ${path.basename(outputImageFile)}`);
     return { outputImageFile };
   }
 }

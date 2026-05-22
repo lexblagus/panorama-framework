@@ -1,4 +1,4 @@
-import type { CreateBridgeArgs, ComposeTilesPreviewArgs } from "../services/image/types.js";
+import type { AssembleLayersArgs, CreateBridgeArgs, ComposeTilesPreviewArgs } from "../services/image/types.js";
 import type { MarkdownInsertRequest } from "../services/markdown/types.js";
 import type { RunRecipeArgs } from "../services/workflow/types.js";
 
@@ -56,8 +56,9 @@ type StepBase = {
  */
 export type Step =
   | (StepBase & { taskId: "openai.generate-image"; arguments: OpenAIGenerateImageStepArgs })
-  | (StepBase & { taskId: "image.create-bridge";   arguments: CreateBridgeArgs })
-  | (StepBase & { taskId: "image.compose-tiles";   arguments: ComposeTilesPreviewArgs })
+  | (StepBase & { taskId: "image.create-bridge";    arguments: CreateBridgeArgs })
+  | (StepBase & { taskId: "image.compose-tiles";    arguments: ComposeTilesPreviewArgs })
+  | (StepBase & { taskId: "image.assemble-layers";  arguments: AssembleLayersArgs })
   | (StepBase & { taskId: "markdown.read";         arguments: MarkdownReadStepArgs })
   | (StepBase & { taskId: "markdown.write";        arguments: MarkdownWriteStepArgs })
   | (StepBase & { taskId: "markdown.insert";       arguments: MarkdownInsertRequest })
