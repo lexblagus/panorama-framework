@@ -12,6 +12,7 @@ export interface OpenAIGenerateImageStepArgs {
   maskFile?: string;
   size?: string;
   n?: number;
+  outputSuffixes?: string[];
   quality?: string;
   outputFormat?: string;
   outputCompression?: number;

@@ -26,6 +26,7 @@ export interface OpenAIServiceConfig {
     outputImages: number;
     outputFormat: OpenAIOutputFormat;
     defaultSaveSidecarMetadataFile: boolean;
+    samplePaddingZeroes: number;
   };
 }
 
@@ -46,6 +47,7 @@ export interface GenerateImageArgs {
   maskFile?: string;
   size?: OpenAIImageSize;
   n?: number;
+  outputSuffixes?: string[];
   quality?: OpenAIImageQuality;
   outputFormat?: OpenAIOutputFormat;
   outputCompression?: number;

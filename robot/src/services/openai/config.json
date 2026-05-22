@@ -11,6 +11,7 @@
 		"quality": "high",
 		"outputImages": 1,
 		"outputFormat": "png",
-		"defaultSaveSidecarMetadataFile": false
+		"defaultSaveSidecarMetadataFile": false,
+		"samplePaddingZeroes": 2
 	}
 }

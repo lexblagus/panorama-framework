@@ -378,6 +378,17 @@ export class OpenAIService extends BaseService {
 
         const ext = extensionForOutputFormat(outputFormat);
         const multipleOutputs = data.length > 1;
+        const paddingZeroes = this.config.defaults.samplePaddingZeroes;
+        const outputSuffixes =
+          Array.isArray(args.outputSuffixes) && args.outputSuffixes.length === n
+            ? args.outputSuffixes
+            : undefined;
+        if (args.outputSuffixes !== undefined && outputSuffixes === undefined) {
+          this.log(
+            "warn",
+            `outputSuffixes length (${args.outputSuffixes.length}) does not match n (${n}); falling back to auto-suffix`,
+          );
+        }
         const files: GeneratedImageFile[] = [];
 
         for (let index = 0; index < data.length; index += 1) {
@@ -386,9 +397,11 @@ export class OpenAIService extends BaseService {
             throw new Error(`OpenAI image generation item ${index} has no b64_json field`);
           }
 
-          const suffix = multipleOutputs
-            ? `-${String(index + 1).padStart(2, "0")}`
-            : "";
+          const suffix = outputSuffixes
+            ? outputSuffixes[index]
+            : multipleOutputs
+              ? `-${String(index + 1).padStart(paddingZeroes, "0")}`
+              : "";
           const fileName = `${args.outputFilePrefix}${suffix}.${ext}`;
           const outputFile = path.join(outputDir, fileName);
           const imageBuffer = Buffer.from(dataItem.b64_json, "base64");
