@@ -4,6 +4,7 @@ REFERENCE IMAGES PROVIDED (ONLY these; no extras):
 - Reference B (OPTIONAL seam bridge composite): Tile 2 right crop + transparency + Tile 4 left crop — `bridge.png`
 
 REFERENCE USE POLICY (STRICT):
+- R1 HORIZON LOCK (EXPERIMENTAL): The magenta horizontal line in `r1-composition-map.png` is the shared camera horizon / vanishing-height guide. It is a calibration guide only and must not appear in the final image. All perspective convergence and horizon behavior must respect this line.
 - Reference R1 is PRIMARY layout authority: horizon height, sky budget, envelope / pressure read, reading orientation, anchor zone, seam zones.
 - Reference A (Tile 5 ruler) is SECONDARY and controls framing / scale physics ONLY: rectilinear telephoto compression feel, vertical pressure, vanishing-height read, sky-budget discipline.
 - Transfer FORBIDDEN from Reference A: any Tile 5 identity (no core silhouettes, no core axis, no sun disk).
