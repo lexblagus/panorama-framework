@@ -17,8 +17,9 @@
   "generatedImagePath": "images/outputs/generated",
   "filePrefix": "012",
   "fileIndex": 273,
-  "REM_samples": 3,
-  "REM_variations": 3,
+  "masterSamples": 3,
+  "fileIndexPaddingZeroes": 4,
+  "samplePaddingZeroes": 3,
   "image": {
     "REM_model": "gpt-image-1.5",
     "REM_quality": "high",

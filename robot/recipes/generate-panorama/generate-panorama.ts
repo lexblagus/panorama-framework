@@ -90,39 +90,13 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
   let currentFileIndex = (typeof state.index === "number" ? state.index : 0) + 1;
 
   // ---------------------------------------------------------------------------
-  log("info", "Generate image file prefixes");
+  log("info", "Generate image folder and format");
   // ---------------------------------------------------------------------------
   const generateImageFolder = `${context.repoRootFolder}/${recipeConfig.generatedImagePath}`;
-  log("debug", `generateImageFolder: "${generateImageFolder}"`);
-
-  const getPrefix = (index: number, suffix: string) =>
-    `${recipeConfig.filePrefix}-${padZeroes(index)}-${suffix}`;
-
-  const filePrefixes = {
-    masterImage:      getPrefix(currentFileIndex++, "master"),
-    tile1Image:       getPrefix(currentFileIndex++, "tile1"),
-    tile2Image:       getPrefix(currentFileIndex++, "tile2"),
-    tile3Image:       getPrefix(currentFileIndex++, "tile3"),
-    tile4Image:       getPrefix(currentFileIndex++, "tile4"),
-    tile5Image:       getPrefix(currentFileIndex++, "tile5"),
-    tile6Image:       getPrefix(currentFileIndex++, "tile6"),
-    tile7Image:       getPrefix(currentFileIndex++, "tile7"),
-    tile8Image:       getPrefix(currentFileIndex++, "tile8"),
-    tile9Image:       getPrefix(currentFileIndex++, "tile9"),
-    compPreviewImage: getPrefix(currentFileIndex++, "composition-preview"),
-    bridgeImageTile2: getPrefix(currentFileIndex++, "bridge-tile-2"),
-    bridgeImageTile4: getPrefix(currentFileIndex++, "bridge-tile-4"),
-    bridgeImageTile6: getPrefix(currentFileIndex++, "bridge-tile-6"),
-    bridgeImageTile8: getPrefix(currentFileIndex++, "bridge-tile-8"),
-  } as const;
-  log("debug", `filePrefixes: ${JSON.stringify(filePrefixes, null, 2)}`);
-
   const ext = recipeConfig.image.outputFormat;
   const toFullPath = (prefix: string) => `${generateImageFolder}/${prefix}.${ext}`;
-  const fullPaths = Object.fromEntries(
-    Object.entries(filePrefixes).map(([k, v]) => [k, toFullPath(v)])
-  ) as Record<keyof typeof filePrefixes, string>;
-  log("debug", `fullPaths: ${JSON.stringify(fullPaths, null, 2)}`);
+
+  log("debug", `generateImageFolder: "${generateImageFolder}"`);
 
   // ---------------------------------------------------------------------------
   log("info", "Composition map reference images");
@@ -158,27 +132,11 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
   };
 
   // ---------------------------------------------------------------------------
-  log("info", "Step: Master");
+  log("info", "Loading prompt files");
   // ---------------------------------------------------------------------------
   const promptTextMasterBase = await context.services.markdown.read(promptPaths.masterBase);
   const promptTextMasterOnly = await context.services.markdown.read(promptPaths.masterOnly);
 
-  const stepMaster: Step = {
-    title: "Generate master image",
-    taskId: "openai.generate-image",
-    arguments: {
-      prompt: `${promptTextMasterBase}\n${promptTextMasterOnly}`,
-      outputFilePrefix: filePrefixes.masterImage,
-      size: recipeConfig.image.masterSize,
-      ...stepDefaults,
-    },
-  };
-
-  // ---------------------------------------------------------------------------
-  log("info", "Building tile steps");
-  // ---------------------------------------------------------------------------
-
-  // Load all tile prompts upfront
   const promptTexts = Object.fromEntries(
     await Promise.all(
       (["tile1","tile2","tile3","tile4","tile5","tile6","tile7","tile8","tile9"] as PromptKey[])
@@ -186,147 +144,192 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
     )
   ) as Record<PromptKey, string>;
 
-  function buildTileStep(spec: TileStepSpec): Step {
-    const compMapFilename = recipeConfig.compositionMapsR1[spec.compMapKey];
+  // ---------------------------------------------------------------------------
+  log("info", "Building steps for all master samples");
+  // ---------------------------------------------------------------------------
+  const allSteps: Step[] = [];
 
-    const rulerReplacement = spec.rulerFrom
-      ? "`" + filePrefixes.tile5Image + "." + ext + "`"
-      : "(not uploaded)";
+  for (let sampleIdx = 1; sampleIdx <= recipeConfig.masterSamples; sampleIdx++) {
+    const isLastSample = sampleIdx === recipeConfig.masterSamples;
+    const paddedSample = padZeroes(sampleIdx, recipeConfig.samplePaddingZeroes);
 
-    const bridgeReplacement = spec.bridgeKey
-      ? filePrefixes[spec.bridgeKey] + "." + ext
-      : "(not uploaded)";
+    log("info", `  Sample ${sampleIdx}/${recipeConfig.masterSamples}`);
 
-    const promptReplaced = promptTexts[spec.promptKey]
-      .replace("`r1-composition-map.png`", "`" + compMapFilename + "`")
-      .replace("`master.png`", "`" + filePrefixes.masterImage + "." + ext + "`")
-      .replace("`ruler.png`", rulerReplacement)
-      .replace("`bridge.png`", bridgeReplacement);
+    // ── File index allocation ────────────────────────────────────────────────
+    const alloc = (tileName: string) => {
+      const idx = currentFileIndex++;
+      const basePrefix = `${recipeConfig.filePrefix}-${padZeroes(idx, recipeConfig.fileIndexPaddingZeroes)}`;
+      const canonicalPrefix = `${basePrefix}-${paddedSample}-${tileName}`;
+      return { basePrefix, canonicalPrefix, outputSuffixes: [`-${paddedSample}-${tileName}`] };
+    };
 
-    // Second input: masterImage for tile5 (rulerFrom=null), tile5Image for all others
-    const referenceImage = spec.rulerFrom
-      ? fullPaths.tile5Image
-      : fullPaths.masterImage;
+    // Allocation order matches the desired file index sequence
+    const entries = {
+      masterImage:      alloc("master"),
+      tile1Image:       alloc("tile1"),
+      tile2Image:       alloc("tile2"),
+      tile3Image:       alloc("tile3"),
+      tile4Image:       alloc("tile4"),
+      tile5Image:       alloc("tile5"),
+      tile6Image:       alloc("tile6"),
+      tile7Image:       alloc("tile7"),
+      tile8Image:       alloc("tile8"),
+      tile9Image:       alloc("tile9"),
+      compPreviewImage: alloc("composition-preview"),
+      bridgeImageTile2: alloc("bridge-tile-2"),
+      bridgeImageTile4: alloc("bridge-tile-4"),
+      bridgeImageTile6: alloc("bridge-tile-6"),
+      bridgeImageTile8: alloc("bridge-tile-8"),
+    };
 
-    const inputImages: string[] = [r1Paths[spec.compMapKey], referenceImage];
-    if (spec.bridgeKey) {
-      inputImages.push(fullPaths[spec.bridgeKey]);
-    }
+    const filePrefixes = Object.fromEntries(
+      Object.entries(entries).map(([k, v]) => [k, v.canonicalPrefix])
+    ) as Record<keyof typeof entries, string>;
 
-    return {
-      title: `Generate ${spec.tileKey.replace("Image", "")} image`,
+    const fullPaths = Object.fromEntries(
+      Object.entries(filePrefixes).map(([k, v]) => [k, toFullPath(v)])
+    ) as Record<keyof typeof entries, string>;
+
+    log("debug", `filePrefixes[${sampleIdx}]: ${JSON.stringify(filePrefixes, null, 2)}`);
+
+    // ── Step: Master ─────────────────────────────────────────────────────────
+    const stepMaster: Step = {
+      title: `Generate master image (sample ${sampleIdx})`,
       taskId: "openai.generate-image",
       arguments: {
-        prompt: promptReplaced,
-        outputFilePrefix: filePrefixes[spec.tileKey],
-        inputImages,
-        size: recipeConfig.image.tileSize,
+        prompt: `${promptTextMasterBase}\n${promptTextMasterOnly}`,
+        outputFilePrefix: entries.masterImage.basePrefix,
+        outputSuffixes: entries.masterImage.outputSuffixes,
+        size: recipeConfig.image.masterSize,
         ...stepDefaults,
       },
     };
-  }
 
-  const tileSteps = new Map<TileKey, Step>();
-  for (const spec of [...PRIMARY_SECONDARY_TILE_SPECS, ...TERTIARY_TILE_SPECS]) {
-    tileSteps.set(spec.tileKey, buildTileStep(spec));
-  }
+    // ── Tile step builder ─────────────────────────────────────────────────────
+    const buildTileStep = (spec: TileStepSpec): Step => {
+      const compMapFilename = recipeConfig.compositionMapsR1[spec.compMapKey];
 
-  // ---------------------------------------------------------------------------
-  log("info", "Building bridge steps");
-  // ---------------------------------------------------------------------------
-  function buildBridgeStep(config: { key: BridgeKey; leftTile: TileKey; rightTile: TileKey }): Step {
-    const tileNum = config.key.replace("bridgeImageTile", "");
-    return {
-      title: `Bridge image for tile ${tileNum}`,
-      taskId: "image.create-bridge",
+      const rulerReplacement = spec.rulerFrom
+        ? "`" + filePrefixes.tile5Image + "." + ext + "`"
+        : "(not uploaded)";
+
+      const bridgeReplacement = spec.bridgeKey
+        ? filePrefixes[spec.bridgeKey] + "." + ext
+        : "(not uploaded)";
+
+      const promptReplaced = promptTexts[spec.promptKey]
+        .replace("`r1-composition-map.png`", "`" + compMapFilename + "`")
+        .replace("`master.png`", "`" + filePrefixes.masterImage + "." + ext + "`")
+        .replace("`ruler.png`", rulerReplacement)
+        .replace("`bridge.png`", bridgeReplacement);
+
+      const referenceImage = spec.rulerFrom ? fullPaths.tile5Image : fullPaths.masterImage;
+      const inputImages: string[] = [r1Paths[spec.compMapKey], referenceImage];
+      if (spec.bridgeKey) {
+        inputImages.push(fullPaths[spec.bridgeKey]);
+      }
+
+      return {
+        title: `Generate ${spec.tileKey.replace("Image", "")} image (sample ${sampleIdx})`,
+        taskId: "openai.generate-image",
+        arguments: {
+          prompt: promptReplaced,
+          outputFilePrefix: entries[spec.tileKey].basePrefix,
+          outputSuffixes: entries[spec.tileKey].outputSuffixes,
+          inputImages,
+          size: recipeConfig.image.tileSize,
+          ...stepDefaults,
+        },
+      };
+    };
+
+    // ── Bridge step builder ───────────────────────────────────────────────────
+    const buildBridgeStep = (config: { key: BridgeKey; leftTile: TileKey; rightTile: TileKey }): Step => {
+      const tileNum = config.key.replace("bridgeImageTile", "");
+      return {
+        title: `Bridge image for tile ${tileNum} (sample ${sampleIdx})`,
+        taskId: "image.create-bridge",
+        arguments: {
+          leftImageFile: fullPaths[config.leftTile],
+          rightImageFile: fullPaths[config.rightTile],
+          outputImageFile: fullPaths[config.key],
+          leftCropWidth: recipeConfig.image.leftCropWidth,
+          rightCropWidth: recipeConfig.image.rightCropWidth,
+        },
+      };
+    };
+
+    const tileSteps = new Map<TileKey, Step>();
+    for (const spec of [...PRIMARY_SECONDARY_TILE_SPECS, ...TERTIARY_TILE_SPECS]) {
+      tileSteps.set(spec.tileKey, buildTileStep(spec));
+    }
+
+    const bridgeSteps = new Map<BridgeKey, Step>();
+    for (const bc of BRIDGE_COMPOSITIONS) {
+      bridgeSteps.set(bc.key, buildBridgeStep(bc));
+    }
+
+    // ── Composition preview and markdown steps ────────────────────────────────
+    const tileOrder: TileKey[] = [
+      "tile1Image","tile2Image","tile3Image","tile4Image","tile5Image",
+      "tile6Image","tile7Image","tile8Image","tile9Image",
+    ];
+
+    const stepCompPreviewGenerate: Step = {
+      title: `Composition preview image generation (sample ${sampleIdx})`,
+      taskId: "image.compose-tiles",
       arguments: {
-        leftImageFile: fullPaths[config.leftTile],
-        rightImageFile: fullPaths[config.rightTile],
-        outputImageFile: fullPaths[config.key],
-        leftCropWidth: recipeConfig.image.leftCropWidth,
-        rightCropWidth: recipeConfig.image.rightCropWidth,
+        inputImages: tileOrder.map((k) => fullPaths[k]),
+        outputImageFile: fullPaths.compPreviewImage,
       },
     };
-  }
 
-  const bridgeSteps = new Map<BridgeKey, Step>();
-  for (const bc of BRIDGE_COMPOSITIONS) {
-    bridgeSteps.set(bc.key, buildBridgeStep(bc));
-  }
+    const markdownCompositionRow =
+      `|![Composition preview](../${recipeConfig.generatedImagePath}/${filePrefixes.compPreviewImage}.${ext})|`;
+    const markdownCompositionLabelRow =
+      `|${filePrefixes.compPreviewImage}.${ext}|`;
 
-  // ---------------------------------------------------------------------------
-  log("info", "Composition preview and markdown steps");
-  // ---------------------------------------------------------------------------
-  const tileOrder: TileKey[] = [
-    "tile1Image","tile2Image","tile3Image","tile4Image","tile5Image",
-    "tile6Image","tile7Image","tile8Image","tile9Image",
-  ];
+    const stepPreviewCompositionsTable: Step = {
+      title: `Insert preview compositions table row (sample ${sampleIdx})`,
+      taskId: "markdown.insert",
+      arguments: {
+        file: previewTableFullPath,
+        marker: recipeConfig.previewCompositionMarker,
+        content: [markdownCompositionRow, markdownCompositionLabelRow].join("\n"),
+        position: "after",
+      },
+    };
 
-  const stepCompPreviewGenerate: Step = {
-    title: "Composition preview image generation",
-    taskId: "image.compose-tiles",
-    arguments: {
-      inputImages: tileOrder.map((k) => fullPaths[k]),
-      outputImageFile: fullPaths.compPreviewImage,
-    },
-  };
+    const markdownTilesRow = tileOrder
+      .map((k, i) => `|![Tile ${i + 1} preview](../${recipeConfig.generatedImagePath}/${filePrefixes[k]}.${ext})`)
+      .join("") + "|";
+    const markdownTileLabelsRow = tileOrder
+      .map((k) => `|${filePrefixes[k]}.${ext}`)
+      .join("") + "|";
 
-  const markdownCompositionRow =
-    `|![Composition preview](../${recipeConfig.generatedImagePath}/${filePrefixes.compPreviewImage}.${ext})|`;
-  const markdownCompositionLabelRow =
-    `|${filePrefixes.compPreviewImage}.${ext}|`;
+    const stepPreviewTilesTable: Step = {
+      title: `Insert preview table row (sample ${sampleIdx})`,
+      taskId: "markdown.insert",
+      arguments: {
+        file: previewTableFullPath,
+        marker: recipeConfig.previewTilesTableMarker,
+        content: [markdownTilesRow, markdownTileLabelsRow].join("\n"),
+        position: "after",
+      },
+    };
 
-  const stepPreviewCompositionsTable: Step = {
-    title: "Insert preview compositions table row",
-    taskId: "markdown.insert",
-    arguments: {
-      file: previewTableFullPath,
-      marker: recipeConfig.previewCompositionMarker,
-      content: [markdownCompositionRow, markdownCompositionLabelRow].join("\n"),
-      position: "after",
-    },
-  };
+    const stepCompPreviewInsertContent: Step = {
+      title: "Insert in between",
+      taskId: "markdown.insert",
+      arguments: {
+        file: frameworkHomeFullPath,
+        marker: recipeConfig.frameworkHomeCompositionMarkers as [string, string],
+        content: `![Composition preview](../${recipeConfig.generatedImagePath}/${filePrefixes.compPreviewImage}.${ext})`,
+        position: "between",
+      },
+    };
 
-  const markdownTilesRow = tileOrder
-    .map((k, i) => `|![Tile ${i + 1} preview](../${recipeConfig.generatedImagePath}/${filePrefixes[k]}.${ext})`)
-    .join("") + "|";
-  const markdownTileLabelsRow = tileOrder
-    .map((k) => `|${filePrefixes[k]}.${ext}`)
-    .join("") + "|";
-
-  const stepPreviewTilesTable: Step = {
-    title: "Insert preview table row",
-    taskId: "markdown.insert",
-    arguments: {
-      file: previewTableFullPath,
-      marker: recipeConfig.previewTilesTableMarker,
-      content: [markdownTilesRow, markdownTileLabelsRow].join("\n"),
-      position: "after",
-    },
-  };
-
-  const stepCompPreviewInsertContent: Step = {
-    title: "Insert in between",
-    taskId: "markdown.insert",
-    arguments: {
-      file: frameworkHomeFullPath,
-      marker: recipeConfig.frameworkHomeCompositionMarkers,
-      content: `![Composition preview](../${recipeConfig.generatedImagePath}/${filePrefixes.compPreviewImage}.${ext})`,
-      position: "between",
-    },
-  };
-
-  // ---------------------------------------------------------------------------
-  log("info", "Finish");
-  // ---------------------------------------------------------------------------
-  await context.services.json.writeRecipeState(recipeId, {
-    ...state,
-    index: currentFileIndex,
-  });
-
-  return {
-    title: "Generate Panorama",
-    steps: [
+    allSteps.push(
       stepMaster,
       tileSteps.get("tile5Image")!,
       tileSteps.get("tile1Image")!,
@@ -344,8 +347,24 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
       stepCompPreviewGenerate,
       stepPreviewCompositionsTable,
       stepPreviewTilesTable,
-      stepCompPreviewInsertContent,
-    ],
+    );
+
+    if (isLastSample) {
+      allSteps.push(stepCompPreviewInsertContent);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  log("info", "Finish");
+  // ---------------------------------------------------------------------------
+  await context.services.json.writeRecipeState(recipeId, {
+    ...state,
+    index: currentFileIndex,
+  });
+
+  return {
+    title: "Generate Panorama",
+    steps: allSteps,
   };
 }
 // =============================================================================
