@@ -4,6 +4,7 @@ import sharp from "sharp";
 import { BaseService } from "../base/index.js";
 import type {
   AssembleLayersArgs,
+  AssembleLayersBlend,
   AssembleLayersInput,
   AssembleLayersPosition,
   ComposeTilesPreviewArgs,
@@ -196,10 +197,10 @@ export class ImageService extends BaseService {
       throw new Error("inputs must contain at least one image");
     }
 
-    const normalized: Required<AssembleLayersInput>[] = args.inputs.map((input) =>
+    const normalized = args.inputs.map((input) =>
       typeof input === "string"
-        ? { imageFile: this.resolveRepoPath(input), position: "middle-center" }
-        : { imageFile: this.resolveRepoPath(input.imageFile), position: input.position ?? "middle-center" },
+        ? { imageFile: this.resolveRepoPath(input), position: "middle-center" as AssembleLayersPosition, blend: "over" as AssembleLayersBlend, opacity: 1 }
+        : { imageFile: this.resolveRepoPath(input.imageFile), position: input.position ?? "middle-center" as AssembleLayersPosition, blend: input.blend ?? "over" as AssembleLayersBlend, opacity: input.opacity ?? 1 },
     );
 
     const outputImageFile = this.resolveRepoPath(args.output.imageFile);
@@ -219,11 +220,26 @@ export class ImageService extends BaseService {
           allMeta[i].width,
           allMeta[i].height,
         );
-        return {
-          input: await sharp(input.imageFile).ensureAlpha().toBuffer(),
-          left,
-          top,
-        };
+
+        // Apply opacity by directly scaling each pixel's alpha channel value
+        let buffer: Buffer;
+        if (input.opacity < 1) {
+          const opacity = Math.max(0, Math.min(1, input.opacity));
+          const { data, info } = await sharp(input.imageFile)
+            .ensureAlpha()
+            .raw()
+            .toBuffer({ resolveWithObject: true });
+          for (let px = 3; px < data.length; px += 4) {
+            data[px] = Math.round(data[px] * opacity);
+          }
+          buffer = await sharp(Buffer.from(data), {
+            raw: { width: info.width, height: info.height, channels: 4 },
+          }).png().toBuffer();
+        } else {
+          buffer = await sharp(input.imageFile).ensureAlpha().toBuffer();
+        }
+
+        return { input: buffer, left, top, blend: input.blend as sharp.Blend };
       }),
     );
 

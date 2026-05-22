@@ -16,8 +16,8 @@ export async function buildRecipe(
   // This is just an example intended to be used outside `robot` package, e.g.:
   // const folderPath = `${context.context.repoRootFolder}/<package-name>/…`
   const folderPath = path.dirname(thisFilePath);
-  const whiteImageFile = `${folderPath}/white.example.png`;
-  const blackImageFile = `${folderPath}/black.example.png`;
+  const redImageFile = `${folderPath}/red.example.png`;
+  const blueImageFile = `${folderPath}/blue.example.png`;
   const outputImageFile = `${folderPath}/assembled-layers.example.png`;
   log("debug", `folderPath=${JSON.stringify(folderPath)} output=${JSON.stringify(outputImageFile)}`);
 
@@ -29,10 +29,12 @@ export async function buildRecipe(
         taskId: "image.assemble-layers",
         arguments: {
           inputs: [
-            whiteImageFile,
+            redImageFile,
             {
-              imageFile: blackImageFile,
+              imageFile: blueImageFile,
               position: "bottom-right",
+              blend: "multiply",
+              opacity: 0.5,
             },
           ],
           output: {

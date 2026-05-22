@@ -3,6 +3,7 @@ export {
 } from "./image.js";
 export type {
   AssembleLayersArgs,
+  AssembleLayersBlend,
   AssembleLayersInput,
   AssembleLayersPosition,
   ComposeTilesPreviewArgs,

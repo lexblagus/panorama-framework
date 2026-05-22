@@ -17,6 +17,10 @@ export async function buildRecipe(
   // const folderPath = `${context.context.repoRootFolder}/<package-name>/…`
   const folderPath = path.dirname(thisFilePath);
   const whiteImageFile = `${folderPath}/white.example.png`;
+  const yellowImageFile = `${folderPath}/yellow.example.png`;
+  const greenImageFile = `${folderPath}/green.example.png`;
+  const redImageFile = `${folderPath}/red.example.png`;
+  const blueImageFile = `${folderPath}/blue.example.png`;
   const blackImageFile = `${folderPath}/black.example.png`;
   const outputImageFile = `${folderPath}/composed-tiles.example.png`;
   log("debug", `folderPath=${JSON.stringify(folderPath)} output=${JSON.stringify(outputImageFile)}`);
@@ -30,8 +34,10 @@ export async function buildRecipe(
         arguments: {
           inputImages: [
             whiteImageFile,
-            blackImageFile,
-            whiteImageFile,
+            yellowImageFile,
+            greenImageFile,
+            redImageFile,
+            blueImageFile,
             blackImageFile,
           ],
           outputImageFile,

@@ -25,10 +25,26 @@ export type AssembleLayersPosition =
   | "middle-left" | "middle-center" | "middle-right"
   | "bottom-left" | "bottom-center" | "bottom-right";
 
+/** Blend modes passed directly to libvips via Sharp's composite. */
+export type AssembleLayersBlend =
+  | "over" | "in" | "out" | "atop"
+  | "dest" | "dest-over" | "dest-in" | "dest-out" | "dest-atop"
+  | "xor" | "add" | "saturate" | "clear" | "source"
+  | "multiply" | "screen" | "overlay"
+  | "darken" | "lighten"
+  | "colour-dodge" | "color-dodge"
+  | "colour-burn"  | "color-burn"
+  | "hard-light" | "soft-light"
+  | "difference" | "exclusion";
+
 export interface AssembleLayersInput {
   imageFile: string;
   /** @default "middle-center" */
   position?: AssembleLayersPosition;
+  /** Blend mode for compositing this layer. @default "over" */
+  blend?: AssembleLayersBlend;
+  /** Layer opacity 0.0 (transparent) – 1.0 (opaque). @default 1 */
+  opacity?: number;
 }
 
 /**
