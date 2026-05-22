@@ -3,7 +3,6 @@ REFERENCE IMAGES PROVIDED (ONLY these; no extras):
 - Reference A (REQUIRED): Tile 5 ruler image — `ruler.png`
 
 REFERENCE USE POLICY (STRICT):
-- R1 HORIZON LOCK (EXPERIMENTAL): The magenta horizontal line in `r1-composition-map.png` is the shared camera horizon / vanishing-height guide. It is a calibration guide only and must not appear in the final image. All perspective convergence and horizon behavior must respect this line.
 - Reference R1 is PRIMARY layout authority: horizon line, sky budget line, skyline envelope slope, reading orientation, seam zones, anchor zone.
 - Reference A (Tile 5 ruler) is SECONDARY and controls framing/scale physics ONLY (telephoto compression, vertical pressure, vanishing-height read). DO NOT import Tile 5 content identity.
 

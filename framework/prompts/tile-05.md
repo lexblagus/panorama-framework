@@ -4,7 +4,6 @@ REFERENCE IMAGES PROVIDED (ONLY these; no extras):
 - Reference B (OPTIONAL seam bridge composite, used ONLY in a seam-lock pass after Tile 4 + Tile 6 exist): Tile 4 right crop + transparency + Tile 6 left crop — `bridge.png`
 
 REFERENCE USE POLICY (STRICT):
-- R1 HORIZON LOCK (EXPERIMENTAL): The magenta horizontal line in `r1-composition-map.png` is the shared camera horizon / vanishing-height guide. It is a calibration guide only and must not appear in the final image. All perspective convergence and horizon behavior must respect this line.
 - Reference R1 is the PRIMARY layout authority: horizon / sky budget / skyline envelope / anchor zone / seam zones / reading orientation.
 - Reference M (Central Master) is SECONDARY and controls ONLY palette + diffusion + “rig feel” (DO NOT import its exact layout).
 - Reference B (Bridge) is seam conditioning ONLY: left / right edge continuity (silhouette height profile, haze rolloff language, edge texture density).

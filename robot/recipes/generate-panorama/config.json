@@ -44,14 +44,14 @@
 
   "compositionMapsR1Folder": "images/refs/R1",
   "compositionMapsR1": {
-    "tile1": "156-tile1.png",
-    "tile2": "156-tile2.png",
-    "tile3": "156-tile3.png",
-    "tile4": "156-tile4.png",
-    "tile5": "156-tile5.png",
-    "tile6": "156-tile6.png",
-    "tile7": "156-tile7.png",
-    "tile8": "156-tile8.png",
-    "tile9": "156-tile9.png"
+    "tile1": "153-tile1.png",
+    "tile2": "153-tile2.png",
+    "tile3": "153-tile3.png",
+    "tile4": "153-tile4.png",
+    "tile5": "153-tile5.png",
+    "tile6": "153-tile6.png",
+    "tile7": "153-tile7.png",
+    "tile8": "153-tile8.png",
+    "tile9": "153-tile9.png"
   }
 }
