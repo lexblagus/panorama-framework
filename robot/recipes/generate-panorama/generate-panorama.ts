@@ -68,15 +68,21 @@ const BRIDGE_COMPOSITIONS: Array<{ key: BridgeKey; leftTile: Layout01Key; rightT
 
 const TILE_NUMS: TileNum[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const LAYOUT01_ORDER: Layout01Key[] = [
+/** Generation order (dependencies: tile 5 first, bridges after layout-01, etc.). */
+const LAYOUT01_GENERATION_ORDER: Layout01Key[] = [
   "layout01Tile5", "layout01Tile1", "layout01Tile9", "layout01Tile3", "layout01Tile7",
   "layout01Tile2", "layout01Tile4", "layout01Tile6", "layout01Tile8",
 ];
 
-const LAYOUT02_ORDER: Layout02Key[] = [
+const LAYOUT02_GENERATION_ORDER: Layout02Key[] = [
   "layout02Tile5", "layout02Tile1", "layout02Tile9", "layout02Tile3", "layout02Tile7",
   "layout02Tile2", "layout02Tile4", "layout02Tile6", "layout02Tile8",
 ];
+
+/** Panorama left-to-right and preview table columns: tile 1 … tile 9. */
+const LAYOUT01_TILE_ORDER: Layout01Key[] = TILE_NUMS.map((n) => layout01Key(n));
+const LAYOUT02_TILE_ORDER: Layout02Key[] = TILE_NUMS.map((n) => layout02Key(n));
+const OVERLAY01_TILE_ORDER: Overlay01Key[] = TILE_NUMS.map((n) => overlay01Key(n));
 
 // -----------------------------------------------------------------------------
 // Helpers
@@ -100,6 +106,14 @@ function overlay01Key(n: TileNum): Overlay01Key {
 
 function tileNumFromLayout01Key(key: Layout01Key): TileNum {
   return Number(key.replace("layout01Tile", "")) as TileNum;
+}
+
+function tileNumFromLayout02Key(key: Layout02Key): TileNum {
+  return Number(key.replace("layout02Tile", "")) as TileNum;
+}
+
+function tileNumFromOverlay01Key(key: Overlay01Key): TileNum {
+  return Number(key.replace("overlay01Tile", "")) as TileNum;
 }
 
 // =============================================================================
@@ -219,6 +233,9 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
       entries[layout01Key(n)] = alloc(`layout-01-tile${n}`);
     }
     for (const n of TILE_NUMS) {
+      entries[layout02Key(n)] = alloc(`layout-02-tile${n}`);
+    }
+    for (const n of TILE_NUMS) {
       entries[overlay01Key(n)] = alloc(`overlay-01-tile${n}`);
     }
 
@@ -226,10 +243,6 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
     entries.bridgeImageTile4 = alloc("bridge-tile-4");
     entries.bridgeImageTile6 = alloc("bridge-tile-6");
     entries.bridgeImageTile8 = alloc("bridge-tile-8");
-
-    for (const n of TILE_NUMS) {
-      entries[layout02Key(n)] = alloc(`layout-02-tile${n}`);
-    }
 
     entries.compPreviewImage = alloc("composition-preview");
 
@@ -374,7 +387,7 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
     }
 
     // ── Composition preview and markdown steps ────────────────────────────────
-    const previewTileKeys = calibrationEnabled ? LAYOUT02_ORDER : LAYOUT01_ORDER;
+    const previewTileKeys = calibrationEnabled ? LAYOUT02_TILE_ORDER : LAYOUT01_TILE_ORDER;
 
     const stepCompPreviewGenerate: Step = {
       title: `Composition preview image generation (sample ${sampleIdx})`,
@@ -388,9 +401,13 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
     const buildTilesTableInsert = (
       tileKeys: string[],
       rowLabel: string,
+      tileNumFromKey: (key: string) => TileNum,
     ): Step => {
       const markdownTilesRow = tileKeys
-        .map((k, i) => `|![Tile ${i + 1} preview](../${recipeConfig.generatedImagePath}/${filePrefixes[k]}.${ext})`)
+        .map((k) => {
+          const tileNum = tileNumFromKey(k);
+          return `|![Tile ${tileNum} preview](../${recipeConfig.generatedImagePath}/${filePrefixes[k]}.${ext})`;
+        })
         .join("") + "|";
       const markdownTileLabelsRow = tileKeys
         .map((k) => `|${filePrefixes[k]}.${ext}`)
@@ -408,24 +425,24 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
       };
     };
 
+    // Each insert is `position: "after"` the tiles marker, so the last step wins the row
+    // directly under the marker. Push in reverse of the desired top-to-bottom order:
+    // layout-02 → layout-01 → overlays.
     const previewInsertSteps: Step[] = [];
 
-    if (recipeConfig.addToPreviewTableRowPre) {
-      previewInsertSteps.push(
-        buildTilesTableInsert(LAYOUT01_ORDER, "layout-01"),
-      );
-    }
     if (calibrationEnabled && recipeConfig.addToPreviewTableRowOverlay) {
       previewInsertSteps.push(
-        buildTilesTableInsert(
-          TILE_NUMS.map((n) => overlay01Key(n)),
-          "overlay-01",
-        ),
+        buildTilesTableInsert(OVERLAY01_TILE_ORDER, "overlay-01", (k) => tileNumFromOverlay01Key(k as Overlay01Key)),
+      );
+    }
+    if (recipeConfig.addToPreviewTableRowPre) {
+      previewInsertSteps.push(
+        buildTilesTableInsert(LAYOUT01_TILE_ORDER, "layout-01", (k) => tileNumFromLayout01Key(k as Layout01Key)),
       );
     }
     if (calibrationEnabled && recipeConfig.addToPreviewTableRowPost) {
       previewInsertSteps.push(
-        buildTilesTableInsert(LAYOUT02_ORDER, "layout-02"),
+        buildTilesTableInsert(LAYOUT02_TILE_ORDER, "layout-02", (k) => tileNumFromLayout02Key(k as Layout02Key)),
       );
     }
 
@@ -460,10 +477,10 @@ export async function buildRecipe(context: BuildRecipeContext): Promise<Recipe> 
 
     const sampleSteps: Step[] = [
       stepMaster,
-      ...LAYOUT01_ORDER.map((k) => layout01Steps.get(k)!),
+      ...LAYOUT01_GENERATION_ORDER.map((k) => layout01Steps.get(k)!),
       ...overlaySteps,
       ...BRIDGE_COMPOSITIONS.map((bc) => bridgeSteps.get(bc.key)!),
-      ...LAYOUT02_ORDER.map((k) => layout02Steps.get(k)!),
+      ...LAYOUT02_GENERATION_ORDER.map((k) => layout02Steps.get(k)!),
       stepCompPreviewGenerate,
       ...previewInsertSteps,
     ];
