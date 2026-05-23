@@ -52,7 +52,7 @@ The panoramic narrative logic:
 
 Despite cinematic references used as emotional calibration, the cityscape must retain its own architectural and atmospheric identity. The goal is not stylistic imitation, but believable urban evolution captured in a single photographic moment.
 
-![Tiling compilation preview](../../images/outputs/generated/008-51h-composition-preview.png)
+![Tiling compilation preview](../../images/generated/008-51h-composition-preview.png)
 
 _↳ preview as single 4:3 image (to be heavilly wided in the final composition)_
 
@@ -95,7 +95,7 @@ This section defines project-specific terminology for clarity. It introduces no 
 
 ## Central Master Reference
 
-![Central Master Reference](../../images/outputs/generated/008-53c-master.png)
+![Central Master Reference](../../images/generated/008-53c-master.png)
 
 Why have a Central Master Reference at all? World identity consistency (the “DNA”):
 
@@ -267,7 +267,7 @@ Edges must feel naturally incomplete, obscured by terrain, streets, buildings, t
 
 ### Architectural Language
 
-![Architectural language reference](../../images/outputs/generated/008-54b-architectural-language.png)
+![Architectural language reference](../../images/generated/008-54b-architectural-language.png)
 
 General constrains:
 
@@ -308,7 +308,7 @@ Infrastructure elements to spread across tiles — following tile theme — such
 
 ### Vehicles
 
-![Vehicles reference](../../images/outputs/generated/008-54b-vehicles.png)
+![Vehicles reference](../../images/generated/008-54b-vehicles.png)
 
 - Realistic scale (no stretched limousines)
 - Mixed eras: modern, boxy older cars, rounded vintage cars
@@ -328,7 +328,7 @@ Infrastructure elements to spread across tiles — following tile theme — such
 
 ### Roadway Circulation Consistency
 
-![Roadway Circulation reference](../../images/outputs/generated/008-54c-roadway-circulation.png)
+![Roadway Circulation reference](../../images/generated/008-54c-roadway-circulation.png)
 
 Across all tiles, road networks should maintain **visually coherent traffic flow** at the scale of each individual roadway.
 

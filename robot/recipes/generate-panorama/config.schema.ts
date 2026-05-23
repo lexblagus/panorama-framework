@@ -28,6 +28,11 @@ const compositionMapsR1Schema = z.object({
   tile9: nonEmpty,
 });
 
+const layoutCalibrationPassSchema = z.object({
+  enabled: z.boolean(),
+  promptFile: nonEmpty,
+});
+
 const imageSchema = z.object({
   model: nonEmpty,
   quality: nonEmpty,
@@ -62,6 +67,11 @@ export const generatePanoramaConfigSchema = z.object({
     .min(1, "frameworkHomeCompositionMarkers must have at least one marker"),
   compositionMapsR1Folder: nonEmpty,
   compositionMapsR1: compositionMapsR1Schema,
+  layoutCalibrationPass: layoutCalibrationPassSchema,
+  addToPreviewTableRowPre: z.boolean(),
+  addToPreviewTableRowPost: z.boolean(),
+  addToPreviewTableRowOverlay: z.boolean(),
+  addToPreviewTableRowPanorama: z.boolean(),
 });
 
 export type GeneratePanoramaConfig = z.infer<typeof generatePanoramaConfigSchema>;

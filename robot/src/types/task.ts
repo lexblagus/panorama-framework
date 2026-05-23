@@ -20,6 +20,8 @@ export interface Task {
   taskId: TaskId;
   title: string;
   description?: string;
+  /** When false, the runner skips dispatch and marks the task success without running it. */
+  enabled?: boolean;
   arguments: Record<string, unknown>;
   state: TaskState;
   errorMessage?: string;

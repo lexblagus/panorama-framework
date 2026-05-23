@@ -47,6 +47,8 @@ export interface MarkdownWriteStepArgs {
 type StepBase = {
   title: string;
   description?: string;
+  /** When false, the runner skips dispatch and marks the task success (for optional pipeline stages). */
+  enabled?: boolean;
 };
 
 /**

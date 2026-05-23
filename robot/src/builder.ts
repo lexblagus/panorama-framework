@@ -209,6 +209,7 @@ function stepToTask(step: Recipe["steps"][number]): Task {
     taskId: step.taskId,
     title: step.title,
     description: step.description,
+    ...(step.enabled !== undefined ? { enabled: step.enabled } : {}),
     arguments: step.arguments as Record<string, unknown>,
     state: "waiting",
   };

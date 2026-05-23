@@ -14,7 +14,7 @@
     "tile9": "tile-09.md"
   },
 
-  "generatedImagePath": "images/outputs/generated",
+  "generatedImagePath": "images/generated",
   "filePrefix": "012",
   "fileIndex": 273,
   "masterSamples": 1,
@@ -43,7 +43,7 @@
     "robot:composition-preview-after"
   ],
 
-  "compositionMapsR1Folder": "images/refs/R1",
+  "compositionMapsR1Folder": "images/R1CompMaps",
   "compositionMapsR1": {
     "tile1": "157-tile1.png",
     "tile2": "157-tile2.png",
@@ -54,5 +54,14 @@
     "tile7": "157-tile7.png",
     "tile8": "157-tile8.png",
     "tile9": "157-tile9.png"
-  }
+  },
+
+  "layoutCalibrationPass": {
+    "enabled": true,
+    "promptFile": "layout-calibration-pass.md"
+  },
+  "addToPreviewTableRowPre": true,
+  "addToPreviewTableRowPost": true,
+  "addToPreviewTableRowOverlay": true,
+  "addToPreviewTableRowPanorama": true
 }

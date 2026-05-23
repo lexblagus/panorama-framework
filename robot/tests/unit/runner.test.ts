@@ -205,6 +205,50 @@ describe("runner", () => {
     ).rejects.toThrow('Plan not found: "missing"');
   });
 
+  it("skips tasks with enabled false and marks them success", async () => {
+    const { repoRootFolder, robotPackageFolder } = await createWorkspace();
+    const planId = "disabled-skip";
+    const outputFile = path.join(repoRootFolder, "robot/tests/.tmp/runner/disabled-ran.json");
+    const skippedOutput = path.join(repoRootFolder, "robot/tests/.tmp/runner/disabled-skipped.json");
+
+    await writePlan(robotPackageFolder, planId, {
+      recipeId: "disabled-skip",
+      createdAt: "2026-05-04T00:00:00.000Z",
+      tasks: [
+        {
+          taskId: "json.write",
+          title: "Disabled task",
+          enabled: false,
+          arguments: {
+            file: "robot/tests/.tmp/runner/disabled-skipped.json",
+            value: { skipped: true },
+          },
+          state: "waiting",
+        },
+        {
+          taskId: "json.write",
+          title: "Enabled task",
+          arguments: {
+            file: "robot/tests/.tmp/runner/disabled-ran.json",
+            value: { ran: true },
+          },
+          state: "waiting",
+        },
+      ],
+    });
+
+    const result = await runPlanFromStart({ planId, repoRootFolder, robotPackageFolder });
+    const plan = await readPlan(robotPackageFolder, planId);
+    const ranPayload = JSON.parse(await readFile(outputFile, "utf8")) as { ran: boolean };
+
+    await expect(stat(skippedOutput)).rejects.toThrow();
+    expect(ranPayload.ran).toBe(true);
+    expect(plan.tasks[0].state).toBe("success");
+    expect(plan.tasks[0].enabled).toBe(false);
+    expect(plan.tasks[1].state).toBe("success");
+    expect(result.completedTaskCount).toBe(2);
+  });
+
   it("runs nested plan id from subfolder", async () => {
     const { repoRootFolder, robotPackageFolder } = await createWorkspace();
     const planId = "examples/empty";

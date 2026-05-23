@@ -62,7 +62,7 @@
 - Primary wrapper:
   - `./robot/bin/robot`
 - Command shape:
-  - `./robot/bin/robot generate --prompt-file framework/prompts/tile-01.md --output images/outputs/generated/001-01-tile1.png`
+  - `./robot/bin/robot generate --prompt-file framework/prompts/tile-01.md --output images/generated/001-01-tile1.png`
 - Future subcommands reserved now:
   - `generate`
   - `edit`
@@ -91,8 +91,8 @@
 - In `robot/`, verify:
   - `npm install`
   - `npm run build`
-  - `npm start -- generate --prompt-file ../framework/prompts/tile-01.md --output ../images/outputs/generated/001-01-tile1.png`
-  - `./bin/robot generate --prompt-file framework/prompts/tile-01.md --output images/outputs/generated/001-01-tile1.png` when run from repo root
+  - `npm start -- generate --prompt-file ../framework/prompts/tile-01.md --output ../images/generated/001-01-tile1.png`
+  - `./bin/robot generate --prompt-file framework/prompts/tile-01.md --output images/generated/001-01-tile1.png` when run from repo root
 
 ## Assumptions And Later Push
 

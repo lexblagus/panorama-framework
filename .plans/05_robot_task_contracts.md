@@ -730,7 +730,7 @@ Suggested config shape:
   },
   "previewFile": "images/PREVIEW.md",
   "previewMarker": "robot:preview-table-first-row",
-  "compositionMapsR1Folder": "images/refs/R1",
+  "compositionMapsR1Folder": "images/R1CompMaps",
   "compositionMapsR1": {
     "tile1": "151-tile1",
     "tile2": "151-tile2",
@@ -742,7 +742,7 @@ Suggested config shape:
     "tile8": "151-tile8",
     "tile9": "151-tile9"
   },
-  "generatedImagePath": "images/outputs/generated",
+  "generatedImagePath": "images/generated",
   "filePrefix": "012",
   "fileIndex": 1,
   "samples": 3,

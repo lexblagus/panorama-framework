@@ -14,7 +14,7 @@ This project treats image generation as a **systems design problem**, not a gues
 ---
 
 <!-- robot:composition-preview-before -->
-![Composition preview](../images/outputs/generated/012-0284-001-composition-preview.png)
+![Composition preview](../images/generated/012-0284-001-composition-preview.png)
 <!-- robot:composition-preview-after -->
 
 _↳ Composition preview (before stitching; work in progress)_
@@ -31,7 +31,7 @@ _↳ Composition preview (before stitching; work in progress)_
   `master-base.md` + `master-only.md` concatenate for Central Master generation; tile files are self-contained.  
   Canonical attachment names in prompts: `r1-composition-map.png`, `master.png`, `ruler.png` (Tile 5 framing reference), `bridge.png` (seam composite when used).
 
-- `../images/outputs/`  
+- `../images/generated/`  
   Generated images, composites, and evaluation artifacts for the framework.
 
 - `../images/refs/`  
@@ -72,6 +72,7 @@ _↳ Composition preview (before stitching; work in progress)_
   - [Tile 7](prompts/tile-07.md)
   - [Tile 8](prompts/tile-08.md)
   - [Tile 9](prompts/tile-09.md)
+  - [Layout calibration pass](prompts/layout-calibration-pass.md)
 
 ---
 

@@ -269,7 +269,7 @@ The main production recipe. It generates the panorama tile set by producing AI i
     "previewTableRow": "robot:preview-table-row",
     "promptExtrationRules": "(TBD)"
   },
-  "compositionMapsR1folder": "../images/refs/R1",
+  "compositionMapsR1folder": "../images/R1CompMaps",
   "compositionMapsR1": {
     "tile1": "151-tile1",
     "tile2": "151-tile2",
@@ -281,7 +281,7 @@ The main production recipe. It generates the panorama tile set by producing AI i
     "tile8": "151-tile8",
     "tile9": "151-tile9"
   },
-  "generatedImagePath": "../images/outputs/generated",
+  "generatedImagePath": "../images/generated",
   "filePrefix": "012",
   "fileIndex": 1,
   "samples": 3,

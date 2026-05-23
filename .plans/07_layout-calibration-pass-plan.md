@@ -6,7 +6,7 @@ Implement the **layout calibration pass**: after each initial tile generation (`
 
 ## Current baseline (already in repo)
 
-- R1 maps: `images/refs/R1/157-tile*.png` (9 files present)
+- R1 maps: `images/R1CompMaps/157-tile*.png` (9 files present)
 - Config: `robot/recipes/generate-panorama/config.json` points `compositionMapsR1` at `157-tile*.png`, `fileIndex` 273, `samplePaddingZeroes` 3
 - Recipe builder: `robot/recipes/generate-panorama/generate-panorama.ts` — single-pass tiles with suffix `-001-tileN` (will change)
 - Overlay capability exists: `image.assemble-layers` in `robot/src/services/image/image.ts` (opacity optional; omit at assembly time)

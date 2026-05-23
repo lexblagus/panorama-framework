@@ -490,7 +490,7 @@ This keeps a team-shared seed value in tracked source without making tracked sou
 - `robot/plans/<plan-id>.json` stores generated plan data plus per-plan task runtime state
 - `robot/transient/<recipe-id>.state.json` stores long-lived mutable recipe state across runs
 - recipe config, when present, stores static recipe inputs and optional fallback seed values
-- recipe outputs such as generated images may still target paths outside `robot/`, for example `images/outputs/generated/`
+- recipe outputs such as generated images may still target paths outside `robot/`, for example `images/generated/`
 
 **Resolution Rules**
 

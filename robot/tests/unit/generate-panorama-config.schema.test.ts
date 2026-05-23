@@ -24,6 +24,12 @@ describe("generatePanoramaConfigSchema", () => {
     expect(parsed.compositionMapsR1.tile5).toMatch(/\.png$/);
     expect(parsed.image.leftCropWidth).toBe(341);
     expect(parsed.frameworkHomeCompositionMarkers).toHaveLength(2);
+    expect(parsed.layoutCalibrationPass.enabled).toBe(true);
+    expect(parsed.layoutCalibrationPass.promptFile).toBe("layout-calibration-pass.md");
+    expect(parsed.addToPreviewTableRowPre).toBe(true);
+    expect(parsed.addToPreviewTableRowPost).toBe(true);
+    expect(parsed.addToPreviewTableRowOverlay).toBe(true);
+    expect(parsed.addToPreviewTableRowPanorama).toBe(true);
   });
 
   it("rejects missing required keys", () => {

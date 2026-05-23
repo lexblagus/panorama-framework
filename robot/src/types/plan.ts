@@ -28,6 +28,7 @@ const taskSchema = z.object({
   taskId: taskIdSchema,
   title: z.string(),
   description: z.string().optional(),
+  enabled: z.boolean().optional(),
   arguments: z.record(z.unknown()),
   state: taskStateSchema,
   errorMessage: z.string().optional(),

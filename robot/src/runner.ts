@@ -348,6 +348,16 @@ async function executePlan({
       continue;
     }
 
+    if (task.enabled === false) {
+      log("info", `${progress} Skipping "${task.title}" (disabled)`);
+      task.state = "success";
+      task.finishedAt = nowIso();
+      delete task.startedAt;
+      delete task.errorMessage;
+      await services.json.writePlan(planId, plan);
+      continue;
+    }
+
     log("info", `${progress} Running "${task.title}" (${task.taskId})`);
 
     task.state = "running";
