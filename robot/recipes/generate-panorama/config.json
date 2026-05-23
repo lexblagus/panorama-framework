@@ -17,7 +17,7 @@
   "generatedImagePath": "images/outputs/generated",
   "filePrefix": "012",
   "fileIndex": 273,
-  "masterSamples": 3,
+  "masterSamples": 1,
   "fileIndexPaddingZeroes": 4,
   "samplePaddingZeroes": 3,
   "image": {
@@ -45,14 +45,14 @@
 
   "compositionMapsR1Folder": "images/refs/R1",
   "compositionMapsR1": {
-    "tile1": "153-tile1.png",
-    "tile2": "153-tile2.png",
-    "tile3": "153-tile3.png",
-    "tile4": "153-tile4.png",
-    "tile5": "153-tile5.png",
-    "tile6": "153-tile6.png",
-    "tile7": "153-tile7.png",
-    "tile8": "153-tile8.png",
-    "tile9": "153-tile9.png"
+    "tile1": "157-tile1.png",
+    "tile2": "157-tile2.png",
+    "tile3": "157-tile3.png",
+    "tile4": "157-tile4.png",
+    "tile5": "157-tile5.png",
+    "tile6": "157-tile6.png",
+    "tile7": "157-tile7.png",
+    "tile8": "157-tile8.png",
+    "tile9": "157-tile9.png"
   }
 }
