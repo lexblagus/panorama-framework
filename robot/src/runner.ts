@@ -297,6 +297,8 @@ async function dispatchTask(task: Task, services: ServiceRegistry): Promise<void
       await services.workflow.runRecipe(args);
       return;
     }
+    case "workflow.stop":
+      throw new Error("workflow.stop: execution halted intentionally");
     default: {
       const neverTaskId: never = task.taskId;
       throw new Error(`Unknown task id: ${neverTaskId}`);
@@ -324,6 +326,17 @@ async function executePlan({
       resetTask(task);
     }
     await services.json.writePlan(planId, plan);
+  }
+
+  // On resume: if the first pending task is workflow.stop, auto-skip it so execution continues.
+  if (command === "resume") {
+    const firstPending = plan.tasks.find((t) => t.state !== "success");
+    if (firstPending?.taskId === "workflow.stop") {
+      firstPending.state = "success";
+      firstPending.finishedAt = nowIso();
+      await services.json.writePlan(planId, plan);
+      log("info", `Skipped "workflow.stop" on resume — continuing from next task`);
+    }
   }
 
   for (let i = 0; i < total; i++) {

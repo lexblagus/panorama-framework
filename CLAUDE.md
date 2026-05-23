@@ -99,8 +99,10 @@ npm start -- exec --recipe examples/empty
 
 ```bash
 cd robot
-npm run build      # compile TypeScript to dist/
-npm test           # run Vitest unit/integration/e2e tests
+npm run build        # compile TypeScript to dist/
+npm test             # run full test suite (unit + e2e) — REQUIRED before completing any feature
+npm run test:unit    # unit tests only
+npm run test:e2e     # e2e tests only (CLI, image, JSON, markdown, workflow, openai)
 ```
 
 Run a single test file:
@@ -109,6 +111,8 @@ Run a single test file:
 cd robot
 npx vitest run tests/unit/builder.test.ts
 ```
+
+**Testing mandate:** When implementing any feature, bug fix, or refactor in the `robot/` package, you MUST run `npm test` from `robot/` and confirm all tests pass before considering the task complete. The full suite (unit + e2e) is the acceptance gate. Do not skip e2e tests — they exercise the full recipe → builder → runner → service pipeline and catch wiring errors that unit tests miss.
 
 ## Robot Architecture
 

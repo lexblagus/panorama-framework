@@ -44,3 +44,10 @@ export interface WorkflowServiceOptions extends ServiceBaseOptions {
 
 /** Union of the possible results from any workflow mode (build summary or runner summary). */
 export type WorkflowResult = BuildCommandResult | RunnerResult;
+
+/**
+ * Arguments for the `workflow.stop` task.
+ * No arguments required — the task intentionally halts execution when encountered
+ * during a normal run. On resume, if this is the first pending task it is auto-skipped.
+ */
+export type WorkflowStopArgs = Record<string, never>;

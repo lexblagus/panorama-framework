@@ -16,8 +16,9 @@ export async function buildRecipe(
   // This is just an example intended to be used outside `robot` package, e.g.:
   // const folderPath = `${context.context.repoRootFolder}/<package-name>/…`
   const folderPath = path.dirname(thisFilePath);
-  const leftImageFile = `${folderPath}/white.example.png`;
-  const rightImageFile = `${folderPath}/black.example.png`;
+  const fixturesPath = path.resolve(path.dirname(thisFilePath), "../../../tests/fixtures/images");
+  const leftImageFile = `${fixturesPath}/white.example.png`;
+  const rightImageFile = `${fixturesPath}/black.example.png`;
   const outputImageFile = `${folderPath}/bridge.example.png`;
   log("debug", `folderPath=${JSON.stringify(folderPath)} output=${JSON.stringify(outputImageFile)}`);
 

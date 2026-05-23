@@ -1,6 +1,6 @@
 import type { AssembleLayersArgs, CreateBridgeArgs, ComposeTilesPreviewArgs } from "../services/image/types.js";
 import type { MarkdownInsertRequest } from "../services/markdown/types.js";
-import type { RunRecipeArgs } from "../services/workflow/types.js";
+import type { RunRecipeArgs, WorkflowStopArgs } from "../services/workflow/types.js";
 
 /** Arguments for the `openai.generate-image` task. Uses plain strings for model/quality/format/size so recipe configs don't need to import OpenAI enum types. */
 export interface OpenAIGenerateImageStepArgs {
@@ -64,4 +64,5 @@ export type Step =
   | (StepBase & { taskId: "markdown.insert";       arguments: MarkdownInsertRequest })
   | (StepBase & { taskId: "json.read";             arguments: JsonReadStepArgs })
   | (StepBase & { taskId: "json.write";            arguments: JsonWriteStepArgs })
-  | (StepBase & { taskId: "workflow.run-recipe";   arguments: RunRecipeArgs });
+  | (StepBase & { taskId: "workflow.run-recipe";   arguments: RunRecipeArgs })
+  | (StepBase & { taskId: "workflow.stop";         arguments: WorkflowStopArgs });

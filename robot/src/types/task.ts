@@ -12,7 +12,8 @@ export type TaskId =
   | "markdown.insert"
   | "json.read"
   | "json.write"
-  | "workflow.run-recipe";
+  | "workflow.run-recipe"
+  | "workflow.stop";
 
 /** Runtime task record stored inside a plan; mutated in-place as execution progresses. */
 export interface Task {

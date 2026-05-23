@@ -21,6 +21,7 @@ const taskIdSchema = z.enum([
   "json.read",
   "json.write",
   "workflow.run-recipe",
+  "workflow.stop",
 ]);
 
 const taskSchema = z.object({

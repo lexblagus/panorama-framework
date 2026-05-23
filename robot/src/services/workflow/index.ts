@@ -3,4 +3,5 @@ export type {
   RunRecipeArgs,
   WorkflowResult,
   WorkflowServiceOptions,
+  WorkflowStopArgs,
 } from "./types.js";
